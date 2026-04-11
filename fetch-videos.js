@@ -42,37 +42,37 @@ const CHANNELS = [
   {
     id: 'UC4XJnRPZjXhgvVMhXKNSJvQ',
     name: 'Israeli PM',
-    emoji: '🇮🇱',
+    faviconDomain: 'gov.il',
     color: '#0038b8'
   },
   {
     id: 'UCawNWlihdgaycQpO3zi-jYg',
     name: 'IDF',
-    emoji: '⚔️',
+    faviconDomain: 'idf.il',
     color: '#4a7c59'
   },
   {
     id: 'UCYxRlFDqcWM4y7FfpiAN3KQ',
     name: 'The White House',
-    emoji: '🇺🇸',
+    faviconDomain: 'whitehouse.gov',
     color: '#002868'
   },
   {
     id: 'UCb--64Gl51jIEVE-GLDAVTg',
     name: 'C-SPAN',
-    emoji: '📺',
+    faviconDomain: 'c-span.org',
     color: '#003366'
   },
   {
     id: 'UCXIJgqnII2ZOINSWNOGFThA',
     name: 'Fox News',
-    emoji: '🦊',
+    faviconDomain: 'foxnews.com',
     color: '#003366'
   },
   {
     id: 'UCupvZG-5ko_eiXAupbDfxWw',
     name: 'CNN',
-    emoji: '🔴',
+    faviconDomain: 'cnn.com',
     color: '#cc0000'
   }
 ];
@@ -108,7 +108,7 @@ function parseYouTubeFeed(xml, channel) {
       published: published || updated || new Date().toISOString(),
       description: decodeXmlEntities(description).slice(0, 300),
       channel: channel.name,
-      channelEmoji: channel.emoji,
+      channelFaviconDomain: channel.faviconDomain,
       channelColor: channel.color,
       channelId: channel.id
     });
@@ -175,7 +175,7 @@ async function main() {
 
   const results = await Promise.allSettled(
     CHANNELS.map(ch => {
-      console.log(`  → ${ch.emoji} ${ch.name}...`);
+      console.log(`  → ${ch.name}...`);
       return fetchChannelFeed(ch);
     })
   );

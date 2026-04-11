@@ -161,6 +161,21 @@ war-dashboard/
 
 ## Key Design Decisions
 
+### 0. Design System Rules
+
+**Logos over Emojis:** Always use real publisher favicons/logos (via `getFaviconUrl(domain)`) for news sources, channels, and feeds. Do not use generic emojis for publishers.
+
+```astro
+// In Astro components:
+function getFaviconUrl(domain: string): string {
+  return `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+}
+// Usage:
+<img src={getFaviconUrl(feed.faviconDomain)} class="w-4 h-4 rounded-sm" alt="" />
+```
+
+This applies to: article feed filter buttons (`FilterBar.astro`), video channel filter buttons and badges (`videos.astro`), and any future publisher-branded UI elements.
+
 ### 1. Decoupled 3-Layer Pipeline
 **Why**: Fetch (3 min) and synthesize (1 hr) run on completely independent schedules.
 - Fetching more often keeps articles fresh without burning Gemini quota.
