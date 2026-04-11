@@ -308,21 +308,29 @@ async function fetchSingleFeed(feed) {
               console.log(`  ✅ ${feed.name}: corrected date for "${(item.title || '').slice(0, 50)}" → ${realDate}`);
               item._correctedDate = realDate;
             } else {
-              // Could not scrape the real date — DROP this article entirely.
-              // Clamping to "now" would be a lie (shows as "Just now" / "3m ago").
-              // Pushing to a fake past date would also be misleading.
-              // The correct action is to skip it until JPost's RSS reflects a real past date.
+              // Could not scrape a past/present date — article is truly pre-scheduled
+              // (future pubDate AND article page also shows future datePublished).
+              // DROP this article entirely from the current fetch.
+              // Also mark its URL for purging from the persistent daily archive,
+              // since a previous run may have clamped it to "now" and stored it.
               console.warn(`  [JPOST PRE-SCHEDULED] Dropping future article unable to scrape: "${(item.title || '').slice(0, 80)}"`);
               item._dropArticle = true;
+              item._purgeFromArchive = true; // signal to persistDailyArticles
             }
           }
         }
       }
 
-      // Remove any items flagged for dropping (pre-scheduled future articles we couldn't scrape)
-      const droppedCount = items.filter(item => item._dropArticle).length;
-      if (droppedCount > 0) {
-        console.log(`  🚫 ${feed.name}: dropped ${droppedCount} pre-scheduled article(s) with unresolvable future dates`);
+      // Remove any items flagged for dropping (pre-scheduled future articles we couldn't scrape).
+      // Collect URLs of articles to purge from the persistent archive (they may have been
+      // stored in a previous run with a fake "clamped to now" timestamp).
+      const droppedItems = items.filter(item => item._dropArticle);
+      const purgeUrls = droppedItems
+        .filter(item => item._purgeFromArchive)
+        .map(item => item.link)
+        .filter(Boolean);
+      if (droppedItems.length > 0) {
+        console.log(`  🚫 ${feed.name}: dropped ${droppedItems.length} pre-scheduled article(s) with unresolvable future dates`);
         items = items.filter(item => !item._dropArticle);
       }
 
@@ -415,7 +423,7 @@ async function fetchSingleFeed(feed) {
         };
       });
 
-      return { feed, articles };
+      return { feed, articles, purgeUrls };
     } catch (err) {
       lastError = err;
       if (attempt < RSS_RETRY_ATTEMPTS) {
@@ -450,6 +458,7 @@ async function fetchAllFeeds() {
   );
 
   const allArticles = [];
+  const allPurgeUrls = []; // URLs to remove from the persistent daily archive
   const sourceStats = [];
 
   // Add disabled feeds to stats as permanently skipped
@@ -462,8 +471,9 @@ async function fetchAllFeeds() {
     const feed = activeFeeds[i];
 
     if (result.status === 'fulfilled') {
-      const { articles } = result.value;
+      const { articles, purgeUrls } = result.value;
       allArticles.push(...articles);
+      if (purgeUrls && purgeUrls.length > 0) allPurgeUrls.push(...purgeUrls);
       sourceStats.push({ name: feed.name, logo: feed.emoji, count: articles.length });
       console.log(`  ✓ ${feed.name}: ${articles.length} articles`);
     } else {
@@ -475,7 +485,7 @@ async function fetchAllFeeds() {
   // Sort by date, newest first
   allArticles.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  return { articles: allArticles, sourceStats };
+  return { articles: allArticles, sourceStats, purgeUrls: allPurgeUrls };
 }
 
 module.exports = { fetchAllFeeds };

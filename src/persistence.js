@@ -18,8 +18,13 @@ function getIsraelDateStr(date) {
 /**
  * Persist articles to a daily JSON file, deduplicating by URL.
  * Uses atomic write to prevent corruption.
+ *
+ * @param {Array} articles - Fresh articles from this fetch run.
+ * @param {Array} [purgeUrls=[]] - URLs to forcibly remove from the archive.
+ *   Used to evict pre-scheduled JPost articles that were previously stored
+ *   with a fake "clamped to now" timestamp before the drop logic was in place.
  */
-function persistDailyArticles(articles) {
+function persistDailyArticles(articles, purgeUrls = []) {
   fs.mkdirSync(DATA_DIR, { recursive: true });
 
   const today = getIsraelDateStr(new Date());
@@ -56,6 +61,20 @@ function persistDailyArticles(articles) {
   //   timestamps to now so they stop floating to the top of the feed.
   const nowMs = Date.now();
   const incomingByUrl = new Map(articles.map(a => [a.link, a]));
+
+  // Purge pre-scheduled articles that were previously stored with a bad timestamp.
+  // This evicts articles that a prior run clamped to "now" before the drop-and-log
+  // fix was deployed. The purge set is populated by fetchRealPublishDate when it
+  // determines an article's page also shows a future datePublished (truly not live yet).
+  const purgeSet = new Set(purgeUrls);
+  if (purgeSet.size > 0) {
+    const before = existing.length;
+    existing = existing.filter(a => !purgeSet.has(a.link));
+    const purged = before - existing.length;
+    if (purged > 0) {
+      console.log(`  🗑️  Purged ${purged} pre-scheduled article(s) from archive (stale future-timestamp entries)`);
+    }
+  }
 
   let updateCount = 0;
   let dateCorrectionCount = 0;

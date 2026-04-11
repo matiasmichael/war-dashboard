@@ -9,11 +9,11 @@ async function main() {
   console.log('[DATA] 🔶 Iran War Update — Data Collection');
   console.log(`[DATA]    Time: ${new Date().toISOString()}`);
 
-  const { articles, sourceStats } = await fetchAllFeeds();
+  const { articles, sourceStats, purgeUrls } = await fetchAllFeeds();
   console.log(`[DATA] 📊 Fetched ${articles.length} articles from ${sourceStats.length} feeds`);
 
-  // Persist to daily JSON (deduplicates automatically)
-  const merged = persistDailyArticles(articles);
+  // Persist to daily JSON (deduplicates automatically; purges stale pre-scheduled entries)
+  const merged = persistDailyArticles(articles, purgeUrls);
   console.log(`[DATA] 📁 Daily archive now has ${merged.length} total articles`);
 
   // Log source breakdown
