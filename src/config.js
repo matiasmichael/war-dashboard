@@ -45,7 +45,13 @@ const FEEDS = [
     accentLight: '#f0fdf4',
     keywords: null,
     staleThresholdHours: null,
-    sanitizeXml: true
+    sanitizeXml: true,
+    // DISABLED: Haaretz's RSS endpoint returns a full HTML paywall page (1.3MB) to all
+    // non-whitelisted user agents. Their Varnish CDN either 403s or serves HTML — no
+    // valid XML is ever returned. Keeping this entry in the config but skipping it in
+    // fetchAllFeeds prevents noisy fetch errors on every cron cycle.
+    // Re-enable if a working RSS URL is found (e.g. behind a subscription cookie).
+    disabled: true
   },
   {
     name: 'CNN',
@@ -122,7 +128,11 @@ const FEEDS = [
     color: '#2c3e50',
     accentLight: '#f8fafc',
     keywords: null,
-    staleThresholdHours: null
+    staleThresholdHours: null,
+    // JPost pre-schedules articles with future pubDates in the RSS feed.
+    // When this flag is set, fetcher.js will scrape the article HTML for the
+    // real datePublished from the JSON-LD schema for any future-dated item.
+    fixFutureDates: true
   }
 ];
 

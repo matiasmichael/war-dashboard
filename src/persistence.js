@@ -36,46 +36,70 @@ function persistDailyArticles(articles) {
     }
   }
 
-  // Deduplicate by URL.
-  // Important: if an existing article has a future date (e.g. JPost pre-schedules
-  // articles with future pubDates), update its date from the incoming fetch which
-  // has already been clamped to "now" by the fetcher. This prevents stale future
-  // timestamps from being frozen in the daily JSON once the article is seen.
+  // Deduplicate by URL — but always refresh mutable fields from the latest fetch.
+  //
+  // Old behaviour: ignore incoming articles whose URL already exists in the store.
+  // Problem: publishers update headlines and snippets after initial publication,
+  //   and JPost pre-schedules articles with future pubDates. Ignoring incoming data
+  //   froze stale headlines and bad timestamps forever.
+  //
+  // New behaviour:
+  //   For every existing article whose URL appears in the new fetch:
+  //     • Update title — publishers fix typos, sharpen headlines post-publish
+  //     • Update snippet — content improves or expands after initial post
+  //     • Update date — critical for JPost future-date correction; also normalises
+  //       any previously stored RFC 2822 strings into strict ISO UTC format
+  //   Only fields that define the article's identity (source, color, logo, link)
+  //   are preserved from the original stored record.
+  //
+  //   For articles NOT in the new fetch: keep as-is, but clamp any lingering future
+  //   timestamps to now so they stop floating to the top of the feed.
   const nowMs = Date.now();
   const incomingByUrl = new Map(articles.map(a => [a.link, a]));
 
+  let updateCount = 0;
   let dateCorrectionCount = 0;
-  const correctedExisting = existing.map(a => {
+  const updatedExisting = existing.map(a => {
+    const incoming = incomingByUrl.get(a.link);
+    if (incoming) {
+      // Article is still in the live feed — refresh title, snippet, and date.
+      const changed =
+        incoming.title !== a.title ||
+        incoming.snippet !== a.snippet ||
+        incoming.date !== a.date;
+      if (changed) updateCount++;
+      return {
+        ...a,                      // keep identity fields (source, color, logo, etc.)
+        title: incoming.title,     // always use freshest headline
+        snippet: incoming.snippet, // always use freshest snippet
+        date: incoming.date        // always use fetcher-normalised ISO date
+      };
+    }
+    // Article is no longer in the live feed — keep stored data but fix future dates.
     const storedDateMs = new Date(a.date).getTime();
     if (storedDateMs > nowMs) {
-      // The stored date is in the future — try to correct it from incoming data.
-      const incoming = incomingByUrl.get(a.link);
-      if (incoming) {
-        // Use the fetcher's already-clamped date (guaranteed ≤ now)
-        dateCorrectionCount++;
-        return { ...a, date: incoming.date };
-      } else {
-        // Article not in current feed — clamp to now so it stops floating to the top
-        dateCorrectionCount++;
-        return { ...a, date: new Date(nowMs).toISOString() };
-      }
+      dateCorrectionCount++;
+      return { ...a, date: new Date(nowMs).toISOString() };
     }
     return a;
   });
 
+  if (updateCount > 0) {
+    console.log(`  ✏️  Refreshed ${updateCount} existing article(s) with updated title/snippet/date`);
+  }
   if (dateCorrectionCount > 0) {
-    console.log(`  🕐 Corrected ${dateCorrectionCount} article(s) with future timestamps in daily store`);
+    console.log(`  🕐 Clamped ${dateCorrectionCount} article(s) with lingering future timestamps`);
   }
 
-  const seenUrls = new Set(correctedExisting.map(a => a.link));
+  const seenUrls = new Set(existing.map(a => a.link));
   const newArticles = articles.filter(a => !seenUrls.has(a.link));
 
-  const merged = [...correctedExisting, ...newArticles];
+  const merged = [...updatedExisting, ...newArticles];
   merged.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   // Atomic write (Item #9)
   atomicWriteSync(dailyFile, JSON.stringify(merged, null, 2));
-  console.log(`📁 Daily archive: ${dailyFile} — ${merged.length} articles (${newArticles.length} new)`);
+  console.log(`📁 Daily archive: ${dailyFile} — ${merged.length} articles (${newArticles.length} new, ${updateCount} updated)`);
   return merged;
 }
 

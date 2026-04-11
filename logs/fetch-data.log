@@ -33,3 +33,39 @@ Char: =
 [DATA] ✅ Sources: 8 OK, 1 failed
 [DATA] ⚠️  Failed: Haaretz
 [DATA] ✅ Data collection complete.
+[DATA] 🔶 Iran War Update — Data Collection
+[DATA]    Time: 2026-04-11T18:14:35.437Z
+Fetching 9 feeds in parallel...
+  → Ynet News...
+  → Haaretz...
+  → CNN...
+  → Fox News...
+  → BBC News...
+  → Al Jazeera...
+  → NPR...
+  → Times of Israel...
+  → Jerusalem Post...
+  🗑️  CNN: filtered 1 stale articles (>48h old)
+  ⏰ Future pubDate clamped to now for: Iran installing roadblocks in front of buried nuclear facili
+  ⟳ Haaretz: attempt 1 failed (Unencoded <
+Line: 105
+Column: 2209
+Char: =), retrying in 3s...
+  ✓ Ynet News: 15 articles
+  ✗ Haaretz: Unencoded <
+Line: 105
+Column: 2209
+Char: =
+  ✓ CNN: 14 articles
+  ✓ Fox News: 15 articles
+  ✓ BBC News: 15 articles
+  ✓ Al Jazeera: 14 articles
+  ✓ NPR: 5 articles
+  ✓ Times of Israel: 13 articles
+  ✓ Jerusalem Post: 15 articles
+[DATA] 📊 Fetched 106 articles from 9 feeds
+📁 Daily archive: /Users/michaelmatias/Projects/war-dashboard/data/2026-04-11.json — 129 articles (4 new)
+[DATA] 📁 Daily archive now has 129 total articles
+[DATA] ✅ Sources: 8 OK, 1 failed
+[DATA] ⚠️  Failed: Haaretz
+[DATA] ✅ Data collection complete.

@@ -202,6 +202,41 @@ const generatedAt = new Date().toISOString();
       });
     });
 
+    // ===== EXPANDABLE ARTICLE CARDS =====
+    document.querySelectorAll('.article-card').forEach(card => {
+      const el = card as HTMLElement;
+      const hasSnippet = el.dataset.hasSnippet === 'true';
+      const expandArea = el.querySelector('.article-expand') as HTMLElement | null;
+      const chevron = el.querySelector('.expand-chevron') as HTMLElement | null;
+
+      el.addEventListener('click', (e: Event) => {
+        // Don't toggle if clicking share button or the Read Full Article link
+        const target = e.target as HTMLElement;
+        if (target.closest('.share-btn') || target.closest('a.btn-primary')) return;
+
+        if (hasSnippet && expandArea) {
+          const isOpen = el.classList.contains('expanded');
+          if (isOpen) {
+            // Collapse
+            el.classList.remove('expanded');
+            expandArea.style.maxHeight = '0';
+            expandArea.style.opacity = '0';
+            if (chevron) chevron.style.transform = 'rotate(0deg)';
+          } else {
+            // Expand
+            el.classList.add('expanded');
+            expandArea.style.maxHeight = expandArea.scrollHeight + 'px';
+            expandArea.style.opacity = '1';
+            if (chevron) chevron.style.transform = 'rotate(180deg)';
+          }
+        } else if (!hasSnippet) {
+          // No snippet — navigate directly like old behavior
+          const link = el.dataset.link;
+          if (link) window.open(link, '_blank', 'noopener');
+        }
+      });
+    });
+
     // ===== BACK TO TOP BUTTON =====
     const backToTopBtn = document.getElementById('backToTop');
     if (backToTopBtn) {

@@ -59,13 +59,73 @@ function timeAgo(dateStr) {
 }
 
 /**
- * Strip HTML tags and normalize whitespace from a snippet.
+ * Decode HTML entities from a string.
+ * Handles both named entities (&amp; &quot; &lt; &gt; &apos; &nbsp; &mdash; &ndash; etc.)
+ * and numeric entities (&#39; &#x27; &#8212; etc.).
+ * Uses a lookup table for the most common named entities found in RSS feeds,
+ * then falls back to a DOM-style decode trick for anything else.
+ */
+function decodeHtmlEntities(str) {
+  if (!str || !str.includes('&')) return str;
+
+  // Named entity map — covers every entity commonly found in news RSS feeds
+  const NAMED = {
+    amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: '\u00A0',
+    mdash: '\u2014', ndash: '\u2013', lsquo: '\u2018', rsquo: '\u2019',
+    ldquo: '\u201C', rdquo: '\u201D', hellip: '\u2026', bull: '\u2022',
+    copy: '\u00A9', reg: '\u00AE', trade: '\u2122', euro: '\u20AC',
+    pound: '\u00A3', yen: '\u00A5', cent: '\u00A2', deg: '\u00B0',
+    frac12: '\u00BD', frac14: '\u00BC', frac34: '\u00BE',
+    times: '\u00D7', divide: '\u00F7', plusmn: '\u00B1',
+    // Hebrew-related
+    lrm: '\u200E', rlm: '\u200F',
+  };
+
+  // Decode once. We apply it twice to handle double-encoded entities
+  // (e.g. &amp;quot; → &quot; → "), which appear in some RSS feeds that
+  // have been processed by intermediate HTML renderers.
+  function decodeOnce(s) {
+    return s.replace(/&(#\d+|#x[\da-fA-F]+|[a-zA-Z]+);/g, (match, ref) => {
+      if (ref.startsWith('#x')) {
+        return String.fromCodePoint(parseInt(ref.slice(2), 16));
+      } else if (ref.startsWith('#')) {
+        return String.fromCodePoint(parseInt(ref.slice(1), 10));
+      } else {
+        return NAMED[ref.toLowerCase()] || match;
+      }
+    });
+  }
+
+  // Apply twice to unwrap double-encoded entities (&amp;quot; → &quot; → ")
+  let decoded = decodeOnce(str);
+  if (decoded !== str) decoded = decodeOnce(decoded);
+  return decoded;
+}
+
+/**
+ * Clean a headline/title: decode HTML entities, strip any residual HTML tags,
+ * normalize whitespace.
+ */
+function cleanTitle(text) {
+  if (!text) return '';
+  return decodeHtmlEntities(text)
+    .replace(/<[^>]+>/g, '')   // strip any HTML tags (rare but possible)
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/**
+ * Strip HTML tags, decode HTML entities, and normalize whitespace from a snippet.
+ * Replaces the old version that used a naive &[a-z]+; regex which:
+ *   - silently dropped & from text like "killed & wounded" (stripping the &amp;)
+ *   - left &#39; apostrophes undecoded
+ *   - left &mdash; &ndash; etc. as spaces instead of proper chars
  */
 function cleanSnippet(text, maxLength) {
   if (!text) return '';
-  return text
-    .replace(/<[^>]+>/g, '')
-    .replace(/&[a-z]+;/gi, ' ')
+  return decodeHtmlEntities(
+    text.replace(/<[^>]+>/g, '') // strip HTML tags first, then decode entities
+  )
     .replace(/\s+/g, ' ')
     .trim()
     .slice(0, maxLength);
@@ -111,6 +171,8 @@ module.exports = {
   escapeHtml,
   sanitizeHTML,
   timeAgo,
+  decodeHtmlEntities,
+  cleanTitle,
   cleanSnippet,
   truncateSnippet,
   filterByKeywords,

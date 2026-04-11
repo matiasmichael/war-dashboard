@@ -10,13 +10,17 @@ const {
   RSS_RETRY_DELAY_MS,
   getFaviconUrl
 } = require('./config');
-const { filterByKeywords, cleanSnippet, sleep } = require('./utils');
+const { filterByKeywords, cleanSnippet, cleanTitle, sleep } = require('./utils');
 const { FULL_SNIPPET_LENGTH } = require('./config');
 
 const parser = new RssParser({
   timeout: RSS_TIMEOUT_MS,
   headers: {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'
+  },
+  customFields: {
+    // JPost includes <UpdateDate> alongside <pubDate> — capture it for fallback use
+    item: [['UpdateDate', 'updateDate']]
   }
 });
 
@@ -71,6 +75,73 @@ async function fetchAndSanitizeXml(url) {
 }
 
 /**
+ * Fetch the real publish time for an article by scraping its JSON-LD schema.
+ * Used for feeds where the RSS pubDate may be a pre-scheduled future timestamp
+ * that doesn't match the actual publication time shown on the article page.
+ * The JSON-LD `datePublished` field is authoritative.
+ *
+ * Strategy order:
+ *  1. JSON-LD <script type="application/ld+json"> — most reliable (NewsArticle schema)
+ *  2. OpenGraph <meta property="article:published_time"> — widely supported fallback
+ *
+ * Returns an ISO date string on success, or null on failure/timeout.
+ * Previously named `fetchJPostRealPublishDate`; renamed to reflect generic use.
+ */
+async function fetchRealPublishDate(url) {
+  const controller = new AbortController();
+  // Use a tight per-article timeout — we fire these in parallel for all future-dated articles
+  const timeoutId = setTimeout(() => controller.abort(), 8000);
+  try {
+    const res = await fetch(url, {
+      signal: controller.signal,
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml',
+        'Accept-Language': 'en-US,en;q=0.9'
+      }
+    });
+    if (!res.ok) return null;
+    const html = await res.text();
+
+    // Strategy 1: Parse JSON-LD schema (most reliable — JPost embeds full NewsArticle schema)
+    // Look for "datePublished":"..." inside any <script type="application/ld+json"> block
+    const jsonLdMatches = html.matchAll(/<script[^>]+application\/ld\+json[^>]*>([\s\S]*?)<\/script>/gi);
+    for (const match of jsonLdMatches) {
+      try {
+        const schema = JSON.parse(match[1]);
+        const candidates = Array.isArray(schema) ? schema : [schema];
+        for (const obj of candidates) {
+          if (obj.datePublished) {
+            const d = new Date(obj.datePublished);
+            if (!isNaN(d.getTime()) && d.getTime() <= Date.now()) {
+              return d.toISOString();
+            }
+          }
+        }
+      } catch (_) {
+        // malformed JSON-LD — try next
+      }
+    }
+
+    // Strategy 2: <meta property="article:published_time"> OpenGraph tag
+    const ogMatch = html.match(/<meta[^>]+property=["']article:published_time["'][^>]+content=["']([^"']+)["']/i)
+                 || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']article:published_time["']/i);
+    if (ogMatch) {
+      const d = new Date(ogMatch[1]);
+      if (!isNaN(d.getTime()) && d.getTime() <= Date.now()) {
+        return d.toISOString();
+      }
+    }
+
+    return null;
+  } catch (_) {
+    return null;
+  } finally {
+    clearTimeout(timeoutId);
+  }
+}
+
+/**
  * Fetch a single RSS feed with retry logic (Item #5).
  * Returns { feed, articles } on success.
  * Throws on final failure after retries.
@@ -88,6 +159,11 @@ async function fetchSingleFeed(feed) {
         result = await parser.parseURL(feed.url);
       }
       let items = result.items || [];
+
+      // For JPost: rss-parser won't pick up the custom <UpdateDate> field unless
+      // customFields is configured (done above). Attach it for use during date resolution.
+      // (items already have item.updateDate via the customFields config)
+
       items = filterByKeywords(items, feed.keywords);
 
       // Take top N per source
@@ -118,30 +194,90 @@ async function fetchSingleFeed(feed) {
       }
 
       const faviconUrl = getFaviconUrl(feed.faviconDomain);
+
+      // --- JPost future-date correction ---
+      // JPost pre-schedules articles: they appear in the RSS feed with a pubDate that is
+      // still in the future (e.g. scheduled for 2 hours from now), but the article page
+      // already shows the real publish time in its JSON-LD schema.
+      // We fire parallel HEAD-less fetches for any JPost article whose pubDate is in the
+      // future, then swap in the real datePublished scraped from the article HTML.
+      if (feed.fixFutureDates) {
+        const nowMs = Date.now();
+        const futureDateItems = items.filter(item => {
+          const dateStr = item.isoDate || item.pubDate;
+          if (!dateStr) return false;
+          const d = new Date(dateStr);
+          return !isNaN(d.getTime()) && d.getTime() > nowMs;
+        });
+
+        if (futureDateItems.length > 0) {
+          console.log(`  🔍 ${feed.name}: ${futureDateItems.length} article(s) have future pubDates — fetching real publish times...`);
+          // Parallel fetch with per-article timeout (already baked into fetchJPostRealPublishDate)
+          const realDates = await Promise.all(
+            futureDateItems.map(async item => {
+              const url = item.link;
+              if (!url || url === '#') return { item, realDate: null };
+              const realDate = await fetchRealPublishDate(url);
+              return { item, realDate };
+            })
+          );
+          for (const { item, realDate } of realDates) {
+            if (realDate) {
+              console.log(`  ✅ ${feed.name}: corrected date for "${(item.title || '').slice(0, 50)}" → ${realDate}`);
+              item._correctedDate = realDate;
+            } else {
+              // Could not fetch real date — fall back to clamping to now
+              console.log(`  ⏰ ${feed.name}: could not fetch real date for "${(item.title || '').slice(0, 50)}" — clamping to now`);
+              item._correctedDate = new Date().toISOString();
+            }
+          }
+        }
+      }
+
       const articles = items.map(item => {
-        // Never fall back to Date.now() for missing pubDates
-        // That makes old undated articles appear as "just now"
-        let parsedDate = item.isoDate || item.pubDate;
+        // --- Date normalization ---
+        // Always produce a strict ISO 8601 string (YYYY-MM-DDTHH:mm:ss.sssZ).
+        // rss-parser sets `isoDate` (already ISO) when it can parse the pubDate;
+        // but falls back to the raw `pubDate` string (RFC 2822) when parsing fails.
+        // We therefore always run the result through `new Date().toISOString()` to
+        // guarantee a uniform format and UTC normalisation before saving.
+        let rawDate = item.isoDate || item.pubDate;
+        let parsedDate;
         let isInvalid = false;
-        
-        if (!parsedDate || isNaN(new Date(parsedDate).getTime())) {
-          // It's missing or malformed. Set a fallback far in the past so it doesn't jump to the top
-          // The UI will handle it gracefully based on the noDate flag
+
+        if (!rawDate) {
+          // Missing date — sentinel far in the past so it doesn't jump to the top.
+          // The UI handles it gracefully via the noDate flag.
           parsedDate = new Date('2000-01-01T00:00:00Z').toISOString();
           isInvalid = true;
         } else {
-          // If a feed sends a date from the future (e.g. JPost pre-schedules articles
-          // with upcoming pubDates visible in RSS before the article goes live),
-          // clamp to now so it doesn't sort above genuinely-fresh articles and so
-          // timeAgo() displays 'just now' rather than a negative age.
-          if (new Date(parsedDate).getTime() > Date.now()) {
-            parsedDate = new Date().toISOString();
-            console.log(`  ⏰ Future pubDate clamped to now for: ${item.title ? item.title.slice(0, 60) : 'unknown'}`);
+          const d = new Date(rawDate);
+          if (isNaN(d.getTime())) {
+            // Malformed date string
+            parsedDate = new Date('2000-01-01T00:00:00Z').toISOString();
+            isInvalid = true;
+          } else if (d.getTime() > Date.now()) {
+            // pubDate is in the future
+            if (item._correctedDate) {
+              // Use the real date scraped from the article page
+              parsedDate = item._correctedDate; // already ISO from fetchRealPublishDate
+            } else if (feed.fixFutureDates) {
+              // fixFutureDates feed but scrape failed — clamp to now
+              parsedDate = new Date().toISOString();
+            } else {
+              // Feed with unexpected future date — clamp to now
+              parsedDate = new Date().toISOString();
+              console.log(`  ⏰ Future pubDate clamped to now for: ${item.title ? item.title.slice(0, 60) : 'unknown'}`);
+            }
+          } else {
+            // Normal past date — normalise to strict ISO UTC string regardless of
+            // whether input was RFC 2822, ISO with offset, etc.
+            parsedDate = d.toISOString();
           }
         }
-        
+
         return {
-          title: item.title || 'Untitled',
+          title: cleanTitle(item.title || 'Untitled'),
           link: item.link || '#',
           snippet: cleanSnippet(item.contentSnippet || item.content || '', FULL_SNIPPET_LENGTH),
           date: parsedDate,
@@ -171,10 +307,18 @@ async function fetchSingleFeed(feed) {
  * Returns { articles, sourceStats }.
  */
 async function fetchAllFeeds() {
-  console.log(`Fetching ${FEEDS.length} feeds in parallel...`);
+  // Skip feeds that are formally disabled (e.g. Haaretz — paywall-blocked RSS endpoint)
+  const activeFeeds = FEEDS.filter(f => !f.disabled);
+  const skippedFeeds = FEEDS.filter(f => f.disabled);
+
+  if (skippedFeeds.length > 0) {
+    console.log(`⚠️  Skipping ${skippedFeeds.length} disabled feed(s): ${skippedFeeds.map(f => f.name).join(', ')}`);
+  }
+
+  console.log(`Fetching ${activeFeeds.length} feeds in parallel...`);
 
   const results = await Promise.allSettled(
-    FEEDS.map(feed => {
+    activeFeeds.map(feed => {
       console.log(`  → ${feed.name}...`);
       return fetchSingleFeed(feed);
     })
@@ -183,9 +327,14 @@ async function fetchAllFeeds() {
   const allArticles = [];
   const sourceStats = [];
 
+  // Add disabled feeds to stats as permanently skipped
+  for (const feed of skippedFeeds) {
+    sourceStats.push({ name: feed.name, logo: feed.emoji, count: 0, disabled: true });
+  }
+
   for (let i = 0; i < results.length; i++) {
     const result = results[i];
-    const feed = FEEDS[i];
+    const feed = activeFeeds[i];
 
     if (result.status === 'fulfilled') {
       const { articles } = result.value;

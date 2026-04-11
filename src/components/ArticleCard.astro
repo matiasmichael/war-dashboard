@@ -21,17 +21,20 @@ const { article: a, idx, isTopStory } = Astro.props;
 
 const ago = timeAgo(a.date);
 const noDateFlag = a.noDate ? 'true' : undefined;
+const hasSnippet = !!(a.snippet && a.snippet.trim());
 ---
 
 <div
-  class="card card-bordered bg-white shadow-sm hover:shadow-md transition-all duration-200 mb-1.5 cursor-pointer active:scale-[0.985]"
+  class="article-card card card-bordered bg-white shadow-sm hover:shadow-md transition-all duration-200 mb-1.5 cursor-pointer active:scale-[0.985]"
   data-source={a.source}
   data-date={a.date}
   data-idx={String(idx)}
   data-no-date={noDateFlag}
+  data-link={a.link}
+  data-has-snippet={hasSnippet ? 'true' : 'false'}
 >
-  <a href={a.link} target="_blank" rel="noopener" class="card-body p-2.5 sm:p-3 no-underline text-inherit">
-    <div class="flex gap-2.5 items-center">
+  <div class="card-body p-2.5 sm:p-3">
+    <div class="article-header flex gap-2.5 items-center">
       <!-- Publisher Avatar -->
       <div class="avatar flex-shrink-0">
         <div class="w-8 h-8 rounded-full bg-base-200 border border-base-300">
@@ -51,10 +54,35 @@ const noDateFlag = a.noDate ? 'true' : undefined;
         <h3 class="text-[0.9rem] font-semibold leading-snug text-base-content tracking-tight line-clamp-2">{a.title}</h3>
       </div>
 
-      <!-- Share button -->
-      <button class="btn btn-ghost btn-xs btn-square flex-shrink-0 share-btn" data-title={a.title} data-url={a.link} title="Share" onclick="event.preventDefault();event.stopPropagation();">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-      </button>
+      <!-- Expand chevron + Share button -->
+      <div class="flex items-center gap-0.5 flex-shrink-0">
+        {hasSnippet && (
+          <span class="expand-chevron transition-transform duration-200 text-text-muted text-[0.7rem]">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </span>
+        )}
+        <button class="btn btn-ghost btn-xs btn-square share-btn" data-title={a.title} data-url={a.link} title="Share">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        </button>
+      </div>
     </div>
-  </a>
+
+    <!-- Expandable snippet area (hidden by default) -->
+    {hasSnippet && (
+      <div class="article-expand overflow-hidden transition-all duration-250 ease-out" style="max-height:0; opacity:0;">
+        <div class="pt-2.5 pb-1 pl-[2.625rem]">
+          <p class="text-[0.82rem] leading-relaxed text-text-secondary/80 mb-3">{a.snippet}</p>
+          <a href={a.link} target="_blank" rel="noopener" class="btn btn-primary btn-sm text-[0.78rem] gap-1.5 no-underline" onclick="event.stopPropagation();">
+            Read Full Article
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+    )}
+
+    <!-- No snippet: fallback direct link (hidden, for cards without snippets) -->
+    {!hasSnippet && (
+      <a href={a.link} target="_blank" rel="noopener" class="article-direct-link hidden">&nbsp;</a>
+    )}
+  </div>
 </div>
