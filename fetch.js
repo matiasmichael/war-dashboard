@@ -15,61 +15,45 @@ async function synthesizeReport(articles) {
     }
 
     const genAI = new GoogleGenerativeAI(googleKey);
-    // Use gemini-2.5-flash for speed and context window
     const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
-    // Prepare prompt with the top 25 recent articles to avoid hitting limits but provide enough context
     const recentArticles = articles.slice(0, 25);
-    const feedContext = recentArticles.map(a => `[${a.source}] ${a.title}\n${a.contentSnippet || a.content || ''}\n${a.link}`).join("\n\n");
+    const feedContext = recentArticles.map(a => `[${a.source}] ${a.title}\n${a.contentSnippet || a.content || ''}\nPublished: ${a.date || 'unknown'}`).join("\n\n");
 
-    const prompt = `You are a senior intelligence briefer. Produce an ultra-concise mobile Situation Report on the Middle East / Israel conflict. This will be read on a phone in 10 seconds — brevity is everything.
+    const prompt = `You are a senior intelligence briefer. Analyze the following 25 latest headlines about the Middle East / Israel conflict and produce a structured JSON briefing.
 
-Here are the 25 latest headlines:
+Headlines:
 ${feedContext}
 
-Output raw HTML (no markdown fences, no code blocks). Use EXACTLY this structure and length constraints:
-
-<div class="sitrep-section sitrep-state">
-<div class="sitrep-section-header">🌍 Current State</div>
-<p>1-2 sentences MAX. What is happening RIGHT NOW in plain language.</p>
-</div>
-
-<div class="sitrep-section sitrep-keypoints">
-<div class="sitrep-section-header">📌 Key Developments</div>
-<ul><li>One-line bullet (max 15 words)</li><li>One-line bullet</li><li>One-line bullet</li></ul>
-</div>
-
-<div class="sitrep-section sitrep-tensions">
-<div class="sitrep-section-header">⚠️ Active Tensions</div>
-<ul><li>One-line bullet (max 15 words)</li><li>One-line bullet</li></ul>
-</div>
-
-<div class="sitrep-section sitrep-questions">
-<div class="sitrep-section-header">❓ Open Questions</div>
-<ul><li>One-line bullet (max 15 words)</li><li>One-line bullet</li></ul>
-</div>
-
-<div class="sitrep-section sitrep-updates">
-<div class="sitrep-section-header">📡 Latest Updates</div>
-<ul><li><strong>Source:</strong> Headline text only</li><li><strong>Source:</strong> Headline text only</li><li><strong>Source:</strong> Headline text only</li></ul>
-</div>
+Return ONLY valid JSON (no markdown fences, no commentary) with this exact structure:
+{
+  "summary": "2 sentences MAXIMUM. Hard limit: 40 words. Use <strong> tags to bold the 2-3 most important terms only. Plain text otherwise. No HTML except <strong>. Be ruthless — cut every unnecessary word.",
+  "top_updates": [
+    { "headline": "Short punchy headline (max 12 words)", "source": "Source Name", "time": "e.g. 2h ago" },
+    { "headline": "...", "source": "...", "time": "..." },
+    { "headline": "...", "source": "...", "time": "..." }
+  ],
+  "detailed_analysis": "A longer 3-5 sentence analysis covering active tensions, open questions, and what to watch. Use <strong> for key terms. This will be hidden by default behind a toggle."
+}
 
 RULES:
-- Each bullet must be ONE short line. No paragraphs inside bullets.
-- Current State must be 1-2 sentences, not a paragraph.
-- Latest Updates: just source + headline, no commentary.
-- Total output must be under 350 words.
+- summary must be 2 sentences, MAX 40 words total. Count them. If over 40, cut words until under.
+- top_updates: pick the 3 MOST important/impactful stories. Headline must be punchy and short.
+- For "time" field, use relative time (e.g. "1h ago", "3h ago", "just now") based on the published dates.
+- detailed_analysis: cover tensions, open questions, and what to watch next. Max 80 words.
 - Tone: objective, analytical, no sensationalism.
-- Output ONLY the HTML divs, nothing else.`;
+- Output ONLY the JSON object, nothing else.`;
 
     const result = await model.generateContent(prompt);
     const response = await result.response;
-    let htmlOutput = response.text();
+    let textOutput = response.text();
     
-    // Clean up if it returned markdown wrappers
-    htmlOutput = htmlOutput.replace(/```html/g, '').replace(/```/g, '').trim();
+    // Clean up markdown wrappers
+    textOutput = textOutput.replace(/```json/g, '').replace(/```/g, '').trim();
     
-    return htmlOutput;
+    // Parse JSON
+    const parsed = JSON.parse(textOutput);
+    return parsed;
 
   } catch (err) {
     console.error("Failed to generate Situation Report:", err);
@@ -262,7 +246,7 @@ async function fetchAllFeeds() {
   return { articles: allArticles, sourceStats };
 }
 
-function generateHTML(articles, sourceStats, situationReportHtml) {
+function generateHTML(articles, sourceStats, situationReportData) {
   const now = new Date();
   const updatedAt = now.toLocaleString('en-US', {
     weekday: 'long',
@@ -310,6 +294,25 @@ function generateHTML(articles, sourceStats, situationReportHtml) {
         </div>
       </div>`;
   }).join('\n');
+
+  // Short name map for filter pills
+  const SHORT_NAMES = {
+    'Jerusalem Post': 'J. Post',
+    'Times of Israel': 'ToI',
+    'Al Jazeera': 'Al Jaz',
+    'Fox News': 'Fox',
+    'BBC News': 'BBC',
+    'Ynet News': 'Ynet',
+    'Haaretz': 'Haaretz',
+    'CNN': 'CNN',
+    'NPR': 'NPR'
+  };
+
+  // Compute "time ago" for header
+  const headerTimeAgo = timeAgo(now.toISOString());
+  // More useful: time of most recent article
+  const newestDate = articles.length > 0 ? articles[0].date : now.toISOString();
+  const lastUpdateAgo = timeAgo(newestDate);
 
   const statsHTML = sourceStats.map(s =>
     `<span class="stat-item ${s.error ? 'stat-error' : ''}">${s.logo} ${s.name}: ${s.count}${s.error ? ' ⚠' : ''}</span>`
@@ -384,6 +387,12 @@ function generateHTML(articles, sourceStats, situationReportHtml) {
       color: var(--text);
     }
 
+    .header-time {
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
     .live-dot {
       width: 8px;
       height: 8px;
@@ -399,54 +408,7 @@ function generateHTML(articles, sourceStats, situationReportHtml) {
       50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(220,53,69,0); }
     }
 
-    .header .subtitle {
-      color: var(--text-muted);
-      font-size: 0.78rem;
-      margin-top: 0.25rem;
-      font-weight: 400;
-    }
 
-    /* ===== SOURCE STATS (collapsed by default) ===== */
-    .source-stats-toggle {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      margin-top: 0.5rem;
-      padding: 0.3rem 0.6rem;
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .source-stats-toggle:hover { background: var(--border-light); }
-    .source-stats-toggle .chevron { transition: transform 0.2s; font-size: 0.6rem; }
-    .source-stats-toggle.open .chevron { transform: rotate(180deg); }
-
-    .source-stats {
-      display: none;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.6rem;
-      padding: 0.6rem;
-      background: var(--bg);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-sm);
-    }
-    .source-stats.open { display: flex; }
-
-    .stat-item {
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      background: var(--surface);
-      border: 1px solid var(--border-light);
-    }
-
-    .stat-error { opacity: 0.5; }
 
     /* ===== FILTER BAR ===== */
     .filter-bar {
@@ -473,6 +435,18 @@ function generateHTML(articles, sourceStats, situationReportHtml) {
       cursor: pointer;
       transition: all 0.2s;
       white-space: nowrap;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .filter-logo {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      object-fit: cover;
+      vertical-align: middle;
       flex-shrink: 0;
     }
 
@@ -659,44 +633,109 @@ function generateHTML(articles, sourceStats, situationReportHtml) {
       display: inline;
     }
 
-    /* ===== SITUATION REPORT — Scannable Briefing ===== */
-    .sitrep-section {
-      padding: 0.75rem 1.15rem;
+    /* ===== SITUATION REPORT — Compact Briefing ===== */
+    .sitrep-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      border-top: 4px solid #2563eb;
+      overflow: hidden;
+      margin-bottom: 1rem;
     }
 
-    .sitrep-section-header {
-      font-size: 0.82rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      margin-bottom: 0.35rem;
-      color: #1a1a2e;
-    }
-
-    /* Color-coded section backgrounds for visual rhythm */
-    .sitrep-state { background: #eff6ff; }
-    .sitrep-keypoints { background: #ffffff; }
-    .sitrep-tensions { background: #fefce8; }
-    .sitrep-questions { background: #f0fdf4; }
-    .sitrep-updates { background: #faf5ff; }
-
-    .sitrep-section p {
+    .sitrep-summary {
+      padding: 0.85rem 1.15rem 0.6rem;
       font-size: 0.88rem;
       line-height: 1.55;
-      margin: 0;
       color: #374151;
     }
 
-    .sitrep-section ul {
-      padding-left: 1.2rem;
+    .sitrep-top-updates {
+      padding: 0 1.15rem 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .sitrep-update-card {
+      display: flex;
+      flex-direction: column;
+      padding: 0.5rem 0.75rem;
+      background: #f8fafc;
+      border-radius: 8px;
+      border-left: 3px solid #2563eb;
+    }
+
+    .sitrep-update-headline {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #1a1a2e;
+      line-height: 1.35;
+    }
+
+    .sitrep-update-meta {
+      font-size: 0.72rem;
+      color: #9ca3af;
+      margin-top: 0.15rem;
+    }
+
+    .sitrep-expand-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      width: 100%;
+      padding: 0.55rem 1.15rem;
+      background: none;
+      border: none;
+      border-top: 1px solid #f1f3f5;
+      cursor: pointer;
+      color: #6b7280;
+      font-size: 0.78rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .sitrep-expand-btn:hover {
+      background: #f8fafc;
+      color: #374151;
+    }
+
+    .sitrep-expand-chevron {
+      transition: transform 0.2s;
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    .sitrep-expand-btn.open .sitrep-expand-chevron {
+      transform: rotate(90deg);
+    }
+
+    .sitrep-detail {
+      display: none;
+      padding: 0.75rem 1.15rem;
+      background: #f9fafb;
+      border-top: 1px solid #f1f3f5;
+    }
+
+    .sitrep-detail.open {
+      display: block;
+    }
+
+    .sitrep-detail p {
+      font-size: 0.84rem;
+      line-height: 1.6;
+      color: #4b5563;
       margin: 0;
     }
 
-    .sitrep-section li {
-      font-size: 0.86rem;
-      line-height: 1.5;
-      margin-bottom: 0.2rem;
-      color: #374151;
+    .sitrep-footer {
+      font-size: 0.68rem;
+      color: #9ca3af;
+      padding: 0.45rem 1.15rem;
+      margin: 0;
+      border-top: 1px solid #e5e7eb;
+      background: #f9fafb;
     }
 
     /* ===== FOOTER ===== */
@@ -728,46 +767,25 @@ function generateHTML(articles, sourceStats, situationReportHtml) {
         scroll-padding-top: 64px;
       }
 
-      /* --- Sticky header: compact to save vertical space --- */
+      /* --- Sticky header: ultra compact single row --- */
       .header {
-        padding: 0.6rem 1rem 0.5rem;
-        padding-top: calc(0.6rem + env(safe-area-inset-top, 0px));
+        padding: 0.5rem 1rem;
+        padding-top: calc(0.5rem + env(safe-area-inset-top, 0px));
         border-bottom: 1px solid var(--border);
       }
 
       .header h1 {
         font-size: 1.05rem;
-        gap: 0.4rem;
+        gap: 0.35rem;
+      }
+
+      .header-time {
+        font-size: 0.72rem;
       }
 
       .live-dot {
         width: 7px;
         height: 7px;
-      }
-
-      .header .subtitle {
-        font-size: 0.72rem;
-        margin-top: 0.15rem;
-        line-height: 1.3;
-      }
-
-      /* Source stats toggle — proper tap target */
-      .source-stats-toggle {
-        min-height: 36px;
-        padding: 0.4rem 0.75rem;
-        font-size: 0.75rem;
-        margin-top: 0.35rem;
-      }
-
-      .source-stats {
-        gap: 0.35rem;
-        padding: 0.5rem;
-        margin-top: 0.4rem;
-      }
-
-      .stat-item {
-        font-size: 0.68rem;
-        padding: 0.25rem 0.45rem;
       }
 
       /* --- Filter bar: proper tap targets + scroll hint --- */
@@ -898,79 +916,54 @@ function generateHTML(articles, sourceStats, situationReportHtml) {
         background: var(--border-light);
       }
 
-      /* --- Situation Report: redesigned for scannable mobile briefing --- */
+      /* --- Situation Report: compact briefing card --- */
       .sitrep-card {
-        margin-bottom: 1rem !important;
-        padding: 0 !important;
-        border-radius: 10px !important;
-        box-shadow: var(--shadow-sm) !important;
-        border-top: 3px solid #2563eb !important;
-        overflow: hidden;
+        border-radius: 10px;
+        border-top-width: 3px;
+        margin-bottom: 0.75rem;
       }
 
-      .sitrep-card .sitrep-title {
-        font-size: 0.95rem !important;
-        margin-bottom: 0 !important;
-        gap: 0.4rem !important;
-        padding: 0.85rem 1rem 0.6rem !important;
-      }
-
-      .sitrep-card .sitrep-title svg {
-        width: 18px !important;
-        height: 18px !important;
-      }
-
-      .sitrep-card .sitrep-body {
-        font-size: 0.84rem !important;
-        line-height: 1.55 !important;
-        padding: 0 !important;
-      }
-
-      /* Section-based styling for the new briefing layout */
-      .sitrep-section {
-        padding: 0.65rem 1rem;
-      }
-
-      .sitrep-section-header {
-        font-size: 0.78rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-        margin-bottom: 0.3rem;
-        color: #1a1a2e;
-      }
-
-      .sitrep-state { background: #eff6ff; }
-      .sitrep-keypoints { background: #ffffff; }
-      .sitrep-tensions { background: #fefce8; }
-      .sitrep-questions { background: #f0fdf4; }
-      .sitrep-updates { background: #faf5ff; }
-
-      .sitrep-section p {
-        font-size: 0.84rem !important;
+      .sitrep-summary {
+        padding: 0.85rem 1rem 0.6rem;
+        font-size: 0.86rem;
         line-height: 1.55;
-        margin: 0;
-        color: #374151;
       }
 
-      .sitrep-section ul {
-        padding-left: 1.1rem;
-        margin: 0;
+      .sitrep-top-updates {
+        padding: 0 1rem 0.5rem;
+        gap: 0.35rem;
       }
 
-      .sitrep-section li {
-        font-size: 0.82rem !important;
-        line-height: 1.5;
-        margin-bottom: 0.15rem;
-        color: #374151;
+      .sitrep-update-card {
+        padding: 0.4rem 0.65rem;
+        border-radius: 6px;
       }
 
-      .sitrep-card .sitrep-footer {
-        font-size: 0.65rem !important;
-        margin-top: 0 !important;
-        padding: 0.45rem 1rem !important;
-        border-top: 1px solid #e5e7eb;
-        background: #f9fafb;
+      .sitrep-update-headline {
+        font-size: 0.82rem;
+      }
+
+      .sitrep-update-meta {
+        font-size: 0.7rem;
+      }
+
+      .sitrep-expand-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.76rem;
+        min-height: 38px;
+      }
+
+      .sitrep-detail {
+        padding: 0.6rem 1rem;
+      }
+
+      .sitrep-detail p {
+        font-size: 0.82rem;
+      }
+
+      .sitrep-footer {
+        font-size: 0.65rem;
+        padding: 0.4rem 1rem;
       }
 
       /* --- Footer: safe area + mobile padding --- */
@@ -1003,37 +996,42 @@ function generateHTML(articles, sourceStats, situationReportHtml) {
 <body>
   <div class="header">
     <div class="header-inner">
-      <h1><span class="live-dot"></span> War Monitor</h1>
-      <p class="subtitle">Updated ${updatedAt} · Auto-refreshes every 6h</p>
-      <button class="source-stats-toggle" onclick="this.classList.toggle('open'); document.getElementById('sourceStats').classList.toggle('open')">
-        Sources <span class="chevron">▼</span>
-      </button>
-      <div class="source-stats" id="sourceStats">${statsHTML}</div>
+      <h1><span class="live-dot"></span> War Monitor <span class="header-time">· updated ${lastUpdateAgo}</span></h1>
     </div>
   </div>
 
   <div class="filter-bar">
     <button class="filter-btn active" onclick="filterSource('all')">All</button>
     ${[...new Set(articles.map(a => a.source))].map(s => {
-      const feed = FEEDS.find(f => f.name === s) || {};
-      return `<button class="filter-btn" onclick="filterSource('${s}')">${feed.logo || '📰'} ${s}</button>`;
+      const logoUrl = PUBLISHER_LOGOS[s] || '';
+      const shortName = SHORT_NAMES[s] || s;
+      const logoImg = logoUrl ? `<img src="${logoUrl}" class="filter-logo" alt="">` : '';
+      return `<button class="filter-btn" onclick="filterSource('${s}')">${logoImg} ${escapeHtml(shortName)}</button>`;
     }).join('\n    ')}
   </div>
 
-  ${situationReportHtml ? `
   <div class="container">
-    <div class="sitrep-card" style="margin-bottom:1.5rem; background:#fff; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.06); border-top:4px solid #2563eb; overflow:hidden;">
-      <h2 class="sitrep-title" style="font-size:1.05rem; font-weight:700; color:#1a1a2e; padding:1rem 1.15rem 0.6rem; margin:0; display:flex; align-items:center; gap:0.5rem;">
-        <svg style="width:20px;height:20px;color:#2563eb;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-        Situation Report
-      </h2>
-      <div class="sitrep-body" style="font-size:0.88rem; color:#374151; line-height:1.55;">${situationReportHtml}</div>
-      <p class="sitrep-footer" style="font-size:0.68rem; color:#9ca3af; padding:0.5rem 1.15rem; margin:0; border-top:1px solid #e5e7eb; background:#f9fafb;">AI-synthesized briefing · All sources</p>
+  ${situationReportData ? `
+    <div class="sitrep-card">
+      <div class="sitrep-summary">${situationReportData.summary}</div>
+      <div class="sitrep-top-updates">
+        ${(situationReportData.top_updates || []).map(u => `
+          <div class="sitrep-update-card">
+            <span class="sitrep-update-headline">${escapeHtml(u.headline)}</span>
+            <span class="sitrep-update-meta">${escapeHtml(u.source)} · ${escapeHtml(u.time)}</span>
+          </div>
+        `).join('')}
+      </div>
+      <button class="sitrep-expand-btn" onclick="this.classList.toggle('open'); document.getElementById('sitrepDetail').classList.toggle('open')">
+        <span class="sitrep-expand-label">See full briefing</span>
+        <span class="sitrep-expand-chevron">›</span>
+      </button>
+      <div class="sitrep-detail" id="sitrepDetail">
+        <p>${situationReportData.detailed_analysis || ''}</p>
+      </div>
+      <p class="sitrep-footer">AI-synthesized briefing · All sources</p>
     </div>
-  </div>
   ` : ''}
-
-  <div class="container">
     <p class="article-count" id="articleCount">${articles.length} articles from ${sourceStats.filter(s => !s.error).length} sources</p>
     <div id="articles">
       ${articleCards}
@@ -1093,8 +1091,8 @@ async function main() {
   const { articles, sourceStats } = await fetchAllFeeds();
   console.log(`\n📊 Total: ${articles.length} articles`);
 
-  const situationReportHtml = await synthesizeReport(articles);
-  const html = generateHTML(articles, sourceStats, situationReportHtml);
+  const situationReportData = await synthesizeReport(articles);
+  const html = generateHTML(articles, sourceStats, situationReportData);
   const outPath = path.join(__dirname, 'public', 'index.html');
   fs.mkdirSync(path.dirname(outPath), { recursive: true });
   fs.writeFileSync(outPath, html, 'utf-8');
