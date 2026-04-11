@@ -54,14 +54,14 @@ const FEEDS = [
     disabled: true
   },
   {
-    name: 'The Guardian',
-    shortName: 'Guardian',
-    url: 'https://www.theguardian.com/world/middleeast/rss',
-    emoji: '🌐',
-    faviconDomain: 'theguardian.com',
-    color: '#052962',
+    name: 'CNBC',
+    shortName: 'CNBC',
+    url: 'https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100727362',
+    emoji: '📈',
+    faviconDomain: 'cnbc.com',
+    color: '#005594',
     accentLight: '#eff6ff',
-    keywords: null,
+    keywords: ['israel', 'gaza', 'hamas', 'hezbollah', 'iran', 'lebanon', 'middle east', 'idf', 'hostage', 'ceasefire', 'netanyahu', 'palestinian', 'west bank', 'war', 'beirut', 'houthi', 'yemen', 'syria', 'hormuz', 'sanctions', 'oil', 'tehran'],
     staleThresholdHours: null
   },
   {
