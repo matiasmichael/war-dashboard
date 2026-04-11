@@ -130,9 +130,13 @@ async function fetchSingleFeed(feed) {
           parsedDate = new Date('2000-01-01T00:00:00Z').toISOString();
           isInvalid = true;
         } else {
-          // If a feed sends a date from the future, clamp it to now
+          // If a feed sends a date from the future (e.g. JPost pre-schedules articles
+          // with upcoming pubDates visible in RSS before the article goes live),
+          // clamp to now so it doesn't sort above genuinely-fresh articles and so
+          // timeAgo() displays 'just now' rather than a negative age.
           if (new Date(parsedDate).getTime() > Date.now()) {
             parsedDate = new Date().toISOString();
+            console.log(`  ⏰ Future pubDate clamped to now for: ${item.title ? item.title.slice(0, 60) : 'unknown'}`);
           }
         }
         

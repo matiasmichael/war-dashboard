@@ -34,11 +34,19 @@ function sanitizeHTML(html) {
 /**
  * Server-side timeAgo (kept for static HTML generation at build time).
  * Client-side `computeTimeAgo` in index.astro inline script handles live re-computation.
+ *
+ * Guards against future timestamps (e.g. JPost pre-schedules articles with future
+ * pubDates in their RSS). A future timestamp produces a negative diffMs, causing
+ * diffMins < 1 to be true and returning 'just now' even for articles published hours
+ * ago. We clamp negative diffs to 0 so future-dated articles show 'just now' rather
+ * than displaying a nonsensical negative age.
  */
 function timeAgo(dateStr) {
   const now = new Date();
   const date = new Date(dateStr);
-  const diffMs = now - date;
+  const rawDiffMs = now - date;
+  // Clamp to 0: a future date means the article is at most 'just published'
+  const diffMs = Math.max(0, rawDiffMs);
   const diffMins = Math.floor(diffMs / 60000);
   const diffHours = Math.floor(diffMs / 3600000);
   const diffDays = Math.floor(diffMs / 86400000);

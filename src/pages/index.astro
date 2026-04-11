@@ -80,10 +80,14 @@ const generatedAt = new Date().toISOString();
 
   <script>
     // ===== LIVE TIMESTAMP RE-COMPUTATION =====
+    // Note: clamp rawDiffMs to 0 to guard against future-dated RSS pubDates
+    // (e.g. JPost pre-schedules articles, making diffMs negative, which caused
+    // the diffMins < 1 branch to fire and show 'just now' for old articles).
     function computeTimeAgo(dateStr: string): string {
       const now = new Date();
       const date = new Date(dateStr);
-      const diffMs = now.getTime() - date.getTime();
+      const rawDiffMs = now.getTime() - date.getTime();
+      const diffMs = Math.max(0, rawDiffMs); // clamp: future dates show 'just now', not negative time
       const diffMins = Math.floor(diffMs / 60000);
       const diffHours = Math.floor(diffMs / 3600000);
       const diffDays = Math.floor(diffMs / 86400000);
