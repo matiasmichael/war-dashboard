@@ -20,9 +20,9 @@ import '../styles/global.css';
 
   <!-- Day Navigation -->
   <div class="max-w-[720px] mx-auto px-4 sm:px-6 flex justify-between items-center mb-2" id="dayNav">
-    <button class="btn btn-ghost btn-sm text-primary font-semibold text-[0.82rem]" id="prevDay">← Previous</button>
-    <span class="text-[0.85rem] font-semibold text-base-content" id="currentDateLabel"></span>
-    <button class="btn btn-ghost btn-sm text-primary font-semibold text-[0.82rem]" id="nextDay">Next →</button>
+    <button class="btn btn-outline btn-sm min-h-[44px] min-w-[44px] text-primary font-semibold text-sm" id="prevDay">← Previous</button>
+    <span class="text-sm font-semibold text-base-content" id="currentDateLabel"></span>
+    <button class="btn btn-outline btn-sm min-h-[44px] min-w-[44px] text-primary font-semibold text-sm" id="nextDay">Next →</button>
   </div>
 
   <!-- Content Container -->
@@ -104,7 +104,7 @@ import '../styles/global.css';
         const date = new Date(d + 'T12:00:00');
         const label = date.toLocaleDateString('en-US', { timeZone: ISRAEL_TZ, month: 'short', day: 'numeric' });
         const isActive = d === currentDate;
-        return `<a class="btn btn-sm rounded-full whitespace-nowrap flex-shrink-0 text-[0.78rem] font-medium ${isActive ? 'btn-primary' : 'btn-ghost border border-base-300 text-text-muted hover:border-secondary hover:text-text-secondary'}" href="#${d}" data-date="${d}">${label}</a>`;
+        return `<a class="btn btn-sm rounded-full whitespace-nowrap flex-shrink-0 text-[0.78rem] font-medium ${isActive ? 'btn-primary' : 'btn-outline btn-neutral text-text-muted'}" href="#${d}" data-date="${d}">${label}</a>`;
       }).join('');
 
       picker.querySelectorAll('[data-date]').forEach(pill => {
@@ -231,11 +231,11 @@ import '../styles/global.css';
       const nextDate = idx > 0 ? availableDates[idx - 1] : null;
 
       const prevLink = prevDate
-        ? `<a class="btn btn-ghost btn-sm text-primary font-semibold text-[0.82rem]" href="#${prevDate}" data-nav-date="${prevDate}">← ${getNavDateLabel(prevDate)} Briefing</a>`
-        : `<span class="btn btn-ghost btn-sm btn-disabled text-text-muted text-[0.82rem]">← Previous</span>`;
+        ? `<a class="btn btn-outline btn-sm min-h-[44px] min-w-[44px] text-primary font-semibold text-sm" href="#${prevDate}" data-nav-date="${prevDate}">← ${getNavDateLabel(prevDate)}</a>`
+        : `<span class="btn btn-outline btn-sm btn-disabled min-h-[44px] min-w-[44px] text-text-muted text-sm">← Previous</span>`;
       const nextLink = nextDate
-        ? `<a class="btn btn-ghost btn-sm text-primary font-semibold text-[0.82rem]" href="#${nextDate}" data-nav-date="${nextDate}">${getNavDateLabel(nextDate)} Briefing →</a>`
-        : `<span class="btn btn-ghost btn-sm btn-disabled text-text-muted text-[0.82rem]">Next →</span>`;
+        ? `<a class="btn btn-outline btn-sm min-h-[44px] min-w-[44px] text-primary font-semibold text-sm" href="#${nextDate}" data-nav-date="${nextDate}">${getNavDateLabel(nextDate)} →</a>`
+        : `<span class="btn btn-outline btn-sm btn-disabled min-h-[44px] min-w-[44px] text-text-muted text-sm">Next →</span>`;
 
       // Key events as DaisyUI timeline
       const eventsHTML = (data.key_events || []).map((ev: any, i: number) => {
@@ -328,7 +328,7 @@ import '../styles/global.css';
         <div class="card card-bordered bg-white shadow-sm mb-2.5">
           <div class="card-body p-5">
             <h3 class="text-[0.78rem] font-bold uppercase tracking-wider text-primary flex items-center gap-1.5 mb-3">📋 Daily Summary</h3>
-            <div class="text-sm leading-relaxed text-text-secondary prose prose-sm max-w-none">${data.summary || '<p>No summary available.</p>'}</div>
+            <div class="text-sm leading-relaxed text-text-secondary prose prose-sm prose-p:mb-4 prose-headings:mt-6 prose-headings:mb-2 max-w-none">${data.summary || '<p>No summary available.</p>'}</div>
           </div>
         </div>
 

@@ -25,14 +25,6 @@ const { sitrep } = Astro.props;
     </div>
     <div class="card-body px-4 py-3 gap-2">
       <div class="text-[0.88rem] leading-relaxed text-text-secondary" set:html={sanitizeHTML(sitrep.summary)} />
-      <div class="flex flex-col gap-1.5">
-        {(sitrep.top_updates || []).map(u => (
-          <div class="flex flex-col p-2 px-3 bg-base-100 rounded-lg border-l-[3px] border-l-primary">
-            <span class="text-[0.85rem] font-semibold text-base-content leading-tight">{u.headline}</span>
-            <span class="text-[0.72rem] text-text-muted mt-0.5">{u.source} · {u.time}</span>
-          </div>
-        ))}
-      </div>
     </div>
     <div class="collapse collapse-arrow border-t border-base-200">
       <input type="checkbox" id="sitrepCollapse" />

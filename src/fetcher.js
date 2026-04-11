@@ -118,18 +118,37 @@ async function fetchSingleFeed(feed) {
       }
 
       const faviconUrl = getFaviconUrl(feed.faviconDomain);
-      const articles = items.map(item => ({
-        title: item.title || 'Untitled',
-        link: item.link || '#',
-        snippet: cleanSnippet(item.contentSnippet || item.content || '', FULL_SNIPPET_LENGTH),
-        date: item.isoDate || item.pubDate || new Date().toISOString(),
-        source: feed.name,
-        logo: feed.emoji,
-        color: feed.color,
-        accentLight: feed.accentLight,
-        publisherLogo: faviconUrl,
-        noDate: item._noDate || false
-      }));
+      const articles = items.map(item => {
+        // Never fall back to Date.now() for missing pubDates
+        // That makes old undated articles appear as "just now"
+        let parsedDate = item.isoDate || item.pubDate;
+        let isInvalid = false;
+        
+        if (!parsedDate || isNaN(new Date(parsedDate).getTime())) {
+          // It's missing or malformed. Set a fallback far in the past so it doesn't jump to the top
+          // The UI will handle it gracefully based on the noDate flag
+          parsedDate = new Date('2000-01-01T00:00:00Z').toISOString();
+          isInvalid = true;
+        } else {
+          // If a feed sends a date from the future, clamp it to now
+          if (new Date(parsedDate).getTime() > Date.now()) {
+            parsedDate = new Date().toISOString();
+          }
+        }
+        
+        return {
+          title: item.title || 'Untitled',
+          link: item.link || '#',
+          snippet: cleanSnippet(item.contentSnippet || item.content || '', FULL_SNIPPET_LENGTH),
+          date: parsedDate,
+          source: feed.name,
+          logo: feed.emoji,
+          color: feed.color,
+          accentLight: feed.accentLight,
+          publisherLogo: faviconUrl,
+          noDate: item._noDate || isInvalid
+        };
+      });
 
       return { feed, articles };
     } catch (err) {

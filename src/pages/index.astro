@@ -248,14 +248,16 @@ const generatedAt = new Date().toISOString();
     document.querySelectorAll('.time-filter-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const wasActive = btn.classList.contains('btn-primary') && !btn.classList.contains('btn-outline');
-        // Reset all time buttons
+        // Reset all time buttons to neutral outline
         document.querySelectorAll('.time-filter-btn').forEach(b => {
-          b.classList.add('btn-outline');
+          b.classList.add('btn-outline', 'btn-neutral');
+          b.classList.remove('btn-primary');
         });
         if (wasActive) {
           activeTimeFilter = null;
         } else {
-          btn.classList.remove('btn-outline');
+          btn.classList.remove('btn-outline', 'btn-neutral');
+          btn.classList.add('btn-primary');
           activeTimeFilter = (btn as HTMLElement).dataset.time || null;
         }
         applyFilters();
