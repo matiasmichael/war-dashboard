@@ -118,10 +118,10 @@ const generatedAt = new Date().toISOString();
       const now = new Date();
       const diffMs = now.getTime() - generatedAt.getTime();
       const diffMins = Math.floor(diffMs / 60000);
-      const dot = document.getElementById('liveDot');
+      const pill = document.getElementById('livePill');
       const freshLabel = document.getElementById('headerFreshness');
 
-      if (!dot || !freshLabel) return;
+      if (!pill || !freshLabel) return;
 
       // Absolute time in Israel timezone — no ambiguity with article timestamps
       const timeStr = generatedAt.toLocaleTimeString('en-US', {
@@ -132,15 +132,17 @@ const generatedAt = new Date().toISOString();
       });
       freshLabel.textContent = 'Last updated ' + timeStr + ' 🇮🇱 IDT';
 
-      // Remove all live-dot classes and apply the right one
-      dot.className = dot.className.replace(/live-dot-\w+/g, '').trim();
+      // Update live pill state based on data freshness
+      pill.className = pill.className.replace(/live-pill-\w+/g, '').trim();
       if (diffMins < 15) {
-        dot.classList.add('live-dot-fresh');
+        pill.classList.add('live-pill-fresh');
+        pill.textContent = 'LIVE';
       } else if (diffMins < 60) {
-        dot.classList.add('live-dot-recent');
+        pill.classList.add('live-pill-recent');
+        pill.textContent = 'LIVE';
       } else {
-        dot.classList.add('live-dot-stale');
-        dot.style.background = '#999';
+        pill.classList.add('live-pill-stale');
+        pill.textContent = 'STALE';
       }
     }
     updateFreshness();
