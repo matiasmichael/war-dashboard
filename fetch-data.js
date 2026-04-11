@@ -5,6 +5,7 @@
 const { fetchAllFeeds } = require('./src/fetcher');
 const { persistDailyArticles } = require('./src/persistence');
 const { main: synthesizeDev } = require('./src/synthesize-developments');
+const { main: fetchVideos } = require('./fetch-videos');
 
 async function main() {
   console.log('[DATA] 🔶 Iran War Update — Data Collection');
@@ -38,6 +39,15 @@ async function main() {
     }
   } catch (err) {
     console.error(`[DATA] ⚠️  Developments synthesis failed: ${err.message}`);
+  }
+
+  // --- Fetch YouTube Videos ---
+  console.log('[DATA] 🎬 Fetching YouTube video feeds...');
+  try {
+    const videos = await fetchVideos();
+    console.log(`[DATA] 🎬 Videos: ${(videos || []).length} saved to data/videos.json`);
+  } catch (err) {
+    console.error(`[DATA] ⚠️  Video fetch failed: ${err.message}`);
   }
 
   console.log('[DATA] ✅ Data collection complete.');
