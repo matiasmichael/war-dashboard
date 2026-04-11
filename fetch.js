@@ -1,5 +1,28 @@
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 
+// ===== DELTA FRAMING: Load previous sitrep for comparison =====
+function loadPreviousSitrep() {
+  const sitrepPath = path.join(__dirname, 'data', 'last-sitrep.json');
+  try {
+    if (fs.existsSync(sitrepPath)) {
+      const data = JSON.parse(fs.readFileSync(sitrepPath, 'utf-8'));
+      console.log('📋 Loaded previous sitrep for delta framing');
+      return data;
+    }
+  } catch (e) {
+    console.warn('Could not load previous sitrep:', e.message);
+  }
+  return null;
+}
+
+function saveSitrep(sitrep) {
+  const dataDir = path.join(__dirname, 'data');
+  fs.mkdirSync(dataDir, { recursive: true });
+  const sitrepPath = path.join(dataDir, 'last-sitrep.json');
+  fs.writeFileSync(sitrepPath, JSON.stringify({ ...sitrep, generatedAt: new Date().toISOString() }, null, 2), 'utf-8');
+  console.log('💾 Saved current sitrep for next delta comparison');
+}
+
 async function synthesizeReport(articles) {
   try {
     console.log("Synthesizing Situation Report with Gemini...");
@@ -20,10 +43,21 @@ async function synthesizeReport(articles) {
     const recentArticles = articles.slice(0, 25);
     const feedContext = recentArticles.map(a => `[${a.source}] ${a.title}\n${a.contentSnippet || a.content || ''}\nPublished: ${a.date || 'unknown'}`).join("\n\n");
 
+    // Delta framing: load previous sitrep
+    const previousSitrep = loadPreviousSitrep();
+    const deltaContext = previousSitrep ? `
+
+PREVIOUS BRIEFING (generated at ${previousSitrep.generatedAt || 'unknown'}):
+Summary: ${previousSitrep.summary || 'N/A'}
+Top Updates: ${(previousSitrep.top_updates || []).map(u => u.headline).join('; ')}
+Analysis: ${previousSitrep.detailed_analysis || 'N/A'}
+
+IMPORTANT: Frame your summary and analysis as "what changed since the last update". Highlight new developments, shifts, and escalations compared to the previous briefing. Use phrases like "Since the last update...", "New development:", "Escalation:", etc.` : '';
+
     const prompt = `You are a senior intelligence briefer specializing in the Iran-Israel conflict. Analyze the following 25 latest headlines and produce a structured JSON briefing focused on the Iran-Israel war, including Iranian proxies (Hezbollah, Hamas, Houthis), direct Iran-Israel military exchanges, nuclear developments, and regional escalation.
 
 Headlines:
-${feedContext}
+${feedContext}${deltaContext}
 
 Return ONLY valid JSON (no markdown fences, no commentary) with this exact structure:
 {
@@ -54,6 +88,10 @@ RULES:
     
     // Parse JSON
     const parsed = JSON.parse(textOutput);
+
+    // Save sitrep for next delta comparison
+    saveSitrep(parsed);
+
     return parsed;
 
   } catch (err) {
@@ -220,6 +258,31 @@ async function fetchAllFeeds() {
       // Take top 15 per source
       items = items.slice(0, 15);
 
+      // CNN stale article filter: exclude articles older than 48 hours
+      const STALE_THRESHOLD_MS = 48 * 60 * 60 * 1000;
+      const nowMs = Date.now();
+      if (feed.name === 'CNN') {
+        const beforeCount = items.length;
+        items = items.filter(item => {
+          const dateStr = item.isoDate || item.pubDate;
+          if (!dateStr) {
+            // No valid date — keep but will be flagged
+            item._noDate = true;
+            return true;
+          }
+          const articleDate = new Date(dateStr);
+          if (isNaN(articleDate.getTime())) {
+            item._noDate = true;
+            return true;
+          }
+          return (nowMs - articleDate.getTime()) < STALE_THRESHOLD_MS;
+        });
+        const removed = beforeCount - items.length;
+        if (removed > 0) {
+          console.log(`  🗑️  CNN: filtered ${removed} stale articles (>48h old)`);
+        }
+      }
+
       const articles = items.map(item => ({
         title: item.title || 'Untitled',
         link: item.link || '#',
@@ -229,7 +292,8 @@ async function fetchAllFeeds() {
         logo: feed.logo,
         color: feed.color,
         accentLight: feed.accentLight,
-        publisherLogo: PUBLISHER_LOGOS[feed.name] || ''
+        publisherLogo: PUBLISHER_LOGOS[feed.name] || '',
+        noDate: item._noDate || false
       }));
 
       allArticles.push(...articles);
@@ -263,14 +327,33 @@ function generateHTML(articles, sourceStats, situationReportData) {
     timeZoneName: 'short'
   });
 
+  // Build urgency badge keywords from sitrep top updates
+  const topHeadlineKeywords = (situationReportData && situationReportData.top_updates || []).map(u => {
+    // Extract significant words (4+ chars) from each headline for fuzzy matching
+    return (u.headline || '').toLowerCase().split(/\s+/).filter(w => w.length >= 4 && !['that','this','with','from','they','have','been','more','also','into','than','said'].includes(w));
+  });
+
+  function isTopStory(title) {
+    const titleLower = (title || '').toLowerCase();
+    for (const keywords of topHeadlineKeywords) {
+      if (keywords.length === 0) continue;
+      // Match if at least 2 significant keywords from a top headline appear in the article title
+      const matches = keywords.filter(kw => titleLower.includes(kw));
+      if (matches.length >= 2) return true;
+    }
+    return false;
+  }
+
   const articleCards = articles.map((a, idx) => {
     const ago = timeAgo(a.date);
     const shortSnippet = escapeHtml(truncateSnippet(a.snippet, 120));
     const fullSnippet = escapeHtml(a.snippet);
     const hasMore = a.snippet && a.snippet.length > 120;
+    const topStory = isTopStory(a.title);
+    const noDateFlag = a.noDate ? ' data-no-date="true"' : '';
 
     return `
-      <div class="card" data-source="${escapeHtml(a.source)}" data-idx="${idx}" onclick="toggleCard(this, event)">
+      <div class="card" data-source="${escapeHtml(a.source)}" data-date="${a.date}" data-idx="${idx}"${noDateFlag} onclick="toggleCard(this, event)">
         <div class="card-inner">
           <div class="card-avatar">
             <img src="${a.publisherLogo}" alt="${escapeHtml(a.source)}" class="publisher-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
@@ -281,7 +364,8 @@ function generateHTML(articles, sourceStats, situationReportData) {
               <div class="card-source-row">
                 <span class="source-name" style="color: ${a.color}">${escapeHtml(a.source)}</span>
                 <span class="dot-sep">·</span>
-                <span class="time-ago">${ago}</span>
+                <span class="time-ago" data-date="${a.date}">${ago}</span>
+                ${topStory ? '<span class="urgency-badge">⚡ Top Story</span>' : ''}
               </div>
             </div>
             <h3 class="card-title">${escapeHtml(a.title)}</h3>
@@ -294,6 +378,9 @@ function generateHTML(articles, sourceStats, situationReportData) {
               <a href="${a.link}" target="_blank" rel="noopener" class="source-link" onclick="event.stopPropagation();">
                 Open article ↗
               </a>
+              <button class="share-btn" onclick="shareArticle(event, '${escapeHtml(a.title).replace(/'/g, '\\&#39;')}', '${a.link}')" title="Share">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+              </button>
             </div>
           </div>
         </div>
@@ -330,6 +417,7 @@ function generateHTML(articles, sourceStats, situationReportData) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Iran War Update — Live News Dashboard</title>
   <meta name="description" content="Up-to-date Iran-Israel conflict news and intelligence briefings from leading sources">
+  <meta name="data-generated-at" content="${now.toISOString()}">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔶</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -452,6 +540,22 @@ function generateHTML(articles, sourceStats, situationReportData) {
       50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(232,115,44,0); }
     }
 
+    @keyframes pulse-slow {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(232,115,44,0.3); }
+      50% { opacity: 0.5; box-shadow: 0 0 0 4px rgba(232,115,44,0); }
+    }
+
+    .live-dot.fresh { animation: pulse 2s infinite; background: var(--accent); }
+    .live-dot.recent { animation: pulse-slow 3s infinite; background: var(--accent); }
+    .live-dot.stale { animation: none; background: #999; opacity: 0.5; }
+
+    .header-freshness {
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.55);
+      margin-left: 0.4rem;
+    }
+
     /* ===== ARTICLES SECTION DIVIDER ===== */
     .articles-section-header {
       display: flex;
@@ -467,6 +571,132 @@ function generateHTML(articles, sourceStats, situationReportData) {
       text-transform: uppercase;
       letter-spacing: 0.06em;
       color: var(--text-muted);
+    }
+
+    /* ===== URGENCY BADGE ===== */
+    .urgency-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.15rem;
+      padding: 0.1rem 0.45rem;
+      background: linear-gradient(135deg, #F5A623, #F7C948);
+      color: #7C4A00;
+      font-size: 0.65rem;
+      font-weight: 700;
+      border-radius: 10px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      margin-left: 0.3rem;
+      white-space: nowrap;
+    }
+
+    /* ===== SITREP LABEL ===== */
+    .sitrep-label {
+      display: inline-block;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border-radius: 0 0 8px 0;
+    }
+
+    /* ===== SHARE BUTTON ===== */
+    .share-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 0.3rem;
+      border-radius: 6px;
+      transition: all 0.15s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: auto;
+    }
+    .share-btn:hover { color: var(--accent); background: var(--accent-soft); }
+    .share-btn.copied { color: #16a34a; }
+
+    /* ===== TIME FILTER BUTTONS ===== */
+    .time-filter-btn {
+      padding: 0.35rem 0.75rem;
+      border: 1px solid var(--accent);
+      border-radius: 20px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .time-filter-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+    .time-filter-btn.active {
+      background: var(--accent);
+      color: #fff;
+    }
+    .time-filter-sep {
+      width: 1px;
+      height: 20px;
+      background: var(--border);
+      flex-shrink: 0;
+      margin: 0 0.15rem;
+    }
+
+    /* ===== BACK TO TOP BUTTON ===== */
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 1.25rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 2px 12px rgba(232,115,44,0.35);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 90;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .back-to-top.visible {
+      display: flex;
+    }
+    .back-to-top:hover {
+      transform: scale(1.08);
+    }
+
+    /* ===== UPDATE TOAST ===== */
+    .update-toast {
+      position: fixed;
+      top: 70px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-120%);
+      background: var(--text);
+      color: #fff;
+      padding: 0.6rem 1.2rem;
+      border-radius: 24px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      z-index: 110;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      transition: transform 0.3s ease;
+      white-space: nowrap;
+    }
+    .update-toast.visible {
+      transform: translateX(-50%) translateY(0);
     }
 
     /* ===== FILTER BAR ===== */
@@ -1048,6 +1278,39 @@ function generateHTML(articles, sourceStats, situationReportData) {
       }
     }
 
+      /* --- Share button mobile tap target --- */
+      .share-btn {
+        min-height: 40px;
+        min-width: 40px;
+        padding: 0.4rem;
+      }
+
+      /* --- Back to top: safe area aware --- */
+      .back-to-top {
+        bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+        right: 1rem;
+      }
+
+      /* --- Update toast --- */
+      .update-toast {
+        top: calc(56px + env(safe-area-inset-top, 0px));
+        font-size: 0.78rem;
+        padding: 0.5rem 1rem;
+      }
+
+      /* --- Urgency badge --- */
+      .urgency-badge {
+        font-size: 0.6rem;
+        padding: 0.08rem 0.35rem;
+      }
+
+      /* --- Time filter buttons --- */
+      .time-filter-btn {
+        min-height: 38px;
+        padding: 0.45rem 0.85rem;
+        font-size: 0.8rem;
+      }
+
     /* Small phones (iPhone SE / 375px and below) */
     @media (max-width: 375px) {
       .header h1 { font-size: 0.95rem; }
@@ -1072,7 +1335,7 @@ function generateHTML(articles, sourceStats, situationReportData) {
     <div class="header-inner">
       <div class="header-top">
         <div class="header-brand">
-          <h1><span class="live-dot"></span> Iran War Update</h1>
+          <h1><span class="live-dot" id="liveDot"></span> Iran War Update <span class="header-freshness" id="headerFreshness"></span></h1>
           <span class="header-time">🇮🇱 Israel Time (IDT)</span>
         </div>
         <a href="/archive.html" class="header-archive-link">📅 Daily Briefing</a>
@@ -1084,6 +1347,7 @@ function generateHTML(articles, sourceStats, situationReportData) {
   <div class="container">
   ${situationReportData ? `
     <div class="sitrep-card">
+      <div class="sitrep-label">SITUATION REPORT</div>
       <div class="sitrep-summary">${situationReportData.summary}</div>
       <div class="sitrep-top-updates">
         ${(situationReportData.top_updates || []).map(u => `
@@ -1108,6 +1372,11 @@ function generateHTML(articles, sourceStats, situationReportData) {
       <span class="articles-section-label" id="articleCount" style="font-weight:400">${articles.length} articles · ${sourceStats.filter(s => !s.error).length} sources</span>
     </div>
     <div class="filter-bar" id="articleFilterBar">
+      <button class="time-filter-btn" onclick="filterTime('1h', this)">Last 1h</button>
+      <button class="time-filter-btn" onclick="filterTime('3h', this)">Last 3h</button>
+      <button class="time-filter-btn" onclick="filterTime('6h', this)">Last 6h</button>
+      <button class="time-filter-btn" onclick="filterTime('today', this)">Today</button>
+      <span class="time-filter-sep"></span>
       <button class="filter-btn active" onclick="filterSource('all')">All</button>
       ${[...new Set(articles.map(a => a.source))].map(s => {
         const logoUrl = PUBLISHER_LOGOS[s] || '';
@@ -1121,47 +1390,185 @@ function generateHTML(articles, sourceStats, situationReportData) {
     </div>
   </div>
 
+  <!-- Back to top button -->
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <!-- Update toast -->
+  <div class="update-toast" id="updateToast" onclick="location.reload()">🔄 New updates available — tap to refresh</div>
+
   <div class="footer">
     <p>Iran War Update · Aggregated from public RSS feeds · Updated every hour</p>
     <p style="margin-top:0.35rem; opacity:0.7;">hmviva.us</p>
   </div>
 
   <script>
+    // ===== LIVE TIMESTAMP RE-COMPUTATION =====
+    function computeTimeAgo(dateStr) {
+      const now = new Date();
+      const date = new Date(dateStr);
+      const diffMs = now - date;
+      const diffMins = Math.floor(diffMs / 60000);
+      const diffHours = Math.floor(diffMs / 3600000);
+      const diffDays = Math.floor(diffMs / 86400000);
+      if (diffMins < 1) return 'just now';
+      if (diffMins < 60) return diffMins + 'm ago';
+      if (diffHours < 24) return diffHours + 'h ago';
+      if (diffDays < 7) return diffDays + 'd ago';
+      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    }
+
+    function refreshAllTimestamps() {
+      document.querySelectorAll('.time-ago[data-date]').forEach(function(el) {
+        el.textContent = computeTimeAgo(el.getAttribute('data-date'));
+      });
+    }
+
+    // Run on load and every 30 seconds
+    refreshAllTimestamps();
+    setInterval(refreshAllTimestamps, 30000);
+
+    // ===== PAGE FRESHNESS SIGNAL =====
+    function updateFreshness() {
+      var meta = document.querySelector('meta[name="data-generated-at"]');
+      if (!meta) return;
+      var generatedAt = new Date(meta.getAttribute('content'));
+      var now = new Date();
+      var diffMs = now - generatedAt;
+      var diffMins = Math.floor(diffMs / 60000);
+      var dot = document.getElementById('liveDot');
+      var freshLabel = document.getElementById('headerFreshness');
+
+      if (diffMins < 1) {
+        freshLabel.textContent = 'Updated just now';
+      } else if (diffMins < 60) {
+        freshLabel.textContent = 'Updated ' + diffMins + 'm ago';
+      } else {
+        var diffHours = Math.floor(diffMins / 60);
+        freshLabel.textContent = 'Updated ' + diffHours + 'h ago';
+      }
+
+      // Update live dot state
+      dot.classList.remove('fresh', 'recent', 'stale');
+      if (diffMins < 15) {
+        dot.classList.add('fresh');
+      } else if (diffMins < 60) {
+        dot.classList.add('recent');
+      } else {
+        dot.classList.add('stale');
+      }
+    }
+    updateFreshness();
+    setInterval(updateFreshness, 30000);
+
+    // ===== CARD TOGGLE =====
     function toggleCard(card, e) {
-      // Don't toggle if clicking a link
       if (e && e.target.closest('a')) return;
+      if (e && e.target.closest('.share-btn')) return;
       card.classList.toggle('expanded');
-      const btn = card.querySelector('.expand-btn');
+      var btn = card.querySelector('.expand-btn');
       if (btn) {
         btn.textContent = card.classList.contains('expanded') ? 'Show less' : 'Read more';
       }
     }
 
-    function filterSource(source) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      event.target.classList.add('active');
+    // ===== SOURCE FILTER =====
+    var activeSourceFilter = 'all';
+    var activeTimeFilter = null;
 
-      const cards = document.querySelectorAll('.card');
-      let visible = 0;
-      cards.forEach(card => {
-        if (source === 'all') {
+    function applyFilters() {
+      var cards = document.querySelectorAll('.card');
+      var visible = 0;
+      var now = new Date();
+      cards.forEach(function(card) {
+        var sourceMatch = true;
+        var timeMatch = true;
+
+        // Source filter
+        if (activeSourceFilter !== 'all') {
+          sourceMatch = card.getAttribute('data-source') === activeSourceFilter;
+        }
+
+        // Time filter
+        if (activeTimeFilter) {
+          var dateStr = card.getAttribute('data-date');
+          if (dateStr) {
+            var articleDate = new Date(dateStr);
+            var diffMs = now - articleDate;
+            var diffHours = diffMs / 3600000;
+            if (activeTimeFilter === '1h') {
+              timeMatch = diffHours <= 1;
+            } else if (activeTimeFilter === '3h') {
+              timeMatch = diffHours <= 3;
+            } else if (activeTimeFilter === '6h') {
+              timeMatch = diffHours <= 6;
+            } else if (activeTimeFilter === 'today') {
+              // Today in Israel time
+              var todayStr = now.toLocaleDateString('en-CA', { timeZone: 'Asia/Jerusalem' });
+              var articleDayStr = articleDate.toLocaleDateString('en-CA', { timeZone: 'Asia/Jerusalem' });
+              timeMatch = todayStr === articleDayStr;
+            }
+          }
+        }
+
+        if (sourceMatch && timeMatch) {
           card.style.display = '';
           visible++;
         } else {
-          const src = card.getAttribute('data-source');
-          if (src === source) {
-            card.style.display = '';
-            visible++;
-          } else {
-            card.style.display = 'none';
-          }
+          card.style.display = 'none';
         }
       });
       document.getElementById('articleCount').textContent = visible + ' articles shown';
     }
 
-    // Auto-refresh page every hour
-    setTimeout(() => location.reload(), 1 * 60 * 60 * 1000);
+    function filterSource(source) {
+      document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      event.target.classList.add('active');
+      activeSourceFilter = source;
+      applyFilters();
+    }
+
+    function filterTime(period, btn) {
+      var wasActive = btn.classList.contains('active');
+      document.querySelectorAll('.time-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      if (wasActive) {
+        // Toggle off
+        activeTimeFilter = null;
+      } else {
+        btn.classList.add('active');
+        activeTimeFilter = period;
+      }
+      applyFilters();
+    }
+
+    // ===== SHARE BUTTON =====
+    function shareArticle(e, title, url) {
+      e.stopPropagation();
+      var btn = e.currentTarget;
+      if (navigator.share) {
+        navigator.share({ title: title, url: url }).catch(function() {});
+      } else {
+        // Fallback: copy to clipboard
+        navigator.clipboard.writeText(url).then(function() {
+          btn.classList.add('copied');
+          setTimeout(function() { btn.classList.remove('copied'); }, 1500);
+        }).catch(function() {});
+      }
+    }
+
+    // ===== BACK TO TOP BUTTON =====
+    var backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 500) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    });
+
+    // ===== UPDATE TOAST (replaces auto-reload) =====
+    setTimeout(function() {
+      document.getElementById('updateToast').classList.add('visible');
+    }, 1 * 60 * 60 * 1000);
   </script>
 </body>
 </html>`;
