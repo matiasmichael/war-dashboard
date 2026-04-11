@@ -8,9 +8,12 @@
     "build": "astro build",
     "preview": "astro preview",
     "fetch": "node fetch.js",
+    "fetch-data": "node fetch-data.js",
+    "synthesize": "node synthesize.js",
+    "build-site": "node build.js",
     "serve": "node server.js",
     "check": "astro check",
-    "update": "node fetch.js && astro build"
+    "update": "node fetch.js"
   },
   "keywords": [],
   "author": "",
