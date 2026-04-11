@@ -10,6 +10,27 @@ const { atomicWriteSync } = require('./src/utils');
 const MAX_VIDEOS = 30;
 const FETCH_TIMEOUT_MS = 10000;
 
+// --- Relevance filter keywords for general channels ---
+const MIDDLE_EAST_KEYWORDS = [
+  'israel', 'israeli', 'iran', 'iranian', 'gaza', 'hezbollah', 'lebanon', 'lebanese',
+  'hamas', 'middle east', 'tehran', 'jerusalem', 'houthi', 'yemen', 'yemeni',
+  'west bank', 'idf', 'netanyahu', 'sinwar', 'rafah', 'beirut', 'tel aviv',
+  'occupied', 'ceasefire', 'hostage', 'hostages', 'october 7', 'irgc', 'hezbollah'
+];
+
+// Channels that require relevance filtering (by name)
+const FILTERED_CHANNELS = new Set(['The White House', 'C-SPAN']);
+
+/**
+ * Returns true if the video is relevant to the Middle East conflict.
+ * Israeli PM and IDF are always relevant; others require keyword match.
+ */
+function isRelevant(video) {
+  if (!FILTERED_CHANNELS.has(video.channel)) return true; // IDF / Israeli PM always pass
+  const haystack = (video.title + ' ' + video.description).toLowerCase();
+  return MIDDLE_EAST_KEYWORDS.some(kw => haystack.includes(kw));
+}
+
 // --- YouTube Channels ---
 const CHANNELS = [
   {
@@ -153,6 +174,11 @@ async function main() {
       console.error(`  ✗ ${channel.name}: ${result.reason?.message || 'unknown error'}`);
     }
   }
+
+  // Filter for relevance BEFORE capping so we don't end up with an empty list
+  const beforeFilter = allVideos.length;
+  allVideos = allVideos.filter(isRelevant);
+  console.log(`[VIDEOS] 🔍 Relevance filter: ${beforeFilter} → ${allVideos.length} videos`);
 
   // Sort newest first, cap at MAX_VIDEOS
   allVideos.sort((a, b) => new Date(b.published) - new Date(a.published));

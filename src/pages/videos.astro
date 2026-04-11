@@ -77,13 +77,14 @@ const generatedAt = new Date().toISOString();
     ) : (
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="videoGrid">
         {videos.map((video: any) => (
-          <a
-            href={video.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="video-card card card-bordered bg-white shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden group"
+          <div
+            class="video-card card card-bordered bg-white shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden group cursor-pointer"
             data-channel={video.channel}
             data-date={video.published}
+            data-video-id={video.videoId}
+            data-title={video.title}
+            role="button"
+            tabindex="0"
           >
             <!-- Thumbnail -->
             <figure class="relative aspect-video overflow-hidden bg-base-200">
@@ -93,10 +94,10 @@ const generatedAt = new Date().toISOString();
                 class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-300"
                 loading="lazy"
               />
-              <!-- Play overlay -->
-              <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                <div class="w-12 h-12 bg-black/70 rounded-full flex items-center justify-center">
-                  <svg class="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+              <!-- Play overlay — always slightly visible, full on hover -->
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-14 h-14 bg-black/50 group-hover:bg-black/75 rounded-full flex items-center justify-center transition-colors duration-200 shadow-lg">
+                  <svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M8 5v14l11-7z"/>
                   </svg>
                 </div>
@@ -120,10 +121,10 @@ const generatedAt = new Date().toISOString();
               )}
               <div class="flex items-center justify-between mt-1">
                 <span class="time-ago text-[0.68rem] text-text-muted font-medium" data-date={video.published}></span>
-                <span class="text-[0.68rem] text-primary font-semibold opacity-0 group-hover:opacity-100 transition-opacity">Watch →</span>
+                <span class="text-[0.68rem] text-primary font-semibold opacity-0 group-hover:opacity-100 transition-opacity">▶ Play</span>
               </div>
             </div>
-          </a>
+          </div>
         ))}
       </div>
     )}
@@ -131,6 +132,32 @@ const generatedAt = new Date().toISOString();
   </div>
 
   <Footer />
+
+  <!-- ===== VIDEO MODAL ===== -->
+  <dialog id="videoModal" class="video-modal">
+    <div class="video-modal-backdrop" id="videoModalBackdrop"></div>
+    <div class="video-modal-content">
+      <!-- Close button -->
+      <button class="video-modal-close" id="videoModalClose" aria-label="Close video">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <!-- Title -->
+      <p class="video-modal-title" id="videoModalTitle"></p>
+      <!-- iframe container -->
+      <div class="video-modal-frame-wrap">
+        <iframe
+          id="videoModalFrame"
+          src=""
+          frameborder="0"
+          allowfullscreen
+          allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+        ></iframe>
+      </div>
+    </div>
+  </dialog>
 
   <script>
     // ===== TIMESTAMP COMPUTATION =====
@@ -164,12 +191,10 @@ const generatedAt = new Date().toISOString();
 
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        // Remove active from all
         document.querySelectorAll('.filter-btn').forEach(b => {
           b.classList.remove('btn-primary');
           b.classList.add('btn-ghost', 'border', 'border-base-300', 'text-text-muted');
         });
-        // Set active
         btn.classList.add('btn-primary');
         btn.classList.remove('btn-ghost', 'border', 'border-base-300', 'text-text-muted');
 
@@ -182,6 +207,58 @@ const generatedAt = new Date().toISOString();
         });
       });
     });
+
+    // ===== INLINE VIDEO MODAL =====
+    const modal = document.getElementById('videoModal') as HTMLDialogElement | null;
+    const backdrop = document.getElementById('videoModalBackdrop');
+    const closeBtn = document.getElementById('videoModalClose');
+    const frame = document.getElementById('videoModalFrame') as HTMLIFrameElement | null;
+    const titleEl = document.getElementById('videoModalTitle');
+
+    function openModal(videoId: string, title: string): void {
+      if (!modal || !frame || !titleEl) return;
+      frame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+      titleEl.textContent = title;
+      modal.showModal();
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(): void {
+      if (!modal || !frame) return;
+      frame.src = ''; // stop video
+      modal.close();
+      document.body.style.overflow = '';
+    }
+
+    // Open modal on card click
+    document.querySelectorAll('.video-card').forEach(card => {
+      const el = card as HTMLElement;
+
+      const handleOpen = () => {
+        const videoId = el.dataset.videoId;
+        const title = el.dataset.title || '';
+        if (videoId) openModal(videoId, title);
+      };
+
+      el.addEventListener('click', handleOpen);
+      el.addEventListener('keydown', (e: Event) => {
+        const ke = e as KeyboardEvent;
+        if (ke.key === 'Enter' || ke.key === ' ') {
+          ke.preventDefault();
+          handleOpen();
+        }
+      });
+    });
+
+    // Close on backdrop click or close button
+    closeBtn?.addEventListener('click', closeModal);
+    backdrop?.addEventListener('click', closeModal);
+
+    // Close on Escape (dialog handles it natively, but we need to stop the video)
+    modal?.addEventListener('cancel', (e: Event) => {
+      e.preventDefault();
+      closeModal();
+    });
   </script>
 
   <style>
@@ -190,6 +267,118 @@ const generatedAt = new Date().toISOString();
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
+    }
+
+    /* ===== VIDEO MODAL STYLES ===== */
+    .video-modal {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      background: transparent;
+      border: none;
+      padding: 0;
+      margin: 0;
+      z-index: 9999;
+      display: none; /* hidden until open */
+    }
+
+    .video-modal[open] {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Blurred dark backdrop */
+    .video-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.82);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      cursor: pointer;
+      z-index: 0;
+    }
+
+    /* Frosted content panel */
+    .video-modal-content {
+      position: relative;
+      z-index: 1;
+      width: min(92vw, 860px);
+      background: #111;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.08),
+        0 32px 80px rgba(0, 0, 0, 0.7),
+        0 8px 24px rgba(0, 0, 0, 0.5);
+      animation: modalIn 0.22s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.92) translateY(12px); }
+      to   { opacity: 1; transform: scale(1)    translateY(0); }
+    }
+
+    /* Close button */
+    .video-modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 10;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.15s;
+    }
+
+    .video-modal-close:hover {
+      background: rgba(255,255,255,0.24);
+      transform: scale(1.08);
+    }
+
+    /* Video title */
+    .video-modal-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.75);
+      padding: 14px 52px 10px 16px;
+      margin: 0;
+      line-height: 1.35;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* 16:9 iframe wrapper */
+    .video-modal-frame-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+    }
+
+    .video-modal-frame-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* Native dialog backdrop override (browser default is ugly) */
+    .video-modal::backdrop {
+      display: none;
     }
   </style>
 </Base>
