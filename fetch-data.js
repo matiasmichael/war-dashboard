@@ -41,7 +41,12 @@ async function main() {
   }
 
   console.log('[DATA] ✅ Data collection complete.');
-  process.exit(0);
+
+  // Auto-rebuild site
+  const { execSync } = require('child_process');
+  console.log('[DATA] 🔨 Rebuilding site...');
+  execSync('node build.js', { cwd: __dirname, stdio: 'inherit' });
+  console.log('[DATA] ✅ Site rebuilt and live.');
 }
 
 main().catch(err => {
