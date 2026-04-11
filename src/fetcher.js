@@ -257,12 +257,22 @@ async function fetchSingleFeed(feed) {
               console.log(`  ✅ ${feed.name}: corrected date for "${(item.title || '').slice(0, 50)}" → ${realDate}`);
               item._correctedDate = realDate;
             } else {
-              // Could not fetch real date — fall back to clamping to now
-              console.log(`  ⏰ ${feed.name}: could not fetch real date for "${(item.title || '').slice(0, 50)}" — clamping to now`);
-              item._correctedDate = new Date().toISOString();
+              // Could not scrape the real date — DROP this article entirely.
+              // Clamping to "now" would be a lie (shows as "Just now" / "3m ago").
+              // Pushing to a fake past date would also be misleading.
+              // The correct action is to skip it until JPost's RSS reflects a real past date.
+              console.warn(`  [JPOST PRE-SCHEDULED] Dropping future article unable to scrape: "${(item.title || '').slice(0, 80)}"`);
+              item._dropArticle = true;
             }
           }
         }
+      }
+
+      // Remove any items flagged for dropping (pre-scheduled future articles we couldn't scrape)
+      const droppedCount = items.filter(item => item._dropArticle).length;
+      if (droppedCount > 0) {
+        console.log(`  🚫 ${feed.name}: dropped ${droppedCount} pre-scheduled article(s) with unresolvable future dates`);
+        items = items.filter(item => !item._dropArticle);
       }
 
       const articles = items.map(item => {
@@ -293,8 +303,12 @@ async function fetchSingleFeed(feed) {
               // Use the real date scraped from the article page
               parsedDate = item._correctedDate; // already ISO from fetchRealPublishDate
             } else if (feed.fixFutureDates) {
-              // fixFutureDates feed but scrape failed — clamp to now
-              parsedDate = new Date().toISOString();
+              // fixFutureDates feed but scrape failed — this item should have been dropped
+              // above via _dropArticle. If we somehow reach here, use sentinel past date
+              // so it NEVER shows as breaking news. This is a safety net only.
+              parsedDate = new Date('2000-01-01T00:00:00Z').toISOString();
+              isInvalid = true;
+              console.warn(`  ⚠️  ${feed.name}: safety-net sentinel for item that escaped drop filter: ${(item.title||'').slice(0,60)}`);
             } else {
               // Feed with unexpected future date — clamp to now
               parsedDate = new Date().toISOString();
