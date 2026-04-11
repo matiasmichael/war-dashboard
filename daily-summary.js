@@ -5,6 +5,7 @@ const path = require('path');
 // ===== CONFIG =====
 const DATA_DIR = path.join(__dirname, 'data');
 const DAILY_DIR = path.join(DATA_DIR, 'daily');
+const ISRAEL_TZ = 'Asia/Jerusalem';
 
 function getGeminiKey() {
   const configPath = path.join(process.env.HOME, '.openclaw/openclaw.json');
@@ -30,10 +31,10 @@ async function generateDailySummary(dateStr) {
     process.exit(1);
   }
 
-  // Prepare article context for Gemini
+  // Prepare article context for Gemini — show times in Israel timezone
   const articleContext = articles.map((a, i) => {
-    const time = a.date ? new Date(a.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : 'unknown';
-    return `[${i + 1}] [${a.source}] [${time}] ${a.title}\n${a.snippet || ''}`;
+    const time = a.date ? new Date(a.date).toLocaleTimeString('en-US', { timeZone: ISRAEL_TZ, hour: '2-digit', minute: '2-digit', hour12: false }) : 'unknown';
+    return `[${i + 1}] [${a.source}] [${time} IDT] ${a.title}\n${a.snippet || ''}`;
   }).join('\n\n');
 
   // Compute source stats
@@ -54,6 +55,8 @@ async function generateDailySummary(dateStr) {
 
   const prompt = `You are a senior intelligence analyst producing the daily briefing for an Iran-Israel conflict monitoring platform called "Iran War Update." 
 
+IMPORTANT: ALL times in your output must be normalized to Israel timezone (Asia/Jerusalem, currently IDT = UTC+3). When article timestamps are provided, they are already converted to IDT. All "time" fields in key_events must use Israel time with the format "HH:MM IDT" (24h or 12h). Do NOT use GMT or UTC.
+
 Today's date: ${dateStr}
 Total articles collected today: ${articles.length}
 Sources reporting: ${Object.keys(sourceCounts).length}
@@ -71,7 +74,7 @@ Produce a comprehensive daily intelligence briefing as a JSON object. Return ONL
   "summary": "3-4 paragraphs providing a comprehensive overview of the day's developments in the Iran-Israel conflict. Cover military operations, diplomatic moves, humanitarian impacts, and proxy conflicts. Use <p> tags to separate paragraphs. Be analytical and objective.",
   "key_events": [
     {
-      "time": "HH:MM or 'Morning'/'Afternoon'/'Evening' if exact time unknown",
+      "time": "HH:MM IDT or 'Morning'/'Afternoon'/'Evening' if exact time unknown (always Israel time)",
       "headline": "Short punchy headline (max 12 words)",
       "source": "Primary source name",
       "category": "One of: diplomacy, military, intelligence, proxy",
@@ -140,9 +143,10 @@ RULES:
 
 // ===== MAIN =====
 async function main() {
-  // Accept a date argument, or default to today
+  // Accept a date argument, or default to today in Israel timezone
   const dateArg = process.argv[2];
-  const dateStr = dateArg || new Date().toISOString().split('T')[0];
+  // Default to Israel calendar date (Asia/Jerusalem)
+  const dateStr = dateArg || new Date().toLocaleDateString('en-CA', { timeZone: ISRAEL_TZ });
 
   await generateDailySummary(dateStr);
   process.exit(0);

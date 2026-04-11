@@ -655,6 +655,7 @@
     // ===== STATE =====
     let availableDates = [];
     let currentDate = null;
+    const ISRAEL_TZ = 'Asia/Jerusalem';
 
     // ===== INIT =====
     async function init() {
@@ -706,7 +707,7 @@
       const picker = document.getElementById('datePicker');
       picker.innerHTML = availableDates.map(d => {
         const date = new Date(d + 'T12:00:00');
-        const label = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        const label = date.toLocaleDateString('en-US', { timeZone: ISRAEL_TZ, month: 'short', day: 'numeric' });
         const isActive = d === currentDate ? 'active' : '';
         return `<a class="date-pill ${isActive}" href="#${d}" onclick="event.preventDefault(); loadBriefing('${d}')">${label}</a>`;
       }).join('');
@@ -729,7 +730,7 @@
 
       const date = new Date(currentDate + 'T12:00:00');
       document.getElementById('currentDateLabel').textContent = date.toLocaleDateString('en-US', {
-        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+        timeZone: ISRAEL_TZ, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
       });
     }
 
@@ -815,7 +816,7 @@
       const container = document.getElementById('briefingContainer');
       const date = new Date(data.date + 'T12:00:00');
       const dateFormatted = date.toLocaleDateString('en-US', {
-        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+        timeZone: ISRAEL_TZ, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
       });
 
       const stats = data.statistics || {};
@@ -839,7 +840,7 @@
         <div class="timeline-event" onclick="toggleTimeline(this)">
           <div class="timeline-time">
             ${escHtml(ev.time)}
-            <span class="timeline-time-label">(GMT)</span>
+            <span class="timeline-time-label">(Israel)</span>
           </div>
           <div class="timeline-dot-col">
             <div class="timeline-dot"></div>
@@ -877,14 +878,15 @@
         `;
       }
 
-      // Generation timestamp
+      // Generation timestamp — always Israel timezone
       const genTime = new Date().toLocaleString('en-US', {
+        timeZone: ISRAEL_TZ,
         hour: 'numeric',
         minute: '2-digit',
         month: 'long',
         day: 'numeric',
         hour12: true
-      });
+      }) + ' IDT';
 
       // === RENDER — New section order ===
       // 1. Headline + Escalation (header card)

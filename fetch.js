@@ -247,9 +247,13 @@ async function fetchAllFeeds() {
   return { articles: allArticles, sourceStats };
 }
 
+// Israel timezone constant
+const ISRAEL_TZ = 'Asia/Jerusalem';
+
 function generateHTML(articles, sourceStats, situationReportData) {
   const now = new Date();
   const updatedAt = now.toLocaleString('en-US', {
+    timeZone: ISRAEL_TZ,
     weekday: 'long',
     year: 'numeric',
     month: 'long',
@@ -1069,6 +1073,7 @@ function generateHTML(articles, sourceStats, situationReportData) {
       <div class="header-top">
         <div class="header-brand">
           <h1><span class="live-dot"></span> Iran War Update</h1>
+          <span class="header-time">🇮🇱 Israel Time (IDT)</span>
         </div>
         <a href="/archive.html" class="header-archive-link">📅 Daily Briefing</a>
       </div>
@@ -1163,11 +1168,17 @@ function generateHTML(articles, sourceStats, situationReportData) {
 }
 
 // ===== DAILY ARTICLE PERSISTENCE =====
+function getIsraelDateStr(date) {
+  // Get YYYY-MM-DD based on Israel calendar date (Asia/Jerusalem)
+  const parts = date.toLocaleDateString('en-CA', { timeZone: ISRAEL_TZ }); // en-CA gives YYYY-MM-DD format
+  return parts; // e.g. '2026-04-12'
+}
+
 function persistDailyArticles(articles) {
   const dataDir = path.join(__dirname, 'data');
   fs.mkdirSync(dataDir, { recursive: true });
 
-  const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+  const today = getIsraelDateStr(new Date()); // Israel calendar date, not UTC
   const dailyFile = path.join(dataDir, `${today}.json`);
 
   // Load existing articles for today (if any)
