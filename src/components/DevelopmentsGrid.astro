@@ -5,6 +5,7 @@ interface Development {
   sources: string[];
   severity: 'critical' | 'major' | 'notable' | 'developing';
   category: 'military' | 'diplomacy' | 'humanitarian' | 'economic';
+  timeContext?: string;
   updatedAt: string;
 }
 
@@ -14,12 +15,7 @@ interface Props {
 
 const { developments } = Astro.props;
 
-const severityDot: Record<string, string> = {
-  critical:   '🔴',
-  major:      '🟠',
-  notable:    '🔵',
-  developing: '🟢',
-};
+
 ---
 
 {developments && developments.length > 0 && (
@@ -30,8 +26,9 @@ const severityDot: Record<string, string> = {
     </div>
     <div class="flex flex-col gap-0 rounded-lg border border-base-300 bg-white overflow-hidden shadow-sm">
       {developments.map((dev, i) => {
-        const dot = severityDot[dev.severity] || '🔵';
         const srcText = dev.sources.length > 0 ? dev.sources.join(', ') : '';
+        const timeCtx = dev.timeContext || '';
+        const attribution = [srcText ? `via ${srcText}` : '', timeCtx].filter(Boolean).join(' · ');
         const hasSummary = !!(dev.summary && dev.summary.trim());
         return (
           <div
@@ -42,11 +39,10 @@ const severityDot: Record<string, string> = {
           >
             {/* Collapsed header bar */}
             <div class="flex items-center gap-1.5 px-2.5 py-1.5">
-              <span class="text-[0.6rem] leading-[1.35rem] shrink-0 select-none">{dot}</span>
               <p class="flex-1 text-[0.75rem] leading-[1.35rem] text-base-content m-0 min-w-0">
                 <span class="font-semibold">{dev.headline}</span>
-                {srcText && (
-                  <span class="text-[0.65rem] text-text-muted font-normal">{' '}— via {srcText}</span>
+                {attribution && (
+                  <span class="text-[0.65rem] text-text-muted font-normal">{' '}— {attribution}</span>
                 )}
               </p>
               {hasSummary && (
@@ -58,7 +54,7 @@ const severityDot: Record<string, string> = {
             {/* Expandable summary (hidden by default) */}
             {hasSummary && (
               <div class="dev-expand overflow-hidden transition-all duration-200 ease-out" style="max-height:0; opacity:0;">
-                <div class="px-2.5 pb-2 pl-[1.6rem]">
+                <div class="px-2.5 pb-2">
                   <p class="text-[0.73rem] leading-relaxed text-text-secondary/80 m-0">{dev.summary}</p>
                 </div>
               </div>

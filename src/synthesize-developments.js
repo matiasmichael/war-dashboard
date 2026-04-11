@@ -17,6 +17,24 @@ const { atomicWriteSync, sleep } = require('./utils');
 const DATA_DIR = path.join(__dirname, '..', 'data');
 
 /**
+ * Format a date as relative time (e.g. "2h ago", "45m ago", "5d ago").
+ */
+function relativeTime(dateStr, now) {
+  if (!dateStr) return 'unknown';
+  const then = new Date(dateStr);
+  if (isNaN(then.getTime())) return 'unknown';
+  const diffMs = now - then;
+  if (diffMs < 0) return 'just now';
+  const mins = Math.floor(diffMs / 60000);
+  if (mins < 1) return 'just now';
+  if (mins < 60) return `${mins}m ago`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return `${hrs}h ago`;
+  const days = Math.floor(hrs / 24);
+  return `${days}d ago`;
+}
+
+/**
  * Read the Gemini API key from OpenClaw config.
  */
 function getGeminiKey() {
@@ -64,40 +82,60 @@ async function synthesizeDevelopments(articles) {
     const genAI = new GoogleGenerativeAI(googleKey);
     const model = genAI.getGenerativeModel({ model: GEMINI_MODEL });
 
+    const now = new Date();
     const recentArticles = articles.slice(0, MAX_ARTICLES_FOR_SYNTHESIS);
-    const feedContext = recentArticles.map(a =>
-      `[${a.source}] ${a.title}\n${a.snippet || ''}\nPublished: ${a.date || 'unknown'}`
-    ).join('\n\n');
+    const feedContext = recentArticles.map(a => {
+      const rel = relativeTime(a.date, now);
+      return `[${a.source}] (${rel}) ${a.title}\n${a.snippet || ''}`;
+    }).join('\n\n');
 
-    const prompt = `You are an intelligence analyst. From the following news headlines and snippets about the Iran-Israel conflict theater, identify the **4 most significant and distinct developments**.
+    // Compute the time window of our articles
+    const newest = recentArticles[0]?.date ? new Date(recentArticles[0].date) : now;
+    const oldest = recentArticles[recentArticles.length - 1]?.date ? new Date(recentArticles[recentArticles.length - 1].date) : now;
+    const windowDesc = `Articles span from ${relativeTime(oldest.toISOString(), now)} to ${relativeTime(newest.toISOString(), now)}.`;
 
-Each development should synthesize across multiple sources when possible. Do NOT return 4 articles about the same event — find 4 truly different developments.
+    const prompt = `You are an intelligence analyst writing a CURRENT SITUATION snapshot — a "NOW" picture, not a daily recap.
 
-Prioritize by: (1) strategic significance, (2) recency, (3) multi-source confirmation.
+Current time: ${now.toISOString()}
+${windowDesc}
 
-Headlines:
+Each article below has a relative timestamp (e.g. "2h ago"). Use these to understand temporal flow.
+
+## ARTICLES
 ${feedContext}
+
+## TASK
+Identify the **4 most significant and distinct developments** in the Iran-Israel conflict theater RIGHT NOW.
+
+## TEMPORAL RULES (CRITICAL)
+- **Prioritize the last 3 hours.** These are your headline developments.
+- Articles older than 3 hours are BACKGROUND CONTEXT only — use them to enrich understanding, not as headline material unless they describe an ongoing situation.
+- If a ceasefire, truce, or talks are underway, do NOT present pre-ceasefire strikes as current developments. Frame them as context ("prior to ceasefire").
+- Each development MUST reflect its temporal state: Is it happening NOW? Did it just happen? Is it a developing situation from earlier?
+- Think: "What would a commander need to know RIGHT NOW?" — not "What happened today?"
 
 Return ONLY valid JSON (no markdown fences, no commentary) with this exact structure:
 {
   "developments": [
     {
       "headline": "Short punchy headline, 5-8 words",
-      "summary": "1-2 sentences explaining what happened and why it matters. Write like an intelligence analyst, not a journalist. Cold, factual, zero filler.",
+      "summary": "1-2 sentences explaining what is happening and why it matters. Write like an intelligence analyst. Cold, factual, zero filler. Use present tense for ongoing events.",
       "sources": ["Source1", "Source2"],
       "severity": "critical|major|notable|developing",
-      "category": "military|diplomacy|humanitarian|economic"
+      "category": "military|diplomacy|humanitarian|economic",
+      "timeContext": "Ongoing|Just now|30m ago|2h ago|Earlier today"
     }
   ]
 }
 
 RULES:
 - Exactly 4 developments. No more, no less.
-- "headline": 5-8 words, punchy, no articles or filler words where possible.
+- "headline": 5-8 words, punchy, present tense for ongoing events.
 - "summary": Max 2 sentences, max 40 words. State the fact and its strategic implication.
-- "sources": Array of source names (e.g. "BBC", "Times of Israel", "NPR") that reported on this development. Use short names.
+- "sources": Array of source names that reported this. Use short names.
 - "severity": One of: "critical" (imminent threat/major escalation), "major" (significant strategic shift), "notable" (important but not urgent), "developing" (emerging situation, watch closely).
-- "category": One of: "military" (strikes, operations, force movements), "diplomacy" (negotiations, statements, alliances), "humanitarian" (casualties, refugees, aid), "economic" (sanctions, oil, trade).
+- "category": One of: "military", "diplomacy", "humanitarian", "economic".
+- "timeContext": When this development occurred or its current state. Use: "Ongoing" (still active), "Just now" (<15 min), "Xm ago" or "Xh ago" (specific), "Earlier today" (>6h ago).
 - Each development must be genuinely distinct from the others.
 - Scope: Iran-Israel direct, proxies (Hezbollah, Hamas, Houthis, IRGC), nuclear, regional escalation.
 - Output ONLY the JSON object.`;
@@ -138,6 +176,7 @@ RULES:
       sources: Array.isArray(d.sources) ? d.sources.slice(0, 6) : [],
       severity: ['critical', 'major', 'notable', 'developing'].includes(d.severity) ? d.severity : 'notable',
       category: ['military', 'diplomacy', 'humanitarian', 'economic'].includes(d.category) ? d.category : 'military',
+      timeContext: (d.timeContext || 'Ongoing').slice(0, 30),
       updatedAt: new Date().toISOString()
     }));
 

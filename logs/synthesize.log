@@ -37,3 +37,44 @@ Synthesizing Situation Report with Gemini...
 14:44:51 [build] Complete!
 [BUILD] ✅ Astro build complete. Site output in dist/
 [SYNTH] ✅ Synthesis + build complete.
+[SYNTH] 🧠 Iran War Update — AI Synthesis
+[SYNTH]    Time: 2026-04-11T19:44:51.399Z
+[SYNTH] 📰 Read 144 articles from /Users/michaelmatias/Projects/war-dashboard/data/2026-04-11.json
+Synthesizing Situation Report with Gemini...
+📋 Loaded previous sitrep for delta framing
+💾 Saved current sitrep for next delta comparison
+[SYNTH] 💾 Sitrep saved: /Users/michaelmatias/Projects/war-dashboard/data/sitrep-latest.json
+[SYNTH] 📦 Triggering build...
+[BUILD] 📦 Iran War Update — Build
+[BUILD]    Time: 2026-04-11T19:45:16.026Z
+[BUILD] 📰 Loaded 144 articles from /Users/michaelmatias/Projects/war-dashboard/data/2026-04-11.json
+[BUILD] 🧠 Loaded sitrep (generated at 2026-04-11T19:45:15.986Z)
+[BUILD] 🔍 Loaded 4 key developments (generated at 2026-04-11T19:45:08.497Z)
+[BUILD] 💾 Data written: /Users/michaelmatias/Projects/war-dashboard/src/data/latest.json
+[BUILD]    Articles: 144
+[BUILD]    Sitrep: yes
+[BUILD]    Size: 76.3 KB
+[BUILD] 🔨 Running astro build...
+15:45:17 [types] Generated 37ms
+15:45:17 [build] output: "static"
+15:45:17 [build] mode: "static"
+15:45:17 [build] directory: /Users/michaelmatias/Projects/war-dashboard/dist/
+15:45:17 [build] Collecting build info...
+15:45:17 [build] ✓ Completed in 80ms.
+15:45:17 [build] Building static entrypoints...
+/*! 🌼 daisyUI 5.5.19 */
+15:45:18 [vite] ✓ built in 1.41s
+15:45:18 [vite] ✓ built in 29ms
+15:45:18 [build] Rearranging server assets...
+
+ generating static routes 
+15:45:18   ├─ /about/index.html (+15ms) 
+15:45:18   ├─ /archive/index.html (+3ms) 
+15:45:18   ├─ /index.html (+18ms) 
+15:45:18 ✓ Completed in 46ms.
+
+15:45:18 [build] ✓ Completed in 1.56s.
+15:45:18 [build] 3 page(s) built in 1.64s
+15:45:18 [build] Complete!
+[BUILD] ✅ Astro build complete. Site output in dist/
+[SYNTH] ✅ Synthesis + build complete.

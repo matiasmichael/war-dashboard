@@ -1,5 +1,77 @@
 [
   {
+    "title": "Iran’s deputy FM says Tehran has ‘upper hand’ in talks with US",
+    "link": "https://www.aljazeera.com/video/newsfeed/2026/4/11/irans-deputy-fm-says-tehran-has-upper-hand-in-talks-with-us?traffic_source=rss",
+    "snippet": "Iran’s Gharibabadi says Tehran has entered negotiations from a position of strength and the war on Iran has failed.",
+    "date": "2026-04-11T19:46:41.000Z",
+    "source": "Al Jazeera",
+    "logo": "🌍",
+    "color": "#c68e17",
+    "accentLight": "#fefce8",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=aljazeera.com&sz=128",
+    "noDate": false
+  },
+  {
+    "title": "US says Navy destroyers working to de-mine Strait of Hormuz",
+    "link": "https://www.timesofisrael.com/us-says-navy-destroyers-working-to-de-mine-strait-of-hormuz/",
+    "snippet": "CENTCOM says additional forces to join efforts in coming days; Iranian outlets dismiss 'fake news' after Trump says all of Iran's mining boats are 'lying at the bottom of the sea' The post US says Navy destroyers working to de-mine Strait of Hormuz appeared first on The Times of Israel.",
+    "date": "2026-04-11T19:41:16.000Z",
+    "source": "Times of Israel",
+    "logo": "🕎",
+    "color": "#1a5276",
+    "accentLight": "#eff6ff",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=timesofisrael.com&sz=128",
+    "noDate": false
+  },
+  {
+    "title": "US says two naval ships ‘transited’ Strait of Hormuz for mine-clearing",
+    "link": "https://www.aljazeera.com/news/2026/4/11/us-says-two-naval-ships-transited-strait-of-hormuz-for-mine-clearing?traffic_source=rss",
+    "snippet": "Negotiations are ongoing between US-Iranian delegations in Islamabad, with control of the strait a key sticking point.",
+    "date": "2026-04-11T19:38:03.000Z",
+    "source": "Al Jazeera",
+    "logo": "🌍",
+    "color": "#c68e17",
+    "accentLight": "#fefce8",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=aljazeera.com&sz=128",
+    "noDate": false
+  },
+  {
+    "title": "Pakistan sends fighter jets to Saudi Arabia amid fragile US-Iran ceasefire",
+    "link": "https://www.aljazeera.com/news/2026/4/11/pakistan-sends-fighter-jets-to-saudi-arabia-amid-fragile-us-iran-ceasefire?traffic_source=rss",
+    "snippet": "Deployment under mutual defence pact comes as Islamabad hosts US-Iran ceasefire talks.",
+    "date": "2026-04-11T19:35:54.000Z",
+    "source": "Al Jazeera",
+    "logo": "🌍",
+    "color": "#c68e17",
+    "accentLight": "#fefce8",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=aljazeera.com&sz=128",
+    "noDate": false
+  },
+  {
+    "title": "שגריר ישראל בסינגפור איחל לאורבן בהצלחה בבחירות: \"מציל את אירופה. טראמפ תומך\"",
+    "link": "https://www.ynet.co.il/news/article/sktjifohwl",
+    "snippet": "",
+    "date": "2026-04-11T19:25:35.000Z",
+    "source": "Ynet News",
+    "logo": "🇮🇱",
+    "color": "#e74c3c",
+    "accentLight": "#fef2f2",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=ynet.co.il&sz=128",
+    "noDate": false
+  },
+  {
+    "title": "IDF soldier severely injured in operational accident in Gaza",
+    "link": "https://www.jpost.com/israel-news/article-892636",
+    "snippet": "The soldier was evacuated to a hospital for medical treatment, and his family has been notified of the incident.",
+    "date": "2026-04-11T19:13:46.000Z",
+    "source": "Jerusalem Post",
+    "logo": "📜",
+    "color": "#2c3e50",
+    "accentLight": "#f8fafc",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=jpost.com&sz=128",
+    "noDate": false
+  },
+  {
     "title": "בישראל מעריכים שהמו\"מ יקרוס, ונערכים לחידוש המלחמה: \"הפערים גדולים\"",
     "link": "https://www.ynet.co.il/news/article/b1bo5gd2zl",
     "snippet": "",
@@ -57,6 +129,18 @@
     "color": "#c68e17",
     "accentLight": "#fefce8",
     "publisherLogo": "https://www.google.com/s2/favicons?domain=aljazeera.com&sz=128",
+    "noDate": false
+  },
+  {
+    "title": "Iraqi parliment appoints Kurdish Nizar Amedi as new president",
+    "link": "https://www.jpost.com/middle-east/article-892639",
+    "snippet": "The decision to elect Nizar Amedi could have ramifications for Iraq, given that Amedi is Kurdish and was supported by the Kurdish PUK party, which is considered friendly to Iran.",
+    "date": "2026-04-11T18:42:49.000Z",
+    "source": "Jerusalem Post",
+    "logo": "📜",
+    "color": "#2c3e50",
+    "accentLight": "#f8fafc",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=jpost.com&sz=128",
     "noDate": false
   },
   {
@@ -714,7 +798,7 @@
     "publisherLogo": "https://www.google.com/s2/favicons?domain=aljazeera.com&sz=128"
   },
   {
-    "title": "US-Iran officials meet in Islamabad as Tehran outlines terms for talks - report",
+    "title": "US-Iran officials meet in Islamabad as Tehran outlines terms for talks",
     "link": "https://www.jpost.com/middle-east/iran-news/article-892630",
     "snippet": "As negotiations stretch into the evening hours, they are expected to continue into the night and may be extended through Sunday, a Pakistani source told CNN.",
     "date": "2026-04-11T12:32:39.000Z",
@@ -1363,6 +1447,30 @@
     "color": "#b80000",
     "accentLight": "#fef2f2",
     "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128"
+  },
+  {
+    "title": "Caught between wars: Gaza residents wait for someone to change their fate",
+    "link": "https://www.jpost.com/jerusalem-report/article-892086",
+    "snippet": "Amid the war with Iran, Gazans find themselves waiting for a resolution to their own predicament and conflict",
+    "date": "2026-04-09T12:21:48.000Z",
+    "source": "Jerusalem Post",
+    "logo": "📜",
+    "color": "#2c3e50",
+    "accentLight": "#f8fafc",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=jpost.com&sz=128",
+    "noDate": false
+  },
+  {
+    "title": "De-Hamasification: The ideological war Israel isn't fighting - opinion",
+    "link": "https://www.jpost.com/jerusalem-report/article-892078",
+    "snippet": "Deradicalization is not a post-war project. It is a component of winning the war itself",
+    "date": "2026-04-09T12:17:03.000Z",
+    "source": "Jerusalem Post",
+    "logo": "📜",
+    "color": "#2c3e50",
+    "accentLight": "#f8fafc",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=jpost.com&sz=128",
+    "noDate": false
   },
   {
     "title": "Chief prosecutor behind Israel war crimes charges faces disciplinary action amid sexual misconduct allegations",

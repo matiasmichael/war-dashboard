@@ -1,54 +1,58 @@
 {
   "developments": [
     {
-      "headline": "US-Iran De-escalation Talks Stalled",
-      "summary": "US-Iran de-escalation talks are deadlocked over the Strait of Hormuz, with Israel assessing collapse and potential war renewal. US warships transited Hormuz, signaling resolve amidst Iran's firm demands.",
+      "headline": "US-Iran Ceasefire Talks Face Collapse",
+      "summary": "Ongoing US-Iran negotiations in Islamabad are at risk as Iran claims the 'upper hand' and Israel prepares for renewed conflict, anticipating talks will fail due to significant disagreements.",
       "sources": [
-        "CNBC",
-        "Ynet News",
         "Al Jazeera",
+        "Ynet News",
+        "CNBC",
         "Jerusalem Post"
       ],
       "severity": "critical",
       "category": "diplomacy",
-      "updatedAt": "2026-04-11T19:24:48.645Z"
+      "timeContext": "Ongoing",
+      "updatedAt": "2026-04-11T19:54:00.054Z"
     },
     {
-      "headline": "Israeli Strikes Target Iran, Injure Leader",
-      "summary": "Israeli strikes in Iran reportedly destroyed a synagogue and disfigured the Supreme Leader's son. Netanyahu states the campaign is ongoing and successfully prevented a nuclear threat.",
+      "headline": "US Navy De-mining Strait of Hormuz",
+      "summary": "US destroyers are actively clearing mines in the Strait of Hormuz, a key sticking point in ongoing negotiations. Iran dismisses US claims as 'fake news' while additional forces are expected.",
       "sources": [
+        "Times of Israel",
         "Al Jazeera",
-        "Jerusalem Post",
-        "Fox News",
-        "Ynet News"
+        "CNBC"
       ],
       "severity": "major",
       "category": "military",
-      "updatedAt": "2026-04-11T19:24:48.645Z"
+      "timeContext": "Ongoing",
+      "updatedAt": "2026-04-11T19:54:00.054Z"
     },
     {
-      "headline": "Hezbollah Barrage Hits Northern Israel",
-      "summary": "Hezbollah launched rockets and drones into northern Israel, causing damage and triggering alarms. This indicates continued active engagement on the Lebanese front.",
+      "headline": "Israel Prepares for Renewed Conflict",
+      "summary": "Netanyahu asserts Israel's campaign is 'not over yet' as the country anticipates ceasefire talks to collapse. This comes amidst recent Hezbollah rocket and drone attacks on northern Israel.",
       "sources": [
         "Ynet News",
+        "Jerusalem Post",
+        "Times of Israel"
+      ],
+      "severity": "major",
+      "category": "military",
+      "timeContext": "Developing",
+      "updatedAt": "2026-04-11T19:54:00.054Z"
+    },
+    {
+      "headline": "Iraq Elects Iran-Friendly President",
+      "summary": "Iraq's parliament has elected Kurdish politician Nizar Amidi as president. Amidi's PUK party is considered friendly to Iran, signaling a potential shift in regional alignments.",
+      "sources": [
+        "CNBC",
         "Jerusalem Post"
       ],
       "severity": "notable",
-      "category": "military",
-      "updatedAt": "2026-04-11T19:24:48.645Z"
-    },
-    {
-      "headline": "Gaza Strikes Continue Amidst Ceasefire Hopes",
-      "summary": "Despite reports of a fragile ceasefire bringing some relief in Iran, Israeli airstrikes continue in Gaza, causing casualties. An IDF soldier was severely injured, and West Bank tensions remain high.",
-      "sources": [
-        "Al Jazeera",
-        "Ynet News"
-      ],
-      "severity": "developing",
-      "category": "military",
-      "updatedAt": "2026-04-11T19:24:48.645Z"
+      "category": "diplomacy",
+      "timeContext": "Earlier today",
+      "updatedAt": "2026-04-11T19:54:00.054Z"
     }
   ],
-  "generatedAt": "2026-04-11T19:24:48.645Z",
-  "articleCount": 139
+  "generatedAt": "2026-04-11T19:54:00.054Z",
+  "articleCount": 148
 }
