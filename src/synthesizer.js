@@ -113,42 +113,56 @@ async function synthesizeReport(articles) {
       `[${a.source}] ${a.title}\n${a.snippet || ''}\nPublished: ${a.date || 'unknown'}`
     ).join("\n\n");
 
-    // Delta framing
+    // Delta context for detailed_analysis only (NOT for summary)
     const previousSitrep = loadPreviousSitrep();
     const deltaContext = previousSitrep ? `
 
 PREVIOUS BRIEFING (generated at ${previousSitrep.generatedAt || 'unknown'}):
-Summary: ${previousSitrep.summary || 'N/A'}
 Top Updates: ${(previousSitrep.top_updates || []).map(u => u.headline).join('; ')}
 Analysis: ${previousSitrep.detailed_analysis || 'N/A'}
 
-IMPORTANT: Frame your summary and analysis as "what changed since the last update". Highlight new developments, shifts, and escalations compared to the previous briefing. Use phrases like "Since the last update...", "New development:", "Escalation:", etc.` : '';
+USE THE PREVIOUS BRIEFING ONLY for the "detailed_analysis" field — to note shifts or new developments since last cycle. Do NOT reference it in the "summary" field at all.` : '';
 
-    const prompt = `You are a senior intelligence briefer specializing in the Iran-Israel conflict. Analyze the following 25 latest headlines and produce a structured JSON briefing focused on the Iran-Israel war, including Iranian proxies (Hezbollah, Hamas, Houthis), direct Iran-Israel military exchanges, nuclear developments, and regional escalation.
+    const prompt = `You are an intelligence analyst producing an executive sitrep on the Iran-Israel conflict theater. Write like a military intelligence briefing: cold, factual, zero filler. Every word must earn its place.
+
+Scope: Iran-Israel direct confrontation, Iranian proxies (Hezbollah, Hamas, Houthis, IRGC), nuclear developments, regional escalation dynamics.
 
 Headlines:
 ${feedContext}${deltaContext}
 
 Return ONLY valid JSON (no markdown fences, no commentary) with this exact structure:
 {
-  "summary": "2 sentences MAXIMUM. Hard limit: 40 words. Use <strong> tags to bold the 2-3 most important terms only. Plain text otherwise. No HTML except <strong>. Be ruthless — cut every unnecessary word. Focus on Iran-Israel conflict dynamics.",
+  "summary": "(see SUMMARY rules below)",
   "top_updates": [
     { "headline": "Short punchy headline (max 12 words)", "source": "Source Name", "time": "e.g. 2h ago" },
     { "headline": "...", "source": "...", "time": "..." },
     { "headline": "...", "source": "...", "time": "..." }
   ],
-  "detailed_analysis": "A longer 3-5 sentence analysis covering Iran-Israel tensions, proxy conflicts, nuclear dimensions, open questions, and what to watch. Use <strong> for key terms. This will be hidden by default behind a toggle."
+  "detailed_analysis": "(see ANALYSIS rules below)"
 }
 
-RULES:
-- summary must be 2 sentences, MAX 40 words total. Count them. If over 40, cut words until under.
-- top_updates: pick the 3 MOST important/impactful stories related to the Iran-Israel conflict. Headline must be punchy and short.
-- For "time" field, use relative time (e.g. "1h ago", "3h ago", "just now") based on the published dates.
-- detailed_analysis: cover Iran-Israel tensions, proxy warfare, nuclear dimensions, and what to watch next. Max 80 words.
-- Prioritize stories about Iran, Israel, Hezbollah, Hamas, Houthis, IRGC, nuclear program, and direct confrontation.
-- Tone: objective, analytical, no sensationalism.
-- ONLY use HTML tags like <strong> for emphasis. NEVER use markdown syntax like **bold** or *italic*.
-- Output ONLY the JSON object, nothing else.`;
+SUMMARY RULES:
+- State the single most critical strategic/tactical reality of the conflict RIGHT NOW. Absolute snapshot — not a delta, not a narrative.
+- 2 sentences MAX. Hard limit: 40 words. Count them. If over 40, cut until under.
+- Use <strong> to bold the 2-3 most critical terms. No other HTML. No markdown.
+- FORBIDDEN phrases (never use these or anything similar): "Since the last update", "In recent news", "In recent days", "Today", "According to reports", "Sources say", "It has been reported", "Developments include", "The situation continues". Do not use temporal hedging or attribution filler. State facts directly.
+- Write like a flash message to a head of state. No preamble, no meta-commentary, no throat-clearing.
+
+TOP UPDATES RULES:
+- Pick the 3 MOST operationally significant stories. Headline must be punchy, max 12 words.
+- "time" field: relative time (e.g. "1h ago", "3h ago", "just now") from published dates.
+
+ANALYSIS RULES:
+- 3-5 sentences, max 80 words. Cover: current force posture, proxy activity, nuclear dimension, and one key watch item.
+- If previous briefing data is provided, you may note what shifted since last cycle. Otherwise write standalone.
+- Use <strong> for key terms. No markdown.
+- Same tone rules as summary: no meta-commentary, no attribution filler, no conversational language.
+
+GLOBAL RULES:
+- Prioritize: Iran, Israel, Hezbollah, Hamas, Houthis, IRGC, nuclear program, direct confrontation.
+- Tone: clinical, declarative, zero sensationalism. Every sentence states a fact or an assessed implication.
+- ONLY <strong> for emphasis. NEVER markdown bold/italic.
+- Output ONLY the JSON object.`;
 
     let textOutput = await callGeminiWithRetry(model, prompt);
 
