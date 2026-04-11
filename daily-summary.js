@@ -74,6 +74,7 @@ Produce a comprehensive daily intelligence briefing as a JSON object. Return ONL
       "time": "HH:MM or 'Morning'/'Afternoon'/'Evening' if exact time unknown",
       "headline": "Short punchy headline (max 12 words)",
       "source": "Primary source name",
+      "category": "One of: diplomacy, military, intelligence, proxy",
       "description": "2-3 sentence description of the event and its significance"
     }
   ],
@@ -83,13 +84,19 @@ Produce a comprehensive daily intelligence briefing as a JSON object. Return ONL
     "most_active_source": "${mostActiveSrc[0]}",
     "escalation_level": 3
   },
-  "advancements": "2-3 paragraphs on what changed strategically today — military positions, diplomatic shifts, humanitarian corridor changes, proxy force movements. Use <p> tags.",
+  "what_changed": [
+    "One-line summary of the most important strategic change today",
+    "One-line summary of the second most important change",
+    "One-line summary of the third most important change"
+  ],
   "outlook": "1-2 sentences on what to watch tomorrow or in the coming days."
 }
 
 RULES:
 - key_events should have 5-8 items, ordered chronologically
+- Each key_event MUST include a "category" field with exactly one of: "diplomacy", "military", "intelligence", "proxy"
 - escalation_level is 1-5 scale: 1=calm, 2=tensions, 3=active conflict, 4=major escalation, 5=full-scale war
+- what_changed must be exactly 3 items — each a single concise sentence summarizing a key strategic shift, military development, or diplomatic move from the day
 - Be analytical, not sensational
 - Focus on Iran-Israel conflict dynamics including proxies (Hezbollah, Hamas, Houthis)
 - The summary should read like a professional intelligence briefing

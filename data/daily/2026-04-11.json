@@ -1,63 +1,75 @@
 {
   "date": "2026-04-11",
-  "headline": "US and Iran engage in direct peace talks as ceasefire faces challenge over Lebanon strikes.",
-  "summary": "<p>Today marked a significant diplomatic turn with high-level direct talks between the United States and Iran beginning in Islamabad, Pakistan. Led by US Vice President JD Vance and senior Iranian negotiators, these discussions aim to solidify a fragile six-week-old ceasefire into a more lasting peace agreement. Pakistan is mediating the crucial dialogue, which represents the highest-level engagement between the two nations since 1979. However, the path to a comprehensive deal remains fraught with challenges, particularly concerning Iran's demands for control over the Strait of Hormuz and the explicit inclusion of a regional ceasefire covering Lebanon.</p><p>Military and operational tensions persist despite the ceasefire. Reports indicate the US is proceeding with efforts to clear the Strait of Hormuz, a move challenged by Iran's threats against unauthorized shipping and concerns over unmapped mine locations. Concurrently, US intelligence reveals that China plans to deliver advanced air defense systems to Iran in the coming weeks, potentially using third countries to obscure the shipments. This development, coupled with assessments that Iran could quickly rebuild its ballistic missile capabilities during any truce, highlights ongoing military preparedness and strategic realignments.</p><p>Proxy conflicts continue to test the fragile ceasefire. Israel conducted a wave of strikes across Lebanon, killing at least 182 people, including 13 members of Lebanon’s State Security agency. Iran's deputy foreign minister condemned these actions as a \"grave violation\" of the ceasefire, arguing that the agreement did not explicitly include Hezbollah or Lebanon. Iran has warned that continued Israeli actions against Hezbollah could jeopardize the entire truce. Furthermore, an investigative report alleges Iran is utilizing the former Soviet republic of Georgia to circumvent sanctions and fund its war machine.</p><p>Internally, there are reports that Iran’s new Supreme Leader, Mojtaba Khamenei, is recovering from severe, disfiguring injuries, including a possible lost leg, sustained in an airstrike at the war's outset. Meanwhile, in Israel, a new police unit is reportedly being formed to counter Iranian spying cases, and authorities revealed an alleged Iranian plot to target former Prime Minister Naftali Bennett. In Gaza, reports continue of Israeli attacks and efforts to establish makeshift universities to restore academic life amid the conflict's aftermath.</p>",
+  "headline": "US-Iran direct talks begin in Pakistan amid fragile ceasefire and escalating Lebanon strikes",
+  "summary": "<p>Diplomatic efforts to de-escalate the Iran-Israel conflict intensified today with the formal commencement of direct peace talks between the United States and Iran in Islamabad, Pakistan. Vice President JD Vance leads the US delegation in these historic discussions, marking the highest-level engagement between the two nations since 1979. Iran, in turn, laid out its 'red lines,' demanding control over the Strait of Hormuz, the release of frozen assets, and a comprehensive regional ceasefire, with a particular emphasis on a truce in Lebanon. US negotiators have reportedly cautioned against expecting swift concessions.</p><p>However, the fragility of the nascent US-Iran ceasefire was immediately apparent. Israeli forces launched a large wave of strikes across Lebanon, reportedly killing at least 182 people, including security forces, in attacks that hit Beirut's southern suburbs, southern Lebanon, and the Bekaa Valley. Iran swiftly condemned these actions as a 'grave violation' of the ceasefire and threatened to withdraw from the truce if its key proxy, Hezbollah, remained excluded from its provisions. Concurrently, new Israeli attacks were reported in Gaza, and northern Israel experienced drone incursions from Lebanon, triggering alerts. In the Strait of Hormuz, President Trump claimed the US was clearing the waterway, while Iran continued to threaten unauthorized ships, a situation further complicated by a Russia-China veto of a UN resolution aimed at reopening the Strait.</p><p>Adding to the strategic backdrop, US intelligence reports surfaced, indicating that China plans to deliver advanced air defense systems to Iran within weeks, utilizing third countries to obscure the shipments. Concerns also remain that Iran could leverage any truce period to rebuild and enhance its ballistic missile capabilities. Reports also detailed that Iran's new Supreme Leader, Mojtaba Khamenei, is recovering from severe, disfiguring injuries but remains mentally sharp and engaged in decision-making, while a leaked poll suggests over 90% of Iranians harbor animosity towards the current regime. Lebanon and Israel are also scheduled for separate talks in the US next week, indicating parallel diplomatic tracks for regional stability.</p>",
   "key_events": [
     {
       "time": "03:04 AM",
-      "headline": "US, Iran begin direct peace talks in Islamabad with VP Vance leading.",
+      "headline": "US-Iran direct peace talks officially commence in Islamabad",
       "source": "NPR",
-      "description": "A US delegation led by Vice President JD Vance began meeting with senior Iranian negotiators in Islamabad, Pakistan, aiming to discuss an end to the six-week-long war, marking a significant diplomatic engagement."
+      "category": "diplomacy",
+      "description": "A US delegation led by Vice President JD Vance began face-to-face discussions with senior Iranian negotiators in Pakistan, aimed at ending the six-week-long conflict, marking a significant diplomatic shift."
     },
     {
       "time": "03:40 AM",
-      "headline": "US intelligence indicates China to deliver air defense systems to Iran.",
+      "headline": "US intel reveals China preparing air defense shipments to Iran",
       "source": "Jerusalem Post",
-      "description": "US intelligence reports that China is preparing to deliver air defense systems to Iran within weeks, potentially using third countries, raising concerns about Iran's military capabilities during a ceasefire."
+      "category": "intelligence",
+      "description": "US intelligence reports indicate China plans to deliver advanced air defense systems to Iran within weeks, using third countries to obscure shipments. This raises concerns about Iran's ability to defend its military infrastructure during any truce."
     },
     {
-      "time": "05:30 AM",
-      "headline": "Iran's Supreme Leader Mojtaba Khamenei reportedly suffers severe war injuries.",
-      "source": "Jerusalem Post",
-      "description": "Insiders report that Iran’s new supreme leader, Mojtaba Khamenei, is recovering from severe, disfiguring injuries, including a possible lost leg, following an airstrike at the war's start."
+      "time": "03:51 AM",
+      "headline": "Israel rejects immediate Hezbollah ceasefire, continues Lebanon strikes",
+      "source": "Al Jazeera",
+      "category": "military",
+      "description": "Israel explicitly stated it would not agree to a ceasefire with Hezbollah prior to scheduled Lebanon talks, continuing its attacks on southern Lebanon. At least 10 people, including emergency workers, were killed in these latest strikes."
     },
     {
       "time": "09:59 AM",
-      "headline": "Iran demands control of Hormuz, Lebanon truce during Pakistan talks.",
+      "headline": "Iran outlines 'red lines' in direct talks, including Hormuz control and Lebanon truce",
       "source": "Times of Israel",
-      "description": "During direct talks in Pakistan, Iran doubled down on its 'red lines,' including demands for control of the Strait of Hormuz and a truce in Lebanon, complicating ceasefire negotiations."
-    },
-    {
-      "time": "12:08 PM",
-      "headline": "Strait of Hormuz sees minimal traffic despite US 'clearing' claims.",
-      "source": "BBC News",
-      "description": "BBC Verify analysis indicates only a few vessels have crossed the Strait of Hormuz since the US-Iran ceasefire, even as the US claims to be clearing the waterway."
+      "category": "diplomacy",
+      "description": "During the direct talks in Pakistan, Iran reiterated its demands, including control over the Strait of Hormuz, release of assets, and a ceasefire for its proxies, specifically a truce in Lebanon, setting a firm stance for negotiations."
     },
     {
       "time": "01:05 PM",
-      "headline": "Iran condemns Israeli strikes in Lebanon as 'grave ceasefire violation'.",
-      "source": "BBC News",
-      "description": "Iran's deputy foreign minister stated to the BBC that Israeli strikes in Lebanon constituted a 'grave violation' of the ceasefire, emphasizing the US must choose between 'war and ceasefire'."
+      "headline": "Trump claims US clearing Strait of Hormuz amid Iranian threats",
+      "source": "Jerusalem Post",
+      "category": "military",
+      "description": "President Trump asserted the US has begun clearing the Strait of Hormuz, describing it as a service to global trade partners, while Iran continued to threaten unauthorized ships in the vital waterway, highlighting ongoing tension."
     },
     {
-      "time": "04:47 PM",
-      "headline": "Report: Iran uses Georgia to bypass sanctions, fund war efforts.",
+      "time": "04:54 PM",
+      "headline": "Major Israeli strikes in Lebanon kill at least 182 post-ceasefire announcement",
+      "source": "BBC News",
+      "category": "military",
+      "description": "Hours after a US-Iran ceasefire was announced, Israel launched a large wave of strikes across Lebanon, resulting in at least 182 fatalities. These attacks severely tested the fragile ceasefire and raised regional tensions."
+    },
+    {
+      "time": "04:58 PM",
+      "headline": "Iran threatens to end ceasefire over Hezbollah's exclusion from deal",
       "source": "Fox News",
-      "description": "A new report claims that Georgia, a former US ally, has quietly aligned with Iran, raising concerns about IRGC influence and the regime's use of the country to evade sanctions and fund its military."
+      "category": "diplomacy",
+      "description": "Iran's foreign ministry warned the US must choose between 'ceasefire or war,' stating it would end the truce if its key proxy, Hezbollah, remained excluded from the deal's provisions, underscoring a major sticking point."
     },
     {
       "time": "06:43 PM",
-      "headline": "Lebanon and Israel officials scheduled to meet in US next week.",
+      "headline": "Lebanon and Israel to hold separate talks in US next week",
       "source": "BBC News",
-      "description": "A senior Lebanese official confirmed that Lebanon and Israel are set to meet in the US on Tuesday, though Lebanon previously stated it would only participate if a ceasefire was in place."
+      "category": "diplomacy",
+      "description": "A senior Lebanese official confirmed that Lebanon and Israel are scheduled to meet for separate talks in the United States on Tuesday, indicating parallel diplomatic efforts for regional de-escalation."
     }
   ],
   "statistics": {
-    "total_articles": 106,
+    "total_articles": 107,
     "sources_reporting": 8,
     "most_active_source": "Jerusalem Post",
     "escalation_level": 3
   },
-  "advancements": "<p>Today's most significant advancement is the commencement of direct, high-level peace talks between the United States and Iran in Islamabad. This diplomatic initiative, led by US Vice President JD Vance, represents a crucial step towards de-escalation, moving beyond the fragile ceasefire agreed weeks prior. The engagement with Pakistani mediators provides a formal channel for resolving core disputes, including the contentious issues of the Strait of Hormuz and regional stability, particularly concerning Lebanon.</p><p>Militarily, the situation remains complex. The US has affirmed its intention to clear the Strait of Hormuz, challenging Iran's asserted control and threats against unauthorized vessels. Simultaneously, US intelligence reports of China's impending delivery of air defense systems to Iran highlight ongoing strategic military bolstering by Tehran, despite ceasefire efforts. Furthermore, assessments that Iran can rapidly rebuild its ballistic missile capabilities suggest that while direct conflict might be paused, underlying military power dynamics are actively shifting.</p><p>Proxy conflicts continue to shape the regional landscape. The extensive Israeli strikes in Lebanon, perceived by Iran as outside the ceasefire's scope, significantly complicate diplomatic efforts to secure a broader regional truce. Hezbollah's exclusion from the existing US-Iran ceasefire remains a critical sticking point, with Iran threatening to abandon the truce if actions against its proxies continue. Additionally, allegations of Iran leveraging Georgia to evade sanctions indicate Tehran's persistent efforts to circumvent international pressure and sustain its operations, demonstrating a continued strategic focus on resource acquisition and proxy support.</p>",
-  "outlook": "The immediate outlook centers on the progress of US-Iran talks in Pakistan and whether the ceasefire can be expanded to include Lebanon. All eyes will be on next week's scheduled US meeting between Lebanese and Israeli officials for signs of further diplomatic breakthroughs or escalations."
+  "what_changed": [
+    "Direct high-level US-Iran peace talks have formally commenced in Islamabad after weeks of indirect diplomacy.",
+    "The fragility of the US-Iran ceasefire has been immediately exposed by major Israeli strikes in Lebanon and Iran's threat to withdraw.",
+    "Intelligence reports highlight Iran's resilient military capabilities and ongoing strategic support from China despite the conflict."
+  ],
+  "outlook": "Ongoing US-Iran talks will define the path forward for the broader regional conflict, with the status of proxies like Hezbollah and control over the Strait of Hormuz remaining critical watchpoints."
 }

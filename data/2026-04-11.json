@@ -22,6 +22,17 @@
     "publisherLogo": "https://www.google.com/s2/favicons?domain=jpost.com&sz=128"
   },
   {
+    "title": "אזעקה בגליל העליון",
+    "link": "https://www.ynet.co.il/news/article/b1zdzed2zg",
+    "snippet": "",
+    "date": "2026-04-11T16:09:25.000Z",
+    "source": "Ynet News",
+    "logo": "🇮🇱",
+    "color": "#e74c3c",
+    "accentLight": "#fef2f2",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=ynet.co.il&sz=128"
+  },
+  {
     "title": "Iran",
     "link": "https://www.cnn.com/specials/middleeast/iran?utm_source=section",
     "snippet": "",
