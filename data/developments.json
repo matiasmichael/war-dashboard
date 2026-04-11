@@ -1,0 +1,53 @@
+{
+  "developments": [
+    {
+      "headline": "US-Iran Ceasefire Talks Deadlocked, Collapse Feared",
+      "summary": "Direct US-Iran talks are underway but reportedly deadlocked over US demands and Iran's insistence on military gains, particularly regarding the Strait of Hormuz. Israel anticipates negotiation collapse and prepares for renewed conflict.",
+      "sources": [
+        "Ynet News",
+        "CNBC",
+        "Al Jazeera",
+        "Jerusalem Post"
+      ],
+      "severity": "critical",
+      "category": "diplomacy",
+      "updatedAt": "2026-04-11T19:20:13.363Z"
+    },
+    {
+      "headline": "US Warships Transit Hormuz Amid Diplomatic Standoff",
+      "summary": "US warships transited the Strait of Hormuz for the first time since the conflict began, citing mine clearance and freedom of navigation. This assertive military signaling coincides with stalled US-Iran talks.",
+      "sources": [
+        "CNBC",
+        "Ynet News",
+        "Jerusalem Post"
+      ],
+      "severity": "major",
+      "category": "military",
+      "updatedAt": "2026-04-11T19:20:13.363Z"
+    },
+    {
+      "headline": "Hezbollah Barrage Hits Northern Israel, Escalation Continues",
+      "summary": "Northern Israel was hit by Hezbollah rocket and drone barrages, causing damage and triggering alarms, indicating an active conflict front. Israeli military action in Lebanon continues amid calls for peace.",
+      "sources": [
+        "Jerusalem Post",
+        "Ynet News",
+        "Al Jazeera"
+      ],
+      "severity": "major",
+      "category": "military",
+      "updatedAt": "2026-04-11T19:20:13.363Z"
+    },
+    {
+      "headline": "Iran Leader Mojtaba Khamenei Reportedly Injured by Strikes",
+      "summary": "Iran's Supreme Leader Mojtaba Khamenei is reportedly severely disfigured following US-Israeli airstrikes that killed his father. This raises significant questions regarding Iran's leadership stability and succession.",
+      "sources": [
+        "Fox News"
+      ],
+      "severity": "critical",
+      "category": "military",
+      "updatedAt": "2026-04-11T19:20:13.363Z"
+    }
+  ],
+  "generatedAt": "2026-04-11T19:20:13.363Z",
+  "articleCount": 138
+}

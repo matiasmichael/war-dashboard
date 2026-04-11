@@ -1,0 +1,71 @@
+---
+interface Development {
+  headline: string;
+  summary: string;
+  sources: string[];
+  severity: 'critical' | 'major' | 'notable' | 'developing';
+  category: 'military' | 'diplomacy' | 'humanitarian' | 'economic';
+  updatedAt: string;
+}
+
+interface Props {
+  developments: Development[] | null;
+}
+
+const { developments } = Astro.props;
+
+const severityConfig: Record<string, { emoji: string; color: string; bg: string }> = {
+  critical:   { emoji: '🔴', color: 'text-error',   bg: 'bg-error/8' },
+  major:      { emoji: '🟠', color: 'text-warning',  bg: 'bg-warning/10' },
+  notable:    { emoji: '🔵', color: 'text-info',     bg: 'bg-info/8' },
+  developing: { emoji: '🟢', color: 'text-success',  bg: 'bg-success/8' },
+};
+
+const categoryLabels: Record<string, string> = {
+  military:      'Military',
+  diplomacy:     'Diplomacy',
+  humanitarian:  'Humanitarian',
+  economic:      'Economic',
+};
+---
+
+{developments && developments.length > 0 && (
+  <div class="mb-4">
+    <div class="flex items-center justify-between py-2">
+      <span class="text-[0.72rem] font-semibold uppercase tracking-wider text-text-muted">Key Developments</span>
+      <span class="text-[0.65rem] font-normal text-text-muted">AI-synthesized</span>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+      {developments.map((dev) => {
+        const sev = severityConfig[dev.severity] || severityConfig.notable;
+        const catLabel = categoryLabels[dev.category] || dev.category;
+        return (
+          <div class="card card-bordered bg-white shadow-sm border-base-300 overflow-hidden">
+            <div class="card-body p-3 gap-1.5">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <span class="text-[0.7rem] leading-none">{sev.emoji}</span>
+                <span class={`text-[0.6rem] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded ${sev.bg} ${sev.color}`}>
+                  {dev.severity}
+                </span>
+                <span class="text-[0.6rem] font-medium uppercase tracking-wider text-text-muted px-1.5 py-0.5 rounded bg-base-200">
+                  {catLabel}
+                </span>
+              </div>
+              <h3 class="text-[0.82rem] font-bold leading-snug text-base-content m-0">
+                {dev.headline}
+              </h3>
+              <p class="text-[0.75rem] leading-relaxed text-text-secondary m-0">
+                {dev.summary}
+              </p>
+              {dev.sources.length > 0 && (
+                <p class="text-[0.65rem] text-text-muted m-0 mt-0.5">
+                  via {dev.sources.join(', ')}
+                </p>
+              )}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+)}

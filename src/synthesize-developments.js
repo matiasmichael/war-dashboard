@@ -1,0 +1,205 @@
+// ===== KEY DEVELOPMENTS SYNTHESIS =====
+// Reads today's articles, calls Gemini to identify the 4 most significant
+// developments, saves to data/developments.json.
+// Designed to run as part of the fetch pipeline (every cycle).
+
+const fs = require('fs');
+const path = require('path');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
+const {
+  GEMINI_MODEL,
+  MAX_ARTICLES_FOR_SYNTHESIS,
+  GEMINI_RETRY_ATTEMPTS,
+  GEMINI_RETRY_DELAY_MS
+} = require('./config');
+const { atomicWriteSync, sleep } = require('./utils');
+
+const DATA_DIR = path.join(__dirname, '..', 'data');
+
+/**
+ * Read the Gemini API key from OpenClaw config.
+ */
+function getGeminiKey() {
+  const configPath = path.join(process.env.HOME, '.openclaw/openclaw.json');
+  const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+  return config.env.GOOGLE_API_KEY;
+}
+
+/**
+ * Call Gemini API with retry logic.
+ */
+async function callGeminiWithRetry(model, prompt) {
+  let lastError;
+  for (let attempt = 1; attempt <= GEMINI_RETRY_ATTEMPTS; attempt++) {
+    try {
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      return response.text();
+    } catch (err) {
+      lastError = err;
+      console.warn(`[DEV_SYNTH] Attempt ${attempt}/${GEMINI_RETRY_ATTEMPTS} failed: ${err.message}`);
+      if (attempt < GEMINI_RETRY_ATTEMPTS) {
+        console.log(`  Retrying in ${GEMINI_RETRY_DELAY_MS / 1000}s...`);
+        await sleep(GEMINI_RETRY_DELAY_MS);
+      }
+    }
+  }
+  throw lastError;
+}
+
+/**
+ * Synthesize 4 key developments from today's articles.
+ * Returns the developments array, or null on failure.
+ */
+async function synthesizeDevelopments(articles) {
+  try {
+    console.log('[DEV_SYNTH] 🔍 Synthesizing Key Developments...');
+
+    const googleKey = getGeminiKey();
+    if (!googleKey) {
+      console.warn('[DEV_SYNTH] No GOOGLE_API_KEY found. Skipping.');
+      return null;
+    }
+
+    const genAI = new GoogleGenerativeAI(googleKey);
+    const model = genAI.getGenerativeModel({ model: GEMINI_MODEL });
+
+    const recentArticles = articles.slice(0, MAX_ARTICLES_FOR_SYNTHESIS);
+    const feedContext = recentArticles.map(a =>
+      `[${a.source}] ${a.title}\n${a.snippet || ''}\nPublished: ${a.date || 'unknown'}`
+    ).join('\n\n');
+
+    const prompt = `You are an intelligence analyst. From the following news headlines and snippets about the Iran-Israel conflict theater, identify the **4 most significant and distinct developments**.
+
+Each development should synthesize across multiple sources when possible. Do NOT return 4 articles about the same event — find 4 truly different developments.
+
+Prioritize by: (1) strategic significance, (2) recency, (3) multi-source confirmation.
+
+Headlines:
+${feedContext}
+
+Return ONLY valid JSON (no markdown fences, no commentary) with this exact structure:
+{
+  "developments": [
+    {
+      "headline": "Short punchy headline, 5-8 words",
+      "summary": "1-2 sentences explaining what happened and why it matters. Write like an intelligence analyst, not a journalist. Cold, factual, zero filler.",
+      "sources": ["Source1", "Source2"],
+      "severity": "critical|major|notable|developing",
+      "category": "military|diplomacy|humanitarian|economic"
+    }
+  ]
+}
+
+RULES:
+- Exactly 4 developments. No more, no less.
+- "headline": 5-8 words, punchy, no articles or filler words where possible.
+- "summary": Max 2 sentences, max 40 words. State the fact and its strategic implication.
+- "sources": Array of source names (e.g. "BBC", "Times of Israel", "NPR") that reported on this development. Use short names.
+- "severity": One of: "critical" (imminent threat/major escalation), "major" (significant strategic shift), "notable" (important but not urgent), "developing" (emerging situation, watch closely).
+- "category": One of: "military" (strikes, operations, force movements), "diplomacy" (negotiations, statements, alliances), "humanitarian" (casualties, refugees, aid), "economic" (sanctions, oil, trade).
+- Each development must be genuinely distinct from the others.
+- Scope: Iran-Israel direct, proxies (Hezbollah, Hamas, Houthis, IRGC), nuclear, regional escalation.
+- Output ONLY the JSON object.`;
+
+    let textOutput = await callGeminiWithRetry(model, prompt);
+
+    // Clean up markdown wrappers
+    textOutput = textOutput.replace(/```json/g, '').replace(/```/g, '').trim();
+
+    // Fix common Gemini JSON issues
+    // Remove trailing commas before } or ]
+    textOutput = textOutput.replace(/,\s*([}\]])/g, '$1');
+    // Remove control characters that break JSON
+    textOutput = textOutput.replace(/[\x00-\x1f\x7f]/g, (ch) => ch === '\n' || ch === '\t' ? ch : '');
+
+    let parsed;
+    try {
+      parsed = JSON.parse(textOutput);
+    } catch (parseErr) {
+      // Try to extract JSON object from the response
+      const jsonMatch = textOutput.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        const cleaned = jsonMatch[0].replace(/,\s*([}\]])/g, '$1');
+        parsed = JSON.parse(cleaned);
+      } else {
+        throw parseErr;
+      }
+    }
+
+    if (!parsed.developments || !Array.isArray(parsed.developments)) {
+      throw new Error('Invalid response structure: missing developments array');
+    }
+
+    // Validate and normalize
+    const developments = parsed.developments.slice(0, 4).map(d => ({
+      headline: (d.headline || '').slice(0, 100),
+      summary: (d.summary || '').slice(0, 300),
+      sources: Array.isArray(d.sources) ? d.sources.slice(0, 6) : [],
+      severity: ['critical', 'major', 'notable', 'developing'].includes(d.severity) ? d.severity : 'notable',
+      category: ['military', 'diplomacy', 'humanitarian', 'economic'].includes(d.category) ? d.category : 'military',
+      updatedAt: new Date().toISOString()
+    }));
+
+    console.log(`[DEV_SYNTH] ✅ Identified ${developments.length} key developments`);
+    return developments;
+  } catch (err) {
+    console.error(`[DEV_SYNTH] ❌ Failed: ${err.message}`);
+    return null;
+  }
+}
+
+/**
+ * Main entry point: read articles, synthesize, save.
+ */
+async function main(articles) {
+  // If called directly (node src/synthesize-developments.js), read articles from disk
+  if (!articles) {
+    const { getIsraelDateStr } = require('./persistence');
+    const today = getIsraelDateStr(new Date());
+    const dailyFile = path.join(DATA_DIR, `${today}.json`);
+
+    if (!fs.existsSync(dailyFile)) {
+      console.error(`[DEV_SYNTH] ❌ No data file for today (${today}).`);
+      return null;
+    }
+
+    articles = JSON.parse(fs.readFileSync(dailyFile, 'utf-8'));
+  }
+
+  if (!articles || articles.length === 0) {
+    console.warn('[DEV_SYNTH] ⚠️ No articles. Skipping developments synthesis.');
+    return null;
+  }
+
+  const developments = await synthesizeDevelopments(articles);
+
+  if (developments) {
+    const outPath = path.join(DATA_DIR, 'developments.json');
+    const outData = {
+      developments,
+      generatedAt: new Date().toISOString(),
+      articleCount: articles.length
+    };
+    atomicWriteSync(outPath, JSON.stringify(outData, null, 2));
+    console.log(`[DEV_SYNTH] 💾 Saved: ${outPath}`);
+    return developments;
+  }
+
+  return null;
+}
+
+// Allow direct execution
+if (require.main === module) {
+  main().then(devs => {
+    if (devs) {
+      devs.forEach((d, i) => console.log(`  ${i + 1}. [${d.severity}] ${d.headline}`));
+    }
+    process.exit(devs ? 0 : 1);
+  }).catch(err => {
+    console.error('[DEV_SYNTH] ❌ Fatal:', err);
+    process.exit(1);
+  });
+}
+
+module.exports = { synthesizeDevelopments, main: main };

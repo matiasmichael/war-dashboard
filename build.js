@@ -45,6 +45,21 @@ function main() {
     console.warn('[BUILD] ⚠️  No sitrep-latest.json found. Page will show "AI synthesis unavailable".');
   }
 
+  // --- Read key developments ---
+  const devsPath = path.join(DATA_DIR, 'developments.json');
+  let developments = null;
+  if (fs.existsSync(devsPath)) {
+    try {
+      const devsData = JSON.parse(fs.readFileSync(devsPath, 'utf-8'));
+      developments = devsData.developments || null;
+      console.log(`[BUILD] 🔍 Loaded ${(developments || []).length} key developments (generated at ${devsData.generatedAt || 'unknown'})`);
+    } catch (e) {
+      console.warn(`[BUILD] ⚠️  Could not parse developments.json: ${e.message}`);
+    }
+  } else {
+    console.warn('[BUILD] ⚠️  No developments.json found. Homepage will skip Key Developments section.');
+  }
+
   // --- Compute source stats from articles ---
   const sourceCounts = {};
   const sourceMetaMap = {};
@@ -66,6 +81,7 @@ function main() {
     articles,
     sourceStats,
     sitrep,
+    developments,
     generatedAt: new Date().toISOString()
   };
 

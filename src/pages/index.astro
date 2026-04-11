@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import SitrepCard from '../components/SitrepCard.astro';
+import DevelopmentsGrid from '../components/DevelopmentsGrid.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 import FilterBar from '../components/FilterBar.astro';
 import Footer from '../components/Footer.astro';
@@ -15,12 +16,14 @@ const dataPath = path.join(process.cwd(), 'src', 'data', 'latest.json');
 let articles: any[] = [];
 let sourceStats: any[] = [];
 let sitrep: any = null;
+let developments: any[] | null = null;
 
 if (fs.existsSync(dataPath)) {
   const raw = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
   articles = raw.articles || [];
   sourceStats = raw.sourceStats || [];
   sitrep = raw.sitrep || null;
+  developments = raw.developments || null;
 }
 
 // Build top story detection from sitrep
@@ -60,6 +63,7 @@ const generatedAt = new Date().toISOString();
 
   <div class="max-w-[680px] mx-auto px-3 sm:px-4 pb-12 pt-2">
     <SitrepCard sitrep={sitrep} />
+    <DevelopmentsGrid developments={developments} />
     <FilterBar sources={sources} feeds={feeds} articleCount={articleCount} />
     <div id="articles">
       {articles.map((article: any, idx: number) => (
