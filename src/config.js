@@ -1,5 +1,5 @@
 // ===== CONFIGURATION =====
-// Central config for Iran War Update dashboard.
+// Central config for Middle East Pulse dashboard.
 // All magic numbers, feed definitions, and constants live here.
 
 // --- Named constants (Item #7) ---

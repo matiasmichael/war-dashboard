@@ -36,11 +36,41 @@ function persistDailyArticles(articles) {
     }
   }
 
-  // Deduplicate by URL
-  const seenUrls = new Set(existing.map(a => a.link));
+  // Deduplicate by URL.
+  // Important: if an existing article has a future date (e.g. JPost pre-schedules
+  // articles with future pubDates), update its date from the incoming fetch which
+  // has already been clamped to "now" by the fetcher. This prevents stale future
+  // timestamps from being frozen in the daily JSON once the article is seen.
+  const nowMs = Date.now();
+  const incomingByUrl = new Map(articles.map(a => [a.link, a]));
+
+  let dateCorrectionCount = 0;
+  const correctedExisting = existing.map(a => {
+    const storedDateMs = new Date(a.date).getTime();
+    if (storedDateMs > nowMs) {
+      // The stored date is in the future — try to correct it from incoming data.
+      const incoming = incomingByUrl.get(a.link);
+      if (incoming) {
+        // Use the fetcher's already-clamped date (guaranteed ≤ now)
+        dateCorrectionCount++;
+        return { ...a, date: incoming.date };
+      } else {
+        // Article not in current feed — clamp to now so it stops floating to the top
+        dateCorrectionCount++;
+        return { ...a, date: new Date(nowMs).toISOString() };
+      }
+    }
+    return a;
+  });
+
+  if (dateCorrectionCount > 0) {
+    console.log(`  🕐 Corrected ${dateCorrectionCount} article(s) with future timestamps in daily store`);
+  }
+
+  const seenUrls = new Set(correctedExisting.map(a => a.link));
   const newArticles = articles.filter(a => !seenUrls.has(a.link));
 
-  const merged = [...existing, ...newArticles];
+  const merged = [...correctedExisting, ...newArticles];
   merged.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   // Atomic write (Item #9)

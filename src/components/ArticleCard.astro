@@ -15,61 +15,46 @@ interface Props {
   isTopStory: boolean;
 }
 
-import { escapeHtml, truncateSnippet, timeAgo } from '../shared-utils.js';
+import { timeAgo } from '../shared-utils.js';
 
 const { article: a, idx, isTopStory } = Astro.props;
 
-const SNIPPET_LENGTH = 120;
-
 const ago = timeAgo(a.date);
-const shortSnippet = escapeHtml(truncateSnippet(a.snippet, SNIPPET_LENGTH));
-const fullSnippet = escapeHtml(a.snippet);
-const hasMore = a.snippet && a.snippet.length > SNIPPET_LENGTH;
 const noDateFlag = a.noDate ? 'true' : undefined;
 ---
 
 <div
-  class="card card-bordered bg-white shadow-sm hover:shadow-md transition-all duration-200 mb-2 cursor-pointer active:scale-[0.985]"
+  class="card card-bordered bg-white shadow-sm hover:shadow-md transition-all duration-200 mb-1.5 cursor-pointer active:scale-[0.985]"
   data-source={a.source}
   data-date={a.date}
   data-idx={String(idx)}
   data-no-date={noDateFlag}
 >
-  <div class="card-body p-3 sm:p-4">
-    <div class="flex gap-3 items-start">
+  <a href={a.link} target="_blank" rel="noopener" class="card-body p-2.5 sm:p-3 no-underline text-inherit">
+    <div class="flex gap-2.5 items-center">
       <!-- Publisher Avatar -->
       <div class="avatar flex-shrink-0">
-        <div class="w-10 h-10 rounded-full bg-base-200 border border-base-300">
-          <img src={a.publisherLogo} alt={a.source} class="w-10 h-10 object-cover rounded-full" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <span class="w-10 h-10 rounded-full items-center justify-center text-lg text-white hidden" style={`background:${a.color}`}>{a.logo}</span>
+        <div class="w-8 h-8 rounded-full bg-base-200 border border-base-300">
+          <img src={a.publisherLogo} alt={a.source} class="w-8 h-8 object-cover rounded-full" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <span class="w-8 h-8 rounded-full items-center justify-center text-sm text-white hidden" style={`background:${a.color}`}>{a.logo}</span>
         </div>
       </div>
 
       <!-- Card Content -->
       <div class="flex-1 min-w-0">
-        <div class="flex items-center gap-1.5 text-[0.8rem] mb-1">
+        <div class="flex items-center gap-1.5 text-[0.72rem] mb-0.5">
           <span class="font-semibold" style={`color: ${a.color}`}>{a.source}</span>
-          <span class="text-text-muted text-[0.7rem]">·</span>
+          <span class="text-text-muted text-[0.65rem]">·</span>
           <span class="text-text-muted font-normal time-ago" data-date={a.date}>{ago}</span>
-          {isTopStory && <span class="badge badge-warning badge-xs text-[0.65rem] font-bold uppercase ml-1">⚡ Top Story</span>}
+          {isTopStory && <span class="badge badge-warning badge-xs text-[0.6rem] font-bold uppercase ml-1">⚡ Breaking</span>}
         </div>
-        <h3 class="text-[0.95rem] font-semibold leading-snug text-base-content tracking-tight line-clamp-3 card-title-text">{a.title}</h3>
-        {a.snippet && (
-          <>
-            <p class="text-[0.85rem] text-text-secondary leading-relaxed mt-1 card-snippet-short" set:html={shortSnippet} />
-            {hasMore && <p class="text-[0.85rem] text-text-secondary leading-relaxed mt-1 card-snippet-full hidden" set:html={fullSnippet} />}
-          </>
-        )}
-        <div class="card-actions justify-start mt-2 gap-0">
-          {hasMore && <button class="btn btn-ghost btn-xs text-primary font-medium expand-btn">Read more</button>}
-          <a href={a.link} target="_blank" rel="noopener" class="btn btn-ghost btn-xs text-text-muted font-medium source-link hidden">
-            Open article ↗
-          </a>
-          <button class="btn btn-ghost btn-xs btn-square ml-auto share-btn" data-title={a.title} data-url={a.link} title="Share">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-          </button>
-        </div>
+        <h3 class="text-[0.9rem] font-semibold leading-snug text-base-content tracking-tight line-clamp-2">{a.title}</h3>
       </div>
+
+      <!-- Share button -->
+      <button class="btn btn-ghost btn-xs btn-square flex-shrink-0 share-btn" data-title={a.title} data-url={a.link} title="Share" onclick="event.preventDefault();event.stopPropagation();">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      </button>
     </div>
-  </div>
+  </a>
 </div>

@@ -55,7 +55,7 @@ const articleCount = `${articles.length} articles · ${sourceStats.filter((s: an
 const generatedAt = new Date().toISOString();
 ---
 
-<Base title="Iran War Update — Live News Dashboard" generatedAt={generatedAt}>
+<Base title="Middle East Pulse — Live News Dashboard" generatedAt={generatedAt}>
   <Header />
 
   <div class="max-w-[680px] mx-auto px-3 sm:px-4 pb-12 pt-2">
@@ -126,7 +126,7 @@ const generatedAt = new Date().toISOString();
         minute: '2-digit',
         hour12: false
       });
-      freshLabel.textContent = 'Last updated: ' + timeStr + ' IDT';
+      freshLabel.textContent = 'Last updated ' + timeStr + ' 🇮🇱 IDT';
 
       // Remove all live-dot classes and apply the right one
       dot.className = dot.className.replace(/live-dot-\w+/g, '').trim();
@@ -143,81 +143,17 @@ const generatedAt = new Date().toISOString();
     // Re-check dot color periodically (absolute time label doesn't change)
     setInterval(updateFreshness, 30000);
 
-    // ===== CARD TOGGLE =====
-    document.querySelectorAll('.card[data-source]').forEach(card => {
-      card.addEventListener('click', (e: Event) => {
-        const target = e.target as HTMLElement;
-        if (target.closest('a')) return;
-        if (target.closest('.share-btn')) return;
-
-        const isExpanded = card.classList.contains('expanded');
-
-        if (isExpanded) {
-          card.classList.remove('expanded');
-          const titleEl = card.querySelector('.card-title-text');
-          if (titleEl) titleEl.classList.add('line-clamp-3');
-          const shortEl = card.querySelector('.card-snippet-short');
-          const fullEl = card.querySelector('.card-snippet-full');
-          if (shortEl) shortEl.classList.remove('hidden');
-          if (fullEl) fullEl.classList.add('hidden');
-          const sourceLink = card.querySelector('.source-link');
-          if (sourceLink) sourceLink.classList.add('hidden');
-          const btn = card.querySelector('.expand-btn');
-          if (btn) btn.textContent = 'Read more';
-        } else {
-          card.classList.add('expanded');
-          const titleEl = card.querySelector('.card-title-text');
-          if (titleEl) titleEl.classList.remove('line-clamp-3');
-          const shortEl = card.querySelector('.card-snippet-short');
-          const fullEl = card.querySelector('.card-snippet-full');
-          if (shortEl) shortEl.classList.add('hidden');
-          if (fullEl) fullEl.classList.remove('hidden');
-          const sourceLink = card.querySelector('.source-link');
-          if (sourceLink) sourceLink.classList.remove('hidden');
-          const btn = card.querySelector('.expand-btn');
-          if (btn) btn.textContent = 'Show less';
-        }
-      });
-    });
-
-    // ===== SOURCE & TIME FILTERS =====
+    // ===== SOURCE FILTERS =====
     let activeSourceFilter = 'all';
-    let activeTimeFilter: string | null = null;
 
     function applyFilters(): void {
       const cards = document.querySelectorAll('.card[data-source]');
       let visible = 0;
-      const now = new Date();
       cards.forEach(function(card) {
         const el = card as HTMLElement;
-        let sourceMatch = true;
-        let timeMatch = true;
+        const sourceMatch = activeSourceFilter === 'all' || el.getAttribute('data-source') === activeSourceFilter;
 
-        if (activeSourceFilter !== 'all') {
-          sourceMatch = el.getAttribute('data-source') === activeSourceFilter;
-        }
-
-        if (activeTimeFilter) {
-          const dateStr = el.getAttribute('data-date');
-          if (dateStr) {
-            const articleDate = new Date(dateStr);
-            const diffMs = now.getTime() - articleDate.getTime();
-            const diffHours = diffMs / 3600000;
-            if (activeTimeFilter === '1h') {
-              timeMatch = diffHours <= 1;
-            } else if (activeTimeFilter === '3h') {
-              timeMatch = diffHours <= 3;
-            } else if (activeTimeFilter === '6h') {
-              timeMatch = diffHours <= 6;
-            } else if (activeTimeFilter === 'today') {
-              const todayStr = now.toLocaleDateString('en-CA', { timeZone: 'Asia/Jerusalem' });
-              const articleDayStr = articleDate.toLocaleDateString('en-CA', { timeZone: 'Asia/Jerusalem' });
-              timeMatch = todayStr === articleDayStr;
-            }
-          }
-        }
-
-        if (sourceMatch && timeMatch) {
+        if (sourceMatch) {
           el.style.display = '';
           visible++;
         } else {
@@ -240,26 +176,6 @@ const generatedAt = new Date().toISOString();
         btn.classList.add('btn-primary');
         btn.classList.remove('btn-ghost', 'border', 'border-base-300', 'text-text-muted');
         activeSourceFilter = (btn as HTMLElement).dataset.source || 'all';
-        applyFilters();
-      });
-    });
-
-    // Time filter buttons
-    document.querySelectorAll('.time-filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const wasActive = btn.classList.contains('btn-primary') && !btn.classList.contains('btn-outline');
-        // Reset all time buttons to neutral outline
-        document.querySelectorAll('.time-filter-btn').forEach(b => {
-          b.classList.add('btn-outline', 'btn-neutral');
-          b.classList.remove('btn-primary');
-        });
-        if (wasActive) {
-          activeTimeFilter = null;
-        } else {
-          btn.classList.remove('btn-outline', 'btn-neutral');
-          btn.classList.add('btn-primary');
-          activeTimeFilter = (btn as HTMLElement).dataset.time || null;
-        }
         applyFilters();
       });
     });

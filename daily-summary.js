@@ -52,7 +52,7 @@ async function generateDailySummary(dateStr) {
   const genAI = new GoogleGenerativeAI(apiKey);
   const model = genAI.getGenerativeModel({ model: GEMINI_MODEL });
 
-  const prompt = `You are a senior intelligence analyst producing the daily briefing for an Iran-Israel conflict monitoring platform called "Iran War Update." 
+  const prompt = `You are a senior intelligence analyst producing the daily briefing for an Iran-Israel conflict monitoring platform called "Middle East Pulse." 
 
 IMPORTANT: ALL times in your output must be normalized to Israel timezone (Asia/Jerusalem, currently IDT = UTC+3). When article timestamps are provided, they are already converted to IDT. All "time" fields in key_events must use Israel time with the format "HH:MM IDT" (24h or 12h). Do NOT use GMT or UTC.
 

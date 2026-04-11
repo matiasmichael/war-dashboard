@@ -4,16 +4,17 @@
 
 <div class="navbar bg-volcanic sticky top-0 z-50 px-0">
   <div class="max-w-[680px] mx-auto w-full flex flex-col">
-    <div class="flex items-center justify-between px-4 py-2">
-      <div class="flex flex-col">
-        <h1 class="text-[1.15rem] font-bold tracking-tight flex items-center gap-1.5 text-white m-0">
+    <div class="relative flex items-center justify-center px-4 py-2">
+      <!-- Centered title -->
+      <div class="flex flex-col items-center">
+        <h1 class="text-[1.15rem] font-bold tracking-tight flex items-center gap-1.5 text-white m-0 whitespace-nowrap">
           <span class="w-[7px] h-[7px] bg-bc-orange rounded-full inline-block flex-shrink-0 live-dot-fresh" id="liveDot"></span>
-          Iran War Update
-          <span class="text-xs font-normal text-white/60 ml-1" id="headerFreshness"></span>
+          Middle East Pulse
         </h1>
-        <span class="text-xs font-normal text-white/60 block ml-[19px]">🇮🇱 Israel Time (IDT)</span>
+        <span class="text-[0.7rem] font-normal text-white/50" id="headerFreshness">🇮🇱 IDT</span>
       </div>
-      <a href="/archive" class="btn btn-sm btn-ghost text-white/80 hover:text-white text-sm font-semibold gap-1.5 bg-white/10 hover:bg-white/18 rounded-lg normal-case min-h-[44px] min-w-[44px] px-4">📅 Daily Briefing</a>
+      <!-- Archive icon button (top right) -->
+      <a href="/archive" class="btn btn-sm btn-ghost btn-square text-white/70 hover:text-white bg-white/8 hover:bg-white/15 rounded-lg absolute right-4 min-h-[36px] min-w-[36px]" title="Archive">🗓️</a>
     </div>
     <div class="h-[3px] bg-gradient-to-r from-bc-orange to-bc-gold"></div>
   </div>

@@ -1,0 +1,68 @@
+{
+  "date": "2026-04-09",
+  "headline": "US and Iran agree to ceasefire amidst ongoing Israeli strikes in Lebanon and Iran-backed plot.",
+  "summary": "<p>Today saw a significant diplomatic development with the United States and Iran agreeing to a ceasefire after weeks of heightened tensions. This agreement, however, was immediately overshadowed by questions regarding its scope and application, particularly concerning Israel's ongoing military operations in neighboring states.</p><p>Israel asserted that Lebanon is not included in the recently agreed US-Iran ceasefire, continuing a series of deadly strikes in Beirut that resulted in 182 fatalities and 890 wounded, according to Lebanese health officials. These actions drew strong condemnation from Iran's deputy foreign minister, who branded the Israeli strikes a 'grave violation' of the ceasefire and urged the US to clarify its commitment. Concurrently, an Al Jazeera journalist was killed in an Israeli strike in Gaza, adding to the humanitarian toll and raising further concerns about targeting practices.</p><p>Adding to the complexity, the UN's shipping agency issued a warning against any potential toll imposed on vessels in the Strait of Hormuz, indicating a persistent threat of economic disruption from the Iranian side. Furthermore, a significant intelligence breach was revealed, detailing an Iranian-backed plot involving an Israeli man who allegedly built bombs targeting former Prime Minister Naftali Bennett, underscoring Iran's continued covert activities within Israel.</p><p>Amidst these developments, reports from the ground highlight the severe and enduring humanitarian impact of the conflict on Iranian children, even if fighting were to cease completely, emphasizing the long-term consequences of the protracted hostilities.</p>",
+  "key_events": [
+    {
+      "time": "10:45 IDT",
+      "headline": "Deadly Israeli air strikes target Beirut, causing mass casualties",
+      "source": "BBC News",
+      "category": "military",
+      "description": "Israeli air strikes in Beirut killed at least 182 people and wounded 890, according to the Lebanese health ministry. The BBC reported from the strike site, detailing the extensive damage and casualties."
+    },
+    {
+      "time": "14:39 IDT",
+      "headline": "Al Jazeera condemns Israeli killing of journalist in Gaza",
+      "source": "BBC News",
+      "category": "proxy",
+      "description": "Al Jazeera condemned the killing of journalist Mohammed Wishah in an Israeli strike in Gaza. The Israeli military claimed Wishah was a 'Hamas terrorist,' a claim the Qatar-based network has denied."
+    },
+    {
+      "time": "20:11 IDT",
+      "headline": "Iran minister labels Israeli strikes in Lebanon 'grave ceasefire violation'",
+      "source": "BBC News",
+      "category": "diplomacy",
+      "description": "Iran's deputy foreign minister told the BBC that Israeli strikes in Lebanon constitute a 'grave violation' of the ceasefire. The minister urged the US to choose between 'war and ceasefire,' indicating Tehran's view of the truce's scope."
+    },
+    {
+      "time": "20:16 IDT",
+      "headline": "Israel clarifies Lebanon not included in US-Iran ceasefire deal",
+      "source": "BBC News",
+      "category": "military",
+      "description": "Reports emerged that Israel stated Lebanon is not covered by the ceasefire agreement the US reached with Iran. This clarification came after significant Israeli military action in Lebanon and Iranian accusations of truce violations."
+    },
+    {
+      "time": "20:26 IDT",
+      "headline": "UN warns against potential Strait of Hormuz shipping toll",
+      "source": "Fox News",
+      "category": "diplomacy",
+      "description": "The U.N.'s shipping agency issued a warning on Thursday that any toll imposed on ships passing through the Strait of Hormuz would set a 'dangerous precedent.' This highlights concerns over potential Iranian attempts to disrupt international shipping."
+    },
+    {
+      "time": "23:03 IDT",
+      "headline": "US and Iran agree to ceasefire after weeks of tension",
+      "source": "Jerusalem Post",
+      "category": "diplomacy",
+      "description": "The United States and Iran reportedly agreed to a ceasefire following weeks of elevated tensions. This marks a significant diplomatic effort to de-escalate the broader regional conflict, though questions about its effectiveness remain."
+    },
+    {
+      "time": "23:48 IDT",
+      "headline": "Israeli man built bomb lab for Iranian plot targeting ex-PM Bennett",
+      "source": "Fox News",
+      "category": "intelligence",
+      "description": "Authorities revealed that a Haifa man was allegedly recruited by an Iranian handler to construct bombs. The plot was believed to target former Israeli Prime Minister Naftali Bennett, indicating persistent Iranian-backed intelligence operations within Israel."
+    }
+  ],
+  "statistics": {
+    "total_articles": 11,
+    "sources_reporting": 3,
+    "most_active_source": "BBC News",
+    "escalation_level": 3
+  },
+  "what_changed": [
+    "A ceasefire agreement between the US and Iran has been reached, aiming to de-escalate wider regional conflict.",
+    "The scope of the US-Iran ceasefire is immediately contested, with Israel asserting it does not apply to operations in Lebanon.",
+    "An Iranian-backed plot targeting former Israeli Prime Minister Naftali Bennett highlights persistent intelligence threats despite diplomatic moves."
+  ],
+  "outlook": "The coming days will reveal the true extent and durability of the US-Iran ceasefire, particularly concerning its application to ongoing conflicts in Lebanon and Gaza, and potential Iranian responses to continued Israeli actions."
+}
