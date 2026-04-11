@@ -1,0 +1,227 @@
+---
+import Base from '../layouts/Base.astro';
+import '../styles/global.css';
+
+// Feed metadata for the sources grid
+import feedsData from '../feeds.json';
+
+// Build favicon URLs
+function getFaviconUrl(domain: string) {
+  return `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+}
+
+// Active sources (exclude Haaretz — disabled/blocked)
+const activeSources = feedsData.filter((f: any) => f.name !== 'Haaretz' && f.name !== 'CNN');
+---
+
+<Base
+  title="About — Middle East Pulse"
+  description="How Middle East Pulse works: multi-source news aggregation and AI-powered intelligence synthesis for the Iran-Israel conflict."
+>
+  <!-- Header — same as rest of site -->
+  <div class="navbar bg-header-brown sticky top-0 z-50 px-0">
+    <div class="max-w-[680px] mx-auto w-full flex flex-col">
+      <div class="relative flex items-center justify-center px-4 py-2">
+        <div class="flex flex-col items-center">
+          <h1 class="text-[1.15rem] font-bold tracking-tight flex items-center gap-1.5 text-white m-0 whitespace-nowrap">
+            <a href="/" class="text-white hover:text-white/80 transition-colors no-underline">Middle East Pulse</a>
+          </h1>
+          <span class="text-[0.7rem] font-normal text-white/50">About this site</span>
+        </div>
+        <a href="/" class="btn btn-sm btn-ghost text-white/70 hover:text-white bg-white/8 hover:bg-white/15 rounded-lg absolute right-4 min-h-[36px] px-3 text-[0.78rem]">← Live Feed</a>
+      </div>
+      <div class="h-[3px] bg-gradient-to-r from-bc-orange to-bc-gold"></div>
+    </div>
+  </div>
+
+  <div class="max-w-[680px] mx-auto px-4 pb-16 pt-6">
+
+    <!-- Hero -->
+    <div class="mb-8 text-center">
+      <div class="text-4xl mb-3">🔶</div>
+      <h2 class="text-2xl font-black tracking-tight text-base-content mb-2">Middle East Pulse</h2>
+      <p class="text-text-muted text-[0.88rem] leading-relaxed max-w-[420px] mx-auto">
+        A live intelligence dashboard tracking the Iran-Israel conflict — aggregated from 8 leading news sources and synthesized by AI every hour.
+      </p>
+    </div>
+
+    <!-- What is it -->
+    <div class="card card-bordered bg-white shadow-sm mb-4">
+      <div class="card-body px-5 py-4 gap-3">
+        <h3 class="text-[0.78rem] font-bold uppercase tracking-wider text-primary m-0">What is Middle East Pulse?</h3>
+        <p class="text-[0.88rem] leading-relaxed text-text-secondary m-0">
+          Middle East Pulse is a personal news dashboard built to track one conflict in real time, without the noise of a general news site. It pulls articles from eight major outlets simultaneously, filters for relevance, and presents them in a clean, chronological feed.
+        </p>
+        <p class="text-[0.88rem] leading-relaxed text-text-secondary m-0">
+          At the top of the page, an AI model reads all the recent headlines and writes a concise intelligence briefing — the kind of summary that would take you 20 minutes of reading to piece together yourself. It's updated automatically every hour.
+        </p>
+      </div>
+    </div>
+
+    <!-- How it works -->
+    <div class="card card-bordered bg-white shadow-sm mb-4">
+      <div class="card-body px-5 py-4 gap-4">
+        <h3 class="text-[0.78rem] font-bold uppercase tracking-wider text-primary m-0">How It Works</h3>
+
+        <div class="flex gap-3 items-start">
+          <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-[0.9rem]">1</div>
+          <div>
+            <p class="text-[0.88rem] font-semibold text-base-content m-0 mb-0.5">Article collection — every 3 minutes</p>
+            <p class="text-[0.82rem] text-text-secondary leading-relaxed m-0">
+              Eight RSS feeds are fetched in parallel. Articles are deduplicated by URL, timestamps are normalized, and results are stored locally. Sources that cover broad world news (CNBC, NPR, Fox, Al Jazeera) are filtered by conflict-relevant keywords before being included.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-3 items-start">
+          <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-[0.9rem]">2</div>
+          <div>
+            <p class="text-[0.88rem] font-semibold text-base-content m-0 mb-0.5">Key developments — every 3 minutes</p>
+            <p class="text-[0.82rem] text-text-secondary leading-relaxed m-0">
+              After each fetch, Google Gemini reads the top 25 most recent articles and identifies the 4 most significant and distinct events. Each development is ranked by severity (critical, major, notable, developing) and categorized by type (military, diplomacy, humanitarian, economic).
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-3 items-start">
+          <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-[0.9rem]">3</div>
+          <div>
+            <p class="text-[0.88rem] font-semibold text-base-content m-0 mb-0.5">Intelligence briefing — every hour</p>
+            <p class="text-[0.82rem] text-text-secondary leading-relaxed m-0">
+              Once per hour, Gemini reads the full day's accumulated articles and writes a structured intelligence report: a 40-word situation summary, the 3 most operationally significant stories, and a deeper analysis covering force posture, proxy activity, nuclear dimensions, and key watch items.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-3 items-start">
+          <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-[0.9rem]">4</div>
+          <div>
+            <p class="text-[0.88rem] font-semibold text-base-content m-0 mb-0.5">Static site build — after every synthesis</p>
+            <p class="text-[0.82rem] text-text-secondary leading-relaxed m-0">
+              The site is rebuilt as plain HTML after each AI synthesis. There's no live data fetching in your browser — what you see is a snapshot baked into the page at build time. Timestamps update live in the browser (re-computed every 30 seconds), but the articles themselves are from the last build.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sources -->
+    <div class="card card-bordered bg-white shadow-sm mb-4">
+      <div class="card-body px-5 py-4 gap-4">
+        <div class="flex items-center justify-between">
+          <h3 class="text-[0.78rem] font-bold uppercase tracking-wider text-primary m-0">Sources</h3>
+          <span class="text-[0.72rem] text-text-muted">{activeSources.length} active feeds</span>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {activeSources.map((feed: any) => (
+            <div class="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-base-100 border border-base-200 hover:border-base-300 transition-colors">
+              <img
+                src={getFaviconUrl(feed.faviconDomain)}
+                alt={feed.name}
+                width="32"
+                height="32"
+                class="rounded-md w-8 h-8 object-contain"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+              />
+              <span
+                class="text-xl hidden items-center justify-center"
+                style="display:none"
+              >📰</span>
+              <span class="text-[0.72rem] font-semibold text-base-content text-center leading-tight">{feed.shortName}</span>
+            </div>
+          ))}
+        </div>
+
+        <p class="text-[0.78rem] text-text-muted leading-relaxed m-0">
+          All sources are major international or Israeli news outlets with dedicated Middle East coverage. Ynet, Times of Israel, and Jerusalem Post are Israeli outlets. BBC and NPR provide international perspective. Al Jazeera provides regional Arab coverage. CNBC and Fox News add US financial and political angles.
+        </p>
+      </div>
+    </div>
+
+    <!-- Update frequency -->
+    <div class="card card-bordered bg-white shadow-sm mb-4">
+      <div class="card-body px-5 py-4 gap-3">
+        <h3 class="text-[0.78rem] font-bold uppercase tracking-wider text-primary m-0">Update Schedule</h3>
+        <div class="space-y-2.5">
+          <div class="flex items-center gap-3">
+            <span class="text-lg w-6 text-center flex-shrink-0">📰</span>
+            <div>
+              <span class="text-[0.84rem] font-semibold text-base-content">Articles</span>
+              <span class="text-[0.82rem] text-text-muted ml-1.5">— refreshed every 3 minutes</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-lg w-6 text-center flex-shrink-0">🔍</span>
+            <div>
+              <span class="text-[0.84rem] font-semibold text-base-content">Key Developments</span>
+              <span class="text-[0.82rem] text-text-muted ml-1.5">— re-synthesized every 3 minutes</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-lg w-6 text-center flex-shrink-0">🧠</span>
+            <div>
+              <span class="text-[0.84rem] font-semibold text-base-content">Situation Report</span>
+              <span class="text-[0.82rem] text-text-muted ml-1.5">— regenerated every hour</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-lg w-6 text-center flex-shrink-0">📅</span>
+            <div>
+              <span class="text-[0.84rem] font-semibold text-base-content">Daily Briefing</span>
+              <span class="text-[0.82rem] text-text-muted ml-1.5">— archived at 23:55 IDT each night</span>
+            </div>
+          </div>
+        </div>
+        <p class="text-[0.78rem] text-text-muted m-0">
+          The LIVE indicator in the header turns yellow if the last build was more than 15 minutes ago, and grey ("STALE") if it's been over an hour. A "New updates available" prompt will appear automatically after you've had the page open for 1 hour.
+        </p>
+      </div>
+    </div>
+
+    <!-- AI Disclaimer -->
+    <div class="card card-bordered border-warning/40 bg-warning/5 shadow-sm mb-4">
+      <div class="card-body px-5 py-4 gap-3">
+        <h3 class="text-[0.78rem] font-bold uppercase tracking-wider text-warning-content m-0 flex items-center gap-1.5">
+          <span>⚠️</span> AI Disclaimer
+        </h3>
+        <p class="text-[0.85rem] leading-relaxed text-text-secondary m-0">
+          The <strong class="font-semibold text-base-content">Situation Report</strong> and <strong class="font-semibold text-base-content">Key Developments</strong> sections are generated by Google Gemini, an AI language model. They are based solely on the RSS headlines and snippets collected in that cycle.
+        </p>
+        <p class="text-[0.85rem] leading-relaxed text-text-secondary m-0">
+          AI summaries can contain errors, omissions, or outdated information. They reflect the framing of their source articles, which may themselves contain inaccuracies. <strong class="font-semibold text-base-content">Do not use this dashboard as your sole source of information for any important decision.</strong>
+        </p>
+        <p class="text-[0.85rem] leading-relaxed text-text-secondary m-0">
+          The article feed itself is a straight pass-through of headlines and snippets from the original publishers — no AI editing is applied to individual articles.
+        </p>
+      </div>
+    </div>
+
+    <!-- Archive link -->
+    <div class="card card-bordered bg-white shadow-sm mb-4">
+      <div class="card-body px-5 py-4 gap-2">
+        <h3 class="text-[0.78rem] font-bold uppercase tracking-wider text-primary m-0">Daily Briefing Archive</h3>
+        <p class="text-[0.85rem] leading-relaxed text-text-secondary m-0">
+          Each night, a comprehensive daily intelligence briefing is generated and preserved in the archive. It includes an escalation assessment, a timeline of key events, a full narrative summary, and "what changed today" notes.
+        </p>
+        <a href="/archive" class="btn btn-outline btn-primary btn-sm mt-1 w-fit text-[0.82rem]">
+          📅 View Archive
+        </a>
+      </div>
+    </div>
+
+    <!-- Back to dashboard -->
+    <div class="text-center pt-2">
+      <a href="/" class="btn btn-primary gap-2 text-[0.88rem]">
+        ← Back to Live Dashboard
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center py-8 text-text-muted text-[0.72rem] border-t border-base-300 bg-white">
+    <p>Middle East Pulse · Aggregated from public RSS feeds · Updated every 3 minutes</p>
+    <p class="mt-1 opacity-70">hmviva.us</p>
+  </footer>
+</Base>
