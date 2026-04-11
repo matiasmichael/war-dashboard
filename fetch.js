@@ -20,27 +20,28 @@ async function synthesizeReport(articles) {
     const recentArticles = articles.slice(0, 25);
     const feedContext = recentArticles.map(a => `[${a.source}] ${a.title}\n${a.contentSnippet || a.content || ''}\nPublished: ${a.date || 'unknown'}`).join("\n\n");
 
-    const prompt = `You are a senior intelligence briefer. Analyze the following 25 latest headlines about the Middle East / Israel conflict and produce a structured JSON briefing.
+    const prompt = `You are a senior intelligence briefer specializing in the Iran-Israel conflict. Analyze the following 25 latest headlines and produce a structured JSON briefing focused on the Iran-Israel war, including Iranian proxies (Hezbollah, Hamas, Houthis), direct Iran-Israel military exchanges, nuclear developments, and regional escalation.
 
 Headlines:
 ${feedContext}
 
 Return ONLY valid JSON (no markdown fences, no commentary) with this exact structure:
 {
-  "summary": "2 sentences MAXIMUM. Hard limit: 40 words. Use <strong> tags to bold the 2-3 most important terms only. Plain text otherwise. No HTML except <strong>. Be ruthless — cut every unnecessary word.",
+  "summary": "2 sentences MAXIMUM. Hard limit: 40 words. Use <strong> tags to bold the 2-3 most important terms only. Plain text otherwise. No HTML except <strong>. Be ruthless — cut every unnecessary word. Focus on Iran-Israel conflict dynamics.",
   "top_updates": [
     { "headline": "Short punchy headline (max 12 words)", "source": "Source Name", "time": "e.g. 2h ago" },
     { "headline": "...", "source": "...", "time": "..." },
     { "headline": "...", "source": "...", "time": "..." }
   ],
-  "detailed_analysis": "A longer 3-5 sentence analysis covering active tensions, open questions, and what to watch. Use <strong> for key terms. This will be hidden by default behind a toggle."
+  "detailed_analysis": "A longer 3-5 sentence analysis covering Iran-Israel tensions, proxy conflicts, nuclear dimensions, open questions, and what to watch. Use <strong> for key terms. This will be hidden by default behind a toggle."
 }
 
 RULES:
 - summary must be 2 sentences, MAX 40 words total. Count them. If over 40, cut words until under.
-- top_updates: pick the 3 MOST important/impactful stories. Headline must be punchy and short.
+- top_updates: pick the 3 MOST important/impactful stories related to the Iran-Israel conflict. Headline must be punchy and short.
 - For "time" field, use relative time (e.g. "1h ago", "3h ago", "just now") based on the published dates.
-- detailed_analysis: cover tensions, open questions, and what to watch next. Max 80 words.
+- detailed_analysis: cover Iran-Israel tensions, proxy warfare, nuclear dimensions, and what to watch next. Max 80 words.
+- Prioritize stories about Iran, Israel, Hezbollah, Hamas, Houthis, IRGC, nuclear program, and direct confrontation.
 - Tone: objective, analytical, no sensationalism.
 - Output ONLY the JSON object, nothing else.`;
 
@@ -323,35 +324,36 @@ function generateHTML(articles, sourceStats, situationReportData) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>War Monitor — Live News Dashboard</title>
-  <meta name="description" content="Up-to-date war and Middle East news from leading sources">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔴</text></svg>">
+  <title>Iran War Update — Live News Dashboard</title>
+  <meta name="description" content="Up-to-date Iran-Israel conflict news and intelligence briefings from leading sources">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔶</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg: #f8f9fa;
+      --bg: #FAF8F5;
       --surface: #ffffff;
-      --surface-hover: #f1f3f5;
-      --border: #e9ecef;
-      --border-light: #f1f3f5;
-      --text: #1a1a2e;
-      --text-secondary: #495057;
-      --text-muted: #868e96;
-      --accent: #dc3545;
-      --accent-soft: #fff5f5;
-      --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
-      --shadow-md: 0 2px 8px rgba(0,0,0,0.06);
-      --shadow-lg: 0 4px 16px rgba(0,0,0,0.08);
+      --surface-hover: #F5F2EE;
+      --border: #E8E4DF;
+      --border-light: #F0ECE7;
+      --text: #1E1B18;
+      --text-secondary: #2C2824;
+      --text-muted: #7A746D;
+      --accent: #E8732C;
+      --accent-gold: #F5C542;
+      --accent-soft: #FFF3EB;
+      --shadow-sm: 0 1px 2px rgba(30,27,24,0.04);
+      --shadow-md: 0 2px 8px rgba(30,27,24,0.06);
+      --shadow-lg: 0 4px 16px rgba(30,27,24,0.08);
       --radius: 12px;
       --radius-sm: 8px;
     }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
@@ -404,8 +406,8 @@ function generateHTML(articles, sourceStats, situationReportData) {
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(220,53,69,0.5); }
-      50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(220,53,69,0); }
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(232,115,44,0.5); }
+      50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(232,115,44,0); }
     }
 
 
@@ -452,12 +454,13 @@ function generateHTML(articles, sourceStats, situationReportData) {
 
     .filter-btn:hover {
       background: var(--border-light);
+      border-color: var(--accent-gold);
       color: var(--text-secondary);
     }
 
     .filter-btn.active {
-      background: var(--text);
-      border-color: var(--text);
+      background: var(--accent);
+      border-color: var(--accent);
       color: #fff;
     }
 
@@ -615,7 +618,7 @@ function generateHTML(articles, sourceStats, situationReportData) {
       padding: 0.2rem 0;
       transition: color 0.15s;
     }
-    .expand-btn:hover { color: #a71d2a; }
+    .expand-btn:hover { color: #C45E1F; }
 
     .card.expanded .expand-btn::after { content: none; }
 
@@ -627,7 +630,7 @@ function generateHTML(articles, sourceStats, situationReportData) {
       transition: color 0.15s;
       display: none;
     }
-    .source-link:hover { color: var(--text-secondary); }
+    .source-link:hover { color: var(--accent); }
 
     .card.expanded .source-link {
       display: inline;
@@ -637,8 +640,8 @@ function generateHTML(articles, sourceStats, situationReportData) {
     .sitrep-card {
       background: #fff;
       border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-      border-top: 4px solid #2563eb;
+      box-shadow: var(--shadow-md);
+      border-top: 4px solid var(--accent);
       overflow: hidden;
       margin-bottom: 1rem;
     }
@@ -647,7 +650,7 @@ function generateHTML(articles, sourceStats, situationReportData) {
       padding: 0.85rem 1.15rem 0.6rem;
       font-size: 0.88rem;
       line-height: 1.55;
-      color: #374151;
+      color: var(--text-secondary);
     }
 
     .sitrep-top-updates {
@@ -661,21 +664,21 @@ function generateHTML(articles, sourceStats, situationReportData) {
       display: flex;
       flex-direction: column;
       padding: 0.5rem 0.75rem;
-      background: #f8fafc;
+      background: var(--bg);
       border-radius: 8px;
-      border-left: 3px solid #2563eb;
+      border-left: 3px solid var(--accent);
     }
 
     .sitrep-update-headline {
       font-size: 0.85rem;
       font-weight: 600;
-      color: #1a1a2e;
+      color: var(--text);
       line-height: 1.35;
     }
 
     .sitrep-update-meta {
       font-size: 0.72rem;
-      color: #9ca3af;
+      color: var(--text-muted);
       margin-top: 0.15rem;
     }
 
@@ -688,17 +691,17 @@ function generateHTML(articles, sourceStats, situationReportData) {
       padding: 0.55rem 1.15rem;
       background: none;
       border: none;
-      border-top: 1px solid #f1f3f5;
+      border-top: 1px solid var(--border-light);
       cursor: pointer;
-      color: #6b7280;
+      color: var(--text-muted);
       font-size: 0.78rem;
       font-weight: 500;
       transition: all 0.2s;
     }
 
     .sitrep-expand-btn:hover {
-      background: #f8fafc;
-      color: #374151;
+      background: var(--bg);
+      color: var(--text-secondary);
     }
 
     .sitrep-expand-chevron {
@@ -714,8 +717,8 @@ function generateHTML(articles, sourceStats, situationReportData) {
     .sitrep-detail {
       display: none;
       padding: 0.75rem 1.15rem;
-      background: #f9fafb;
-      border-top: 1px solid #f1f3f5;
+      background: var(--bg);
+      border-top: 1px solid var(--border-light);
     }
 
     .sitrep-detail.open {
@@ -725,17 +728,17 @@ function generateHTML(articles, sourceStats, situationReportData) {
     .sitrep-detail p {
       font-size: 0.84rem;
       line-height: 1.6;
-      color: #4b5563;
+      color: var(--text-secondary);
       margin: 0;
     }
 
     .sitrep-footer {
       font-size: 0.68rem;
-      color: #9ca3af;
+      color: var(--text-muted);
       padding: 0.45rem 1.15rem;
       margin: 0;
-      border-top: 1px solid #e5e7eb;
-      background: #f9fafb;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
     }
 
     /* ===== FOOTER ===== */
@@ -996,7 +999,7 @@ function generateHTML(articles, sourceStats, situationReportData) {
 <body>
   <div class="header">
     <div class="header-inner">
-      <h1><span class="live-dot"></span> War Monitor <span class="header-time">· updated ${lastUpdateAgo}</span></h1>
+      <h1><span class="live-dot"></span> Iran War Update <span class="header-time">· updated ${lastUpdateAgo}</span></h1>
     </div>
   </div>
 
@@ -1039,7 +1042,7 @@ function generateHTML(articles, sourceStats, situationReportData) {
   </div>
 
   <div class="footer">
-    <p>War Monitor · Aggregated from public RSS feeds · Updated every 6h</p>
+    <p>Iran War Update · Aggregated from public RSS feeds · Updated every hour</p>
     <p style="margin-top:0.35rem; opacity:0.7;">hmviva.us</p>
   </div>
 
@@ -1077,15 +1080,15 @@ function generateHTML(articles, sourceStats, situationReportData) {
       document.getElementById('articleCount').textContent = visible + ' articles shown';
     }
 
-    // Auto-refresh page every 6 hours
-    setTimeout(() => location.reload(), 6 * 60 * 60 * 1000);
+    // Auto-refresh page every hour
+    setTimeout(() => location.reload(), 1 * 60 * 60 * 1000);
   </script>
 </body>
 </html>`;
 }
 
 async function main() {
-  console.log('🔴 War Monitor — Fetching latest news...');
+  console.log('🔶 Iran War Update — Fetching latest news...');
   console.log(`   Time: ${new Date().toISOString()}`);
 
   const { articles, sourceStats } = await fetchAllFeeds();
