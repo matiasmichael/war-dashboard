@@ -1,5 +1,5 @@
 // ===== VIDEO FETCHER =====
-// Fetches YouTube RSS feeds from key channels (PM Office, IDF, White House, C-SPAN),
+// Fetches YouTube RSS feeds from key channels (PM Office, IDF, White House, C-SPAN, Fox News, CNN),
 // extracts video metadata, and saves to data/videos.json.
 // YouTube Atom feeds don't require an API key — just the channel ID.
 
@@ -25,7 +25,7 @@ const MIDDLE_EAST_KEYWORDS = [
 ];
 
 // Channels that require relevance filtering (by name)
-const FILTERED_CHANNELS = new Set(['The White House', 'C-SPAN']);
+const FILTERED_CHANNELS = new Set(['The White House', 'C-SPAN', 'Fox News', 'CNN']);
 
 /**
  * Returns true if the video is relevant to the Middle East conflict.
@@ -62,6 +62,18 @@ const CHANNELS = [
     name: 'C-SPAN',
     emoji: '📺',
     color: '#003366'
+  },
+  {
+    id: 'UCXIJgqnII2ZOINSWNOGFThA',
+    name: 'Fox News',
+    emoji: '🦊',
+    color: '#003366'
+  },
+  {
+    id: 'UCupvZG-5ko_eiXAupbDfxWw',
+    name: 'CNN',
+    emoji: '🔴',
+    color: '#cc0000'
   }
 ];
 
