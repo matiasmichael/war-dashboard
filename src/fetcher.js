@@ -75,27 +75,58 @@ async function fetchAndSanitizeXml(url) {
 }
 
 /**
- * Fetch the real publish time for an article by scraping its page.
- * Used for feeds where the RSS pubDate may be a pre-scheduled future timestamp
- * that doesn't match the actual publication time shown on the article page.
+ * Correct JPost's mislabeled timezone in RSS pubDate values.
  *
- * JPost (and similar Next.js-based sites) embed date info in TWO ways:
+ * ROOT CAUSE: JPost's RSS feed stamps all pubDate values in Israel local time
+ * (IDT in summer = UTC+3, IST in winter = UTC+2) but labels them as "GMT".
+ * This causes articles to appear 2–3 hours in the future when parsed literally.
+ *
+ * FIX: Determine the Israel UTC offset for the article's timestamp using the
+ * Intl API (which correctly handles DST transitions between IST and IDT),
+ * then subtract that offset so the stored UTC value reflects the true moment.
+ *
+ * Example: RSS says "Sat, 11 Apr 2026 21:18:16 GMT"
+ *   → parsed as 21:18 UTC  (wrong — it's actually 21:18 IDT)
+ *   → Israel offset on that date: +180 min (IDT, UTC+3)
+ *   → corrected UTC: 21:18 UTC − 3h = 18:18 UTC  ✓
+ */
+function correctJPostTimezone(dateStr) {
+  if (!dateStr) return null;
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) return null;
+
+  // Get the Israel local time components for this timestamp.
+  // Intl handles DST automatically — IDT (UTC+3, Apr–Oct) vs IST (UTC+2, Oct–Apr).
+  const formatter = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Jerusalem',
+    year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', second: '2-digit',
+    hour12: false
+  });
+  const parts = formatter.formatToParts(d);
+  const get = (type) => parseInt(parts.find(p => p.type === type)?.value || '0', 10);
+  // Reconstruct the Israel local time as if it were UTC, to measure the offset
+  const israelLocalAsUtc = Date.UTC(get('year'), get('month') - 1, get('day'), get('hour'), get('minute'), get('second'));
+  const offsetMs = israelLocalAsUtc - d.getTime(); // e.g. +10800000 ms for IDT (UTC+3)
+
+  // The pubDate was stamped in Israel local time but labeled GMT.
+  // True UTC = mislabeled-UTC − Israel-offset
+  return new Date(d.getTime() - offsetMs).toISOString();
+}
+
+/**
+ * Fetch the real publish time for an article by scraping its page.
+ * Retained as a secondary validation tool — the primary JPost timezone fix is
+ * correctJPostTimezone() above. This scraper handles any residual edge cases.
+ *
+ * JPost (and similar Next.js-based sites) embed date info in multiple ways:
  *  1. Classic <script type="application/ld+json"> — preferred when present.
- *     JPost's NewsArticle LD+JSON includes `datePublished` and `dateModified`.
- *  2. Raw JSON key-value pairs embedded in Next.js __next_f.push() payloads
- *     (e.g. "datePublished":"2026-04-11T21:18:16.000+00:00") — reliable fallback.
+ *  2. Raw JSON key-value pairs embedded in Next.js __next_f.push() payloads.
  *  3. OpenGraph <meta property="article:published_time"> — last resort.
  *
- * IMPORTANT: JPost's CMS often sets pubDate slightly ahead of the actual
- * server time (scheduled publishing). The scraped `datePublished` from the
- * article page also reflects this scheduled time. We accept dates that are
- * at most JPOST_FUTURE_TOLERANCE_MS ahead of now — these are real published
- * articles whose CMS clock is just slightly out of sync. Dates further in
- * the future are truly pre-scheduled (not yet live) and should be dropped.
- *
- * Returns an ISO date string on success, or null on failure/timeout/truly-future.
+ * Returns an ISO date string on success, or null on failure/timeout.
  */
-const JPOST_FUTURE_TOLERANCE_MS = 30 * 60 * 1000; // 30 minutes — generous for CMS clock skew
+const JPOST_FUTURE_TOLERANCE_MS = 30 * 60 * 1000; // 30 minutes — tolerance after TZ correction
 
 async function fetchRealPublishDate(url) {
   const controller = new AbortController();
@@ -273,66 +304,34 @@ async function fetchSingleFeed(feed) {
 
       const faviconUrl = getFaviconUrl(feed.faviconDomain);
 
-      // --- JPost future-date correction ---
-      // JPost pre-schedules articles: they appear in the RSS feed with a pubDate that is
-      // still in the future (e.g. scheduled for 2 hours from now), but the article page
-      // already shows the real publish time in its JSON-LD / RSC payload.
-      // We fire parallel fetches for any JPost article whose pubDate is in the future,
-      // then swap in the real datePublished scraped from the article HTML.
+      // --- JPost timezone correction ---
+      // ROOT CAUSE (confirmed forensically): JPost's RSS feed stamps all pubDate
+      // values in Israel local time (IDT = UTC+3 in summer, IST = UTC+2 in winter)
+      // but labels them as "GMT". This makes articles appear 2–3 hours in the future.
       //
-      // NOTE: JPost's CMS clock is often slightly ahead of real time (~minutes). The
-      // tolerance window matches JPOST_FUTURE_TOLERANCE_MS in fetchRealPublishDate.
+      // FIX: Apply correctJPostTimezone() to every JPost item. This subtracts the
+      // Israel offset (determined via Intl API for DST accuracy) from the mislabeled
+      // timestamp to produce the true UTC publish time. No scraping needed.
       if (feed.fixFutureDates) {
         const nowMs = Date.now();
-        const futureDateItems = items.filter(item => {
-          const dateStr = item.isoDate || item.pubDate;
-          if (!dateStr) return false;
-          const d = new Date(dateStr);
-          // Include any article whose pubDate is ahead of NOW (regardless of how far)
-          return !isNaN(d.getTime()) && d.getTime() > nowMs;
-        });
-
-        if (futureDateItems.length > 0) {
-          console.log(`  🔍 ${feed.name}: ${futureDateItems.length} article(s) have future pubDates — fetching real publish times...`);
-          // Parallel fetch with per-article timeout (already baked into fetchJPostRealPublishDate)
-          const realDates = await Promise.all(
-            futureDateItems.map(async item => {
-              const url = item.link;
-              if (!url || url === '#') return { item, realDate: null };
-              const realDate = await fetchRealPublishDate(url);
-              return { item, realDate };
-            })
-          );
-          for (const { item, realDate } of realDates) {
-            if (realDate) {
-              console.log(`  ✅ ${feed.name}: corrected date for "${(item.title || '').slice(0, 50)}" → ${realDate}`);
-              item._correctedDate = realDate;
-            } else {
-              // Could not scrape a past/present date — article is truly pre-scheduled
-              // (future pubDate AND article page also shows future datePublished).
-              // DROP this article entirely from the current fetch.
-              // Also mark its URL for purging from the persistent daily archive,
-              // since a previous run may have clamped it to "now" and stored it.
-              console.warn(`  [JPOST PRE-SCHEDULED] Dropping future article unable to scrape: "${(item.title || '').slice(0, 80)}"`);
-              item._dropArticle = true;
-              item._purgeFromArchive = true; // signal to persistDailyArticles
+        for (const item of items) {
+          const rawDate = item.isoDate || item.pubDate;
+          if (!rawDate) continue;
+          const corrected = correctJPostTimezone(rawDate);
+          if (corrected) {
+            const origD = new Date(rawDate);
+            const corrD = new Date(corrected);
+            const offsetMin = Math.round((origD - corrD) / 60000);
+            item._correctedDate = corrected;
+            if (Math.abs(offsetMin) > 1) {
+              const agoMin = Math.round((nowMs - corrD.getTime()) / 60000);
+              console.log(`  🕐 ${feed.name}: TZ-fixed "${(item.title||'').slice(0,50)}" −${offsetMin}min → ${corrected} (${agoMin >= 0 ? agoMin + 'min ago' : 'future by ' + Math.abs(agoMin) + 'min'})`);
             }
           }
         }
       }
 
-      // Remove any items flagged for dropping (pre-scheduled future articles we couldn't scrape).
-      // Collect URLs of articles to purge from the persistent archive (they may have been
-      // stored in a previous run with a fake "clamped to now" timestamp).
-      const droppedItems = items.filter(item => item._dropArticle);
-      const purgeUrls = droppedItems
-        .filter(item => item._purgeFromArchive)
-        .map(item => item.link)
-        .filter(Boolean);
-      if (droppedItems.length > 0) {
-        console.log(`  🚫 ${feed.name}: dropped ${droppedItems.length} pre-scheduled article(s) with unresolvable future dates`);
-        items = items.filter(item => !item._dropArticle);
-      }
+      const purgeUrls = []; // No articles dropped — timezone correction handles all cases
 
       const articles = items.map(item => {
         // --- Date normalization ---
@@ -357,26 +356,20 @@ async function fetchSingleFeed(feed) {
             parsedDate = new Date('2000-01-01T00:00:00Z').toISOString();
             isInvalid = true;
           } else if (d.getTime() > Date.now()) {
-            // pubDate is in the future
+            // pubDate is in the future after literal parsing
             if (item._correctedDate) {
-              // Use the real date scraped from the article page
-              parsedDate = item._correctedDate; // already ISO from fetchRealPublishDate
-            } else if (feed.fixFutureDates) {
-              // fixFutureDates feed but scrape failed — this item should have been dropped
-              // above via _dropArticle. If we somehow reach here, use sentinel past date
-              // so it NEVER shows as breaking news. This is a safety net only.
-              parsedDate = new Date('2000-01-01T00:00:00Z').toISOString();
-              isInvalid = true;
-              console.warn(`  ⚠️  ${feed.name}: safety-net sentinel for item that escaped drop filter: ${(item.title||'').slice(0,60)}`);
+              // Use the timezone-corrected date (correctJPostTimezone already ran)
+              parsedDate = item._correctedDate;
             } else {
-              // Feed with unexpected future date — clamp to now
+              // Non-JPost feed with unexpected future date — clamp to now
               parsedDate = new Date().toISOString();
               console.log(`  ⏰ Future pubDate clamped to now for: ${item.title ? item.title.slice(0, 60) : 'unknown'}`);
             }
           } else {
-            // Normal past date — normalise to strict ISO UTC string regardless of
-            // whether input was RFC 2822, ISO with offset, etc.
-            parsedDate = d.toISOString();
+            // Normal past date — prefer timezone-corrected value if available
+            // (for JPost items that parsed as past but still had mislabeled TZ),
+            // otherwise normalise to strict ISO UTC string.
+            parsedDate = item._correctedDate || d.toISOString();
           }
         }
 
