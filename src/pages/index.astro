@@ -210,9 +210,13 @@ const generatedAt = new Date().toISOString();
       const chevron = el.querySelector('.expand-chevron') as HTMLElement | null;
 
       el.addEventListener('click', (e: Event) => {
-        // Don't toggle if clicking share button or the Read Full Article link
+        // Don't toggle if clicking share button or the Read Full Article button
         const target = e.target as HTMLElement;
-        if (target.closest('.share-btn') || target.closest('a.btn-primary')) return;
+        if (target.closest('.share-btn') || target.closest('.read-full-btn')) return;
+
+        // Prevent any default browser behaviour (iOS Universal Links, etc.)
+        e.preventDefault();
+        e.stopPropagation();
 
         if (hasSnippet && expandArea) {
           const isOpen = el.classList.contains('expanded');
@@ -230,10 +234,21 @@ const generatedAt = new Date().toISOString();
             if (chevron) chevron.style.transform = 'rotate(180deg)';
           }
         } else if (!hasSnippet) {
-          // No snippet — navigate directly like old behavior
+          // No snippet — navigate directly via JS (avoids Universal Link hijacking)
           const link = el.dataset.link;
           if (link) window.open(link, '_blank', 'noopener');
         }
+      });
+    });
+
+    // ===== READ FULL ARTICLE BUTTONS (JS-driven navigation) =====
+    // Uses <button> + data-href instead of <a href> to prevent iOS Universal Links
+    // from hijacking taps before JS can handle the expand/collapse toggle.
+    document.querySelectorAll('.read-full-btn').forEach(btn => {
+      btn.addEventListener('click', (e: Event) => {
+        e.stopPropagation();
+        const href = (btn as HTMLElement).dataset.href;
+        if (href) window.open(href, '_blank', 'noopener');
       });
     });
 
