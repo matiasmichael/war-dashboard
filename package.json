@@ -17,8 +17,12 @@
   "type": "commonjs",
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
+    "@tailwindcss/vite": "^4.2.2",
     "astro": "^6.1.5",
+    "daisyui": "^5.5.19",
     "express": "^5.2.1",
-    "rss-parser": "^3.13.0"
+    "puppeteer": "^24.40.0",
+    "rss-parser": "^3.13.0",
+    "tailwindcss": "^4.2.2"
   }
 }

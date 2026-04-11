@@ -43,7 +43,7 @@ function isTopStory(title: string): boolean {
 // Get unique sources for filter bar
 const sources = [...new Set(articles.map((a: any) => a.source))];
 
-// Read FEEDS config for filter bar metadata (from JSON to avoid CJS/ESM issues)
+// Read FEEDS config for filter bar metadata
 import feedsData from '../feeds.json';
 const feeds = feedsData;
 
@@ -54,7 +54,7 @@ const generatedAt = new Date().toISOString();
 <Base title="Iran War Update — Live News Dashboard" generatedAt={generatedAt}>
   <Header />
 
-  <div class="container">
+  <div class="max-w-[680px] mx-auto px-3 sm:px-4 pb-12 pt-2">
     <SitrepCard sitrep={sitrep} />
     <FilterBar sources={sources} feeds={feeds} articleCount={articleCount} />
     <div id="articles">
@@ -65,10 +65,12 @@ const generatedAt = new Date().toISOString();
   </div>
 
   <!-- Back to top button -->
-  <button class="back-to-top" id="backToTop">↑</button>
+  <button class="btn btn-circle btn-primary fixed bottom-8 right-4 z-40 shadow-lg text-lg hidden" id="backToTop" style="bottom: calc(2rem + env(safe-area-inset-bottom, 0px))">↑</button>
 
   <!-- Update toast -->
-  <div class="update-toast" id="updateToast">🔄 New updates available — tap to refresh</div>
+  <div class="toast toast-top toast-center z-50 pointer-events-none" id="updateToastWrapper" style="display:none; top: calc(70px + env(safe-area-inset-top, 0px))">
+    <div class="alert bg-neutral text-neutral-content shadow-xl cursor-pointer rounded-full py-2 px-5 text-[0.82rem] font-medium pointer-events-auto" id="updateToast">🔄 New updates available — tap to refresh</div>
+  </div>
 
   <Footer />
 
@@ -120,28 +122,53 @@ const generatedAt = new Date().toISOString();
         freshLabel.textContent = 'Updated ' + diffHours + 'h ago';
       }
 
-      dot.classList.remove('fresh', 'recent', 'stale');
+      // Remove all live-dot classes and apply the right one
+      dot.className = dot.className.replace(/live-dot-\w+/g, '').trim();
       if (diffMins < 15) {
-        dot.classList.add('fresh');
+        dot.classList.add('live-dot-fresh');
       } else if (diffMins < 60) {
-        dot.classList.add('recent');
+        dot.classList.add('live-dot-recent');
       } else {
-        dot.classList.add('stale');
+        dot.classList.add('live-dot-stale');
+        dot.style.background = '#999';
       }
     }
     updateFreshness();
     setInterval(updateFreshness, 30000);
 
     // ===== CARD TOGGLE =====
-    document.querySelectorAll('.card').forEach(card => {
+    document.querySelectorAll('.card[data-source]').forEach(card => {
       card.addEventListener('click', (e: Event) => {
         const target = e.target as HTMLElement;
         if (target.closest('a')) return;
         if (target.closest('.share-btn')) return;
-        card.classList.toggle('expanded');
-        const btn = card.querySelector('.expand-btn');
-        if (btn) {
-          btn.textContent = card.classList.contains('expanded') ? 'Show less' : 'Read more';
+
+        const isExpanded = card.classList.contains('expanded');
+
+        if (isExpanded) {
+          card.classList.remove('expanded');
+          const titleEl = card.querySelector('.card-title-text');
+          if (titleEl) titleEl.classList.add('line-clamp-3');
+          const shortEl = card.querySelector('.card-snippet-short');
+          const fullEl = card.querySelector('.card-snippet-full');
+          if (shortEl) shortEl.classList.remove('hidden');
+          if (fullEl) fullEl.classList.add('hidden');
+          const sourceLink = card.querySelector('.source-link');
+          if (sourceLink) sourceLink.classList.add('hidden');
+          const btn = card.querySelector('.expand-btn');
+          if (btn) btn.textContent = 'Read more';
+        } else {
+          card.classList.add('expanded');
+          const titleEl = card.querySelector('.card-title-text');
+          if (titleEl) titleEl.classList.remove('line-clamp-3');
+          const shortEl = card.querySelector('.card-snippet-short');
+          const fullEl = card.querySelector('.card-snippet-full');
+          if (shortEl) shortEl.classList.add('hidden');
+          if (fullEl) fullEl.classList.remove('hidden');
+          const sourceLink = card.querySelector('.source-link');
+          if (sourceLink) sourceLink.classList.remove('hidden');
+          const btn = card.querySelector('.expand-btn');
+          if (btn) btn.textContent = 'Show less';
         }
       });
     });
@@ -151,7 +178,7 @@ const generatedAt = new Date().toISOString();
     let activeTimeFilter: string | null = null;
 
     function applyFilters(): void {
-      const cards = document.querySelectorAll('.card');
+      const cards = document.querySelectorAll('.card[data-source]');
       let visible = 0;
       const now = new Date();
       cards.forEach(function(card) {
@@ -197,8 +224,14 @@ const generatedAt = new Date().toISOString();
     // Source filter buttons
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+        // Remove active state from all source filters
+        document.querySelectorAll('.filter-btn').forEach(b => {
+          b.classList.remove('btn-primary');
+          b.classList.add('btn-ghost', 'border', 'border-base-300', 'text-text-muted');
+        });
+        // Set active
+        btn.classList.add('btn-primary');
+        btn.classList.remove('btn-ghost', 'border', 'border-base-300', 'text-text-muted');
         activeSourceFilter = (btn as HTMLElement).dataset.source || 'all';
         applyFilters();
       });
@@ -207,12 +240,15 @@ const generatedAt = new Date().toISOString();
     // Time filter buttons
     document.querySelectorAll('.time-filter-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        const wasActive = btn.classList.contains('active');
-        document.querySelectorAll('.time-filter-btn').forEach(b => b.classList.remove('active'));
+        const wasActive = btn.classList.contains('btn-primary') && !btn.classList.contains('btn-outline');
+        // Reset all time buttons
+        document.querySelectorAll('.time-filter-btn').forEach(b => {
+          b.classList.add('btn-outline');
+        });
         if (wasActive) {
           activeTimeFilter = null;
         } else {
-          btn.classList.add('active');
+          btn.classList.remove('btn-outline');
           activeTimeFilter = (btn as HTMLElement).dataset.time || null;
         }
         applyFilters();
@@ -230,8 +266,8 @@ const generatedAt = new Date().toISOString();
           navigator.share({ title, url }).catch(() => {});
         } else {
           navigator.clipboard.writeText(url).then(() => {
-            el.classList.add('copied');
-            setTimeout(() => el.classList.remove('copied'), 1500);
+            el.classList.add('text-success');
+            setTimeout(() => el.classList.remove('text-success'), 1500);
           }).catch(() => {});
         }
       });
@@ -245,19 +281,22 @@ const generatedAt = new Date().toISOString();
       });
       window.addEventListener('scroll', () => {
         if (window.scrollY > 500) {
-          backToTopBtn.classList.add('visible');
+          backToTopBtn.classList.remove('hidden');
+          backToTopBtn.classList.add('flex');
         } else {
-          backToTopBtn.classList.remove('visible');
+          backToTopBtn.classList.add('hidden');
+          backToTopBtn.classList.remove('flex');
         }
       });
     }
 
     // ===== UPDATE TOAST (show after 1 hour) =====
     const updateToast = document.getElementById('updateToast');
-    if (updateToast) {
+    const updateToastWrapper = document.getElementById('updateToastWrapper');
+    if (updateToast && updateToastWrapper) {
       updateToast.addEventListener('click', () => location.reload());
       setTimeout(() => {
-        updateToast.classList.add('visible');
+        updateToastWrapper.style.display = '';
       }, 1 * 60 * 60 * 1000);
     }
   </script>
