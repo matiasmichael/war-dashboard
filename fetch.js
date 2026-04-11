@@ -364,14 +364,12 @@ function generateHTML(articles, sourceStats, situationReportData) {
 
     /* ===== HEADER ===== */
     .header {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 1.25rem 1.5rem 1rem;
+      background: var(--text);
+      border-bottom: none;
+      padding: 0;
       position: sticky;
       top: 0;
       z-index: 100;
-      backdrop-filter: blur(12px);
-      background: rgba(255,255,255,0.92);
     }
 
     .header-inner {
@@ -379,25 +377,65 @@ function generateHTML(articles, sourceStats, situationReportData) {
       margin: 0 auto;
     }
 
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.65rem 1.25rem 0.55rem;
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
     .header h1 {
-      font-size: 1.35rem;
+      font-size: 1.15rem;
       font-weight: 700;
       letter-spacing: -0.03em;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      color: var(--text);
+      gap: 0.4rem;
+      color: #fff;
+      margin: 0;
     }
 
     .header-time {
-      font-size: 0.78rem;
+      font-size: 0.7rem;
       font-weight: 400;
-      color: var(--text-muted);
+      color: rgba(255,255,255,0.5);
+      display: block;
+      margin-top: 0.1rem;
+    }
+
+    .header-archive-link {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: color 0.15s;
+      padding: 0.35rem 0.65rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .header-archive-link:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.14);
+    }
+
+    .header-accent-bar {
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-gold));
     }
 
     .live-dot {
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       background: var(--accent);
       border-radius: 50%;
       display: inline-block;
@@ -410,16 +448,29 @@ function generateHTML(articles, sourceStats, situationReportData) {
       50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(232,115,44,0); }
     }
 
+    /* ===== ARTICLES SECTION DIVIDER ===== */
+    .articles-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 0 0.35rem;
+      margin-bottom: 0;
+    }
 
+    .articles-section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+    }
 
     /* ===== FILTER BAR ===== */
     .filter-bar {
       display: flex;
       flex-wrap: nowrap;
       gap: 0.4rem;
-      padding: 0.75rem 1.5rem;
-      max-width: 680px;
-      margin: 0 auto;
+      padding: 0.35rem 0;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
@@ -770,34 +821,50 @@ function generateHTML(articles, sourceStats, situationReportData) {
         scroll-padding-top: 64px;
       }
 
-      /* --- Sticky header: ultra compact single row --- */
-      .header {
+      /* --- Sticky header: dark, bold, compact --- */
+      .header-top {
         padding: 0.5rem 1rem;
         padding-top: calc(0.5rem + env(safe-area-inset-top, 0px));
-        border-bottom: 1px solid var(--border);
       }
 
       .header h1 {
         font-size: 1.05rem;
-        gap: 0.35rem;
+        gap: 0.3rem;
       }
 
       .header-time {
-        font-size: 0.72rem;
+        font-size: 0.68rem;
       }
 
       .live-dot {
-        width: 7px;
-        height: 7px;
+        width: 6px;
+        height: 6px;
+      }
+
+      .header-archive-link {
+        font-size: 0.72rem;
+        padding: 0.3rem 0.55rem;
+      }
+
+      .header-accent-bar {
+        height: 2px;
       }
 
       /* --- Filter bar: proper tap targets + scroll hint --- */
       .filter-bar {
-        padding: 0.5rem 1rem;
+        padding: 0.35rem 0;
         gap: 0.5rem;
         /* Fade hint on right edge to signal scrollability */
         -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
         mask-image: linear-gradient(to right, black 85%, transparent 100%);
+      }
+
+      .articles-section-header {
+        padding: 0.65rem 0 0.25rem;
+      }
+
+      .articles-section-label {
+        font-size: 0.68rem;
       }
 
       .filter-btn {
@@ -980,9 +1047,9 @@ function generateHTML(articles, sourceStats, situationReportData) {
     /* Small phones (iPhone SE / 375px and below) */
     @media (max-width: 375px) {
       .header h1 { font-size: 0.95rem; }
-      .header .subtitle { font-size: 0.68rem; }
+      .header-archive-link { font-size: 0.68rem; padding: 0.25rem 0.45rem; }
       .container { padding: 0.4rem 0.65rem 2rem; }
-      .filter-bar { padding: 0.5rem 0.65rem; }
+      .filter-bar { padding: 0.35rem 0; }
       .card { padding: 0.8rem 0.85rem; }
       .card-avatar { width: 32px; height: 32px; }
       .publisher-logo, .publisher-logo-fallback { width: 32px; height: 32px; }
@@ -999,21 +1066,14 @@ function generateHTML(articles, sourceStats, situationReportData) {
 <body>
   <div class="header">
     <div class="header-inner">
-      <h1><span class="live-dot"></span> Iran War Update <span class="header-time">· updated ${lastUpdateAgo}</span></h1>
-      <div style="display:flex;gap:0.75rem;margin-top:0.3rem">
-        <a href="/archive.html" style="font-size:0.75rem;color:var(--text-muted);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:0.3rem;transition:color 0.15s" onmouseover="this.style.color='#E8732C'" onmouseout="this.style.color='#7A746D'">📅 Daily Archive</a>
+      <div class="header-top">
+        <div class="header-brand">
+          <h1><span class="live-dot"></span> Iran War Update</h1>
+        </div>
+        <a href="/archive.html" class="header-archive-link">📅 Archive</a>
       </div>
+      <div class="header-accent-bar"></div>
     </div>
-  </div>
-
-  <div class="filter-bar">
-    <button class="filter-btn active" onclick="filterSource('all')">All</button>
-    ${[...new Set(articles.map(a => a.source))].map(s => {
-      const logoUrl = PUBLISHER_LOGOS[s] || '';
-      const shortName = SHORT_NAMES[s] || s;
-      const logoImg = logoUrl ? `<img src="${logoUrl}" class="filter-logo" alt="">` : '';
-      return `<button class="filter-btn" onclick="filterSource('${s}')">${logoImg} ${escapeHtml(shortName)}</button>`;
-    }).join('\n    ')}
   </div>
 
   <div class="container">
@@ -1038,7 +1098,19 @@ function generateHTML(articles, sourceStats, situationReportData) {
       <p class="sitrep-footer">AI-synthesized briefing · All sources</p>
     </div>
   ` : ''}
-    <p class="article-count" id="articleCount">${articles.length} articles from ${sourceStats.filter(s => !s.error).length} sources</p>
+    <div class="articles-section-header">
+      <span class="articles-section-label">Latest Articles</span>
+      <span class="articles-section-label" id="articleCount" style="font-weight:400">${articles.length} articles · ${sourceStats.filter(s => !s.error).length} sources</span>
+    </div>
+    <div class="filter-bar" id="articleFilterBar">
+      <button class="filter-btn active" onclick="filterSource('all')">All</button>
+      ${[...new Set(articles.map(a => a.source))].map(s => {
+        const logoUrl = PUBLISHER_LOGOS[s] || '';
+        const shortName = SHORT_NAMES[s] || s;
+        const logoImg = logoUrl ? `<img src="${logoUrl}" class="filter-logo" alt="">` : '';
+        return `<button class="filter-btn" onclick="filterSource('${s}')">${logoImg} ${escapeHtml(shortName)}</button>`;
+      }).join('\n      ')}
+    </div>
     <div id="articles">
       ${articleCards}
     </div>
