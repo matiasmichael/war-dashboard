@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "fetch": "node fetch.js",
+    "serve": "node server.js",
+    "update": "node fetch.js && astro build"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +17,7 @@
   "type": "commonjs",
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
+    "astro": "^6.1.5",
     "express": "^5.2.1",
     "rss-parser": "^3.13.0"
   }

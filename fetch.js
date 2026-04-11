@@ -1,12 +1,11 @@
 // ===== ENTRY POINT =====
-// Orchestrates: fetch feeds → persist → synthesize → render HTML.
+// Orchestrates: fetch feeds → persist → synthesize → save JSON for Astro.
 
 const fs = require('fs');
 const path = require('path');
 const { fetchAllFeeds } = require('./src/fetcher');
 const { synthesizeReport } = require('./src/synthesizer');
 const { persistDailyArticles } = require('./src/persistence');
-const { generateHTML } = require('./src/renderer');
 const { atomicWriteSync } = require('./src/utils');
 
 async function main() {
@@ -20,15 +19,24 @@ async function main() {
   persistDailyArticles(articles);
 
   const situationReportData = await synthesizeReport(articles);
-  const html = generateHTML(articles, sourceStats, situationReportData);
 
-  const outPath = path.join(__dirname, 'public', 'index.html');
+  // Save processed data as JSON for Astro to consume at build time
+  const dataOut = {
+    articles,
+    sourceStats,
+    sitrep: situationReportData,
+    generatedAt: new Date().toISOString()
+  };
+
+  const outPath = path.join(__dirname, 'src', 'data', 'latest.json');
   fs.mkdirSync(path.dirname(outPath), { recursive: true });
-  // Atomic write for generated HTML (Item #9)
-  atomicWriteSync(outPath, html);
+  atomicWriteSync(outPath, JSON.stringify(dataOut, null, 2));
 
-  console.log(`✅ Generated: ${outPath}`);
-  console.log(`   Size: ${(Buffer.byteLength(html) / 1024).toFixed(1)} KB`);
+  console.log(`✅ Data saved: ${outPath}`);
+  console.log(`   Size: ${(Buffer.byteLength(JSON.stringify(dataOut)) / 1024).toFixed(1)} KB`);
+  console.log(`   Articles: ${articles.length}`);
+  console.log(`   Sitrep: ${situationReportData ? 'yes' : 'no'}`);
+  console.log('\n📦 Run "npm run build" to generate the static site.');
   process.exit(0);
 }
 

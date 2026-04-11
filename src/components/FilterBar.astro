@@ -1,0 +1,59 @@
+---
+interface FeedConfig {
+  name: string;
+  shortName: string;
+  faviconDomain: string;
+}
+
+interface Props {
+  sources: string[];
+  feeds: FeedConfig[];
+  articleCount: string;
+}
+
+const { sources, feeds, articleCount } = Astro.props;
+
+function getFaviconUrl(domain: string): string {
+  return `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+}
+
+function escapeHtml(str: string): string {
+  if (!str) return '';
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+// Build shortName and favicon lookup from FEEDS config
+const feedMap: Record<string, FeedConfig> = {};
+for (const f of feeds) {
+  feedMap[f.name] = f;
+}
+---
+
+<div class="articles-section-header">
+  <span class="articles-section-label">Latest Articles</span>
+  <span class="articles-section-label" id="articleCount" style="font-weight:400">{articleCount}</span>
+</div>
+<div class="filter-bar" id="articleFilterBar">
+  <button class="time-filter-btn" data-time="1h">Last 1h</button>
+  <button class="time-filter-btn" data-time="3h">Last 3h</button>
+  <button class="time-filter-btn" data-time="6h">Last 6h</button>
+  <button class="time-filter-btn" data-time="today">Today</button>
+  <span class="time-filter-sep"></span>
+  <button class="filter-btn active" data-source="all">All</button>
+  {sources.map(s => {
+    const feed = feedMap[s];
+    const shortName = feed ? feed.shortName : s;
+    const logoUrl = feed ? getFaviconUrl(feed.faviconDomain) : '';
+    return (
+      <button class="filter-btn" data-source={s}>
+        {logoUrl && <img src={logoUrl} class="filter-logo" alt="" />}
+        {shortName}
+      </button>
+    );
+  })}
+</div>

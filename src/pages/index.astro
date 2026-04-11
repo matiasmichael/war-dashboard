@@ -1,0 +1,264 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import SitrepCard from '../components/SitrepCard.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import FilterBar from '../components/FilterBar.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+// Read data at build time
+import fs from 'node:fs';
+import path from 'node:path';
+
+const dataPath = path.join(process.cwd(), 'src', 'data', 'latest.json');
+let articles: any[] = [];
+let sourceStats: any[] = [];
+let sitrep: any = null;
+
+if (fs.existsSync(dataPath)) {
+  const raw = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
+  articles = raw.articles || [];
+  sourceStats = raw.sourceStats || [];
+  sitrep = raw.sitrep || null;
+}
+
+// Build top story detection from sitrep
+const topHeadlineKeywords = (sitrep?.top_updates || []).map((u: any) => {
+  return (u.headline || '').toLowerCase().split(/\s+/).filter((w: string) =>
+    w.length >= 4 && !['that','this','with','from','they','have','been','more','also','into','than','said'].includes(w)
+  );
+});
+
+function isTopStory(title: string): boolean {
+  const titleLower = (title || '').toLowerCase();
+  for (const keywords of topHeadlineKeywords) {
+    if (keywords.length === 0) continue;
+    const matches = keywords.filter((kw: string) => titleLower.includes(kw));
+    if (matches.length >= 2) return true;
+  }
+  return false;
+}
+
+// Get unique sources for filter bar
+const sources = [...new Set(articles.map((a: any) => a.source))];
+
+// Read FEEDS config for filter bar metadata (from JSON to avoid CJS/ESM issues)
+import feedsData from '../feeds.json';
+const feeds = feedsData;
+
+const articleCount = `${articles.length} articles · ${sourceStats.filter((s: any) => !s.error).length} sources`;
+const generatedAt = new Date().toISOString();
+---
+
+<Base title="Iran War Update — Live News Dashboard" generatedAt={generatedAt}>
+  <Header />
+
+  <div class="container">
+    <SitrepCard sitrep={sitrep} />
+    <FilterBar sources={sources} feeds={feeds} articleCount={articleCount} />
+    <div id="articles">
+      {articles.map((article: any, idx: number) => (
+        <ArticleCard article={article} idx={idx} isTopStory={isTopStory(article.title)} />
+      ))}
+    </div>
+  </div>
+
+  <!-- Back to top button -->
+  <button class="back-to-top" id="backToTop">↑</button>
+
+  <!-- Update toast -->
+  <div class="update-toast" id="updateToast">🔄 New updates available — tap to refresh</div>
+
+  <Footer />
+
+  <script>
+    // ===== LIVE TIMESTAMP RE-COMPUTATION =====
+    function computeTimeAgo(dateStr: string): string {
+      const now = new Date();
+      const date = new Date(dateStr);
+      const diffMs = now.getTime() - date.getTime();
+      const diffMins = Math.floor(diffMs / 60000);
+      const diffHours = Math.floor(diffMs / 3600000);
+      const diffDays = Math.floor(diffMs / 86400000);
+      if (diffMins < 1) return 'just now';
+      if (diffMins < 60) return diffMins + 'm ago';
+      if (diffHours < 24) return diffHours + 'h ago';
+      if (diffDays < 7) return diffDays + 'd ago';
+      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    }
+
+    function refreshAllTimestamps(): void {
+      document.querySelectorAll('.time-ago[data-date]').forEach(function(el) {
+        const dateAttr = el.getAttribute('data-date');
+        if (dateAttr) el.textContent = computeTimeAgo(dateAttr);
+      });
+    }
+
+    refreshAllTimestamps();
+    setInterval(refreshAllTimestamps, 30000);
+
+    // ===== PAGE FRESHNESS SIGNAL =====
+    function updateFreshness(): void {
+      const meta = document.querySelector('meta[name="data-generated-at"]');
+      if (!meta) return;
+      const generatedAt = new Date(meta.getAttribute('content') || '');
+      const now = new Date();
+      const diffMs = now.getTime() - generatedAt.getTime();
+      const diffMins = Math.floor(diffMs / 60000);
+      const dot = document.getElementById('liveDot');
+      const freshLabel = document.getElementById('headerFreshness');
+
+      if (!dot || !freshLabel) return;
+
+      if (diffMins < 1) {
+        freshLabel.textContent = 'Updated just now';
+      } else if (diffMins < 60) {
+        freshLabel.textContent = 'Updated ' + diffMins + 'm ago';
+      } else {
+        const diffHours = Math.floor(diffMins / 60);
+        freshLabel.textContent = 'Updated ' + diffHours + 'h ago';
+      }
+
+      dot.classList.remove('fresh', 'recent', 'stale');
+      if (diffMins < 15) {
+        dot.classList.add('fresh');
+      } else if (diffMins < 60) {
+        dot.classList.add('recent');
+      } else {
+        dot.classList.add('stale');
+      }
+    }
+    updateFreshness();
+    setInterval(updateFreshness, 30000);
+
+    // ===== CARD TOGGLE =====
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', (e: Event) => {
+        const target = e.target as HTMLElement;
+        if (target.closest('a')) return;
+        if (target.closest('.share-btn')) return;
+        card.classList.toggle('expanded');
+        const btn = card.querySelector('.expand-btn');
+        if (btn) {
+          btn.textContent = card.classList.contains('expanded') ? 'Show less' : 'Read more';
+        }
+      });
+    });
+
+    // ===== SOURCE & TIME FILTERS =====
+    let activeSourceFilter = 'all';
+    let activeTimeFilter: string | null = null;
+
+    function applyFilters(): void {
+      const cards = document.querySelectorAll('.card');
+      let visible = 0;
+      const now = new Date();
+      cards.forEach(function(card) {
+        const el = card as HTMLElement;
+        let sourceMatch = true;
+        let timeMatch = true;
+
+        if (activeSourceFilter !== 'all') {
+          sourceMatch = el.getAttribute('data-source') === activeSourceFilter;
+        }
+
+        if (activeTimeFilter) {
+          const dateStr = el.getAttribute('data-date');
+          if (dateStr) {
+            const articleDate = new Date(dateStr);
+            const diffMs = now.getTime() - articleDate.getTime();
+            const diffHours = diffMs / 3600000;
+            if (activeTimeFilter === '1h') {
+              timeMatch = diffHours <= 1;
+            } else if (activeTimeFilter === '3h') {
+              timeMatch = diffHours <= 3;
+            } else if (activeTimeFilter === '6h') {
+              timeMatch = diffHours <= 6;
+            } else if (activeTimeFilter === 'today') {
+              const todayStr = now.toLocaleDateString('en-CA', { timeZone: 'Asia/Jerusalem' });
+              const articleDayStr = articleDate.toLocaleDateString('en-CA', { timeZone: 'Asia/Jerusalem' });
+              timeMatch = todayStr === articleDayStr;
+            }
+          }
+        }
+
+        if (sourceMatch && timeMatch) {
+          el.style.display = '';
+          visible++;
+        } else {
+          el.style.display = 'none';
+        }
+      });
+      const countEl = document.getElementById('articleCount');
+      if (countEl) countEl.textContent = visible + ' articles shown';
+    }
+
+    // Source filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeSourceFilter = (btn as HTMLElement).dataset.source || 'all';
+        applyFilters();
+      });
+    });
+
+    // Time filter buttons
+    document.querySelectorAll('.time-filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const wasActive = btn.classList.contains('active');
+        document.querySelectorAll('.time-filter-btn').forEach(b => b.classList.remove('active'));
+        if (wasActive) {
+          activeTimeFilter = null;
+        } else {
+          btn.classList.add('active');
+          activeTimeFilter = (btn as HTMLElement).dataset.time || null;
+        }
+        applyFilters();
+      });
+    });
+
+    // ===== SHARE BUTTON =====
+    document.querySelectorAll('.share-btn').forEach(btn => {
+      btn.addEventListener('click', (e: Event) => {
+        e.stopPropagation();
+        const el = btn as HTMLElement;
+        const title = el.dataset.title || '';
+        const url = el.dataset.url || '';
+        if (navigator.share) {
+          navigator.share({ title, url }).catch(() => {});
+        } else {
+          navigator.clipboard.writeText(url).then(() => {
+            el.classList.add('copied');
+            setTimeout(() => el.classList.remove('copied'), 1500);
+          }).catch(() => {});
+        }
+      });
+    });
+
+    // ===== BACK TO TOP BUTTON =====
+    const backToTopBtn = document.getElementById('backToTop');
+    if (backToTopBtn) {
+      backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+          backToTopBtn.classList.add('visible');
+        } else {
+          backToTopBtn.classList.remove('visible');
+        }
+      });
+    }
+
+    // ===== UPDATE TOAST (show after 1 hour) =====
+    const updateToast = document.getElementById('updateToast');
+    if (updateToast) {
+      updateToast.addEventListener('click', () => location.reload());
+      setTimeout(() => {
+        updateToast.classList.add('visible');
+      }, 1 * 60 * 60 * 1000);
+    }
+  </script>
+</Base>

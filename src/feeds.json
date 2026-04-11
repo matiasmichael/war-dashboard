@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Ynet News",
+    "shortName": "Ynet",
+    "faviconDomain": "ynet.co.il"
+  },
+  {
+    "name": "Haaretz",
+    "shortName": "Haaretz",
+    "faviconDomain": "haaretz.com"
+  },
+  {
+    "name": "CNN",
+    "shortName": "CNN",
+    "faviconDomain": "cnn.com"
+  },
+  {
+    "name": "Fox News",
+    "shortName": "Fox",
+    "faviconDomain": "foxnews.com"
+  },
+  {
+    "name": "BBC News",
+    "shortName": "BBC",
+    "faviconDomain": "bbc.com"
+  },
+  {
+    "name": "Al Jazeera",
+    "shortName": "Al Jaz",
+    "faviconDomain": "aljazeera.com"
+  },
+  {
+    "name": "NPR",
+    "shortName": "NPR",
+    "faviconDomain": "npr.org"
+  },
+  {
+    "name": "Times of Israel",
+    "shortName": "ToI",
+    "faviconDomain": "timesofisrael.com"
+  },
+  {
+    "name": "Jerusalem Post",
+    "shortName": "J. Post",
+    "faviconDomain": "jpost.com"
+  }
+]

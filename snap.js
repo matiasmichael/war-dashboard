@@ -5,7 +5,7 @@ const puppeteer = require('puppeteer');
   // Screenshot 1: Archive page (Daily Briefing)
   const archivePage = await browser.newPage();
   await archivePage.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true, deviceScaleFactor: 2 });
-  await archivePage.goto('https://war.hmviva.us/archive.html', { waitUntil: 'networkidle2', timeout: 20000 });
+  await archivePage.goto('https://war.hmviva.us/archive/', { waitUntil: 'networkidle2', timeout: 20000 });
   // Wait a bit for briefing to load
   await new Promise(r => setTimeout(r, 2000));
   await archivePage.screenshot({ path: '/Users/michaelmatias/.openclaw/media/war-archive.png', fullPage: true });

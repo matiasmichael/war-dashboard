@@ -1,5 +1,7 @@
 node_modules/
-public/index.html
+dist/
+src/data/latest.json
 .DS_Store
 data/last-error.json
 *.tmp
+.astro/

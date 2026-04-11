@@ -1,5 +1,5 @@
 // ===== HTTP SERVER =====
-// Serves the dashboard and archive API. Uses shared config for PORT (Item #12).
+// Serves the Astro-built static site from dist/ and archive API.
 
 const express = require('express');
 const path = require('path');
@@ -8,11 +8,16 @@ const { PORT } = require('./src/config');
 
 const app = express();
 
-// Serve static files from public/ (includes style.css, app.js, template.html, index.html)
-app.use(express.static(path.join(__dirname, 'public'), {
+// Serve static files from dist/ (Astro build output)
+app.use(express.static(path.join(__dirname, 'dist'), {
   maxAge: '5m',
   etag: true
 }));
+
+// Redirect old archive.html URL to new Astro route
+app.get('/archive.html', (req, res) => {
+  res.redirect(301, '/archive/' + (req.url.includes('#') ? req.url.split('#')[1] : ''));
+});
 
 // Serve data directory for static file access from archive page
 app.use('/data', express.static(path.join(__dirname, 'data'), {
@@ -65,5 +70,5 @@ app.get('/health', (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`🔶 Iran War Update server running on port ${PORT}`);
   console.log(`   http://localhost:${PORT}`);
-  console.log(`   Daily Briefing: http://localhost:${PORT}/archive.html`);
+  console.log(`   Daily Briefing: http://localhost:${PORT}/archive`);
 });

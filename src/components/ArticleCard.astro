@@ -1,0 +1,97 @@
+---
+interface Props {
+  article: {
+    title: string;
+    link: string;
+    snippet: string;
+    date: string;
+    source: string;
+    logo: string;
+    color: string;
+    publisherLogo: string;
+    noDate?: boolean;
+  };
+  idx: number;
+  isTopStory: boolean;
+}
+
+const { article: a, idx, isTopStory } = Astro.props;
+
+const SNIPPET_LENGTH = 120;
+
+function escapeHtml(str: string): string {
+  if (!str) return '';
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function truncateSnippet(text: string, len: number): string {
+  if (!text || text.length <= len) return text || '';
+  return text.slice(0, len).replace(/\s+\S*$/, '') + '…';
+}
+
+function timeAgo(dateStr: string): string {
+  const now = new Date();
+  const date = new Date(dateStr);
+  const diffMs = now.getTime() - date.getTime();
+  const diffMins = Math.floor(diffMs / 60000);
+  const diffHours = Math.floor(diffMs / 3600000);
+  const diffDays = Math.floor(diffMs / 86400000);
+  if (diffMins < 1) return 'just now';
+  if (diffMins < 60) return `${diffMins}m ago`;
+  if (diffHours < 24) return `${diffHours}h ago`;
+  if (diffDays < 7) return `${diffDays}d ago`;
+  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+
+const ago = timeAgo(a.date);
+const shortSnippet = escapeHtml(truncateSnippet(a.snippet, SNIPPET_LENGTH));
+const fullSnippet = escapeHtml(a.snippet);
+const hasMore = a.snippet && a.snippet.length > SNIPPET_LENGTH;
+const noDateFlag = a.noDate ? 'true' : undefined;
+---
+
+<div
+  class="card"
+  data-source={a.source}
+  data-date={a.date}
+  data-idx={String(idx)}
+  data-no-date={noDateFlag}
+>
+  <div class="card-inner">
+    <div class="card-avatar">
+      <img src={a.publisherLogo} alt={a.source} class="publisher-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <span class="publisher-logo-fallback" style={`display:none; background:${a.color}`}>{a.logo}</span>
+    </div>
+    <div class="card-body">
+      <div class="card-header">
+        <div class="card-source-row">
+          <span class="source-name" style={`color: ${a.color}`}>{a.source}</span>
+          <span class="dot-sep">·</span>
+          <span class="time-ago" data-date={a.date}>{ago}</span>
+          {isTopStory && <span class="urgency-badge">⚡ Top Story</span>}
+        </div>
+      </div>
+      <h3 class="card-title">{a.title}</h3>
+      {a.snippet && (
+        <>
+          <p class="card-snippet card-snippet-short" set:html={shortSnippet} />
+          {hasMore && <p class="card-snippet card-snippet-full" set:html={fullSnippet} />}
+        </>
+      )}
+      <div class="card-actions">
+        {hasMore && <button class="expand-btn">Read more</button>}
+        <a href={a.link} target="_blank" rel="noopener" class="source-link">
+          Open article ↗
+        </a>
+        <button class="share-btn" data-title={a.title} data-url={a.link} title="Share">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
