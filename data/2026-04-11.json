@@ -22,6 +22,30 @@
     "publisherLogo": "https://www.google.com/s2/favicons?domain=jpost.com&sz=128"
   },
   {
+    "title": "CNN: \"השיחות בפקיסטן יימשכו לתוך הלילה\"",
+    "link": "https://www.ynet.co.il/news/article/bjpm00x003wg",
+    "snippet": "",
+    "date": "2026-04-11T16:35:44.000Z",
+    "source": "Ynet News",
+    "logo": "🇮🇱",
+    "color": "#e74c3c",
+    "accentLight": "#fef2f2",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=ynet.co.il&sz=128",
+    "noDate": false
+  },
+  {
+    "title": "IDF and Hezbollah trade strikes, rockets as Israel and Lebanon gear up for direct talks",
+    "link": "https://www.timesofisrael.com/idf-and-hezbollah-trade-strikes-rockets-as-israel-and-lebanon-gear-up-for-direct-talks/",
+    "snippet": "Military says it struck over 200 targets in past day, with 2 soldiers wounded in south Lebanon combat; 10 Lebanese said killed in IDF strikes; Hezbollah blasts negotiations The post IDF and Hezbollah trade strikes, rockets as Israel and Lebanon gear up for direct talks appeared first on The Times of Israel.",
+    "date": "2026-04-11T16:28:11.000Z",
+    "source": "Times of Israel",
+    "logo": "🕎",
+    "color": "#1a5276",
+    "accentLight": "#eff6ff",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=timesofisrael.com&sz=128",
+    "noDate": false
+  },
+  {
     "title": "אזעקה במטולה",
     "link": "https://www.ynet.co.il/news/article/skichx003bl",
     "snippet": "",
@@ -31,6 +55,18 @@
     "color": "#e74c3c",
     "accentLight": "#fef2f2",
     "publisherLogo": "https://www.google.com/s2/favicons?domain=ynet.co.il&sz=128",
+    "noDate": false
+  },
+  {
+    "title": "Russia-Ukraine Orthodox Easter ceasefire begins",
+    "link": "https://www.aljazeera.com/news/2026/4/11/russia-ukraine-orthodox-easter-ceasefire-begins?traffic_source=rss",
+    "snippet": "Both sides have agreed to observe the temporary truce, as US-led diplomatic efforts to end the war continue to stall.",
+    "date": "2026-04-11T16:09:51.000Z",
+    "source": "Al Jazeera",
+    "logo": "🌍",
+    "color": "#c68e17",
+    "accentLight": "#fefce8",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=aljazeera.com&sz=128",
     "noDate": false
   },
   {

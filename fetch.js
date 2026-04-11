@@ -1,3 +1,6 @@
+const fs = require('fs');
+const path = require('path');
+const RssParser = require('rss-parser');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 // ===== DELTA FRAMING: Load previous sitrep for comparison =====
@@ -100,10 +103,6 @@ RULES:
   }
 }
 
-
-const RssParser = require('rss-parser');
-const fs = require('fs');
-const path = require('path');
 
 const parser = new RssParser({
   timeout: 15000,
@@ -314,6 +313,20 @@ async function fetchAllFeeds() {
 // Israel timezone constant
 const ISRAEL_TZ = 'Asia/Jerusalem';
 
+// ===== HTML SANITIZER: whitelist safe tags from Gemini output =====
+function sanitizeHTML(html) {
+  if (!html) return '';
+  // Remove event attributes (onclick, onerror, onload, etc.)
+  let clean = html.replace(/\s+on\w+\s*=\s*["'][^"']*["']/gi, '');
+  clean = clean.replace(/\s+on\w+\s*=\s*\S+/gi, '');
+  // Remove style attributes
+  clean = clean.replace(/\s+style\s*=\s*["'][^"']*["']/gi, '');
+  // Whitelist approach: only allow specific safe tags
+  // Remove all tags except whitelisted ones
+  clean = clean.replace(/<\/?(?!(?:strong|em|p|br|ul|li|h3|h4)\b)[a-z][a-z0-9]*\b[^>]*>/gi, '');
+  return clean;
+}
+
 function generateHTML(articles, sourceStats, situationReportData) {
   const now = new Date();
   const updatedAt = now.toLocaleString('en-US', {
@@ -378,7 +391,7 @@ function generateHTML(articles, sourceStats, situationReportData) {
               <a href="${a.link}" target="_blank" rel="noopener" class="source-link" onclick="event.stopPropagation();">
                 Open article ↗
               </a>
-              <button class="share-btn" onclick="shareArticle(event, '${escapeHtml(a.title).replace(/'/g, '\\&#39;')}', '${a.link}')" title="Share">
+              <button class="share-btn" data-title="${escapeHtml(a.title)}" data-url="${escapeHtml(a.link)}" onclick="shareArticle(event)" title="Share">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
               </button>
             </div>
@@ -1348,7 +1361,7 @@ function generateHTML(articles, sourceStats, situationReportData) {
   ${situationReportData ? `
     <div class="sitrep-card">
       <div class="sitrep-label">SITUATION REPORT</div>
-      <div class="sitrep-summary">${situationReportData.summary}</div>
+      <div class="sitrep-summary">${sanitizeHTML(situationReportData.summary)}</div>
       <div class="sitrep-top-updates">
         ${(situationReportData.top_updates || []).map(u => `
           <div class="sitrep-update-card">
@@ -1362,7 +1375,7 @@ function generateHTML(articles, sourceStats, situationReportData) {
         <span class="sitrep-expand-chevron">›</span>
       </button>
       <div class="sitrep-detail" id="sitrepDetail">
-        <p>${situationReportData.detailed_analysis || ''}</p>
+        <p>${sanitizeHTML(situationReportData.detailed_analysis || '')}</p>
       </div>
       <p class="sitrep-footer">AI-synthesized briefing · All sources</p>
     </div>
@@ -1541,9 +1554,11 @@ function generateHTML(articles, sourceStats, situationReportData) {
     }
 
     // ===== SHARE BUTTON =====
-    function shareArticle(e, title, url) {
+    function shareArticle(e) {
       e.stopPropagation();
       var btn = e.currentTarget;
+      var title = btn.dataset.title;
+      var url = btn.dataset.url;
       if (navigator.share) {
         navigator.share({ title: title, url: url }).catch(function() {});
       } else {
