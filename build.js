@@ -15,20 +15,54 @@ function main() {
   console.log('[BUILD] 📦 Iran War Update — Build');
   console.log(`[BUILD]    Time: ${new Date().toISOString()}`);
 
-  // --- Read articles from today's data file ---
+  // --- Read articles from today's AND yesterday's data files ---
+  // Loading both prevents a blank dashboard at 12:01am when today's file is nearly empty.
+  // The frontend caps at 100 anyway, so this is purely about having enough content.
   const today = getIsraelDateStr(new Date());
-  const dailyFile = path.join(DATA_DIR, `${today}.json`);
+  const yesterdayDate = new Date();
+  yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+  const yesterday = getIsraelDateStr(yesterdayDate);
+
+  const loadDayFile = (dateStr) => {
+    const filePath = path.join(DATA_DIR, `${dateStr}.json`);
+    if (!fs.existsSync(filePath)) return [];
+    try {
+      const parsed = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+      console.log(`[BUILD] 📰 Loaded ${parsed.length} articles from ${filePath}`);
+      return parsed;
+    } catch (e) {
+      console.warn(`[BUILD] ⚠️  Could not parse ${filePath}: ${e.message}`);
+      return [];
+    }
+  };
+
+  const todayArticles    = loadDayFile(today);
+  const yesterdayArticles = loadDayFile(yesterday);
+
+  if (todayArticles.length === 0 && yesterdayArticles.length === 0) {
+    console.warn(`[BUILD] ⚠️  No data files for today (${today}) or yesterday (${yesterday}). Building with empty articles.`);
+  }
+
+  // Merge, deduplicate by URL, sort descending, cap at 100.
+  // Raw daily JSON files are NOT modified — historical data is fully preserved.
+  const seenLinks = new Set();
+  const rawArticles = [];
+  for (const a of [...todayArticles, ...yesterdayArticles]) {
+    if (!seenLinks.has(a.link)) {
+      seenLinks.add(a.link);
+      rawArticles.push(a);
+    }
+  }
 
   let articles = [];
-  if (fs.existsSync(dailyFile)) {
-    try {
-      articles = JSON.parse(fs.readFileSync(dailyFile, 'utf-8'));
-      console.log(`[BUILD] 📰 Loaded ${articles.length} articles from ${dailyFile}`);
-    } catch (e) {
-      console.warn(`[BUILD] ⚠️  Could not parse ${dailyFile}: ${e.message}`);
+  if (rawArticles.length > 0) {
+    articles = rawArticles
+      .slice()
+      .sort((a, b) => new Date(b.date || b.publishedAt || 0) - new Date(a.date || a.publishedAt || 0))
+      .slice(0, 100);
+    if (rawArticles.length > 100) {
+      console.log(`[BUILD] ✂️  Capped feed at 100 articles (${rawArticles.length - 100} older articles excluded from frontend, raw files untouched)`);
     }
-  } else {
-    console.warn(`[BUILD] ⚠️  No data file for today (${today}). Building with empty articles.`);
   }
 
   // --- Read sitrep ---
