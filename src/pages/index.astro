@@ -205,9 +205,11 @@ const generatedAt = new Date().toISOString();
     });
 
     // ===== EXPANDABLE ARTICLE CARDS =====
+    // ALL cards expand/collapse on tap. No card tap ever navigates.
+    // Navigation only happens via the "Read Full Article" button inside the expanded area.
+    // This completely prevents iOS Universal Link hijacking on Ynet (and any other) cards.
     document.querySelectorAll('.article-card').forEach(card => {
       const el = card as HTMLElement;
-      const hasSnippet = el.dataset.hasSnippet === 'true';
       const expandArea = el.querySelector('.article-expand') as HTMLElement | null;
       const chevron = el.querySelector('.expand-chevron') as HTMLElement | null;
 
@@ -220,7 +222,7 @@ const generatedAt = new Date().toISOString();
         e.preventDefault();
         e.stopPropagation();
 
-        if (hasSnippet && expandArea) {
+        if (expandArea) {
           const isOpen = el.classList.contains('expanded');
           if (isOpen) {
             // Collapse
@@ -235,10 +237,6 @@ const generatedAt = new Date().toISOString();
             expandArea.style.opacity = '1';
             if (chevron) chevron.style.transform = 'rotate(180deg)';
           }
-        } else if (!hasSnippet) {
-          // No snippet — navigate directly via JS (avoids Universal Link hijacking)
-          const link = el.dataset.link;
-          if (link) window.open(link, '_blank', 'noopener');
         }
       });
     });
