@@ -12,10 +12,16 @@ const FETCH_TIMEOUT_MS = 10000;
 
 // --- Relevance filter keywords for general channels ---
 const MIDDLE_EAST_KEYWORDS = [
+  // Geo & factions
   'israel', 'israeli', 'iran', 'iranian', 'gaza', 'hezbollah', 'lebanon', 'lebanese',
   'hamas', 'middle east', 'tehran', 'jerusalem', 'houthi', 'yemen', 'yemeni',
   'west bank', 'idf', 'netanyahu', 'sinwar', 'rafah', 'beirut', 'tel aviv',
-  'occupied', 'ceasefire', 'hostage', 'hostages', 'october 7', 'irgc', 'hezbollah'
+  'occupied', 'ceasefire', 'hostage', 'hostages', 'october 7', 'irgc',
+  // US officials & diplomacy — broad conflict terms that surface WH/C-SPAN coverage
+  'vance', 'hegseth',
+  'peace', 'war', 'strike', 'strikes', 'missile', 'missiles',
+  'defense', 'attack', 'bombing',
+  'negotiation', 'negotiations', 'summit', 'diplomacy', 'diplomat'
 ];
 
 // Channels that require relevance filtering (by name)
