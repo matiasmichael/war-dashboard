@@ -166,6 +166,28 @@ async function fetchSingleFeed(feed) {
 
       items = filterByKeywords(items, feed.keywords);
 
+      // --- CNN section-link filter ---
+      // CNN injects nav/section links into their RSS (e.g. title="Iran", link=cnn.com/specials/...)
+      // with no description and no pubDate. These are useless category pages, not articles.
+      // We drop any item whose link contains "/specials/" OR has no description AND a
+      // single-word title (which would otherwise show up as "Iran", "Israel", "Syria").
+      if (feed.cnnTitleFix) {
+        const beforeCount = items.length;
+        items = items.filter(item => {
+          const link = item.link || '';
+          if (link.includes('/specials/')) return false;
+          // Also drop bare section names with no description
+          const title = (item.title || '').trim();
+          const hasDesc = !!(item.contentSnippet || item.content || item.description);
+          if (!hasDesc && title.split(' ').length <= 3 && !/\d/.test(title)) return false;
+          return true;
+        });
+        const dropped = beforeCount - items.length;
+        if (dropped > 0) {
+          console.log(`  🧹 ${feed.name}: dropped ${dropped} section nav link(s)`);
+        }
+      }
+
       // Take top N per source
       items = items.slice(0, MAX_ARTICLES_PER_SOURCE);
 
@@ -177,11 +199,20 @@ async function fetchSingleFeed(feed) {
         items = items.filter(item => {
           const dateStr = item.isoDate || item.pubDate;
           if (!dateStr) {
+            // dropNoDate: true — drop items with no pubDate instead of letting them bypass
+            // the stale filter. CNN uses this because their feed omits <pubDate> on all
+            // items (frozen since 2024), so without this flag they would all slip through.
+            if (feed.dropNoDate) {
+              return false;
+            }
             item._noDate = true;
             return true;
           }
           const articleDate = new Date(dateStr);
           if (isNaN(articleDate.getTime())) {
+            if (feed.dropNoDate) {
+              return false;
+            }
             item._noDate = true;
             return true;
           }
@@ -276,8 +307,37 @@ async function fetchSingleFeed(feed) {
           }
         }
 
+        // --- CNN title fix ---
+        // CNN's RSS feed has two classes of bad titles:
+        //   1. Section navigation links: single-word generic country/topic names
+        //      ("Iran", "Israel", "Syria") pointing to /specials/ pages with no description.
+        //      These are filtered out by filterCnnSectionLinks below.
+        //   2. Live-blog date labels: "June 17, 2024 - Israel-Gaza news" — the date slug
+        //      is the <title>, but the actual lead sentence is in <description>.
+        // When cnnTitleFix is set, we replace the title with the description text for
+        // any item whose <title> looks like a date label or a bare section name.
+        let resolvedTitle = item.title || 'Untitled';
+        if (feed.cnnTitleFix) {
+          const raw = resolvedTitle.trim();
+          // Pattern 1: title is just a short section/country name (1-3 words, no verb)
+          const isSectionName = /^[A-Z][a-zA-Z\s]{0,30}$/.test(raw) && raw.split(' ').length <= 3
+            && !raw.includes(',') && !raw.includes('-');
+          // Pattern 2: title starts with a month name or date stamp
+          const isDateLabel = /^(January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\b/i.test(raw)
+            || /^\w+ \d+,? \d{4}/.test(raw);
+          if ((isSectionName || isDateLabel) && item.contentSnippet) {
+            // Use the first sentence of the description as a more informative headline.
+            // contentSnippet is the HTML-stripped version of <description>.
+            const descLines = item.contentSnippet.trim().split(/\n+/);
+            const firstMeaningfulLine = descLines.find(l => l.trim().length > 20) || descLines[0];
+            if (firstMeaningfulLine && firstMeaningfulLine.trim().length > 10) {
+              resolvedTitle = firstMeaningfulLine.trim();
+            }
+          }
+        }
+
         return {
-          title: cleanTitle(item.title || 'Untitled'),
+          title: cleanTitle(resolvedTitle),
           link: item.link || '#',
           snippet: cleanSnippet(item.contentSnippet || item.content || '', FULL_SNIPPET_LENGTH),
           date: parsedDate,

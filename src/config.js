@@ -62,7 +62,14 @@ const FEEDS = [
     color: '#cc0000',
     accentLight: '#fef2f2',
     keywords: null,
-    staleThresholdHours: STALE_THRESHOLD_HOURS
+    staleThresholdHours: STALE_THRESHOLD_HOURS,
+    // CNN's RSS feed omits <pubDate> on nearly all items (the feed is frozen since 2024).
+    // dropNoDate: true drops items with no parseable pubDate instead of letting them bypass
+    // the stale filter. cnnTitleFix: true enables special title extraction — CNN puts
+    // generic section names ("Iran", "Israel") or date strings ("June 17, 2024 - ...") in
+    // <title> while the real headline lives in <description>.
+    dropNoDate: true,
+    cnnTitleFix: true
   },
   {
     name: 'Fox News',
