@@ -17,9 +17,9 @@ app.use('/data', express.static(path.join(__dirname, 'data'), {
   etag: true
 }));
 
-// ===== ARCHIVE API =====
+// ===== DAILY BRIEFING API =====
 
-// GET /api/archive/dates — list available daily summary dates
+// GET /api/archive/dates — list available daily briefing dates
 app.get('/api/archive/dates', (req, res) => {
   const dailyDir = path.join(__dirname, 'data', 'daily');
   try {
@@ -36,7 +36,7 @@ app.get('/api/archive/dates', (req, res) => {
   }
 });
 
-// GET /api/archive/:date — get a specific daily summary
+// GET /api/archive/:date — get a specific daily briefing
 app.get('/api/archive/:date', (req, res) => {
   const dateStr = req.params.date;
   // Validate date format
@@ -45,13 +45,13 @@ app.get('/api/archive/:date', (req, res) => {
   }
   const filePath = path.join(__dirname, 'data', 'daily', `${dateStr}.json`);
   if (!fs.existsSync(filePath)) {
-    return res.status(404).json({ error: 'Briefing not found for this date.' });
+    return res.status(404).json({ error: 'Daily briefing not found for this date.' });
   }
   try {
     const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
     res.json(data);
   } catch (e) {
-    res.status(500).json({ error: 'Failed to read briefing.' });
+    res.status(500).json({ error: 'Failed to read daily briefing.' });
   }
 });
 
@@ -63,5 +63,5 @@ app.get('/health', (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`🔶 Iran War Update server running on port ${PORT}`);
   console.log(`   http://localhost:${PORT}`);
-  console.log(`   Archive: http://localhost:${PORT}/archive.html`);
+  console.log(`   Daily Briefing: http://localhost:${PORT}/archive.html`);
 });

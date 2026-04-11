@@ -1070,7 +1070,7 @@ function generateHTML(articles, sourceStats, situationReportData) {
         <div class="header-brand">
           <h1><span class="live-dot"></span> Iran War Update</h1>
         </div>
-        <a href="/archive.html" class="header-archive-link">📅 Archive</a>
+        <a href="/archive.html" class="header-archive-link">📅 Daily Briefing</a>
       </div>
       <div class="header-accent-bar"></div>
     </div>
