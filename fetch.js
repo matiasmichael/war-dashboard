@@ -1000,6 +1000,9 @@ function generateHTML(articles, sourceStats, situationReportData) {
   <div class="header">
     <div class="header-inner">
       <h1><span class="live-dot"></span> Iran War Update <span class="header-time">· updated ${lastUpdateAgo}</span></h1>
+      <div style="display:flex;gap:0.75rem;margin-top:0.3rem">
+        <a href="/archive.html" style="font-size:0.75rem;color:var(--text-muted);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:0.3rem;transition:color 0.15s" onmouseover="this.style.color='#E8732C'" onmouseout="this.style.color='#7A746D'">📅 Daily Archive</a>
+      </div>
     </div>
   </div>
 
@@ -1087,12 +1090,47 @@ function generateHTML(articles, sourceStats, situationReportData) {
 </html>`;
 }
 
+// ===== DAILY ARTICLE PERSISTENCE =====
+function persistDailyArticles(articles) {
+  const dataDir = path.join(__dirname, 'data');
+  fs.mkdirSync(dataDir, { recursive: true });
+
+  const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+  const dailyFile = path.join(dataDir, `${today}.json`);
+
+  // Load existing articles for today (if any)
+  let existing = [];
+  if (fs.existsSync(dailyFile)) {
+    try {
+      existing = JSON.parse(fs.readFileSync(dailyFile, 'utf-8'));
+    } catch (e) {
+      console.warn('Could not parse existing daily file, starting fresh');
+      existing = [];
+    }
+  }
+
+  // Deduplicate by URL
+  const seenUrls = new Set(existing.map(a => a.link));
+  const newArticles = articles.filter(a => !seenUrls.has(a.link));
+
+  const merged = [...existing, ...newArticles];
+  // Sort by date, newest first
+  merged.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  fs.writeFileSync(dailyFile, JSON.stringify(merged, null, 2), 'utf-8');
+  console.log(`📁 Daily archive: ${dailyFile} — ${merged.length} articles (${newArticles.length} new)`);
+  return merged;
+}
+
 async function main() {
   console.log('🔶 Iran War Update — Fetching latest news...');
   console.log(`   Time: ${new Date().toISOString()}`);
 
   const { articles, sourceStats } = await fetchAllFeeds();
   console.log(`\n📊 Total: ${articles.length} articles`);
+
+  // Persist articles to daily JSON for archive feature
+  persistDailyArticles(articles);
 
   const situationReportData = await synthesizeReport(articles);
   const html = generateHTML(articles, sourceStats, situationReportData);
