@@ -33,7 +33,7 @@ function sanitizeHTML(html) {
 
 /**
  * Server-side timeAgo (kept for static HTML generation at build time).
- * Client-side `computeTimeAgo` in app.js handles live re-computation.
+ * Client-side `computeTimeAgo` in index.astro inline script handles live re-computation.
  */
 function timeAgo(dateStr) {
   const now = new Date();

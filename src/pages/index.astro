@@ -47,6 +47,10 @@ const sources = [...new Set(articles.map((a: any) => a.source))];
 import feedsData from '../feeds.json';
 const feeds = feedsData;
 
+// Toast delay constant — mirrors UPDATE_TOAST_DELAY_MS from config.js (CJS).
+// Defined inline since Astro's build can't resolve CJS requires at prerender time.
+const UPDATE_TOAST_DELAY_MS = 3600000;
+
 const articleCount = `${articles.length} articles · ${sourceStats.filter((s: any) => !s.error).length} sources`;
 const generatedAt = new Date().toISOString();
 ---
@@ -68,7 +72,7 @@ const generatedAt = new Date().toISOString();
   <button class="btn btn-circle btn-primary fixed bottom-8 right-4 z-40 shadow-lg text-lg hidden" id="backToTop" style="bottom: calc(2rem + env(safe-area-inset-bottom, 0px))">↑</button>
 
   <!-- Update toast -->
-  <div class="toast toast-top toast-center z-50 pointer-events-none" id="updateToastWrapper" style="display:none; top: calc(70px + env(safe-area-inset-top, 0px))">
+  <div class="toast toast-top toast-center z-50 pointer-events-none" id="updateToastWrapper" style="display:none; top: calc(70px + env(safe-area-inset-top, 0px))" data-delay-ms={String(UPDATE_TOAST_DELAY_MS)}>
     <div class="alert bg-neutral text-neutral-content shadow-xl cursor-pointer rounded-full py-2 px-5 text-[0.82rem] font-medium pointer-events-auto" id="updateToast">🔄 New updates available — tap to refresh</div>
   </div>
 
@@ -101,6 +105,8 @@ const generatedAt = new Date().toISOString();
     setInterval(refreshAllTimestamps, 30000);
 
     // ===== PAGE FRESHNESS SIGNAL =====
+    // Shows absolute time ("Last updated: 20:15 IDT") to avoid contradiction
+    // with live-recalculated article timestamps that show relative time.
     function updateFreshness(): void {
       const meta = document.querySelector('meta[name="data-generated-at"]');
       if (!meta) return;
@@ -113,14 +119,14 @@ const generatedAt = new Date().toISOString();
 
       if (!dot || !freshLabel) return;
 
-      if (diffMins < 1) {
-        freshLabel.textContent = 'Updated just now';
-      } else if (diffMins < 60) {
-        freshLabel.textContent = 'Updated ' + diffMins + 'm ago';
-      } else {
-        const diffHours = Math.floor(diffMins / 60);
-        freshLabel.textContent = 'Updated ' + diffHours + 'h ago';
-      }
+      // Absolute time in Israel timezone — no ambiguity with article timestamps
+      const timeStr = generatedAt.toLocaleTimeString('en-US', {
+        timeZone: 'Asia/Jerusalem',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      });
+      freshLabel.textContent = 'Last updated: ' + timeStr + ' IDT';
 
       // Remove all live-dot classes and apply the right one
       dot.className = dot.className.replace(/live-dot-\w+/g, '').trim();
@@ -134,6 +140,7 @@ const generatedAt = new Date().toISOString();
       }
     }
     updateFreshness();
+    // Re-check dot color periodically (absolute time label doesn't change)
     setInterval(updateFreshness, 30000);
 
     // ===== CARD TOGGLE =====
@@ -295,9 +302,10 @@ const generatedAt = new Date().toISOString();
     const updateToastWrapper = document.getElementById('updateToastWrapper');
     if (updateToast && updateToastWrapper) {
       updateToast.addEventListener('click', () => location.reload());
+      const toastDelayMs = parseInt(updateToastWrapper.dataset.delayMs || '3600000', 10);
       setTimeout(() => {
         updateToastWrapper.style.display = '';
-      }, 1 * 60 * 60 * 1000);
+      }, toastDelayMs);
     }
   </script>
 </Base>

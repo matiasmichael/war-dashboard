@@ -1,22 +1,11 @@
 ---
 // Archive page — Daily Briefing
-// Uses Tailwind + DaisyUI with basecamp theme
+// Uses Base layout for shared head/boilerplate
+import Base from '../layouts/Base.astro';
 import '../styles/global.css';
 ---
 
-<!DOCTYPE html>
-<html lang="en" data-theme="basecamp">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daily Briefing — Iran War Update</title>
-  <meta name="description" content="Historical daily intelligence briefings from the Iran-Israel conflict">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔶</text></svg>">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-</head>
-<body class="font-manrope bg-base-100 text-base-content leading-relaxed min-h-screen">
+<Base title="Daily Briefing — Iran War Update" description="Historical daily intelligence briefings from the Iran-Israel conflict">
 
   <!-- Header -->
   <div class="navbar bg-white/92 backdrop-blur-xl border-b border-base-300 sticky top-0 z-50 px-4 sm:px-6 py-3">
@@ -43,6 +32,15 @@ import '../styles/global.css';
       Loading briefing...
     </div>
   </div>
+
+  <!-- noscript fallback -->
+  <noscript>
+    <div class="max-w-[720px] mx-auto px-4 sm:px-6 py-16 text-center text-base-content">
+      <div class="text-5xl mb-4 opacity-50">⚠️</div>
+      <h2 class="text-lg font-bold mb-2">JavaScript Required</h2>
+      <p class="text-sm text-text-muted max-w-[400px] mx-auto">This page requires JavaScript to load daily briefings. Please enable JavaScript in your browser settings.</p>
+    </div>
+  </noscript>
 
   <script>
     // ===== STATE =====
@@ -377,5 +375,4 @@ import '../styles/global.css';
 
     init();
   </script>
-</body>
-</html>
+</Base>

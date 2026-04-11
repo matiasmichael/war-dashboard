@@ -21,6 +21,56 @@ const parser = new RssParser({
 });
 
 /**
+ * Fix malformed XML from RSS feeds with common encoding issues.
+ * Handles: unescaped `&`, bare `<` in text (e.g. JavaScript `<=` inside content),
+ * and HTML fragments that weren't CDATA-wrapped.
+ *
+ * Strategy: for each <item>...</item>, wrap the inner content of known text elements
+ * (description, content:encoded) in CDATA if they contain bare HTML/script.
+ * Also globally escapes unescaped `&`.
+ */
+function sanitizeXml(xml) {
+  // 1. Fix unescaped & that aren't valid XML entities
+  xml = xml.replace(/&(?!(?:amp|lt|gt|quot|apos|#\d+|#x[\da-fA-F]+);)/g, '&amp;');
+
+  // 2. Wrap content of common RSS text elements in CDATA if not already wrapped.
+  //    Match greedily within each element to capture embedded HTML/scripts.
+  const tagsToWrap = ['description', 'content:encoded', 'content'];
+  for (const tag of tagsToWrap) {
+    const escapedTag = tag.replace(':', ':');
+    // Use a regex that matches from <tag> to </tag>, capturing everything between.
+    // The `s` flag lets . match newlines.
+    const re = new RegExp(`<${escapedTag}>(?!\\s*<!\\[CDATA\\[)([\\s\\S]*?)<\\/${escapedTag}>`, 'g');
+    xml = xml.replace(re, (_match, content) => {
+      // Wrap in CDATA — escape any existing ]]> inside to prevent premature close
+      const safe = content.replace(/]]>/g, ']]]]><![CDATA[>');
+      return `<${tag}><![CDATA[${safe}]]></${tag}>`;
+    });
+  }
+
+  return xml;
+}
+
+/**
+ * Fetch raw XML text from a URL and pre-process it before parsing.
+ * Used for feeds with known malformed XML (e.g. Haaretz).
+ */
+async function fetchAndSanitizeXml(url) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), RSS_TIMEOUT_MS);
+  try {
+    const res = await fetch(url, {
+      signal: controller.signal,
+      headers: { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36' }
+    });
+    const rawXml = await res.text();
+    return sanitizeXml(rawXml);
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+/**
  * Fetch a single RSS feed with retry logic (Item #5).
  * Returns { feed, articles } on success.
  * Throws on final failure after retries.
@@ -29,7 +79,14 @@ async function fetchSingleFeed(feed) {
   let lastError;
   for (let attempt = 1; attempt <= RSS_RETRY_ATTEMPTS; attempt++) {
     try {
-      const result = await parser.parseURL(feed.url);
+      // Pre-process XML for feeds with known malformed content (e.g. Haaretz unescaped &)
+      let result;
+      if (feed.sanitizeXml) {
+        const cleanedXml = await fetchAndSanitizeXml(feed.url);
+        result = await parser.parseString(cleanedXml);
+      } else {
+        result = await parser.parseURL(feed.url);
+      }
       let items = result.items || [];
       items = filterByKeywords(items, feed.keywords);
 

@@ -18,6 +18,7 @@ const GEMINI_RETRY_ATTEMPTS = 2;
 const GEMINI_RETRY_DELAY_MS = 5000;
 const RSS_RETRY_ATTEMPTS = 2;
 const RSS_RETRY_DELAY_MS = 3000;
+const UPDATE_TOAST_DELAY_MS = 3600000; // 1 hour
 
 // --- Consolidated FEEDS config (Item #6, #10) ---
 // Each feed has all metadata in one place. `staleThresholdHours` replaces the CNN hardcode.
@@ -43,7 +44,8 @@ const FEEDS = [
     color: '#006400',
     accentLight: '#f0fdf4',
     keywords: null,
-    staleThresholdHours: null
+    staleThresholdHours: null,
+    sanitizeXml: true
   },
   {
     name: 'CNN',
@@ -143,6 +145,7 @@ module.exports = {
   GEMINI_RETRY_DELAY_MS,
   RSS_RETRY_ATTEMPTS,
   RSS_RETRY_DELAY_MS,
+  UPDATE_TOAST_DELAY_MS,
   FEEDS,
   getFaviconUrl
 };

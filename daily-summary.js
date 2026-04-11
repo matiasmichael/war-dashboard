@@ -102,6 +102,7 @@ RULES:
 - Be analytical, not sensational
 - Focus on Iran-Israel conflict dynamics including proxies (Hezbollah, Hamas, Houthis)
 - The summary should read like a professional intelligence briefing
+- ONLY use HTML tags like <strong> for emphasis. NEVER use markdown syntax like **bold** or *italic*.
 - Output ONLY the JSON object`;
 
   console.log('   Calling Gemini for daily briefing...');
@@ -111,6 +112,9 @@ RULES:
 
   // Clean markdown wrappers
   text = text.replace(/```json/g, '').replace(/```/g, '').trim();
+
+  // Convert any residual markdown bold to HTML (Gemini sometimes ignores prompt instructions)
+  text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
 
   let briefing;
   try {

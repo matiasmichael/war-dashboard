@@ -15,38 +15,11 @@ interface Props {
   isTopStory: boolean;
 }
 
+import { escapeHtml, truncateSnippet, timeAgo } from '../shared-utils.js';
+
 const { article: a, idx, isTopStory } = Astro.props;
 
 const SNIPPET_LENGTH = 120;
-
-function escapeHtml(str: string): string {
-  if (!str) return '';
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
-
-function truncateSnippet(text: string, len: number): string {
-  if (!text || text.length <= len) return text || '';
-  return text.slice(0, len).replace(/\s+\S*$/, '') + '…';
-}
-
-function timeAgo(dateStr: string): string {
-  const now = new Date();
-  const date = new Date(dateStr);
-  const diffMs = now.getTime() - date.getTime();
-  const diffMins = Math.floor(diffMs / 60000);
-  const diffHours = Math.floor(diffMs / 3600000);
-  const diffDays = Math.floor(diffMs / 86400000);
-  if (diffMins < 1) return 'just now';
-  if (diffMins < 60) return `${diffMins}m ago`;
-  if (diffHours < 24) return `${diffHours}h ago`;
-  if (diffDays < 7) return `${diffDays}d ago`;
-  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-}
 
 const ago = timeAgo(a.date);
 const shortSnippet = escapeHtml(truncateSnippet(a.snippet, SNIPPET_LENGTH));

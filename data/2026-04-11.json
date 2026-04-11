@@ -1,5 +1,17 @@
 [
   {
+    "title": "Iran installing roadblocks in front of buried nuclear facility entrances - report",
+    "link": "https://www.jpost.com/israel-news/article-892634",
+    "snippet": "The Institute for Science and International Security analyzed high-resolution satellite imagery captured over the entrances to Iran's underground Isfahan nuclear facility.",
+    "date": "2026-04-11T19:15:26.000Z",
+    "source": "Jerusalem Post",
+    "logo": "📜",
+    "color": "#2c3e50",
+    "accentLight": "#f8fafc",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=jpost.com&sz=128",
+    "noDate": false
+  },
+  {
     "title": "Northern Israel hit with barrage of Hezbollah rockets, drones, one building damaged",
     "link": "https://www.jpost.com/israel-news/defense-news/article-892633",
     "snippet": "Magen David Adom teams responded to reports of minor damage to a building in Shlomi after five drones entered Israeli airspace.",
@@ -9,6 +21,54 @@
     "color": "#2c3e50",
     "accentLight": "#f8fafc",
     "publisherLogo": "https://www.google.com/s2/favicons?domain=jpost.com&sz=128",
+    "noDate": false
+  },
+  {
+    "title": "נתניהו נגד ארדואן: \"מסייע לאיראן וטובח באזרחיו הכורדים\"",
+    "link": "https://www.ynet.co.il/news/article/rk7lfbdn11x",
+    "snippet": "",
+    "date": "2026-04-11T17:22:41.000Z",
+    "source": "Ynet News",
+    "logo": "🇮🇱",
+    "color": "#e74c3c",
+    "accentLight": "#fef2f2",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=ynet.co.il&sz=128",
+    "noDate": false
+  },
+  {
+    "title": "הקלות בהנחיות פיקוד העורף באזור חיפה",
+    "link": "https://www.ynet.co.il/news/article/by48wzdh11e",
+    "snippet": "",
+    "date": "2026-04-11T17:15:56.000Z",
+    "source": "Ynet News",
+    "logo": "🇮🇱",
+    "color": "#e74c3c",
+    "accentLight": "#fef2f2",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=ynet.co.il&sz=128",
+    "noDate": false
+  },
+  {
+    "title": "Strait of Hormuz leverage looms over US-Iran talks in Islamabad",
+    "link": "https://www.aljazeera.com/video/newsfeed/2026/4/11/strait-of-hormuz-leverage-looms-over-us-iran-talks-in-islamabad?traffic_source=rss",
+    "snippet": "US and Iran hold first direct talks since 1979 in Islamabad, with progress hinging on the Strait of Hormuz.",
+    "date": "2026-04-11T17:15:05.000Z",
+    "source": "Al Jazeera",
+    "logo": "🌍",
+    "color": "#c68e17",
+    "accentLight": "#fefce8",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=aljazeera.com&sz=128",
+    "noDate": false
+  },
+  {
+    "title": "דיווח בבריטניה: מבוי סתום במגעים בין ארה\"ב ואיראן - בגלל מצר הורמוז",
+    "link": "https://www.ynet.co.il/news/article/s16yngu3zg",
+    "snippet": "",
+    "date": "2026-04-11T17:13:45.000Z",
+    "source": "Ynet News",
+    "logo": "🇮🇱",
+    "color": "#e74c3c",
+    "accentLight": "#fef2f2",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=ynet.co.il&sz=128",
     "noDate": false
   },
   {

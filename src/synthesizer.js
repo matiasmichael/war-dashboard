@@ -147,12 +147,16 @@ RULES:
 - detailed_analysis: cover Iran-Israel tensions, proxy warfare, nuclear dimensions, and what to watch next. Max 80 words.
 - Prioritize stories about Iran, Israel, Hezbollah, Hamas, Houthis, IRGC, nuclear program, and direct confrontation.
 - Tone: objective, analytical, no sensationalism.
+- ONLY use HTML tags like <strong> for emphasis. NEVER use markdown syntax like **bold** or *italic*.
 - Output ONLY the JSON object, nothing else.`;
 
     let textOutput = await callGeminiWithRetry(model, prompt);
 
     // Clean up markdown wrappers
     textOutput = textOutput.replace(/```json/g, '').replace(/```/g, '').trim();
+
+    // Convert any residual markdown bold to HTML (Gemini sometimes ignores prompt instructions)
+    textOutput = textOutput.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
 
     const parsed = JSON.parse(textOutput);
 

@@ -9,6 +9,7 @@
     "preview": "astro preview",
     "fetch": "node fetch.js",
     "serve": "node server.js",
+    "check": "astro check",
     "update": "node fetch.js && astro build"
   },
   "keywords": [],
@@ -24,5 +25,9 @@
     "puppeteer": "^24.40.0",
     "rss-parser": "^3.13.0",
     "tailwindcss": "^4.2.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.8",
+    "typescript": "^5.9.3"
   }
 }

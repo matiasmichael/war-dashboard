@@ -1,4 +1,6 @@
 ---
+import { sanitizeHTML } from '../shared-utils.js';
+
 interface TopUpdate {
   headline: string;
   source: string;
@@ -14,25 +16,6 @@ interface Props {
 }
 
 const { sitrep } = Astro.props;
-
-function sanitizeHTML(html: string): string {
-  if (!html) return '';
-  let clean = html.replace(/\s+on\w+\s*=\s*["'][^"']*["']/gi, '');
-  clean = clean.replace(/\s+on\w+\s*=\s*\S+/gi, '');
-  clean = clean.replace(/\s+style\s*=\s*["'][^"']*["']/gi, '');
-  clean = clean.replace(/<\/?(?!(?:strong|em|p|br|ul|li|h3|h4)\b)[a-z][a-z0-9]*\b[^>]*>/gi, '');
-  return clean;
-}
-
-function escapeHtml(str: string): string {
-  if (!str) return '';
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
 ---
 
 {sitrep ? (
