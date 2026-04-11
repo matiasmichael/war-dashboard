@@ -256,6 +256,29 @@ const generatedAt = new Date().toISOString();
       });
     });
 
+    // ===== EXPANDABLE DEVELOPMENT ROWS =====
+    document.querySelectorAll('.dev-row').forEach(row => {
+      const el = row as HTMLElement;
+      const expandArea = el.querySelector('.dev-expand') as HTMLElement | null;
+      const chevron = el.querySelector('.dev-chevron') as HTMLElement | null;
+      if (!expandArea) return; // no summary — not expandable
+
+      el.addEventListener('click', () => {
+        const isOpen = el.classList.contains('dev-expanded');
+        if (isOpen) {
+          el.classList.remove('dev-expanded');
+          expandArea.style.maxHeight = '0';
+          expandArea.style.opacity = '0';
+          if (chevron) chevron.style.transform = 'rotate(0deg)';
+        } else {
+          el.classList.add('dev-expanded');
+          expandArea.style.maxHeight = expandArea.scrollHeight + 'px';
+          expandArea.style.opacity = '1';
+          if (chevron) chevron.style.transform = 'rotate(180deg)';
+        }
+      });
+    });
+
     // ===== BACK TO TOP BUTTON =====
     const backToTopBtn = document.getElementById('backToTop');
     if (backToTopBtn) {

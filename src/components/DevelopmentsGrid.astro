@@ -14,55 +14,55 @@ interface Props {
 
 const { developments } = Astro.props;
 
-const severityConfig: Record<string, { emoji: string; color: string; bg: string }> = {
-  critical:   { emoji: '🔴', color: 'text-error',   bg: 'bg-error/8' },
-  major:      { emoji: '🟠', color: 'text-warning',  bg: 'bg-warning/10' },
-  notable:    { emoji: '🔵', color: 'text-info',     bg: 'bg-info/8' },
-  developing: { emoji: '🟢', color: 'text-success',  bg: 'bg-success/8' },
-};
-
-const categoryLabels: Record<string, string> = {
-  military:      'Military',
-  diplomacy:     'Diplomacy',
-  humanitarian:  'Humanitarian',
-  economic:      'Economic',
+const severityDot: Record<string, string> = {
+  critical:   '🔴',
+  major:      '🟠',
+  notable:    '🔵',
+  developing: '🟢',
 };
 ---
 
 {developments && developments.length > 0 && (
-  <div class="mb-4">
-    <div class="flex items-center justify-between py-2">
-      <span class="text-[0.72rem] font-semibold uppercase tracking-wider text-text-muted">Key Developments</span>
-      <span class="text-[0.65rem] font-normal text-text-muted">AI-synthesized</span>
+  <div class="mb-3">
+    <div class="flex items-center justify-between py-1.5">
+      <span class="text-[0.7rem] font-semibold uppercase tracking-wider text-text-muted">Key Developments</span>
+      <span class="text-[0.6rem] font-normal text-text-muted">AI-synthesized</span>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-      {developments.map((dev) => {
-        const sev = severityConfig[dev.severity] || severityConfig.notable;
-        const catLabel = categoryLabels[dev.category] || dev.category;
+    <div class="flex flex-col gap-0 rounded-lg border border-base-300 bg-white overflow-hidden shadow-sm">
+      {developments.map((dev, i) => {
+        const dot = severityDot[dev.severity] || '🔵';
+        const srcText = dev.sources.length > 0 ? dev.sources.join(', ') : '';
+        const hasSummary = !!(dev.summary && dev.summary.trim());
         return (
-          <div class="card card-bordered bg-white shadow-sm border-base-300 overflow-hidden">
-            <div class="card-body p-3 gap-1.5">
-              <div class="flex items-center gap-1.5 flex-wrap">
-                <span class="text-[0.7rem] leading-none">{sev.emoji}</span>
-                <span class={`text-[0.6rem] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded ${sev.bg} ${sev.color}`}>
-                  {dev.severity}
-                </span>
-                <span class="text-[0.6rem] font-medium uppercase tracking-wider text-text-muted px-1.5 py-0.5 rounded bg-base-200">
-                  {catLabel}
-                </span>
-              </div>
-              <h3 class="text-[0.82rem] font-bold leading-snug text-base-content m-0">
-                {dev.headline}
-              </h3>
-              <p class="text-[0.75rem] leading-relaxed text-text-secondary m-0">
-                {dev.summary}
+          <div
+            class:list={[
+              "dev-row cursor-pointer active:bg-base-100 transition-colors duration-100",
+              i > 0 && "border-t border-base-200"
+            ]}
+          >
+            {/* Collapsed header bar */}
+            <div class="flex items-center gap-1.5 px-2.5 py-1.5">
+              <span class="text-[0.6rem] leading-[1.35rem] shrink-0 select-none">{dot}</span>
+              <p class="flex-1 text-[0.75rem] leading-[1.35rem] text-base-content m-0 min-w-0">
+                <span class="font-semibold">{dev.headline}</span>
+                {srcText && (
+                  <span class="text-[0.65rem] text-text-muted font-normal">{' '}— via {srcText}</span>
+                )}
               </p>
-              {dev.sources.length > 0 && (
-                <p class="text-[0.65rem] text-text-muted m-0 mt-0.5">
-                  via {dev.sources.join(', ')}
-                </p>
+              {hasSummary && (
+                <span class="dev-chevron shrink-0 transition-transform duration-200 text-text-muted">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
               )}
             </div>
+            {/* Expandable summary (hidden by default) */}
+            {hasSummary && (
+              <div class="dev-expand overflow-hidden transition-all duration-200 ease-out" style="max-height:0; opacity:0;">
+                <div class="px-2.5 pb-2 pl-[1.6rem]">
+                  <p class="text-[0.73rem] leading-relaxed text-text-secondary/80 m-0">{dev.summary}</p>
+                </div>
+              </div>
+            )}
           </div>
         );
       })}

@@ -530,3 +530,93 @@ Fetching 8 feeds in parallel...
 [DATA] 📁 Daily archive now has 136 total articles
 [DATA] ✅ Sources: 9 OK, 0 failed
 [DATA] ✅ Data collection complete.
+[DATA] 🔶 Iran War Update — Data Collection
+[DATA]    Time: 2026-04-11T19:21:02.292Z
+⚠️  Skipping 1 disabled feed(s): Haaretz
+Fetching 8 feeds in parallel...
+  → Ynet News...
+  → CNBC...
+  → Fox News...
+  → BBC News...
+  → Al Jazeera...
+  → NPR...
+  → Times of Israel...
+  → Jerusalem Post...
+  🕐 Jerusalem Post: TZ-fixed "WATCH: Netanyahu says that Israel's campaign in Ir" −180min → 2026-04-11T18:18:16.000Z (63min ago)
+  🕐 Jerusalem Post: TZ-fixed "US-Iran officials meet in Islamabad as Tehran outl" −180min → 2026-04-11T12:32:39.000Z (408min ago)
+  🕐 Jerusalem Post: TZ-fixed "US clearing out Strait of Hormuz, Trump claims as " −180min → 2026-04-11T14:05:21.000Z (316min ago)
+  🕐 Jerusalem Post: TZ-fixed "US looks to restore freedom of navigation in Gulf," −180min → 2026-04-11T18:01:37.000Z (79min ago)
+  🕐 Jerusalem Post: TZ-fixed "China plans to deliver air defense systems to Iran" −180min → 2026-04-11T04:40:43.000Z (880min ago)
+  🕐 Jerusalem Post: TZ-fixed "US-Iran ceasefire pauses war - nuclear, Hormuz, an" −180min → 2026-04-11T10:39:04.000Z (522min ago)
+  🕐 Jerusalem Post: TZ-fixed "Iran installing roadblocks in front of buried nucl" −180min → 2026-04-11T16:15:26.000Z (186min ago)
+  🕐 Jerusalem Post: TZ-fixed "Iran’s Mojtaba Khamenei suffers severe, disfigurin" −180min → 2026-04-11T06:30:08.000Z (771min ago)
+  🕐 Jerusalem Post: TZ-fixed "Iraq’s militia state: Shelly Kittleson’s kidnappin" −180min → 2026-04-11T12:54:28.000Z (387min ago)
+  🕐 Jerusalem Post: TZ-fixed "At 78, is Israel really an independent state? - op" −180min → 2026-04-11T13:48:34.000Z (332min ago)
+  🕐 Jerusalem Post: TZ-fixed "A shattered covenant: Israel’s lone soldiers and t" −180min → 2026-04-11T13:38:35.000Z (342min ago)
+  🕐 Jerusalem Post: TZ-fixed "Victory over the kingdom of evil" −180min → 2026-04-05T10:13:25.000Z (9188min ago)
+  🕐 Jerusalem Post: TZ-fixed "'Over 90% of Iranians hate the regime,' INSS’s Ben" −120min → 2026-01-15T09:42:41.000Z (124418min ago)
+  🕐 Jerusalem Post: TZ-fixed "Alshareef: Israel, Jews, should help Iranians seek" −120min → 2026-01-14T07:57:00.000Z (125964min ago)
+  🕐 Jerusalem Post: TZ-fixed "How TALMA turns English education into social mobi" −120min → 2026-01-15T19:10:20.000Z (123851min ago)
+  ✓ Ynet News: 15 articles
+  ✓ CNBC: 15 articles
+  ✓ Fox News: 15 articles
+  ✓ BBC News: 15 articles
+  ✓ Al Jazeera: 14 articles
+  ✓ NPR: 5 articles
+  ✓ Times of Israel: 14 articles
+  ✓ Jerusalem Post: 15 articles
+[DATA] 📊 Fetched 108 articles from 9 feeds
+📁 Daily archive: /Users/michaelmatias/Projects/war-dashboard/data/2026-04-11.json — 138 articles (0 new, 0 updated)
+[DATA] 📁 Daily archive now has 138 total articles
+[DATA] ✅ Sources: 9 OK, 0 failed
+[DATA] 🔍 Synthesizing key developments...
+[DEV_SYNTH] 🔍 Synthesizing Key Developments...
+[DEV_SYNTH] ✅ Identified 4 key developments
+[DEV_SYNTH] 💾 Saved: /Users/michaelmatias/Projects/war-dashboard/data/developments.json
+[DATA] 🔍 Key developments: US-Iran Talks Collapse; War Resumption Imminent | Iran Supreme Leader Reportedly Killed; Son Disfigured | US Warships Transit Hormuz Amid Mine Clearance | Hezbollah Barrage Hits Northern Israel; Sirens Active
+[DATA] ✅ Data collection complete.
+[DATA] 🔶 Iran War Update — Data Collection
+[DATA]    Time: 2026-04-11T19:24:26.248Z
+⚠️  Skipping 1 disabled feed(s): Haaretz
+Fetching 8 feeds in parallel...
+  → Ynet News...
+  → CNBC...
+  → Fox News...
+  → BBC News...
+  → Al Jazeera...
+  → NPR...
+  → Times of Israel...
+  → Jerusalem Post...
+  🕐 Jerusalem Post: TZ-fixed "WATCH: Netanyahu says that Israel's campaign in Ir" −180min → 2026-04-11T18:18:16.000Z (66min ago)
+  🕐 Jerusalem Post: TZ-fixed "US-Iran officials meet in Islamabad as Tehran outl" −180min → 2026-04-11T12:32:39.000Z (412min ago)
+  🕐 Jerusalem Post: TZ-fixed "US clearing out Strait of Hormuz, Trump claims as " −180min → 2026-04-11T14:05:21.000Z (319min ago)
+  🕐 Jerusalem Post: TZ-fixed "US looks to restore freedom of navigation in Gulf," −180min → 2026-04-11T18:01:37.000Z (83min ago)
+  🕐 Jerusalem Post: TZ-fixed "China plans to deliver air defense systems to Iran" −180min → 2026-04-11T04:40:43.000Z (884min ago)
+  🕐 Jerusalem Post: TZ-fixed "US-Iran ceasefire pauses war - nuclear, Hormuz, an" −180min → 2026-04-11T10:39:04.000Z (525min ago)
+  🕐 Jerusalem Post: TZ-fixed "Iran installing roadblocks in front of buried nucl" −180min → 2026-04-11T16:15:26.000Z (189min ago)
+  🕐 Jerusalem Post: TZ-fixed "Iran’s Mojtaba Khamenei suffers severe, disfigurin" −180min → 2026-04-11T06:30:08.000Z (774min ago)
+  🕐 Jerusalem Post: TZ-fixed "Iraq’s militia state: Shelly Kittleson’s kidnappin" −180min → 2026-04-11T12:54:28.000Z (390min ago)
+  🕐 Jerusalem Post: TZ-fixed "At 78, is Israel really an independent state? - op" −180min → 2026-04-11T13:48:34.000Z (336min ago)
+  🕐 Jerusalem Post: TZ-fixed "A shattered covenant: Israel’s lone soldiers and t" −180min → 2026-04-11T13:38:35.000Z (346min ago)
+  🕐 Jerusalem Post: TZ-fixed "Victory over the kingdom of evil" −180min → 2026-04-05T10:13:25.000Z (9191min ago)
+  🕐 Jerusalem Post: TZ-fixed "'Over 90% of Iranians hate the regime,' INSS’s Ben" −120min → 2026-01-15T09:42:41.000Z (124422min ago)
+  🕐 Jerusalem Post: TZ-fixed "Alshareef: Israel, Jews, should help Iranians seek" −120min → 2026-01-14T07:57:00.000Z (125967min ago)
+  🕐 Jerusalem Post: TZ-fixed "How TALMA turns English education into social mobi" −120min → 2026-01-15T19:10:20.000Z (123854min ago)
+  ✓ Ynet News: 15 articles
+  ✓ CNBC: 15 articles
+  ✓ Fox News: 15 articles
+  ✓ BBC News: 15 articles
+  ✓ Al Jazeera: 14 articles
+  ✓ NPR: 5 articles
+  ✓ Times of Israel: 14 articles
+  ✓ Jerusalem Post: 15 articles
+[DATA] 📊 Fetched 108 articles from 9 feeds
+📁 Daily archive: /Users/michaelmatias/Projects/war-dashboard/data/2026-04-11.json — 139 articles (1 new, 0 updated)
+[DATA] 📁 Daily archive now has 139 total articles
+[DATA] ✅ Sources: 9 OK, 0 failed
+[DATA] 🔍 Synthesizing key developments...
+[DEV_SYNTH] 🔍 Synthesizing Key Developments...
+[DEV_SYNTH] ✅ Identified 4 key developments
+[DEV_SYNTH] 💾 Saved: /Users/michaelmatias/Projects/war-dashboard/data/developments.json
+[DATA] 🔍 Key developments: US-Iran De-escalation Talks Stalled | Israeli Strikes Target Iran, Injure Leader | Hezbollah Barrage Hits Northern Israel | Gaza Strikes Continue Amidst Ceasefire Hopes
+[DATA] ✅ Data collection complete.

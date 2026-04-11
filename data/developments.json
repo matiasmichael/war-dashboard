@@ -1,53 +1,54 @@
 {
   "developments": [
     {
-      "headline": "US-Iran Ceasefire Talks Deadlocked, Collapse Feared",
-      "summary": "Direct US-Iran talks are underway but reportedly deadlocked over US demands and Iran's insistence on military gains, particularly regarding the Strait of Hormuz. Israel anticipates negotiation collapse and prepares for renewed conflict.",
+      "headline": "US-Iran De-escalation Talks Stalled",
+      "summary": "US-Iran de-escalation talks are deadlocked over the Strait of Hormuz, with Israel assessing collapse and potential war renewal. US warships transited Hormuz, signaling resolve amidst Iran's firm demands.",
       "sources": [
-        "Ynet News",
         "CNBC",
+        "Ynet News",
         "Al Jazeera",
         "Jerusalem Post"
       ],
       "severity": "critical",
       "category": "diplomacy",
-      "updatedAt": "2026-04-11T19:20:13.363Z"
+      "updatedAt": "2026-04-11T19:24:48.645Z"
     },
     {
-      "headline": "US Warships Transit Hormuz Amid Diplomatic Standoff",
-      "summary": "US warships transited the Strait of Hormuz for the first time since the conflict began, citing mine clearance and freedom of navigation. This assertive military signaling coincides with stalled US-Iran talks.",
+      "headline": "Israeli Strikes Target Iran, Injure Leader",
+      "summary": "Israeli strikes in Iran reportedly destroyed a synagogue and disfigured the Supreme Leader's son. Netanyahu states the campaign is ongoing and successfully prevented a nuclear threat.",
       "sources": [
-        "CNBC",
+        "Al Jazeera",
+        "Jerusalem Post",
+        "Fox News",
+        "Ynet News"
+      ],
+      "severity": "major",
+      "category": "military",
+      "updatedAt": "2026-04-11T19:24:48.645Z"
+    },
+    {
+      "headline": "Hezbollah Barrage Hits Northern Israel",
+      "summary": "Hezbollah launched rockets and drones into northern Israel, causing damage and triggering alarms. This indicates continued active engagement on the Lebanese front.",
+      "sources": [
         "Ynet News",
         "Jerusalem Post"
       ],
-      "severity": "major",
+      "severity": "notable",
       "category": "military",
-      "updatedAt": "2026-04-11T19:20:13.363Z"
+      "updatedAt": "2026-04-11T19:24:48.645Z"
     },
     {
-      "headline": "Hezbollah Barrage Hits Northern Israel, Escalation Continues",
-      "summary": "Northern Israel was hit by Hezbollah rocket and drone barrages, causing damage and triggering alarms, indicating an active conflict front. Israeli military action in Lebanon continues amid calls for peace.",
+      "headline": "Gaza Strikes Continue Amidst Ceasefire Hopes",
+      "summary": "Despite reports of a fragile ceasefire bringing some relief in Iran, Israeli airstrikes continue in Gaza, causing casualties. An IDF soldier was severely injured, and West Bank tensions remain high.",
       "sources": [
-        "Jerusalem Post",
-        "Ynet News",
-        "Al Jazeera"
+        "Al Jazeera",
+        "Ynet News"
       ],
-      "severity": "major",
+      "severity": "developing",
       "category": "military",
-      "updatedAt": "2026-04-11T19:20:13.363Z"
-    },
-    {
-      "headline": "Iran Leader Mojtaba Khamenei Reportedly Injured by Strikes",
-      "summary": "Iran's Supreme Leader Mojtaba Khamenei is reportedly severely disfigured following US-Israeli airstrikes that killed his father. This raises significant questions regarding Iran's leadership stability and succession.",
-      "sources": [
-        "Fox News"
-      ],
-      "severity": "critical",
-      "category": "military",
-      "updatedAt": "2026-04-11T19:20:13.363Z"
+      "updatedAt": "2026-04-11T19:24:48.645Z"
     }
   ],
-  "generatedAt": "2026-04-11T19:20:13.363Z",
-  "articleCount": 138
+  "generatedAt": "2026-04-11T19:24:48.645Z",
+  "articleCount": 139
 }
