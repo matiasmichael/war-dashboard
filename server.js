@@ -1,11 +1,14 @@
+// ===== HTTP SERVER =====
+// Serves the dashboard and archive API. Uses shared config for PORT (Item #12).
+
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const { PORT } = require('./src/config');
 
 const app = express();
-const PORT = 8440;
 
-// Serve static files from public/
+// Serve static files from public/ (includes style.css, app.js, template.html, index.html)
 app.use(express.static(path.join(__dirname, 'public'), {
   maxAge: '5m',
   etag: true
@@ -29,7 +32,7 @@ app.get('/api/archive/dates', (req, res) => {
     const files = fs.readdirSync(dailyDir)
       .filter(f => f.endsWith('.json') && f !== 'manifest.json')
       .map(f => f.replace('.json', ''))
-      .sort((a, b) => b.localeCompare(a)); // Newest first
+      .sort((a, b) => b.localeCompare(a));
     res.json(files);
   } catch (e) {
     res.json([]);
@@ -39,7 +42,6 @@ app.get('/api/archive/dates', (req, res) => {
 // GET /api/archive/:date — get a specific daily briefing
 app.get('/api/archive/:date', (req, res) => {
   const dateStr = req.params.date;
-  // Validate date format
   if (!/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
     return res.status(400).json({ error: 'Invalid date format. Use YYYY-MM-DD.' });
   }

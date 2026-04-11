@@ -1,17 +1,16 @@
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+// ===== DAILY SUMMARY GENERATOR =====
+// Generates a comprehensive daily intelligence briefing using Gemini.
+// Imports shared config instead of hardcoding values (Item #11).
+
 const fs = require('fs');
 const path = require('path');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
+const { GEMINI_MODEL, TIMEZONE } = require('./src/config');
+const { getGeminiKey } = require('./src/synthesizer');
+const { atomicWriteSync } = require('./src/utils');
 
-// ===== CONFIG =====
 const DATA_DIR = path.join(__dirname, 'data');
 const DAILY_DIR = path.join(DATA_DIR, 'daily');
-const ISRAEL_TZ = 'Asia/Jerusalem';
-
-function getGeminiKey() {
-  const configPath = path.join(process.env.HOME, '.openclaw/openclaw.json');
-  const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
-  return config.env.GOOGLE_API_KEY;
-}
 
 async function generateDailySummary(dateStr) {
   console.log(`📋 Generating daily summary for ${dateStr}...`);
@@ -31,9 +30,9 @@ async function generateDailySummary(dateStr) {
     process.exit(1);
   }
 
-  // Prepare article context for Gemini — show times in Israel timezone
+  // Prepare article context — times in Israel timezone
   const articleContext = articles.map((a, i) => {
-    const time = a.date ? new Date(a.date).toLocaleTimeString('en-US', { timeZone: ISRAEL_TZ, hour: '2-digit', minute: '2-digit', hour12: false }) : 'unknown';
+    const time = a.date ? new Date(a.date).toLocaleTimeString('en-US', { timeZone: TIMEZONE, hour: '2-digit', minute: '2-digit', hour12: false }) : 'unknown';
     return `[${i + 1}] [${a.source}] [${time} IDT] ${a.title}\n${a.snippet || ''}`;
   }).join('\n\n');
 
@@ -51,7 +50,7 @@ async function generateDailySummary(dateStr) {
   }
 
   const genAI = new GoogleGenerativeAI(apiKey);
-  const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+  const model = genAI.getGenerativeModel({ model: GEMINI_MODEL });
 
   const prompt = `You are a senior intelligence analyst producing the daily briefing for an Iran-Israel conflict monitoring platform called "Iran War Update." 
 
@@ -128,10 +127,10 @@ RULES:
   briefing.statistics.sources_reporting = Object.keys(sourceCounts).length;
   briefing.statistics.most_active_source = mostActiveSrc[0];
 
-  // Save the briefing
+  // Save the briefing with atomic write
   fs.mkdirSync(DAILY_DIR, { recursive: true });
   const outPath = path.join(DAILY_DIR, `${dateStr}.json`);
-  fs.writeFileSync(outPath, JSON.stringify(briefing, null, 2), 'utf-8');
+  atomicWriteSync(outPath, JSON.stringify(briefing, null, 2));
 
   console.log(`✅ Daily briefing saved: ${outPath}`);
   console.log(`   Headline: ${briefing.headline}`);
@@ -143,10 +142,8 @@ RULES:
 
 // ===== MAIN =====
 async function main() {
-  // Accept a date argument, or default to today in Israel timezone
   const dateArg = process.argv[2];
-  // Default to Israel calendar date (Asia/Jerusalem)
-  const dateStr = dateArg || new Date().toLocaleDateString('en-CA', { timeZone: ISRAEL_TZ });
+  const dateStr = dateArg || new Date().toLocaleDateString('en-CA', { timeZone: TIMEZONE });
 
   await generateDailySummary(dateStr);
   process.exit(0);
