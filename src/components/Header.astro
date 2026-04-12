@@ -18,11 +18,10 @@ const switchUrl = getSwitchLangUrl(Astro.url, altLang);
 <div class="navbar bg-header-brown sticky top-0 z-50 px-0">
   <div class="max-w-[680px] mx-auto w-full flex flex-col">
     <div class="relative flex items-center justify-center px-4 py-2">
-      <!-- Language switcher (top left / start) -->
-      <div class="flex gap-1.5 absolute" style={lang === 'he' ? 'right: 1rem' : 'left: 1rem'}>
-        <a href={switchUrl} class="btn btn-sm btn-ghost text-white/70 hover:text-white bg-white/8 hover:bg-white/15 rounded-lg min-h-[36px] px-2.5 text-[0.72rem] font-semibold" title={`Switch to ${altLabel}`}>
-          {altLang === 'he' ? '🇮🇱 עב' : '🇺🇸 EN'}
-        </a>
+      <!-- Nav buttons (top left) -->
+      <div class="flex gap-1.5 absolute" style="left: 1rem">
+        <a href={localizedPath(lang, '/videos')} class="btn btn-sm btn-ghost btn-square text-white/70 hover:text-white bg-white/8 hover:bg-white/15 rounded-lg min-h-[36px] min-w-[36px]" title={t(lang, 'header.videos')}>🎬</a>
+        <a href={localizedPath(lang, '/archive')} class="btn btn-sm btn-ghost btn-square text-white/70 hover:text-white bg-white/8 hover:bg-white/15 rounded-lg min-h-[36px] min-w-[36px]" title={t(lang, 'header.archive')}>🗓️</a>
       </div>
       <!-- Centered title -->
       <div class="flex flex-col items-center">
@@ -32,10 +31,11 @@ const switchUrl = getSwitchLangUrl(Astro.url, altLang);
         </h1>
         <span class="text-[0.7rem] font-normal text-white/50" id="headerFreshness">{t(lang, 'site.subtitle')}</span>
       </div>
-      <!-- Nav buttons (top right / end) -->
-      <div class="flex gap-1.5 absolute" style={lang === 'he' ? 'left: 1rem' : 'right: 1rem'}>
-        <a href={localizedPath(lang, '/videos')} class="btn btn-sm btn-ghost btn-square text-white/70 hover:text-white bg-white/8 hover:bg-white/15 rounded-lg min-h-[36px] min-w-[36px]" title={t(lang, 'header.videos')}>🎬</a>
-        <a href={localizedPath(lang, '/archive')} class="btn btn-sm btn-ghost btn-square text-white/70 hover:text-white bg-white/8 hover:bg-white/15 rounded-lg min-h-[36px] min-w-[36px]" title={t(lang, 'header.archive')}>🗓️</a>
+      <!-- Language switcher (top right) -->
+      <div class="flex gap-1.5 absolute" style="right: 1rem">
+        <a href={switchUrl} class="btn btn-sm btn-ghost text-white/70 hover:text-white bg-white/8 hover:bg-white/15 rounded-lg min-h-[36px] px-2.5 text-[0.72rem] font-semibold" title={`Switch to ${altLabel}`}>
+          {altLang === 'he' ? '🇮🇱 עב' : '🇺🇸 EN'}
+        </a>
       </div>
     </div>
     <div class="h-[3px] bg-gradient-to-r from-bc-orange to-bc-gold"></div>
