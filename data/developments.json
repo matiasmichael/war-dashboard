@@ -1,64 +1,61 @@
 {
   "developments": [
     {
-      "headline": "US-Iran talks collapse; delegation departs",
-      "summary": "US-Iran negotiations in Pakistan failed after 21 hours, with VP Vance's delegation departing without a deal. Both sides blame each other, escalating regional diplomatic tensions.",
+      "headline": "US Declares Hormuz Blockade; Iran Threatens Response",
+      "summary": "US President Trump declared an immediate naval blockade of the Strait of Hormuz. Iran's IRGC responded by threatening severe action against approaching military vessels, significantly escalating regional tensions.",
       "sources": [
-        "Al Jazeera",
-        "CNBC",
         "Times of Israel",
         "Ynet News"
       ],
       "severity": "critical",
-      "category": "diplomacy",
-      "timeContext": "1h ago",
-      "updatedAt": "2026-04-12T04:41:02.026Z",
-      "headline_he": "שיחות ארה\"ב-איראן קרסו; המשלחת עזבה",
-      "summary_he": "המשא ומתן בין ארה\"ב לאיראן בפקיסטן כשל לאחר 21 שעות, כאשר משלחתו של סגן הנשיא ואנס עזבה ללא הסכם. שני הצדדים מאשימים זה את זה, מה שמגביר את המתיחות הדיפלומטית האזורית."
+      "category": "military",
+      "timeContext": "22m ago",
+      "updatedAt": "2026-04-12T17:44:07.400Z",
+      "headline_he": "ארה\"ב מכריזה על מצור בהורמוז; איראן מאיימת בתגובה",
+      "summary_he": "נשיא ארה\"ב טראמפ הכריז על מצור ימי מיידי על מצר הורמוז. משמרות המהפכה של איראן הגיבו באיום בפעולה חמורה נגד כלי שיט צבאיים מתקרבים, תוך הסלמה משמעותית של המתיחות האזורית."
     },
     {
-      "headline": "Alarms sound in Northern Israel",
-      "summary": "Air raid sirens activated across the Upper Galilee region in northern Israel, indicating potential incoming threats. This suggests ongoing low-intensity conflict or immediate security concerns.",
+      "headline": "Drone Infiltrations, Alarms Plague Northern Israel",
+      "summary": "Northern Israel is experiencing multiple suspected drone infiltrations and active alarms in the Galilee region, indicating heightened cross-border hostilities following an IDF raid on a Hezbollah stronghold.",
       "sources": [
-        "Ynet News"
+        "Ynet News",
+        "Times of Israel"
       ],
       "severity": "major",
       "category": "military",
-      "timeContext": "31m ago",
-      "updatedAt": "2026-04-12T04:41:02.026Z",
-      "headline_he": "אזעקות נשמעו בצפון ישראל",
-      "summary_he": "צופרי התרעה הופעלו ברחבי אזור הגליל העליון שבצפון ישראל, מה שמצביע על איומים פוטנציאליים מתקרבים. הדבר מעיד על סכסוך מתמשך בעצימות נמוכה או על חששות ביטחוניים מיידיים."
+      "timeContext": "Ongoing",
+      "updatedAt": "2026-04-12T17:44:07.400Z",
+      "headline_he": "גל חדירות כטב\"מים ואזעקות פוקד את צפון ישראל",
+      "summary_he": "צפון ישראל חווה מספר חדירות חשודות של כטב\"מים ואזעקות פעילות באזור הגליל. הדבר מעיד על הסלמה בעוינות חוצת הגבולות, לאחר פשיטה של צה\"ל על מעוז חיזבאללה."
     },
     {
-      "headline": "Iran threatens Hormuz; UN warns against tolls",
-      "summary": "Iran declared no change in its Hormuz stance if US demands aren't met, while the UN maritime chief warned against tolls. This follows US warships transiting the strategic waterway, heightening regional economic and military risk.",
+      "headline": "Iran Rejects Ceasefire Terms, Urges Street Support",
+      "summary": "Ceasefire talks have failed due to Iran's rejection of US demands, including ending uranium enrichment and proxy funding. Iranian authorities remain defiant, urging supporters to stay in the streets.",
       "sources": [
         "Al Jazeera",
-        "CNBC",
-        "Ynet News"
+        "Jerusalem Post"
       ],
-      "severity": "critical",
-      "category": "military",
-      "timeContext": "Ongoing",
-      "updatedAt": "2026-04-12T04:41:02.026Z",
-      "headline_he": "איראן מאיימת על הורמוז; האו\"ם מזהיר מפני אגרות",
-      "summary_he": "איראן הצהירה כי לא תשנה את עמדתה בנוגע למצר הורמוז אם דרישות ארה\"ב לא ייענו, בעוד ראש האגף הימי של האו\"ם הזהיר מפני הטלת אגרות. זאת בעקבות מעבר ספינות מלחמה אמריקאיות במעבר הימי האסטרטגי, מה שמגביר את הסיכון הכלכלי והצבאי באזור."
+      "severity": "major",
+      "category": "diplomacy",
+      "timeContext": "52m ago",
+      "updatedAt": "2026-04-12T17:44:07.400Z",
+      "headline_he": "איראן דוחה תנאי הפסקת אש, קוראת לתמיכה ברחובות",
+      "summary_he": "שיחות הפסקת האש נכשלו עקב דחייתה של איראן לדרישות ארה\"ב, כולל הפסקת העשרת אורניום ומימון ארגוני חסות. הרשויות האיראניות נותרו מתריסות וקוראות לתומכים להישאר ברחובות."
     },
     {
-      "headline": "Israel, Turkey exchange escalating accusations",
-      "summary": "Israel's Prime Minister Netanyahu and other leaders strongly condemned Turkish President Erdogan, who in turn labeled Netanyahu \"the Hitler of our time.\" This marks a significant deterioration in bilateral relations.",
+      "headline": "Israeli Leaders Affirm Sustained Lebanon Operations",
+      "summary": "Prime Minister Netanyahu and Minister Katz reiterated in South Lebanon that the war is ongoing, with significant work remaining. This signals continued military pressure on Hezbollah targets in the region.",
       "sources": [
-        "Times of Israel",
         "Ynet News"
       ],
       "severity": "notable",
-      "category": "diplomacy",
-      "timeContext": "59m ago",
-      "updatedAt": "2026-04-12T04:41:02.026Z",
-      "headline_he": "ישראל וטורקיה מחליפות האשמות מחריפות",
-      "summary_he": "ראש ממשלת ישראל נתניהו ומנהיגים נוספים גינו בחריפות את נשיא טורקיה ארדואן, אשר מצידו כינה את נתניהו \"היטלר של זמננו\". הדבר מסמן הידרדרות משמעותית ביחסים הבילטרליים."
+      "category": "military",
+      "timeContext": "19m ago",
+      "updatedAt": "2026-04-12T17:44:07.400Z",
+      "headline_he": "מנהיגים ישראלים מאשרים המשך מבצעים בלבנון",
+      "summary_he": "ראש הממשלה נתניהו והשר כץ חזרו והדגישו בדרום לבנון כי המלחמה נמשכת, וכי עוד נותרה עבודה רבה. הדבר מאותת על המשך הלחץ הצבאי על יעדי חיזבאללה באזור."
     }
   ],
-  "generatedAt": "2026-04-12T04:41:13.182Z",
-  "articleCount": 206
+  "generatedAt": "2026-04-12T17:44:22.464Z",
+  "articleCount": 386
 }

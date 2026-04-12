@@ -10,8 +10,8 @@
     "accentLight": "#eff6ff",
     "publisherLogo": "https://www.google.com/s2/favicons?domain=cnbc.com&sz=128",
     "noDate": false,
-    "title_he": "מדד S&P 500 ירד ביום שישי, אך רשם את השבוע הטוב ביותר מאז נובמבר לאחר הסכם הפסקת אש שברירי עם איראן: עדכונים חיים",
-    "snippet_he": "מדד S&P 500 ירד מעט ביום שישי, למרות שהמדד עדיין רשם את השבוע הטוב ביותר שלו מאז נובמבר האחרון."
+    "title_he": "מדד S&P 500 יורד ביום שישי, אך רושם את השבוע הטוב מאז נובמבר",
+    "snippet_he": "מדד S&P 500 ירד קלות ביום שישי, אם כי המדד עדיין רשם את השבוע הטוב ביותר שלו מאז נובמבר שעבר."
   },
   {
     "title": "Iran regime uses former Soviet republic to dodge sanctions, fund war machine: report",
@@ -23,8 +23,8 @@
     "color": "#003366",
     "accentLight": "#eff6ff",
     "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128",
-    "title_he": "דיווח: משטר איראן משתמש ברפובליקה סובייטית לשעבר כדי לחמוק מסנקציות ולממן את מכונת המלחמה שלו",
-    "snippet_he": "גאורגיה, שהייתה פעם בעלת ברית נאמנה של ארה״ב, התיישרה בשקט עם איראן, מה שמעלה חששות לגבי השפעת משמרות המהפכה והתחמקות מסנקציות, כך טוען דו\"ח חדש."
+    "title_he": "דו\"ח: איראן משתמשת ברפובליקה סובייטית לשעבר להתחמקות מסנקציות",
+    "snippet_he": "דו\"ח חדש טוען כי גאורגיה, שהייתה בעבר בעלת ברית מחויבת לארה\"ב, התיישרה בשקט עם איראן, מה שמעלה חששות לגבי השפעת משמרות המהפכה והתחמקות מסנקציות."
   },
   {
     "title": "Michael Burry says he's still betting against Palantir after Trump post boosts stock",
@@ -37,8 +37,22 @@
     "accentLight": "#eff6ff",
     "publisherLogo": "https://www.google.com/s2/favicons?domain=cnbc.com&sz=128",
     "noDate": false,
-    "title_he": "מייקל בארי: אני עדיין מהמר נגד פלנטיר למרות שפוסט של טראמפ הקפיץ את המניה",
-    "snippet_he": "המשקיע המפורסם מ\"השורט הגדול\" (The Big Short) אמר כי הוא ממשיך להחזיק באופציות פוט ארוכות טווח על חברת תוכנת הבינה המלאכותית."
+    "title_he": "מייקל בורי אומר שהוא עדיין מהמר נגד פלנטיר, לאחר פוסט של טראמפ שהקפיץ את המניה",
+    "snippet_he": "המשקיע המפורסם מ״השורט הגדול״ אמר שהוא ממשיך להחזיק באופציות פוט לטווח ארוך על חברת התוכנה לבינה מלאכותית."
+  },
+  {
+    "title": "Iran's speaker says negotiations with U.S. can't start without Lebanon ceasefire, asset release",
+    "link": "https://www.cnbc.com/2026/04/10/iran-war-vance-negotiations-trump-oil-hormuz-strait.html",
+    "snippet": "President Trump is frustrated by Iran continuing to throttle most shipping traffic through the Strait of Hormuz, the world's most important oil route.",
+    "date": "2026-04-10T17:50:05.000Z",
+    "source": "CNBC",
+    "logo": "📈",
+    "color": "#005594",
+    "accentLight": "#eff6ff",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=cnbc.com&sz=128",
+    "noDate": false,
+    "title_he": "יו\"ר הפרלמנט האיראני: מו\"מ עם ארה\"ב לא יחל ללא הפסקת אש בלבנון ושחרור נכסים",
+    "snippet_he": "הנשיא טראמפ מתוסכל מכך שאיראן ממשיכה לחסום את מרבית תנועת הספנות במצר הורמוז, נתיב הנפט החשוב בעולם."
   },
   {
     "title": "Palestinian shot dead during Israeli settler attack on occupied West Bank village",
@@ -50,8 +64,8 @@
     "color": "#b80000",
     "accentLight": "#fef2f2",
     "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128",
-    "title_he": "פלסטיני נורה למוות במהלך תקיפת מתנחלים ישראלים בכפר בגדה המערבית הכבושה",
-    "snippet_he": "ההריגה הגיעה בשעה שראשי ביטחון לשעבר הזהירו כי \"טרור יהודי בחסות הממשלה\" יצא מכלל שליטה."
+    "title_he": "פלסטיני נורה למוות במתקפת מתנחלים על כפר בגדה המערבית הכבושה",
+    "snippet_he": "ההרג מגיע על רקע אזהרת ראשי ביטחון לשעבר כי ״טרור יהודי בחסות הממשלה״ יצא מכלל שליטה."
   },
   {
     "title": "Ireland gridlocked by fuel protests as Iran war drives prices higher",
@@ -64,8 +78,8 @@
     "accentLight": "#eff6ff",
     "publisherLogo": "https://www.google.com/s2/favicons?domain=cnbc.com&sz=128",
     "noDate": false,
-    "title_he": "אירלנד משותקת עקב מחאת דלק; מלחמת איראן מעלה מחירים",
-    "snippet_he": "המפגינים מוחים על תגובת הממשלה לעלייה במחירי הדלק מאז פרוץ מלחמת איראן."
+    "title_he": "אירלנד משותקת ממחאות דלק; מלחמת איראן מקפיצה מחירים",
+    "snippet_he": "מפגינים מוחים נגד תגובת הממשלה לזינוק במחירי הדלק מאז פרוץ מלחמת איראן."
   },
   {
     "title": "What's at stake ahead of crucial U.S.-Iran peace talks as leaders meet in Pakistan",
@@ -78,8 +92,8 @@
     "accentLight": "#eff6ff",
     "publisherLogo": "https://www.google.com/s2/favicons?domain=cnbc.com&sz=128",
     "noDate": false,
-    "title_he": "לקראת שיחות השלום המכריעות בין ארה״ב לאיראן: מה מונח על הכף?",
-    "snippet_he": "כבר, טהראן האשימה את ישראל בהפרת תנאי הפסקת האש, בעוד צה״ל ממשיך לתקוף את חיזבאללה בלבנון."
+    "title_he": "מה עומד על הכף לקראת שיחות שלום גורליות בין ארה\"ב לאיראן, כשמנהיגים נפגשים בפקיסטן",
+    "snippet_he": "טהראן כבר האשימה את ישראל בהפרת תנאי הפסקת האש, כשצה\"ל ממשיך לתקוף את חיזבאללה בלבנון."
   },
   {
     "title": "How many ships are crossing the Strait of Hormuz?",
@@ -91,8 +105,8 @@
     "color": "#b80000",
     "accentLight": "#fef2f2",
     "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128",
-    "title_he": "כמה אוניות חוצות את מצרי הורמוז?",
-    "snippet_he": "רק כלי שיט בודדים חצו את המצרים מאז הסכם הפסקת האש בין ארה״ב לאיראן, לפי ניתוח של BBC Verify."
+    "title_he": "כמה ספינות חוצות את מצר הורמוז?",
+    "snippet_he": "רק כלי שיט בודדים חצו את המצר מאז הסכם הפסקת האש בין ארה\"ב לאיראן, לפי ניתוח של BBC Verify."
   },
   {
     "title": "Here's the inflation breakdown for March 2026 — in one chart",
@@ -106,7 +120,7 @@
     "publisherLogo": "https://www.google.com/s2/favicons?domain=cnbc.com&sz=128",
     "noDate": false,
     "title_he": "פירוט האינפלציה למרץ 2026 – בגרף אחד",
-    "snippet_he": "מלחמת איראן העלתה את מחירי הדלק, הטיסות ומחירים נוספים לצרכנים."
+    "snippet_he": "מלחמת איראן דחפה למעלה את מחירי הבנזין, כרטיסי הטיסה ומחירים אחרים עבור הצרכנים."
   },
   {
     "title": "Consumer sentiment hits record low, inflation fears rise amid Iran war",
@@ -119,8 +133,8 @@
     "accentLight": "#eff6ff",
     "publisherLogo": "https://www.google.com/s2/favicons?domain=cnbc.com&sz=128",
     "noDate": false,
-    "title_he": "אמון הצרכנים בשפל היסטורי, חשש מאינפלציה גובר בצל מלחמת איראן",
-    "snippet_he": "מדד אמון הצרכנים המוביל של האוניברסיטה צנח ל-47.6 נקודות, ירידה של 10.7% ממרץ ולשפל הנמוך ביותר שנרשם."
+    "title_he": "סנטימנט הצרכנים בשפל היסטורי; חששות מאינפלציה עולים על רקע מלחמת איראן",
+    "snippet_he": "מדד סנטימנט הצרכנים הראשי של האוניברסיטה צנח ל-47.6, ירידה של 10.7% ממרץ, לשפל היסטורי."
   },
   {
     "title": "Buy this Israeli defense stock because of its 'battlefield tested tech,' Bank of America says",
@@ -133,8 +147,8 @@
     "accentLight": "#eff6ff",
     "publisherLogo": "https://www.google.com/s2/favicons?domain=cnbc.com&sz=128",
     "noDate": false,
-    "title_he": "״טכנולוגיה שנבדקה בקרב״: בנק אוף אמריקה ממליץ לרכוש מניות ביטחוניות ישראליות",
-    "snippet_he": "מניית אלביט מערכות זינקה ב-60% בפחות מארבעה חודשים. אנליסט מעריך כי היא תמשיך לעלות כל עוד הביקוש העולמי לטכנולוגיה ביטחונית נשאר גבוה."
+    "title_he": "בנק אוף אמריקה: קנו את מניית הביטחון הישראלית הזו בשל ״טכנולוגיה שנבדקה בשדה קרב״",
+    "snippet_he": "אלביט מערכות זינקה ב-60% בפחות מארבעה חודשים. אנליסט אחד אומר כי היא תמשיך לטפס כל עוד הביקוש העולמי לטכנולוגיה ביטחונית נשאר גבוה."
   },
   {
     "title": "Iran’s ‘Godfather of propaganda’ tactics resurface in war with US and Israel",
@@ -146,8 +160,8 @@
     "color": "#003366",
     "accentLight": "#eff6ff",
     "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128",
-    "title_he": "טקטיקות ״סנדק התעמולה״ של איראן צצות מחדש במלחמה עם ארה״ב וישראל",
-    "snippet_he": "מומחים: איראן משתמשת באזרחים וילדים כמגנים אנושיים למטרות תעמולה, ללא התחשבות בביטחון ובגורל עמה."
+    "title_he": "טקטיקות ״סנדק התעמולה״ של איראן צצות מחדש במלחמה עם ארה\"ב וישראל",
+    "snippet_he": "מומחים אומרים שאיראן משתמשת באזרחים ובילדים כמגנים אנושיים למטרות תעמולה, מבלי להתחשב בביטחונם וגורלם של אזרחיה."
   },
   {
     "title": "Airports could face a jet fuel crunch within 3 weeks as airlines weigh flight cancellations",
@@ -160,8 +174,8 @@
     "accentLight": "#eff6ff",
     "publisherLogo": "https://www.google.com/s2/favicons?domain=cnbc.com&sz=128",
     "noDate": false,
-    "title_he": "מחסור בדלק סילוני בתוך 3 שבועות? חברות תעופה שוקלות ביטולי טיסות",
-    "snippet_he": "איגוד התעופה האירופי: אם מצרי הורמוז לא ייפתחו מחדש, ״מחסור מערכתי בדלק סילוני יהפוך למציאות עבור האיחוד האירופי״."
+    "title_he": "שדות תעופה עלולים להתמודד עם מחסור בדלק סילוני תוך 3 שבועות; חברות תעופה שוקלות ביטולי טיסות",
+    "snippet_he": "תעשיית שדות התעופה של אירופה אמרה שאם מצר הורמוז לא ייפתח מחדש, ״מחסור מערכתי בדלק סילוני יהפוך למציאות עבור האיחוד האירופי״."
   },
   {
     "title": "Defense's Silicon Valley pivot: Ukraine, Iran wars challenge the legacy playbook",
@@ -174,8 +188,8 @@
     "accentLight": "#eff6ff",
     "publisherLogo": "https://www.google.com/s2/favicons?domain=cnbc.com&sz=128",
     "noDate": false,
-    "title_he": "תעשיית הביטחון פונה לעמק הסיליקון: מלחמות אוקראינה ואיראן מאתגרות את תפיסות העבר",
-    "snippet_he": "חברות מהמרות על סוג חדש של לוחמה, המבוסס על זמני פיתוח קצרים המאפשרים פריסות מהירות ופתרונות חסכוניים יותר."
+    "title_he": "מפנה עמק הסיליקון של הביטחון: מלחמות אוקראינה ואיראן מאתגרות את מודל העבר",
+    "snippet_he": "חברות מהמרות על סוג חדש של לוחמה, המבוסס על זמני אספקה קצרים המאפשרים פריסות מהירות ופתרונות חסכוניים יותר."
   },
   {
     "title": "Why ships bound for the Middle East are piling up across Asia",
@@ -188,8 +202,8 @@
     "accentLight": "#eff6ff",
     "publisherLogo": "https://www.google.com/s2/favicons?domain=cnbc.com&sz=128",
     "noDate": false,
-    "title_he": "מדוע אוניות בדרך למזרח התיכון נערמות ברחבי אסיה?",
-    "snippet_he": "העומס במים הטריטוריאליים של סינגפור עולה, כיוון שמלחמת איראן משבשת נתיבי שיט ומאלצת כלי שיט בדרכם למזרח התיכון להטיל עוגן ליד נמליה."
+    "title_he": "מדוע ספינות המיועדות למזרח התיכון נערמות ברחבי אסיה?",
+    "snippet_he": "העומס במים הטריטוריאליים של סינגפור עולה כשמלחמת איראן משבשת נתיבי ספנות, ומאלצת כלי שיט המיועדים למזרח התיכון לעגון ליד נמליה."
   },
   {
     "title": "VP Vance to lead U.S. team in Iran peace talks. And, Artemis II to return to Earth",
@@ -234,8 +248,8 @@
     "color": "#b80000",
     "accentLight": "#fef2f2",
     "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128",
-    "title_he": "טראמפ: התנהלות איראן במצרי הורמוז ״אינה ההסכם שיש לנו״",
-    "snippet_he": "נשיא ארה״ב האשים את איראן ״בטיפול לקוי מאוד״ בנתיב המים, בעוד ישראל ולבנון מתחילות בשיחות שלום."
+    "title_he": "טראמפ: התנהלות איראן במצר הורמוז ״אינה ההסכם שיש לנו״",
+    "snippet_he": "נשיא ארה\"ב האשים את איראן ב״תפקוד לקוי מאוד״ בנתיב המים, בזמן שישראל ולבנון מתחילות בשיחות שלום."
   },
   {
     "title": "Inside Tehran after strikes: Iranian woman describes fear, checkpoints and people used as ‘human shields’",
@@ -247,8 +261,8 @@
     "color": "#003366",
     "accentLight": "#eff6ff",
     "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128",
-    "title_he": "בטהראן לאחר התקיפות: איראנית מתארת פחד, מחסומים ו״מגנים אנושיים״",
-    "snippet_he": "אישה איראנית אנונימית פירטה ל״אוסטרליאן״ את הפיצוצים הליליים, החגיגות והפחד בטהראן, בעוד הפסקת האש בת השבועיים של טראמפ עם איראן החלה להתבסס באופן זמני."
+    "title_he": "בתוך טהראן לאחר התקיפות: איראנית מתארת פחד, מחסומים ואנשים המשמשים ״מגנים אנושיים״",
+    "snippet_he": "אישה איראנית אנונימית פירטה ל״האוסטרליאן״ את הפיצוצים הליליים, החגיגות והפחד בטהראן, כשבמקביל הפסקת האש בת השבועיים של טראמפ עם איראן החלה להתבסס באופן זמני."
   },
   {
     "title": "Ceasefire or no ceasefire, the Middle East's reshuffling is not yet done",
@@ -260,7 +274,7 @@
     "color": "#b80000",
     "accentLight": "#fef2f2",
     "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128",
-    "title_he": "עם הפסקת אש או בלעדיה: ארגון מחדש במזרח התיכון טרם הושלם",
-    "snippet_he": "לשני הצדדים יש סיבות לסיים את המלחמה אך אין להם מכנה משותף."
+    "title_he": "הפסקת אש או לא: הטלטלה במזרח התיכון טרם הסתיימה",
+    "snippet_he": "לשני הצדדים יש סיבה לסיים את המלחמה, אך אין להם בסיס משותף."
   }
 ]

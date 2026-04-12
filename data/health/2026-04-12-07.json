@@ -1,0 +1,117 @@
+{
+  "timestamp": "2026-04-12T07:25:26.738Z",
+  "durationMs": 226,
+  "status": "critical",
+  "checks": [
+    {
+      "name": "site_availability",
+      "status": "fail",
+      "detail": "https://mep.hmviva.us/ → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us | https://mep.hmviva.us/about → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us | https://mep.hmviva.us/archive → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us"
+    },
+    {
+      "name": "data_freshness",
+      "status": "fail",
+      "detail": "8 sources active | Total articles today: 188 | Newest article is 16.3 min old (threshold: 15 min) | Zero articles from: Haaretz, CNN"
+    },
+    {
+      "name": "timestamp_integrity",
+      "status": "pass",
+      "detail": "No future-dated timestamps | No clamping-bug clusters | JPost timezone offset vs others: -221.16h (OK)"
+    },
+    {
+      "name": "synthesis_health",
+      "status": "pass",
+      "detail": "developments.json: 5.6 min old | developments: 4 entries ✓ | sitrep-latest.json: 36.5 min old | sitrep summary: present ✓"
+    },
+    {
+      "name": "build_health",
+      "status": "pass",
+      "detail": "src/data/latest.json: 5.6 min old | dist/index.html: exists ✓ | PM2 war-dashboard: online (31 restarts)"
+    },
+    {
+      "name": "ui_smoke",
+      "status": "fail",
+      "detail": "Failed to fetch homepage: getaddrinfo ENOTFOUND mep.hmviva.us"
+    }
+  ],
+  "summary": "System is in a CRITICAL state. 3 check(s) failed: site_availability, data_freshness, ui_smoke. Immediate attention required.",
+  "_raw": [
+    {
+      "name": "site_availability",
+      "status": "fail",
+      "detail": "https://mep.hmviva.us/ → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us | https://mep.hmviva.us/about → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us | https://mep.hmviva.us/archive → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us",
+      "raw": [
+        {
+          "url": "https://mep.hmviva.us/",
+          "error": "getaddrinfo ENOTFOUND mep.hmviva.us",
+          "status": "fail"
+        },
+        {
+          "url": "https://mep.hmviva.us/about",
+          "error": "getaddrinfo ENOTFOUND mep.hmviva.us",
+          "status": "fail"
+        },
+        {
+          "url": "https://mep.hmviva.us/archive",
+          "error": "getaddrinfo ENOTFOUND mep.hmviva.us",
+          "status": "fail"
+        }
+      ]
+    },
+    {
+      "name": "data_freshness",
+      "status": "fail",
+      "detail": "8 sources active | Total articles today: 188 | Newest article is 16.3 min old (threshold: 15 min) | Zero articles from: Haaretz, CNN",
+      "raw": {
+        "today": "2026-04-12",
+        "articleCount": 188,
+        "activeSources": [
+          "Ynet News",
+          "Times of Israel",
+          "Jerusalem Post",
+          "Al Jazeera",
+          "CNBC",
+          "Fox News",
+          "BBC News",
+          "NPR"
+        ],
+        "zeroSources": [
+          "Haaretz",
+          "CNN"
+        ],
+        "newestAgeMinutes": 16.3
+      }
+    },
+    {
+      "name": "timestamp_integrity",
+      "status": "pass",
+      "detail": "No future-dated timestamps | No clamping-bug clusters | JPost timezone offset vs others: -221.16h (OK)",
+      "raw": {
+        "futureDated": 0,
+        "clustered": []
+      }
+    },
+    {
+      "name": "synthesis_health",
+      "status": "pass",
+      "detail": "developments.json: 5.6 min old | developments: 4 entries ✓ | sitrep-latest.json: 36.5 min old | sitrep summary: present ✓",
+      "raw": {
+        "developmentsAgeMins": 5.6,
+        "sitrepAgeMins": 36.5
+      }
+    },
+    {
+      "name": "build_health",
+      "status": "pass",
+      "detail": "src/data/latest.json: 5.6 min old | dist/index.html: exists ✓ | PM2 war-dashboard: online (31 restarts)",
+      "raw": {
+        "latestJsonAgeMins": 5.6
+      }
+    },
+    {
+      "name": "ui_smoke",
+      "status": "fail",
+      "detail": "Failed to fetch homepage: getaddrinfo ENOTFOUND mep.hmviva.us"
+    }
+  ]
+}
