@@ -8,42 +8,54 @@
       "headline": "Evangelical Leaders Rally for Israel Amidst Ceasefire",
       "source": "Fox News",
       "category": "diplomacy",
-      "description": "Prominent evangelical leaders voiced strong support for Israel and the ongoing joint US-Israel military campaign, 'Operation Epic Fury,' even as a new ceasefire was taking hold. This demonstrates continued domestic backing for Israel's wartime efforts."
+      "description": "Prominent evangelical leaders voiced strong support for Israel and the ongoing joint US-Israel military campaign, 'Operation Epic Fury,' even as a new ceasefire was taking hold. This demonstrates continued domestic backing for Israel's wartime efforts.",
+      "headline_he": "מנהיגים אוונגליסטים מתגייסים למען ישראל על רקע הפסקת אש",
+      "description_he": "מנהיגים אוונגליסטים בולטים הביעו תמיכה חזקה בישראל ובמבצע הצבאי המשותף המתמשך לארה\"ב-ישראל, 'מבצע זעם אפי', גם כשהפסקת אש חדשה החלה להתגבש. זה מראה על גיבוי פנימי מתמשך למאמצי המלחמה של ישראל."
     },
     {
       "time": "20:05 IDT",
       "headline": "Analyst Skeptical of Ceasefire's Durability",
       "source": "BBC News",
       "category": "diplomacy",
-      "description": "International editor Jeremy Bowen cautioned that while the ceasefire offers a brief respite for civilians, its long-term viability remains highly questionable. The war's lasting consequences are profoundly reshaping the Middle East."
+      "description": "International editor Jeremy Bowen cautioned that while the ceasefire offers a brief respite for civilians, its long-term viability remains highly questionable. The war's lasting consequences are profoundly reshaping the Middle East.",
+      "headline_he": "אנליסט ספקן לגבי עמידות הפסקת האש",
+      "description_he": "העורך הבינלאומי ג'רמי בואן הזהיר כי בעוד שהפסקת האש מציעה הפוגה קצרה לאזרחים, היתכנותה לטווח ארוך נותרה מוטלת בספק רב. ההשלכות המתמשכות של המלחמה מעצבות מחדש את המזרח התיכון באופן עמוק."
     },
     {
       "time": "23:11 IDT",
       "headline": "UK Naval Destroyer Docks Due to Technical Issues",
       "source": "Fox News",
       "category": "military",
-      "description": "The United Kingdom's sole naval warship in the Mediterranean docked due to unspecified technical issues, limiting its 'show of force' capabilities. This development coincides with growing criticism of PM Starmer's handling of the Iran war."
+      "description": "The United Kingdom's sole naval warship in the Mediterranean docked due to unspecified technical issues, limiting its 'show of force' capabilities. This development coincides with growing criticism of PM Starmer's handling of the Iran war.",
+      "headline_he": "משחתת ימית בריטית עוגנת עקב תקלות טכניות",
+      "description_he": "ספינת המלחמה הימית היחידה של הממלכה המאוחדת בים התיכון עגנה עקב תקלות טכניות בלתי מוגדרות, מה שהגביל את יכולות 'הצגת הכוח' שלה. התפתחות זו חופפת לביקורת גוברת על טיפולו של רה\"מ סטארמר במלחמת איראן."
     },
     {
       "time": "23:26 IDT",
       "headline": "US, Iran Peace Proposals Face Significant Hurdles",
       "source": "BBC News",
       "category": "diplomacy",
-      "description": "Diplomatic efforts to end the conflict are challenged by substantial differences between the US's 15-point peace plan and Iran's 10 counter-proposals. Negotiators face a considerable task to reconcile these rival frameworks."
+      "description": "Diplomatic efforts to end the conflict are challenged by substantial differences between the US's 15-point peace plan and Iran's 10 counter-proposals. Negotiators face a considerable task to reconcile these rival frameworks.",
+      "headline_he": "הצעות השלום של ארה\"ב ואיראן ניצבות בפני מכשולים משמעותיים",
+      "description_he": "מאמצים דיפלומטיים לסיום הסכסוך מאותגרים על ידי הבדלים מהותיים בין תוכנית השלום בת 15 הנקודות של ארה\"ב לבין 10 הצעות הנגד של איראן. על המשא ומתן מוטלת משימה לא קלה ליישב בין מסגרות יריבות אלו."
     },
     {
       "time": "23:54 IDT",
       "headline": "Massive Israeli Strikes Kill 182 in Lebanon",
       "source": "BBC News",
       "category": "military",
-      "description": "Hours after a US-Iran ceasefire was announced, a large wave of Israeli strikes hit multiple locations across Lebanon, including Beirut's southern suburbs and the Bekaa Valley. The attacks resulted in at least 182 fatalities, immediately imperiling the truce."
+      "description": "Hours after a US-Iran ceasefire was announced, a large wave of Israeli strikes hit multiple locations across Lebanon, including Beirut's southern suburbs and the Bekaa Valley. The attacks resulted in at least 182 fatalities, immediately imperiling the truce.",
+      "headline_he": "תקיפות ישראליות נרחבות הורגות 182 בלבנון",
+      "description_he": "שעות ספורות לאחר הכרזת הפסקת אש בין ארה\"ב לאיראן, גל תקיפות ישראלי גדול פגע במספר מוקדים ברחבי לבנון, כולל הפרוורים הדרומיים של ביירות ועמק הבקאע. התקיפות גרמו למותם של לפחות 182 בני אדם, ובכך סיכנו באופן מיידי את ההפוגה."
     },
     {
       "time": "23:58 IDT",
       "headline": "Iran Threatens Ceasefire Over Hezbollah Exclusion",
       "source": "Fox News",
       "category": "proxy",
-      "description": "Iran threatened to terminate the recently announced ceasefire, stating that the U.S. must choose between peace and continued conflict via Israel. Tehran explicitly cited the exclusion of its proxy group, Hezbollah, from the truce deal as the reason."
+      "description": "Iran threatened to terminate the recently announced ceasefire, stating that the U.S. must choose between peace and continued conflict via Israel. Tehran explicitly cited the exclusion of its proxy group, Hezbollah, from the truce deal as the reason.",
+      "headline_he": "איראן מאיימת לבטל הפסקת אש עקב הדרת חזבאללה",
+      "description_he": "איראן איימה לסיים את הפסקת האש שהוכרזה לאחרונה, וקבעה כי ארה\"ב חייבת לבחור בין שלום לבין המשך סכסוך באמצעות ישראל. טהראן ציטטה במפורש את הדרת קבוצת השליחים שלה, חזבאללה, מהסכם ההפוגה כסיבה."
     }
   ],
   "statistics": {
@@ -57,5 +69,13 @@
     "Significant Israeli military strikes in Lebanon resulted in high casualties, breaching the spirit of the ceasefire.",
     "Iran explicitly conditioned the ceasefire's continuation on Hezbollah's inclusion, escalating diplomatic tensions."
   ],
-  "outlook": "The immediate breakdown of ceasefire conditions suggests continued high-intensity military operations in the coming days, especially in Lebanon, while diplomatic efforts to bridge the gaps in peace proposals will likely face severe challenges."
+  "outlook": "The immediate breakdown of ceasefire conditions suggests continued high-intensity military operations in the coming days, especially in Lebanon, while diplomatic efforts to bridge the gaps in peace proposals will likely face severe challenges.",
+  "headline_he": "הפסקת אש שברירית בין ארה\"ב לאיראן מאוימת באופן מיידי עקב תקיפות ישראליות נרחבות ודרישות טהראן",
+  "summary_he": "<p>היום עמד היישום המיידי של הסכם הפסקת אש בין ארה\"ב לאיראן בפני אתגר מצד פעולות צבאיות משמעותיות ומתיחויות דיפלומטיות. שעות ספורות לאחר הכרזת ההפוגה, פתחה ישראל בגל תקיפות נרחב ברחבי לבנון, שגרם למותם של לפחות 182 בני אדם. תקיפות אלו כוונו לאזורים הכוללים את הפרוורים הדרומיים של ביירות, דרום לבנון ועמק הבקאע המזרחי, מה שמצביע על המשך הלחץ הצבאי למרות ההפסקה המוצהרת בפעולות האיבה.</p><p>מבחינה דיפלומטית, אריכות ימיה של הפסקת האש נשחקה במהירות על ידי איומה המפורש של איראן לבטל את ההסכם. טהראן טענה כי על ארצות הברית לבחור בין הפסקת האש למלחמה, תוך ציון הרחקתו של שלוחה העיקרי, חזבאללה, מעסקת ההפוגה. עובדה זו מדגישה את תפקידן המורכב של קבוצות השליחים בעימות ומבליטה נקודת מחלוקת מהותית בהשגת שלום בר קיימא. בינתיים, המשא ומתן ממשיך להתמודד עם הפערים בגישור בין הצעות השלום הנפרדות של ארה\"ב ואיראן, מה שמצביע על התהומות העמוקים הנמשכים בזירה הדיפלומטית.</p><p>ההקשר האזורי והבינלאומי הרחב יותר הראה גם הוא אותות מעורבים. מנהיגים אוונגליסטים בארה\"ב חזרו והדגישו תמיכה חזקה בישראל וב\"מבצע זעם אפי\" המשותף לארה\"ב-ישראל, המאותת על המשך גיבוי למערכות צבאיות. במקביל, הנוכחות הימית של בריטניה בים התיכון נתקלה במכשולים כאשר משחתת עגנה עקב תקלות טכניות, מה שעורר ביקורת פנימית על תגובת הממשלה למלחמת איראן. התפתחויות אלו מצביעות יחד על מצב נפיץ ביותר שבו פעולות צבאיות והתבטאויות דיפלומטיות מתקיימות זו בצד זו, ומשאירות את האזור במצב של אי-יציבות לאחר ההפוגה הקצרה של הפסקת האש.</p>",
+  "outlook_he": "הפירוק המיידי של תנאי הפסקת האש מרמז על המשך פעולות צבאיות בעצימות גבוהה בימים הקרובים, במיוחד בלבנון, בעוד שמאמצים דיפלומטיים לגשר על הפערים בהצעות השלום צפויים לעמוד בפני אתגרים חמורים.",
+  "what_changed_he": [
+    "הפסקת אש בין ארה\"ב לאיראן הוכרזה, אך היתכנותה הוטלה בספק באופן מיידי.",
+    "תקיפות צבאיות ישראליות משמעותיות בלבנון גרמו למספר רב של נפגעים, ובכך הפרו את רוח הפסקת האש.",
+    "איראן התנתה במפורש את המשך הפסקת האש בהכללת חזבאללה, מה שהסלים את המתיחות הדיפלומטית."
+  ]
 }

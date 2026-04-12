@@ -8,56 +8,72 @@
       "headline": "Iran's Supreme Leader injured, US intel reveals missile and air defense concerns.",
       "source": "Times of Israel / Jerusalem Post / CNN",
       "category": "intelligence",
-      "description": "Reports emerged that Iran's new Supreme Leader, Mojtaba Khamenei, sustained severe injuries in an early war airstrike. Concurrently, US intelligence assesses Iran can rapidly rebuild missile capabilities and that China plans to deliver air defense systems to Tehran within weeks, raising strategic concerns."
+      "description": "Reports emerged that Iran's new Supreme Leader, Mojtaba Khamenei, sustained severe injuries in an early war airstrike. Concurrently, US intelligence assesses Iran can rapidly rebuild missile capabilities and that China plans to deliver air defense systems to Tehran within weeks, raising strategic concerns.",
+      "headline_he": "מנהיג איראן נפצע, המודיעין האמריקאי חושף חששות לגבי טילים והגנה אווירית.",
+      "description_he": "דיווחים נחשפו לפיהם מנהיגה העליון החדש של איראן, מוג'תבא ח'אמנאי, ספג פציעות קשות בתקיפה אווירית בתחילת המלחמה. במקביל, המודיעין האמריקאי מעריך שאיראן יכולה לשקם במהירות יכולות טילים וכי סין מתכננת לספק מערכות הגנה אוויריות לטהראן תוך שבועות, מה שמעלה חששות אסטרטגיים."
     },
     {
       "time": "10:04 IDT",
       "headline": "Historic US-Iran direct peace talks begin in Pakistan.",
       "source": "NPR / BBC News",
       "category": "diplomacy",
-      "description": "US Vice President JD Vance initiated direct talks with senior Iranian negotiators in Islamabad, marking the highest-level engagement between the two nations since 1979. The discussions aim to solidify a ceasefire and negotiate an end to the ongoing conflict."
+      "description": "US Vice President JD Vance initiated direct talks with senior Iranian negotiators in Islamabad, marking the highest-level engagement between the two nations since 1979. The discussions aim to solidify a ceasefire and negotiate an end to the ongoing conflict.",
+      "headline_he": "שיחות שלום ישירות היסטוריות בין ארה\"ב לאיראן החלו בפקיסטן.",
+      "description_he": "סגן נשיא ארה\"ב, ג'יי.די. ואנס, יזם שיחות ישירות עם בכירי המשא ומתן האיראנים באסלאמאבאד, מה שמסמן את המעורבות ברמה הגבוהה ביותר בין שתי המדינות מאז 1979. הדיונים שואפים לגיבוש הפסקת אש ולניהול משא ומתן לסיום הסכסוך המתמשך."
     },
     {
       "time": "11:35 IDT",
       "headline": "Israeli strikes kill Palestinians in Gaza amidst ceasefire attempts.",
       "source": "Al Jazeera",
       "category": "military",
-      "description": "At least seven Palestinians were killed in Israeli attacks on Gaza, including an early-morning strike on a civilian group in Bureij camp and a drone attack near a mosque in Khan Younis, highlighting ongoing military activity despite broader diplomatic efforts."
+      "description": "At least seven Palestinians were killed in Israeli attacks on Gaza, including an early-morning strike on a civilian group in Bureij camp and a drone attack near a mosque in Khan Younis, highlighting ongoing military activity despite broader diplomatic efforts.",
+      "headline_he": "תקיפות ישראליות הורגות פלסטינים בעזה על רקע ניסיונות הפסקת אש.",
+      "description_he": "לפחות שבעה פלסטינים נהרגו בתקיפות ישראליות בעזה, כולל תקיפת בוקר מוקדמת על קבוצת אזרחים במחנה אל-בורייג' ותקיפת רחפן ליד מסגד בח'אן יונס, מה שמדגיש פעילות צבאית מתמשכת למרות המאמצים הדיפלומטיים הרחבים יותר."
     },
     {
       "time": "14:07 IDT",
       "headline": "Iran outlines 'red lines' for ceasefire, demands Hormuz control and Lebanon truce.",
       "source": "NPR / Times of Israel",
       "category": "diplomacy",
-      "description": "During talks in Islamabad, Iran articulated its conditions for a lasting agreement, including demands for control over the Strait of Hormuz and a regional ceasefire that specifically encompasses Lebanon, signaling potential sticking points in negotiations."
+      "description": "During talks in Islamabad, Iran articulated its conditions for a lasting agreement, including demands for control over the Strait of Hormuz and a regional ceasefire that specifically encompasses Lebanon, signaling potential sticking points in negotiations.",
+      "headline_he": "איראן משרטטת \"קווים אדומים\" להפסקת אש, דורשת שליטה בהורמוז והפוגה בלבנון.",
+      "description_he": "במהלך השיחות באסלאמאבאד, איראן פירטה את תנאיה להסכם מתמשך, הכוללים דרישות לשליטה על מצרי הורמוז והפסקת אש אזורית הכוללת במפורש את לבנון, מה שאותת על נקודות מחלוקת פוטנציאליות במשא ומתן."
     },
     {
       "time": "16:29 IDT",
       "headline": "Northern Israel hit by rockets, drones from Lebanon; IDF neutralizes Gaza militant.",
       "source": "Ynet News",
       "category": "proxy",
-      "description": "Multiple rocket barrages and drone infiltrations from Lebanon triggered non-stop alarms across northern Israel, causing damage in Shlomi. Concurrently, the IDF reported neutralizing a militant who crossed into northern Gaza, indicating continued cross-border hostilities."
+      "description": "Multiple rocket barrages and drone infiltrations from Lebanon triggered non-stop alarms across northern Israel, causing damage in Shlomi. Concurrently, the IDF reported neutralizing a militant who crossed into northern Gaza, indicating continued cross-border hostilities.",
+      "headline_he": "צפון ישראל נפגע מרקטות, רחפנים מלבנון; צה\"ל מחסל מחבל בעזה.",
+      "description_he": "מטחי רקטות מרובים וחדירות רחפנים מלבנון הפעילו אזעקות בלתי פוסקות ברחבי צפון ישראל, וגרמו נזק בשלומי. במקביל, דווח מצה\"ל על נטרול מחבל שחצה לצפון עזה, מה שמצביע על פעולות איבה מתמשכות מעבר לגבול."
     },
     {
       "time": "17:17 IDT",
       "headline": "Lebanon mourns Israeli strike victims; Israel rejects Hezbollah ceasefire.",
       "source": "Al Jazeera",
       "category": "proxy",
-      "description": "Lebanon held funeral ceremonies for 13 State Security agency members killed in an Israeli strike. Separately, Israel rejected a ceasefire with Hezbollah ahead of anticipated Lebanon talks, signaling a deliberate exclusion of the proxy conflict from the broader US-Iran truce."
+      "description": "Lebanon held funeral ceremonies for 13 State Security agency members killed in an Israeli strike. Separately, Israel rejected a ceasefire with Hezbollah ahead of anticipated Lebanon talks, signaling a deliberate exclusion of the proxy conflict from the broader US-Iran truce.",
+      "headline_he": "לבנון מתאבלת על קורבנות תקיפה ישראלית; ישראל דוחה הפסקת אש עם חזבאללה.",
+      "description_he": "לבנון קיימה טקסי לוויה ל-13 חברי סוכנות ביטחון המדינה שנהרגו בתקיפה ישראלית. בנפרד, ישראל דחתה הפסקת אש עם חזבאללה לקראת שיחות צפויות בלבנון, מה שאותת על הוצאה מכוונת של סכסוך הפרוקסי מההפוגה הרחבה יותר בין ארה\"ב לאיראן."
     },
     {
       "time": "20:05 IDT",
       "headline": "Trump claims US clearing Strait of Hormuz; Iran threatens unauthorized ships.",
       "source": "Jerusalem Post",
       "category": "military",
-      "description": "President Trump stated the US is initiating efforts to clear the Strait of Hormuz, while Iran simultaneously threatened to attack unauthorized vessels. This exchange underscores the continued tension and dispute over the vital waterway, even as American destroyers reportedly transited the Strait."
+      "description": "President Trump stated the US is initiating efforts to clear the Strait of Hormuz, while Iran simultaneously threatened to attack unauthorized vessels. This exchange underscores the continued tension and dispute over the vital waterway, even as American destroyers reportedly transited the Strait.",
+      "headline_he": "טראמפ טוען שארה\"ב מטהרת את מצרי הורמוז; איראן מאיימת על ספינות בלתי מורשות.",
+      "description_he": "הנשיא טראמפ הצהיר כי ארה\"ב יוזמת מאמצים לטיהור מצרי הורמוז, בעוד איראן איימה במקביל לתקוף כלי שיט בלתי מורשים. חילופי דברים אלה מדגישים את המתח והמחלוקת המתמשכים סביב נתיב המים החיוני, גם כשמשחתות אמריקאיות דווחו שעברו במצרים."
     },
     {
       "time": "23:54 IDT",
       "headline": "Iran threatens ceasefire termination after heavy Israeli strikes in Lebanon.",
       "source": "BBC News / Fox News",
       "category": "proxy",
-      "description": "Following reports of at least 182 killed in extensive Israeli strikes across Lebanon, Iran threatened to end the broader ceasefire, stating the US must choose between peace and war if Hezbollah remains excluded from the truce agreement."
+      "description": "Following reports of at least 182 killed in extensive Israeli strikes across Lebanon, Iran threatened to end the broader ceasefire, stating the US must choose between peace and war if Hezbollah remains excluded from the truce agreement.",
+      "headline_he": "איראן מאיימת בסיום הפסקת האש לאחר תקיפות ישראליות כבדות בלבנון.",
+      "description_he": "בעקבות דיווחים על לפחות 182 הרוגים בתקיפות ישראליות נרחבות ברחבי לבנון, איראן איימה לסיים את הפסקת האש הרחבה יותר, וקבעה כי ארה\"ב חייבת לבחור בין שלום למלחמה אם חזבאללה יישאר מחוץ להסכם ההפוגה."
     }
   ],
   "statistics": {
@@ -71,5 +87,13 @@
     "Iran publicly outlined specific 'red lines' for a deal, notably demanding control of the Strait of Hormuz and a Lebanon-inclusive regional ceasefire.",
     "Intelligence reports emerged detailing the extent of Iran's Supreme Leader's injuries and China's alleged plans to supply advanced air defense systems to Iran."
   ],
-  "outlook": "Monitor the progress and adherence to the US-Iran peace talks in Pakistan, particularly regarding the contentious issues of the Strait of Hormuz and the inclusion of Lebanon/Hezbollah in the ceasefire. Watch for any further military actions from either side in the coming days."
+  "outlook": "Monitor the progress and adherence to the US-Iran peace talks in Pakistan, particularly regarding the contentious issues of the Strait of Hormuz and the inclusion of Lebanon/Hezbollah in the ceasefire. Watch for any further military actions from either side in the coming days.",
+  "headline_he": "שיחות ישירות בין ארה\"ב לאיראן החלו בפקיסטן על רקע הפסקת אש שברירית והתחדשות פעולות איבה אזוריות.",
+  "summary_he": "<p>מאמצים דיפלומטיים לגיבוש הפסקת אש שברירית בין ארה\"ב לאיראן התעצמו היום עם תחילת שיחות ישירות באסלאמאבאד, פקיסטן. סגן נשיא ארה\"ב, ג'יי.די. ואנס, עומד בראש המשלחת האמריקאית ונפגש עם בכירי המשא ומתן האיראנים לדון בתנאים לסיום הסכסוך בן ששת השבועות. איראן, עם זאת, הציגה בפומבי \"קווים אדומים\" שנויים במחלוקת לעסקה, הכוללים דרישות לשליטה על מצרי הורמוז והפסקת אש אזורית מקיפה שתכלול את לבנון, ואף מאיימת לבטל את ההפוגה הרחבה יותר אם אלה לא ייענו. הדיונים מסתבכים בשל סירובה של איראן לפתוח מחדש את מצרי הורמוז ודיווחים על משחתות אמריקאיות העוברות במעבר המים בפעם הראשונה מאז תחילת המלחמה.</p><p>למרות שיחות השלום המתמשכות והפסקת אש כללית, הפעילות הצבאית נמשכה ברחבי האזור. צפון ישראל חווה מטחי רקטות מרובים וחדירות רחפנים מלבנון, שהפעילו אזעקות בגליל העליון, נהריה, צפת, מטולה וכרמיאל, עם דיווחים על פגיעה במבנה בשלומי. בתגובה, ישראל ביצעה תקיפות בעזה, והרגה לפחות שבעה פלסטינים במחנה אל-בורייג' ובקרבת מסגד. לבנון דיווחה כי היא מתאבלת על 13 חברי סוכנות ביטחון המדינה שלה שנהרגו בתקיפה ישראלית, כאשר שר איראני בכיר כינה פעולות אלה \"הפרה חמורה\" של הפסקת האש.</p><p>דוחות מודיעין שפכו אור על מספר התפתחויות קריטיות. מקורות המקורבים למנהיג העליון החדש של איראן, מוג'תבא ח'אמנאי, טוענים כי הוא מתאושש מפציעות חמורות ומעוותות שנגרמו בתקיפה אווירית בתחילת המלחמה, אף שהוא נשאר צלול בדעתו ומעורב בקבלת החלטות. המודיעין האמריקאי מעריך גם כי איראן יכולה להתאושש במהירות ולעשות שימוש במשגרי טילים תת-קרקעיים, וכי סין נערכת לספק לאיראן מערכות הגנה אוויריות מתקדמות בשבועות הקרובים. כמו כן, עלו חששות שאיראן לכאורה איבדה את מיקומם של מוקשים במצרי הורמוז, מה שמסבך את פתיחתם מחדש.</p><p>היום הסתיים במתיחות גוברת סביב היקף הפסקת האש. לבנון דיווחה על גל גדול של תקיפות ישראליות ברחבי הפרברים הדרומיים של ביירות, דרום לבנון ובקעת הלבנון, שעות ספורות לאחר הכרזת הפסקת האש בין ארה\"ב לאיראן. איראן איימה במפורש לסיים את הפסקת האש, בטענה שעסקת ההפוגה אינה כוללת את חזבאללה וכי ארה\"ב חייבת לבחור בין \"מלחמה להפסקת אש\".</p>",
+  "outlook_he": "עקוב אחר התקדמות וציות לשיחות השלום בין ארה\"ב לאיראן בפקיסטן, במיוחד בנוגע לסוגיות השנויות במחלוקת של מצרי הורמוז והכללת לבנון/חזבאללה בהפסקת האש. עקוב אחר כל פעולה צבאית נוספת מצד שני הצדדים בימים הקרובים.",
+  "what_changed_he": [
+    "שיחות שלום ישירות בין ארה\"ב לאיראן החלו בפקיסטן, מה שמסמן צעד דיפלומטי משמעותי לקראת גיבוש הפסקת האש השברירית.",
+    "איראן הציגה בפומבי \"קווים אדומים\" ספציפיים לעסקה, בדגש על דרישה לשליטה במצרי הורמוז והפסקת אש אזורית הכוללת את לבנון.",
+    "דוחות מודיעין נחשפו המפרטים את היקף פציעותיו של המנהיג העליון של איראן ואת תוכניותיה לכאורה של סין לספק לאיראן מערכות הגנה אוויריות מתקדמות."
+  ]
 }

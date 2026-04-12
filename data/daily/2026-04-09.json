@@ -8,49 +8,63 @@
       "headline": "Deadly Israeli air strikes target Beirut, causing mass casualties",
       "source": "BBC News",
       "category": "military",
-      "description": "Israeli air strikes in Beirut killed at least 182 people and wounded 890, according to the Lebanese health ministry. The BBC reported from the strike site, detailing the extensive damage and casualties."
+      "description": "Israeli air strikes in Beirut killed at least 182 people and wounded 890, according to the Lebanese health ministry. The BBC reported from the strike site, detailing the extensive damage and casualties.",
+      "headline_he": "תקיפות אוויריות קטלניות של ישראל מכוונות לביירות, גורמות לאבדות המוניות",
+      "description_he": "תקיפות אוויריות ישראליות בביירות גרמו למותם של לפחות 182 בני אדם ולפציעתם של 890, על פי משרד הבריאות הלבנוני. ה-BBC דיווח מהשטח, ופירט את הנזק הנרחב והנפגעים."
     },
     {
       "time": "14:39 IDT",
       "headline": "Al Jazeera condemns Israeli killing of journalist in Gaza",
       "source": "BBC News",
       "category": "proxy",
-      "description": "Al Jazeera condemned the killing of journalist Mohammed Wishah in an Israeli strike in Gaza. The Israeli military claimed Wishah was a 'Hamas terrorist,' a claim the Qatar-based network has denied."
+      "description": "Al Jazeera condemned the killing of journalist Mohammed Wishah in an Israeli strike in Gaza. The Israeli military claimed Wishah was a 'Hamas terrorist,' a claim the Qatar-based network has denied.",
+      "headline_he": "אל-ג'זירה מגנה הריגת עיתונאי בתקיפה ישראלית בעזה",
+      "description_he": "אל-ג'זירה גינתה את הריגתו של העיתונאי מוחמד ווישאח בתקיפה ישראלית בעזה. הצבא הישראלי טען כי ווישאח היה 'מחבל חמאס', טענה שהרשת הקטארית הכחישה."
     },
     {
       "time": "20:11 IDT",
       "headline": "Iran minister labels Israeli strikes in Lebanon 'grave ceasefire violation'",
       "source": "BBC News",
       "category": "diplomacy",
-      "description": "Iran's deputy foreign minister told the BBC that Israeli strikes in Lebanon constitute a 'grave violation' of the ceasefire. The minister urged the US to choose between 'war and ceasefire,' indicating Tehran's view of the truce's scope."
+      "description": "Iran's deputy foreign minister told the BBC that Israeli strikes in Lebanon constitute a 'grave violation' of the ceasefire. The minister urged the US to choose between 'war and ceasefire,' indicating Tehran's view of the truce's scope.",
+      "headline_he": "שר איראני מגדיר תקיפות ישראליות בלבנון 'הפרה חמורה של הפסקת האש'",
+      "description_he": "סגן שר החוץ האיראני מסר ל-BBC כי תקיפות ישראליות בלבנון מהוות 'הפרה חמורה' של הפסקת האש. השר דחק בארה\"ב לבחור בין 'מלחמה להפסקת אש', דבר המצביע על השקפת טהראן לגבי היקף ההפוגה."
     },
     {
       "time": "20:16 IDT",
       "headline": "Israel clarifies Lebanon not included in US-Iran ceasefire deal",
       "source": "BBC News",
       "category": "military",
-      "description": "Reports emerged that Israel stated Lebanon is not covered by the ceasefire agreement the US reached with Iran. This clarification came after significant Israeli military action in Lebanon and Iranian accusations of truce violations."
+      "description": "Reports emerged that Israel stated Lebanon is not covered by the ceasefire agreement the US reached with Iran. This clarification came after significant Israeli military action in Lebanon and Iranian accusations of truce violations.",
+      "headline_he": "ישראל מבהירה כי לבנון אינה כלולה בהסכם הפסקת האש בין ארה\"ב לאיראן",
+      "description_he": "דיווחים עלו כי ישראל הצהירה כי לבנון אינה כלולה בהסכם הפסקת האש שארה\"ב הגיעה אליו עם איראן. הבהרה זו הגיעה לאחר פעולות צבאיות ישראליות משמעותיות בלבנון והאשמות איראניות בדבר הפרות הפסקת אש."
     },
     {
       "time": "20:26 IDT",
       "headline": "UN warns against potential Strait of Hormuz shipping toll",
       "source": "Fox News",
       "category": "diplomacy",
-      "description": "The U.N.'s shipping agency issued a warning on Thursday that any toll imposed on ships passing through the Strait of Hormuz would set a 'dangerous precedent.' This highlights concerns over potential Iranian attempts to disrupt international shipping."
+      "description": "The U.N.'s shipping agency issued a warning on Thursday that any toll imposed on ships passing through the Strait of Hormuz would set a 'dangerous precedent.' This highlights concerns over potential Iranian attempts to disrupt international shipping.",
+      "headline_he": "האו\"ם מזהיר מפני אגרה אפשרית על שיט במצרי הורמוז",
+      "description_he": "סוכנות הספנות של האו\"ם פרסמה ביום חמישי אזהרה כי כל אגרה שתוטל על ספינות העוברות במצרי הורמוז תקבע 'תקדים מסוכן'. זה מדגיש חששות מניסיונות איראניים אפשריים לשבש את הספנות הבינלאומית."
     },
     {
       "time": "23:03 IDT",
       "headline": "US and Iran agree to ceasefire after weeks of tension",
       "source": "Jerusalem Post",
       "category": "diplomacy",
-      "description": "The United States and Iran reportedly agreed to a ceasefire following weeks of elevated tensions. This marks a significant diplomatic effort to de-escalate the broader regional conflict, though questions about its effectiveness remain."
+      "description": "The United States and Iran reportedly agreed to a ceasefire following weeks of elevated tensions. This marks a significant diplomatic effort to de-escalate the broader regional conflict, though questions about its effectiveness remain.",
+      "headline_he": "ארה\"ב ואיראן מסכימות על הפסקת אש לאחר שבועות של מתיחות",
+      "description_he": "ארצות הברית ואיראן הסכימו, לפי דיווחים, על הפסקת אש בעקבות שבועות של מתיחות מוגברת. זהו מאמץ דיפלומטי משמעותי להפחתת הסלמה בסכסוך האזורי הרחב, אם כי שאלות בנוגע ליעילותו נותרו בעינן."
     },
     {
       "time": "23:48 IDT",
       "headline": "Israeli man built bomb lab for Iranian plot targeting ex-PM Bennett",
       "source": "Fox News",
       "category": "intelligence",
-      "description": "Authorities revealed that a Haifa man was allegedly recruited by an Iranian handler to construct bombs. The plot was believed to target former Israeli Prime Minister Naftali Bennett, indicating persistent Iranian-backed intelligence operations within Israel."
+      "description": "Authorities revealed that a Haifa man was allegedly recruited by an Iranian handler to construct bombs. The plot was believed to target former Israeli Prime Minister Naftali Bennett, indicating persistent Iranian-backed intelligence operations within Israel.",
+      "headline_he": "תושב חיפה בנה מעבדת פצצות עבור מזימה איראנית שמטרתה ראש הממשלה לשעבר בנט",
+      "description_he": "הרשויות חשפו כי תושב חיפה גויס לכאורה על ידי מפעיל איראני לבניית פצצות. המזימה, כך סברו, כוונה לראש הממשלה לשעבר נפתלי בנט, מה שמצביע על פעולות מודיעין מתמשכות בגיבוי איראני בתוך ישראל."
     }
   ],
   "statistics": {
@@ -64,5 +78,13 @@
     "The scope of the US-Iran ceasefire is immediately contested, with Israel asserting it does not apply to operations in Lebanon.",
     "An Iranian-backed plot targeting former Israeli Prime Minister Naftali Bennett highlights persistent intelligence threats despite diplomatic moves."
   ],
-  "outlook": "The coming days will reveal the true extent and durability of the US-Iran ceasefire, particularly concerning its application to ongoing conflicts in Lebanon and Gaza, and potential Iranian responses to continued Israeli actions."
+  "outlook": "The coming days will reveal the true extent and durability of the US-Iran ceasefire, particularly concerning its application to ongoing conflicts in Lebanon and Gaza, and potential Iranian responses to continued Israeli actions.",
+  "headline_he": "ארה\"ב ואיראן מסכימות על הפסקת אש, ברקע תקיפות ישראליות מתמשכות בלבנון ומזימה בגיבוי איראני",
+  "summary_he": "<p>היום נרשמה התפתחות דיפלומטית משמעותית עם הסכמתן של ארצות הברית ואיראן להפסקת אש, לאחר שבועות של מתיחות גואה. הסכמה זו, עם זאת, הועמדה מיד בצל שאלות בנוגע להיקפה ויישומה, במיוחד בכל הנוגע לפעולותיה הצבאיות המתמשכות של ישראל במדינות שכנות.</p><p>ישראל טענה כי לבנון אינה כלולה בהפסקת האש שארה\"ב ואיראן הסכימו עליה לאחרונה, והמשיכה בסדרת תקיפות קטלניות בביירות שגרמו ל-182 הרוגים ול-890 פצועים, לדברי גורמי רפואה לבנוניים. פעולות אלה גררו גינוי חריף מצד סגן שר החוץ האיראני, שכינה את התקיפות הישראליות \"הפרה חמורה\" של הפסקת האש ודחק בארה\"ב להבהיר את מחויבותה. במקביל, עיתונאי של אל-ג'זירה נהרג בתקיפה ישראלית בעזה, מה שהוסיף למחיר ההומניטרי והעלה חששות נוספים לגבי מדיניות התקיפות.</p><p>להשלמת התמונה המורכבת, סוכנות הספנות של האו\"ם פרסמה אזהרה מפני כל אגרה פוטנציאלית שתוטל על כלי שיט במצרי הורמוז, דבר המצביע על איום מתמשך של שיבוש כלכלי מצד איראן. יתר על כן, נחשפה פרצת מודיעין משמעותית שפירטה מזימה בגיבוי איראני, שבה מעורב אזרח ישראלי שעל פי החשד בנה פצצות שנועדו לפגוע בראש הממשלה לשעבר נפתלי בנט, מה שמדגיש את פעולותיה החשאיות המתמשכות של איראן בתוך ישראל.</p><p>בתוך התפתחויות אלה, דיווחים מהשטח מדגישים את ההשפעה ההומניטרית החמורה והמתמשכת של הסכסוך על ילדים איראניים, גם אם הלחימה תיפסק לחלוטין, מה שמדגיש את ההשלכות ארוכות הטווח של פעולות האיבה הממושכות.</p>",
+  "outlook_he": "הימים הקרובים יחשפו את היקפה ועמידותה האמיתיים של הפסקת האש בין ארה\"ב לאיראן, במיוחד בכל הנוגע ליישומה בסכסוכים המתמשכים בלבנון ובעזה, ואת התגובות האיראניות האפשריות לפעולות ישראליות נמשכות.",
+  "what_changed_he": [
+    "הושג הסכם הפסקת אש בין ארה\"ב לאיראן, במטרה להוריד את רמת ההסלמה בסכסוך האזורי הרחב.",
+    "היקף הפסקת האש בין ארה\"ב לאיראן שנוי במחלוקת באופן מיידי, כאשר ישראל טוענת כי אינו חל על פעולותיה בלבנון.",
+    "מזימה בגיבוי איראני, שמטרתה ראש הממשלה הישראלי לשעבר נפתלי בנט, מדגישה איומי מודיעין מתמשכים למרות מהלכים דיפלומטיים."
+  ]
 }

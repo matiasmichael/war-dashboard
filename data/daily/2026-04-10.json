@@ -8,56 +8,72 @@
       "headline": "Middle East's reshuffling not yet done despite ceasefire",
       "source": "BBC News",
       "category": "military",
-      "description": "Analysis suggests that despite a tentative ceasefire, the underlying power dynamics and strategic objectives in the Middle East remain unresolved, indicating a continued state of flux. Both Iran and its adversaries have reasons to end hostilities but lack common ground for a lasting peace."
+      "description": "Analysis suggests that despite a tentative ceasefire, the underlying power dynamics and strategic objectives in the Middle East remain unresolved, indicating a continued state of flux. Both Iran and its adversaries have reasons to end hostilities but lack common ground for a lasting peace.",
+      "headline_he": "הארגון מחדש של המזרח התיכון טרם הושלם למרות הפסקת האש",
+      "description_he": "ניתוח מצביע על כך שלמרות הפסקת אש זמנית, דינמיקות הכוח והיעדים האסטרטגיים הבסיסיים במזרח התיכון נותרו בלתי פתורים, מה שמעיד על מצב מתמשך של תנודתיות. הן לאיראן והן ליריבותיה יש סיבות לסיים את פעולות האיבה, אך חסר להן בסיס משותף לשלום בר קיימא."
     },
     {
       "time": "02:48 IDT",
       "headline": "Iranian woman details fear and 'human shields' in Tehran",
       "source": "Fox News",
       "category": "military",
-      "description": "An anonymous Iranian woman described life in Tehran under the two-week ceasefire, detailing nightly explosions, pervasive fear, and the alleged use of civilians as human shields by the regime. This account highlights the internal human impact of the conflict."
+      "description": "An anonymous Iranian woman described life in Tehran under the two-week ceasefire, detailing nightly explosions, pervasive fear, and the alleged use of civilians as human shields by the regime. This account highlights the internal human impact of the conflict.",
+      "headline_he": "אישה איראנית מפרטת פחד ו'מגנים אנושיים' בטהראן",
+      "description_he": "אישה איראנית אנונימית תיארה את החיים בטהראן תחת הפסקת האש בת השבועיים, ופירטה פיצוצים ליליים, פחד מקיף, ושימוש לכאורה באזרחים כמגנים אנושיים על ידי המשטר. דיווח זה מדגיש את ההשפעה האנושית הפנימית של הסכסוך."
     },
     {
       "time": "05:10 IDT",
       "headline": "Trump criticizes Iran on Strait of Hormuz; Israel-Lebanon talks begin",
       "source": "BBC News",
       "category": "diplomacy",
-      "description": "U.S. President Trump publicly accused Iran of \"doing a very poor job\" with the Strait of Hormuz, signaling dissatisfaction with Iran's adherence to ceasefire terms. Separately, Israel and Lebanon were reportedly beginning peace talks, suggesting a potential diplomatic opening on a different front."
+      "description": "U.S. President Trump publicly accused Iran of \"doing a very poor job\" with the Strait of Hormuz, signaling dissatisfaction with Iran's adherence to ceasefire terms. Separately, Israel and Lebanon were reportedly beginning peace talks, suggesting a potential diplomatic opening on a different front.",
+      "headline_he": "טראמפ מבקר את איראן על מיצר הורמוז; שיחות ישראל-לבנון מתחילות",
+      "description_he": "נשיא ארה\"ב טראמפ האשים בפומבי את איראן ב\"עבודה גרועה מאוד\" במיצר הורמוז, מה שסימן חוסר שביעות רצון מעמידתה של איראן בתנאי הפסקת האש. בנפרד, ישראל ולבנון החלו, לפי הדיווחים, בשיחות שלום, מה שמרמז על פתיחה דיפלומטית פוטנציאלית בחזית אחרת."
     },
     {
       "time": "13:54 IDT",
       "headline": "VP Vance heads to Pakistan for critical US-Iran peace talks",
       "source": "NPR",
       "category": "diplomacy",
-      "description": "Vice President JD Vance embarked on a high-stakes diplomatic mission to Pakistan, where he is set to lead the U.S. negotiating team in face-to-face talks aimed at ending the war with Iran. This marks a significant escalation in direct diplomatic engagement."
+      "description": "Vice President JD Vance embarked on a high-stakes diplomatic mission to Pakistan, where he is set to lead the U.S. negotiating team in face-to-face talks aimed at ending the war with Iran. This marks a significant escalation in direct diplomatic engagement.",
+      "headline_he": "סגן הנשיא ואנס יוצא לפקיסטן לשיחות שלום קריטיות בין ארה\"ב לאיראן",
+      "description_he": "סגן הנשיא ג'יי.די. ואנס יצא למשימה דיפלומטית רבת סיכונים לפקיסטן, שם הוא אמור לעמוד בראש צוות המשא ומתן האמריקאי בשיחות פנים אל פנים שמטרתן לסיים את המלחמה עם איראן. זה מסמן הסלמה משמעותית במעורבות דיפלומטית ישירה."
     },
     {
       "time": "14:07 IDT",
       "headline": "Iran delegates arrive in Islamabad as ceasefire terms remain disputed",
       "source": "NPR",
       "category": "diplomacy",
-      "description": "Iranian delegates arrived in Islamabad to join the U.S. for peace talks, but the fragile ceasefire agreement faced renewed challenges, particularly over Iran's refusal to reopen the Strait of Hormuz. Regional tensions were further exacerbated by strikes between Israel and Hezbollah, and drone attacks on Kuwait."
+      "description": "Iranian delegates arrived in Islamabad to join the U.S. for peace talks, but the fragile ceasefire agreement faced renewed challenges, particularly over Iran's refusal to reopen the Strait of Hormuz. Regional tensions were further exacerbated by strikes between Israel and Hezbollah, and drone attacks on Kuwait.",
+      "headline_he": "נציגים איראניים מגיעים לאיסלמבאד כאשר תנאי הפסקת האש נותרו שנויים במחלוקת",
+      "description_he": "נציגים איראניים הגיעו לאיסלמבאד כדי להצטרף לארה\"ב לשיחות שלום, אך הסכם הפסקת האש השברירי התמודד עם אתגרים מחודשים, במיוחד סביב סירובה של איראן לפתוח מחדש את מיצר הורמוז. המתיחות האזורית הוחמרה עוד יותר על ידי תקיפות בין ישראל לחיזבאללה, ותקיפות מל\"טים על כווית."
     },
     {
       "time": "18:03 IDT",
       "headline": "Iran's propaganda tactics resurface, using civilians as human shields",
       "source": "Fox News",
       "category": "intelligence",
-      "description": "Experts reported that Iran is actively employing its \"Godfather of propaganda\" tactics in the ongoing conflict, allegedly using civilians and children as human shields. This strategy aims to manipulate international opinion while showing disregard for the safety of its own population."
+      "description": "Experts reported that Iran is actively employing its \"Godfather of propaganda\" tactics in the ongoing conflict, allegedly using civilians and children as human shields. This strategy aims to manipulate international opinion while showing disregard for the safety of its own population.",
+      "headline_he": "טקטיקות התעמולה של איראן צפות מחדש, תוך שימוש באזרחים כמגנים אנושיים",
+      "description_he": "מומחים דיווחו כי איראן מפעילה באופן פעיל את טקטיקות \"סנדק התעמולה\" שלה בסכסוך המתמשך, תוך שימוש לכאורה באזרחים וילדים כמגנים אנושיים. אסטרטגיה זו נועדה לתמרן את דעת הקהל הבינלאומית תוך הפגנת זלזול בביטחון אוכלוסייתה שלה."
     },
     {
       "time": "20:08 IDT",
       "headline": "Palestinian killed during Israeli settler attack in West Bank",
       "source": "BBC News",
       "category": "proxy",
-      "description": "A Palestinian was shot dead during an attack by Israeli settlers on a village in the occupied West Bank. This incident highlights the ongoing violence and escalating tensions in Palestinian territories, which former security chiefs warned could be \"government sponsored Jewish terrorism.\""
+      "description": "A Palestinian was shot dead during an attack by Israeli settlers on a village in the occupied West Bank. This incident highlights the ongoing violence and escalating tensions in Palestinian territories, which former security chiefs warned could be \"government sponsored Jewish terrorism.\"",
+      "headline_he": "פלסטיני נהרג במהלך מתקפת מתנחלים ישראלים בגדה המערבית",
+      "description_he": "פלסטיני נורה למוות במהלך מתקפה של מתנחלים ישראלים על כפר בגדה המערבית הכבושה. אירוע זה מדגיש את האלימות המתמשכת והמתיחות הגוברת בשטחים הפלסטיניים, אשר ראשי ביטחון לשעבר הזהירו כי עלולה להיות \"טרור יהודי בחסות ממשלתית\"."
     },
     {
       "time": "23:47 IDT",
       "headline": "Report: Iran uses Georgia to bypass sanctions, fund war machine",
       "source": "Fox News",
       "category": "intelligence",
-      "description": "A new report claims that Georgia, a former U.S. ally, has quietly aligned with Iran, facilitating sanctions evasion and providing funds for the IRGC's war machine. This intelligence suggests Iran's continued efforts to circumvent economic pressures and finance its military apparatus."
+      "description": "A new report claims that Georgia, a former U.S. ally, has quietly aligned with Iran, facilitating sanctions evasion and providing funds for the IRGC's war machine. This intelligence suggests Iran's continued efforts to circumvent economic pressures and finance its military apparatus.",
+      "headline_he": "דיווח: איראן משתמשת בגאורגיה לעקיפת סנקציות ולמימון מכונת המלחמה שלה",
+      "description_he": "דו\"ח חדש טוען כי גאורגיה, בעלת ברית אמריקאית לשעבר, התיישרה בשקט עם איראן, מה שמקל על התחמקות מסנקציות ומספק כספים למכונת המלחמה של משמרות המהפכה האיראניים (IRGC). מודיעין זה מצביע על מאמציה המתמשכים של איראן לעקוף לחצים כלכליים ולממן את המערך הצבאי שלה."
     }
   ],
   "statistics": {
@@ -71,5 +87,13 @@
     "The ongoing fragility and specific points of dispute regarding the ceasefire, particularly the Strait of Hormuz, were overtly highlighted by U.S. leadership.",
     "New intelligence revealed Iran's methods for sanctions evasion via Georgia and its continued use of propaganda tactics involving human shields."
   ],
-  "outlook": "The immediate focus will be on the progress and outcomes of the U.S.-Iran peace talks in Islamabad and whether they can solidify the fragile ceasefire. Continued monitoring of regional proxy activities and the Strait of Hormuz situation will be crucial indicators of de-escalation or renewed conflict."
+  "outlook": "The immediate focus will be on the progress and outcomes of the U.S.-Iran peace talks in Islamabad and whether they can solidify the fragile ceasefire. Continued monitoring of regional proxy activities and the Strait of Hormuz situation will be crucial indicators of de-escalation or renewed conflict.",
+  "headline_he": "סגן הנשיא ואנס מוביל שיחות שלום בין ארה\"ב לאיראן בצל הפסקת אש שברירית ופעולות פרוקסי אזוריות.",
+  "summary_he": "<p>התפתחויות היום עמדו בסימן מאמצים דיפלומטיים רמי דרג להרגעת הסכסוך בין ארה\"ב, איראן וישראל. סגן נשיא ארה\"ב ואנס הגיע לאיסלמבאד, פקיסטן, כדי לעמוד בראש משלחת לשיחות ישירות עם נציגים איראניים שמטרתן הבטחת שלום בר קיימא. דחיפה דיפלומטית זו מגיעה בצומת קריטי, כאשר הפסקת האש שנקבעה לאחרונה נותרה שברירית, ותנאיה, במיוחד לגבי מיצר הורמוז, עדיין שנויים במחלוקת קשה.</p>\n<p>למרות תחילת שיחות השלום, המתיחות האזורית נמשכה. תנועת כלי השיט המוגבלת במיצר הורמוז לאחר הפסקת האש מצביעה על מחלוקת מתמשכת, מה שגרם לנשיא ארה\"ב טראמפ לבקר את התנהלות איראן בנתיב המים החיוני. במקביל, סכסוכי פרוקסי המשיכו לאתגר את היציבות האזורית, כאשר ישראל וחיזבאללה דיווחו על חילופי מהלומות בלבנון, מל\"טים תקפו את כווית, ופלסטיני נורה למוות במהלך מתקפת מתנחלים ישראלים בגדה המערבית.</p>\n<p>דיווחי מודיעין שפכו אור גם על האסטרטגיה הרחבה יותר של איראן. ממצאים חדשים מצביעים על כך שאיראן מנצלת רפובליקות סובייטיות לשעבר, ובמיוחד גאורגיה, כדי לעקוף סנקציות בינלאומיות ולממן את פעולותיה הצבאיות. יתר על כן, מומחים הדגישו את הסתמכותה המתמשכת של איראן על טקטיקות תעמולה, כולל השימוש לכאורה באזרחים וילדים כמגנים אנושיים, בסכסוכה עם ארה\"ב וישראל, מה שמחזק נרטיב של פחד פנימי ומניפולציה חיצונית בתוך טהראן.</p>\n<p>ההתכנסות של דיפלומטיה פעילה עם מעורבות צבאית ופרוקסי מתמשכת מדגישה את המצב המורכב והמעורער של הסכסוך, כאשר שני הצדדים שואפים לפתרון ובמקביל מתמרנים להשגת יתרון אסטרטגי.</p>",
+  "outlook_he": "המוקד המיידי יהיה בהתקדמות ובתצאות שיחות השלום בין ארה\"ב לאיראן באיסלמבאד והאם הן יוכלו לבסס את הפסקת האש השברירית. ניטור מתמשך של פעילויות פרוקסי אזוריות ומצב מיצר הורמוז יהיו אינדיקטורים מכריעים להרגעת המצב או להתחדשות הסכסוך.",
+  "what_changed_he": [
+    "מעורבות דיפלומטית ישירה ורמת דרג בין ארה\"ב לאיראן החלה באופן רשמי באיסלמבאד.",
+    "השבריריות המתמשכת ונקודות המחלוקת הספציפיות בנוגע להפסקת האש, במיוחד במיצר הורמוז, הודגשו בגלוי על ידי ההנהגה האמריקאית.",
+    "מודיעין חדש חשף את שיטות איראן להתחמקות מסנקציות באמצעות גאורגיה ואת המשך השימוש שלה בטקטיקות תעמולה הכוללות מגנים אנושיים."
+  ]
 }

@@ -1,63 +1,64 @@
 {
   "developments": [
     {
-      "headline": "US-Iran Talks Fail, Vance Departs Pakistan",
-      "summary": "US VP Vance departed Pakistan after 21 hours of talks with Iran collapsed without a deal. Both sides blamed unreasonable demands, signaling heightened regional instability and continued mistrust.",
+      "headline": "US-Iran Peace Talks Collapse in Pakistan",
+      "summary": "US Vice President Vance departed Pakistan after talks failed, with Iran blaming 'unreasonable demands' over nuclear and Hormuz issues. This signals continued hostilities, with Pakistan urging respect for an existing ceasefire.",
       "sources": [
-        "Al Jazeera",
         "Ynet News",
+        "Al Jazeera",
         "Times of Israel",
         "CNBC"
       ],
       "severity": "critical",
       "category": "diplomacy",
-      "timeContext": "1h ago",
-      "updatedAt": "2026-04-12T04:26:59.419Z",
-      "headline_he": "כישלון מגעים בין ארה\"ב לאיראן; ואנס עזב את פקיסטן",
-      "summary_he": "סגן נשיא ארה\"ב, ואנס, עזב את פקיסטן לאחר ש-21 שעות של שיחות עם איראן קרסו ללא הסכם. שני הצדדים האשימו \"דרישות בלתי סבירות\", מה שמאותת על עלייה בחוסר היציבות האזורי ועל המשך חוסר האמון."
-    },
-    {
-      "headline": "Sirens Activated in Upper Galilee, Northern Israel",
-      "summary": "Air raid sirens have sounded in Israel's Upper Galilee region. This indicates potential incoming threats or infiltration attempts, elevating immediate security concerns in the north.",
-      "sources": [
-        "Ynet News"
-      ],
-      "severity": "critical",
-      "category": "military",
       "timeContext": "Just now",
-      "updatedAt": "2026-04-12T04:26:59.419Z",
-      "headline_he": "הופעלו אזעקות בגליל העליון, בצפון ישראל",
-      "summary_he": "צפירות אזעקה נשמעו באזור הגליל העליון בישראל. הדבר מצביע על איומים פוטנציאליים מתקרבים או ניסיונות חדירה, מה שמגביר את החששות הביטחוניים המיידיים בצפון."
+      "updatedAt": "2026-04-12T04:33:46.877Z",
+      "headline_he": "שיחות השלום ארה\"ב-איראן קרסו בפקיסטן",
+      "summary_he": "סגן נשיא ארה\"ב, ואנס, עזב את פקיסטן לאחר כישלון השיחות, כשמקורות איראניים מאשימים 'דרישות בלתי סבירות' בסוגיות הגרעין והורמוז. אירוע זה מסמן המשך פעולות איבה, כשפקיסטן דוחקת לכבד הפסקת אש קיימת."
     },
     {
-      "headline": "Israel-Turkey Hostility Escalates, Threats Exchanged",
-      "summary": "Turkey labeled Netanyahu the 'Hitler of our time' in response to Israeli leaders' accusations of Kurdish massacres. This marks a significant deterioration in diplomatic relations, with Turkey reportedly seeking to jail Israeli officials.",
+      "headline": "Turkey Escalates Rhetoric Against Israeli Premier",
+      "summary": "Turkey's foreign ministry labeled Israeli PM Netanyahu 'Hitler of our time,' accusing him of undermining peace talks to avoid jail. This comes after Israeli leaders blasted Erdogan, indicating severe diplomatic breakdown.",
       "sources": [
         "Ynet News",
         "Times of Israel"
       ],
       "severity": "major",
       "category": "diplomacy",
-      "timeContext": "45m ago",
-      "updatedAt": "2026-04-12T04:26:59.419Z",
-      "headline_he": "הסלמה בעוינות בין ישראל לטורקיה; חילופי איומים",
-      "summary_he": "טורקיה כינתה את נתניהו \"היטלר של זמננו\", בתגובה להאשמות מנהיגים ישראלים על טבח כורדים. הדבר מסמן הידרדרות משמעותית ביחסים הדיפלומטיים, כאשר טורקיה מבקשת, על פי הדיווחים, לאסור פקידים ישראלים."
+      "timeContext": "51m ago",
+      "updatedAt": "2026-04-12T04:33:46.877Z",
+      "headline_he": "טורקיה מחריפה את הרטוריקה נגד ראש הממשלה הישראלי",
+      "summary_he": "משרד החוץ הטורקי כינה את ראש ממשלת ישראל נתניהו 'היטלר של זמננו', והאשים אותו בחתירה תחת שיחות השלום כדי להימנע ממאסר. הדברים מגיעים לאחר שמנהיגים ישראלים תקפו בחריפות את ארדואן, מה שמצביע על התמוטטות דיפלומטית חמורה."
     },
     {
-      "headline": "Netanyahu Vows Continued Campaign Against Iran",
-      "summary": "PM Netanyahu stated Israel's 'campaign against Iran is not over' and alluded to successful past actions against 'six countries.' This reaffirms Israel's proactive and sustained military-diplomatic posture post-US-Iran talks failure.",
+      "headline": "Galilee Sirens Active, US Warships Transit Hormuz",
+      "summary": "Sirens activated in Upper Galilee, indicating an immediate threat on Israel's northern border. Concurrently, two American warships transited the Strait of Hormuz, signaling heightened maritime tensions post-failed US-Iran talks.",
+      "sources": [
+        "Ynet News",
+        "CNBC"
+      ],
+      "severity": "critical",
+      "category": "military",
+      "timeContext": "Just now",
+      "updatedAt": "2026-04-12T04:33:46.877Z",
+      "headline_he": "צפירות בגליל פעילות, ספינות מלחמה אמריקאיות חוצות את הורמוז",
+      "summary_he": "צפירות הופעלו בגליל העליון, מה שמצביע על איום מיידי בגבול הצפון של ישראל. במקביל, שתי ספינות מלחמה אמריקאיות עברו במצר הורמוז, מה שמסמן מתיחות ימית מוגברת לאחר כישלון שיחות ארה\"ב-איראן."
+    },
+    {
+      "headline": "Netanyahu Vows Continued Anti-Iran Campaign",
+      "summary": "Prime Minister Netanyahu asserted Israel's campaign against Iran is 'not over,' displaying a map and stating 'we strangled them and have more to do.' This reinforces Israel's hardline military posture post-US-Iran talks failure.",
       "sources": [
         "Al Jazeera",
         "Times of Israel"
       ],
-      "severity": "major",
+      "severity": "notable",
       "category": "military",
       "timeContext": "2h ago",
-      "updatedAt": "2026-04-12T04:26:59.419Z",
-      "headline_he": "נתניהו מתחייב למאבק מתמשך נגד איראן",
-      "summary_he": "ראש הממשלה נתניהו הצהיר כי \"הקמפיין של ישראל נגד איראן לא הסתיים\", ורמז לפעולות עבר מוצלחות נגד \"שש מדינות\". הדבר מאשר מחדש את העמדה הצבאית-דיפלומטית הפרואקטיבית והמתמשכת של ישראל, לאחר כישלון שיחות ארה\"ב-איראן."
+      "updatedAt": "2026-04-12T04:33:46.877Z",
+      "headline_he": "נתניהו נשבע להמשיך במערכה נגד איראן",
+      "summary_he": "ראש הממשלה נתניהו הצהיר כי המערכה של ישראל נגד איראן 'טרם הסתיימה', הציג מפה וקבע 'חנקנו אותם ויש לנו עוד מה לעשות'. הדבר מחזק את העמדה הצבאית הבלתי מתפשרת של ישראל לאחר כישלון שיחות ארה\"ב-איראן."
     }
   ],
-  "generatedAt": "2026-04-12T04:27:10.805Z",
-  "articleCount": 205
+  "generatedAt": "2026-04-12T04:34:00.877Z",
+  "articleCount": 206
 }

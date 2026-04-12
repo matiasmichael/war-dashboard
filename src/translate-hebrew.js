@@ -325,10 +325,78 @@ Important: Return ALL ${developments.length} items.`;
   }
 }
 
+/**
+ * Translate a daily briefing to Hebrew. Mutates briefing in-place,
+ * adding _he fields for headline, summary, outlook, what_changed, and key_events.
+ *
+ * @param {object} model - Gemini model instance
+ * @param {object} briefing - Daily briefing object
+ */
+async function translateDailyBriefing(model, briefing) {
+  if (!briefing) return;
+  console.log('[TRANSLATE] 📋 Translating daily briefing...');
+  try {
+    const prompt = `You are a professional Hebrew translator for a military intelligence dashboard.
+
+Translate this daily intelligence briefing from English to Hebrew.
+- Use formal military/intelligence Hebrew style
+- Keep HTML tags (<p>, <strong>) intact
+- Keep proper nouns in standard Hebrew forms
+
+Content:
+Headline: ${briefing.headline}
+Summary: ${briefing.summary}
+Outlook: ${briefing.outlook || ''}
+What Changed: ${JSON.stringify(briefing.what_changed || [])}
+Key Events:
+${(briefing.key_events || []).map((e, i) => i + '. Headline: ' + e.headline + ' | Description: ' + (e.description || '')).join('\n')}
+
+Return ONLY valid JSON (no markdown fences):
+{
+  "headline_he": "Hebrew headline",
+  "summary_he": "Hebrew summary with HTML tags preserved",
+  "outlook_he": "Hebrew outlook",
+  "what_changed_he": ["Hebrew item 1", "Hebrew item 2", "Hebrew item 3"],
+  "key_events_he": [
+    {"headline_he": "Hebrew headline", "description_he": "Hebrew description"},
+    ...
+  ]
+}`;
+
+    let text = await callGeminiWithRetry(model, prompt);
+    text = text.replace(/\`\`\`json/g, '').replace(/\`\`\`/g, '').trim();
+    text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    const tr = repairJson(text);
+
+    briefing.headline_he = tr.headline_he || briefing.headline;
+    briefing.summary_he = tr.summary_he || briefing.summary;
+    briefing.outlook_he = tr.outlook_he || briefing.outlook;
+    briefing.what_changed_he = tr.what_changed_he || briefing.what_changed;
+    if (tr.key_events_he && briefing.key_events) {
+      briefing.key_events.forEach((ev, i) => {
+        const heEv = tr.key_events_he[i];
+        if (heEv) {
+          ev.headline_he = heEv.headline_he || ev.headline;
+          ev.description_he = heEv.description_he || ev.description;
+        }
+      });
+    }
+    console.log('[TRANSLATE]   ✅ Daily briefing translated');
+  } catch (err) {
+    console.error('[TRANSLATE]   ⚠️ Daily briefing translation failed:', err.message);
+    briefing.headline_he = briefing.headline;
+    briefing.summary_he = briefing.summary;
+    briefing.outlook_he = briefing.outlook;
+    briefing.what_changed_he = briefing.what_changed;
+    if (briefing.key_events) briefing.key_events.forEach(ev => { ev.headline_he = ev.headline; ev.description_he = ev.description; });
+  }
+}
+
 module.exports = {
   isHebrew,
   initModel,
   translateArticles,
   translateSitrep,
-  translateDevelopments
+  translateDevelopments,
+  translateDailyBriefing
 };

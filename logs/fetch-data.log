@@ -16355,3 +16355,172 @@ Fetching 8 feeds in parallel...
 00:27:12 [build] Complete!
 [BUILD] ✅ Astro build complete. Site output in dist/
 [DATA] ✅ Site rebuilt and live.
+[DATA] 🔶 Iran War Update — Data Collection
+[DATA]    Time: 2026-04-12T04:30:12.781Z
+⚠️  Skipping 1 disabled feed(s): Haaretz
+Fetching 8 feeds in parallel...
+  → Ynet News...
+  → CNBC...
+  → Fox News...
+  → BBC News...
+  → Al Jazeera...
+  → NPR...
+  → Times of Israel...
+  → Jerusalem Post...
+  🕐 Jerusalem Post: TZ-fixed "Israel cannot afford to maintain illusions about t" −180min → 2026-04-12T02:47:44.000Z (102min ago)
+  🕐 Jerusalem Post: TZ-fixed "WATCH: Netanyahu says that Israel's campaign in Ir" −180min → 2026-04-11T18:18:16.000Z (612min ago)
+  🕐 Jerusalem Post: TZ-fixed "The 'final blow' doctrine: How Trump is rewriting " −180min → 2026-04-09T12:18:19.000Z (3852min ago)
+  🕐 Jerusalem Post: TZ-fixed "Turkey seeking nearly 5,000 years in prison for Ne" −180min → 2026-04-11T23:24:15.000Z (306min ago)
+  🕐 Jerusalem Post: TZ-fixed "US clearing out Strait of Hormuz, Trump claims as " −180min → 2026-04-11T14:05:21.000Z (865min ago)
+  🕐 Jerusalem Post: TZ-fixed "China plans to deliver air defense systems to Iran" −180min → 2026-04-11T04:40:43.000Z (1430min ago)
+  🕐 Jerusalem Post: TZ-fixed "Iran installing roadblocks in front of buried nucl" −180min → 2026-04-11T16:15:26.000Z (735min ago)
+  🕐 Jerusalem Post: TZ-fixed "What an Israeli bomb shelter can teach about fear," −180min → 2026-04-12T01:03:56.000Z (206min ago)
+  🕐 Jerusalem Post: TZ-fixed "UN Watch demands democracies explain election of h" −180min → 2026-04-12T01:02:33.000Z (208min ago)
+  🕐 Jerusalem Post: TZ-fixed "Wartime dating: Six Jerusalem destinations to take" −180min → 2026-04-11T23:56:28.000Z (274min ago)
+  🕐 Jerusalem Post: TZ-fixed "London police arrest 523 people at protest over Pa" −180min → 2026-04-11T22:52:52.000Z (337min ago)
+  🕐 Jerusalem Post: TZ-fixed "Victory over the kingdom of evil" −180min → 2026-04-05T10:13:25.000Z (9737min ago)
+  🕐 Jerusalem Post: TZ-fixed "'Over 90% of Iranians hate the regime,' INSS’s Ben" −120min → 2026-01-15T09:42:41.000Z (124968min ago)
+  🕐 Jerusalem Post: TZ-fixed "Alshareef: Israel, Jews, should help Iranians seek" −120min → 2026-01-14T07:57:00.000Z (126513min ago)
+  🕐 Jerusalem Post: TZ-fixed "How TALMA turns English education into social mobi" −120min → 2026-01-15T19:10:20.000Z (124400min ago)
+  ✓ Ynet News: 15 articles
+  ✓ CNBC: 15 articles
+  ✓ Fox News: 15 articles
+  ✓ BBC News: 15 articles
+  ✓ Al Jazeera: 15 articles
+  ✓ NPR: 6 articles
+  ✓ Times of Israel: 15 articles
+  ✓ Jerusalem Post: 15 articles
+[DATA] 📊 Fetched 111 articles from 9 feeds
+[DATA] 🔤 Translating articles to Hebrew...
+[TRANSLATE] 📰 111 articles: 96 need translation, 15 already Hebrew
+[TRANSLATE]   Batch 1/7 (15 articles)...
+[TRANSLATE]   Batch 2/7 (15 articles)...
+[TRANSLATE]   Batch 3/7 (15 articles)...
+[TRANSLATE]   ⚠️ Batch 3 failed: Bad escaped character in JSON at position 2517 (line 55 column 44). Using English as fallback.
+[TRANSLATE]   Batch 4/7 (15 articles)...
+[TRANSLATE]   Batch 5/7 (15 articles)...
+[TRANSLATE]   Batch 6/7 (15 articles)...
+[TRANSLATE]   Batch 7/7 (6 articles)...
+[DATA] ✅ Hebrew translation complete.
+  📦 Binning 111 articles across 9 date bucket(s): 2026-01-14, 2026-01-15, 2026-04-05, 2026-04-07, 2026-04-08, 2026-04-09, 2026-04-10, 2026-04-11, 2026-04-12
+📁 [2026-04-12] 2026-04-12.json — 162 articles (1 new, 0 updated)
+📁 [2026-04-11] 2026-04-11.json — 157 articles (0 new, 0 updated)
+📁 [2026-04-10] 2026-04-10.json — 20 articles (0 new, 0 updated)
+📁 [2026-04-09] 2026-04-09.json — 15 articles (0 new, 0 updated)
+📁 [2026-04-08] 2026-04-08.json — 7 articles (0 new, 0 updated)
+📁 [2026-04-07] 2026-04-07.json — 3 articles (0 new, 0 updated)
+📁 [2026-04-05] 2026-04-05.json — 1 articles (0 new, 0 updated)
+📁 [2026-01-15] 2026-01-15.json — 2 articles (0 new, 0 updated)
+📁 [2026-01-14] 2026-01-14.json — 1 articles (0 new, 0 updated)
+📊 Return set: 162 today (2026-04-12) + 157 yesterday (2026-04-11) = 206 unique articles
+[DATA] 📁 Daily archive now has 206 total articles
+[DATA] ✅ Sources: 9 OK, 0 failed
+[DATA] 🔍 Synthesizing key developments...
+[DEV_SYNTH] 🔍 Synthesizing Key Developments...
+[DEV_SYNTH] ✅ Identified 4 key developments
+[TRANSLATE] 🔍 Translating 4 developments...
+[TRANSLATE]   ✅ Developments translated
+[DEV_SYNTH] 💾 Saved: /Users/michaelmatias/Projects/war-dashboard/data/developments.json
+[DATA] 🔍 Key developments: US-Iran Peace Talks Collapse in Pakistan | Turkey Escalates Rhetoric Against Israeli Premier | Galilee Sirens Active, US Warships Transit Hormuz | Netanyahu Vows Continued Anti-Iran Campaign
+[DATA] 🎬 Fetching YouTube video feeds...
+[VIDEOS] 🎬 Fetching YouTube feeds...
+  → Israeli PM...
+  → IDF...
+  → The White House...
+  → C-SPAN...
+  → Fox News...
+  → CNN...
+  ✓ Israeli PM: 15 videos
+  ✓ IDF: 15 videos
+  ✓ The White House: 15 videos
+  ✓ C-SPAN: 15 videos
+  ✓ Fox News: 15 videos
+  ✓ CNN: 15 videos
+[VIDEOS] 🔍 Relevance filter: 90 → 61 videos
+[VIDEOS] 💾 Saved 30 videos to /Users/michaelmatias/Projects/war-dashboard/data/videos.json
+[DATA] 🎬 Videos: 30 saved to data/videos.json
+[DATA] ✅ Data collection complete.
+[DATA] 🔨 Rebuilding site...
+[BUILD] 📦 Iran War Update — Build
+[BUILD]    Time: 2026-04-12T04:34:01.179Z
+[BUILD] 📰 Loaded 162 articles from /Users/michaelmatias/Projects/war-dashboard/data/2026-04-12.json
+[BUILD] 📰 Loaded 157 articles from /Users/michaelmatias/Projects/war-dashboard/data/2026-04-11.json
+[BUILD] ✂️  Capped feed at 100 articles (106 older articles excluded from frontend, raw files untouched)
+[BUILD] 🧠 Loaded sitrep (generated at 2026-04-12T03:47:39.628Z)
+[BUILD] 🔍 Loaded 4 key developments (generated at 2026-04-12T04:34:00.877Z)
+[BUILD] 💾 Data written: /Users/michaelmatias/Projects/war-dashboard/src/data/latest.json
+[BUILD]    Articles: 100
+[BUILD]    Sitrep: yes
+[BUILD]    Size: 81.0 KB
+[BUILD] 🔨 Running astro build...
+00:34:02 [types] Generated 14ms
+00:34:02 [build] output: "static"
+00:34:02 [build] mode: "static"
+00:34:02 [build] directory: /Users/michaelmatias/Projects/war-dashboard/dist/
+00:34:02 [build] Collecting build info...
+00:34:02 [build] ✓ Completed in 24ms.
+00:34:02 [build] Building static entrypoints...
+/*! 🌼 daisyUI 5.5.19 */
+00:34:02 [vite] ✓ built in 501ms
+00:34:02 [vite] ✓ built in 9ms
+00:34:02 [build] Rearranging server assets...
+
+ generating static routes 
+00:34:02   ├─ /about/index.html (+5ms) 
+00:34:02   ├─ /archive/index.html (+2ms) 
+00:34:02   ├─ /he/about/index.html (+1ms) 
+00:34:02   ├─ /he/archive/index.html (+2ms) 
+00:34:02   ├─ /he/videos/index.html (+2ms) 
+00:34:02   ├─ /he/index.html (+5ms) 
+00:34:02   ├─ /videos/index.html (+2ms) 
+00:34:02   ├─ /index.html (+4ms) 
+00:34:02 ✓ Completed in 31ms.
+
+00:34:02 [build] ✓ Completed in 563ms.
+00:34:02 [build] 8 page(s) built in 589ms
+00:34:02 [build] Complete!
+[BUILD] ✅ Astro build complete. Site output in dist/
+[DATA] ✅ Site rebuilt and live.
+[DATA] 🔶 Iran War Update — Data Collection
+[DATA]    Time: 2026-04-12T04:37:02.917Z
+⚠️  Skipping 1 disabled feed(s): Haaretz
+Fetching 8 feeds in parallel...
+  → Ynet News...
+  → CNBC...
+  → Fox News...
+  → BBC News...
+  → Al Jazeera...
+  → NPR...
+  → Times of Israel...
+  → Jerusalem Post...
+  🕐 Jerusalem Post: TZ-fixed "Israel cannot afford to maintain illusions about t" −180min → 2026-04-12T02:47:44.000Z (109min ago)
+  🕐 Jerusalem Post: TZ-fixed "WATCH: Netanyahu says that Israel's campaign in Ir" −180min → 2026-04-11T18:18:16.000Z (619min ago)
+  🕐 Jerusalem Post: TZ-fixed "The 'final blow' doctrine: How Trump is rewriting " −180min → 2026-04-09T12:18:19.000Z (3859min ago)
+  🕐 Jerusalem Post: TZ-fixed "Turkey seeking nearly 5,000 years in prison for Ne" −180min → 2026-04-11T23:24:15.000Z (313min ago)
+  🕐 Jerusalem Post: TZ-fixed "US clearing out Strait of Hormuz, Trump claims as " −180min → 2026-04-11T14:05:21.000Z (872min ago)
+  🕐 Jerusalem Post: TZ-fixed "China plans to deliver air defense systems to Iran" −180min → 2026-04-11T04:40:43.000Z (1436min ago)
+  🕐 Jerusalem Post: TZ-fixed "Iran installing roadblocks in front of buried nucl" −180min → 2026-04-11T16:15:26.000Z (742min ago)
+  🕐 Jerusalem Post: TZ-fixed "What an Israeli bomb shelter can teach about fear," −180min → 2026-04-12T01:03:56.000Z (213min ago)
+  🕐 Jerusalem Post: TZ-fixed "UN Watch demands democracies explain election of h" −180min → 2026-04-12T01:02:33.000Z (215min ago)
+  🕐 Jerusalem Post: TZ-fixed "Wartime dating: Six Jerusalem destinations to take" −180min → 2026-04-11T23:56:28.000Z (281min ago)
+  🕐 Jerusalem Post: TZ-fixed "London police arrest 523 people at protest over Pa" −180min → 2026-04-11T22:52:52.000Z (344min ago)
+  🕐 Jerusalem Post: TZ-fixed "Victory over the kingdom of evil" −180min → 2026-04-05T10:13:25.000Z (9744min ago)
+  🕐 Jerusalem Post: TZ-fixed "'Over 90% of Iranians hate the regime,' INSS’s Ben" −120min → 2026-01-15T09:42:41.000Z (124974min ago)
+  🕐 Jerusalem Post: TZ-fixed "Alshareef: Israel, Jews, should help Iranians seek" −120min → 2026-01-14T07:57:00.000Z (126520min ago)
+  🕐 Jerusalem Post: TZ-fixed "How TALMA turns English education into social mobi" −120min → 2026-01-15T19:10:20.000Z (124407min ago)
+  ✓ Ynet News: 15 articles
+  ✓ CNBC: 15 articles
+  ✓ Fox News: 15 articles
+  ✓ BBC News: 15 articles
+  ✓ Al Jazeera: 15 articles
+  ✓ NPR: 6 articles
+  ✓ Times of Israel: 15 articles
+  ✓ Jerusalem Post: 15 articles
+[DATA] 📊 Fetched 111 articles from 9 feeds
+[DATA] 🔤 Translating articles to Hebrew...
+[TRANSLATE] 📰 111 articles: 96 need translation, 15 already Hebrew
+[TRANSLATE]   Batch 1/7 (15 articles)...
+[TRANSLATE]   Batch 2/7 (15 articles)...
+[TRANSLATE]   Batch 3/7 (15 articles)...
+[TRANSLATE]   Batch 4/7 (15 articles)...
+[TRANSLATE]   Batch 5/7 (15 articles)...

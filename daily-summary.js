@@ -7,6 +7,7 @@ const path = require('path');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const { GEMINI_MODEL, TIMEZONE } = require('./src/config');
 const { getGeminiKey } = require('./src/synthesizer');
+const { initModel: initTranslateModel, translateDailyBriefing } = require('./src/translate-hebrew');
 const { atomicWriteSync } = require('./src/utils');
 
 const DATA_DIR = path.join(__dirname, 'data');
@@ -130,6 +131,14 @@ RULES:
   briefing.statistics.total_articles = articles.length;
   briefing.statistics.sources_reporting = Object.keys(sourceCounts).length;
   briefing.statistics.most_active_source = mostActiveSrc[0];
+
+  // Translate to Hebrew
+  try {
+    const translateModel = initTranslateModel(apiKey);
+    await translateDailyBriefing(translateModel, briefing);
+  } catch (err) {
+    console.error('⚠️ Hebrew translation failed:', err.message);
+  }
 
   // Save the briefing with atomic write
   fs.mkdirSync(DAILY_DIR, { recursive: true });
