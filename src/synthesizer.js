@@ -11,6 +11,7 @@ const {
   GEMINI_RETRY_DELAY_MS
 } = require('./config');
 const { atomicWriteSync, sleep } = require('./utils');
+const { initModel: initTranslateModel, translateSitrep } = require('./translate-hebrew');
 
 const DATA_DIR = path.join(__dirname, '..', 'data');
 
@@ -173,6 +174,20 @@ GLOBAL RULES:
     textOutput = textOutput.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
 
     const parsed = JSON.parse(textOutput);
+
+    // --- Translate sitrep to Hebrew (inline) ---
+    try {
+      const translateModel = initTranslateModel(googleKey);
+      await translateSitrep(translateModel, parsed);
+    } catch (err) {
+      console.warn(`[GEMINI] ⚠️ Hebrew sitrep translation failed: ${err.message}`);
+      // Fallback: set _he fields to English
+      parsed.summary_he = parsed.summary;
+      parsed.detailed_analysis_he = parsed.detailed_analysis;
+      if (parsed.top_updates) {
+        parsed.top_updates.forEach(u => { u.headline_he = u.headline; });
+      }
+    }
 
     // Save sitrep for next delta comparison
     saveSitrep(parsed);

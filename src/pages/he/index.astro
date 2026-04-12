@@ -24,10 +24,35 @@ let developments: any[] | null = null;
 
 if (fs.existsSync(dataPath)) {
   const raw = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
-  articles = raw.articles || [];
+  // Map Hebrew _he fields onto primary fields for the Hebrew page
+  articles = (raw.articles || []).map((a: any) => ({
+    ...a,
+    title: a.title_he || a.title,
+    snippet: a.snippet_he !== undefined ? a.snippet_he : (a.snippet || ''),
+  }));
   sourceStats = raw.sourceStats || [];
-  sitrep = raw.sitrep || null;
-  developments = raw.developments || null;
+  // Map sitrep Hebrew fields
+  const rawSitrep = raw.sitrep;
+  if (rawSitrep) {
+    sitrep = {
+      ...rawSitrep,
+      summary: rawSitrep.summary_he || rawSitrep.summary,
+      detailed_analysis: rawSitrep.detailed_analysis_he || rawSitrep.detailed_analysis,
+      top_updates: (rawSitrep.top_updates || []).map((u: any) => ({
+        ...u,
+        headline: u.headline_he || u.headline,
+      })),
+    };
+  }
+  // Map developments Hebrew fields
+  const rawDevs = raw.developments;
+  if (rawDevs) {
+    developments = rawDevs.map((d: any) => ({
+      ...d,
+      headline: d.headline_he || d.headline,
+      summary: d.summary_he || d.summary,
+    }));
+  }
 }
 
 // Build top story detection from sitrep

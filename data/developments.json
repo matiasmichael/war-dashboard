@@ -1,58 +1,64 @@
 {
   "developments": [
     {
-      "headline": "US-Iran Ceasefire Talks Face Collapse",
-      "summary": "Ongoing US-Iran negotiations in Islamabad are at risk as Iran claims the 'upper hand' and Israel prepares for renewed conflict, anticipating talks will fail due to significant disagreements.",
+      "headline": "US-Iran Nuclear Talks Collapse Without Deal",
+      "summary": "US VP Vance departed Pakistan after talks failed, with both sides blaming 'excessive demands'. This removes immediate de-escalation pathways and escalates the broader 'war in Iran' situation.",
       "sources": [
         "Al Jazeera",
-        "Ynet News",
+        "Times of Israel",
         "CNBC",
-        "Jerusalem Post"
+        "Ynet News"
       ],
       "severity": "critical",
       "category": "diplomacy",
-      "timeContext": "Ongoing",
-      "updatedAt": "2026-04-11T19:54:00.054Z"
+      "timeContext": "1h ago",
+      "updatedAt": "2026-04-12T04:20:24.221Z",
+      "headline_he": "שיחות הגרעין בין ארה\"ב לאיראן קרסו ללא הסכם",
+      "summary_he": "סגן נשיא ארה\"ב ואנס עזב את פקיסטן לאחר שהשיחות כשלו, כששני הצדדים מאשימים \"דרישות מופרזות\". הדבר מסיר נתיבי דה-אסקלציה מיידיים ומסלים את מצב 'המלחמה באיראן' הרחב."
     },
     {
-      "headline": "US Navy De-mining Strait of Hormuz",
-      "summary": "US destroyers are actively clearing mines in the Strait of Hormuz, a key sticking point in ongoing negotiations. Iran dismisses US claims as 'fake news' while additional forces are expected.",
+      "headline": "Hormuz Tensions Rise Post-Talks Collapse",
+      "summary": "Iran declared no change in its Strait of Hormuz stance without a deal, while the UN maritime chief stated tolls are unacceptable. Two US warships recently transited the Strait, signaling a potential flashpoint.",
       "sources": [
-        "Times of Israel",
         "Al Jazeera",
+        "Ynet News",
         "CNBC"
       ],
       "severity": "major",
       "category": "military",
       "timeContext": "Ongoing",
-      "updatedAt": "2026-04-11T19:54:00.054Z"
+      "updatedAt": "2026-04-12T04:20:24.221Z",
+      "headline_he": "מתיחות גוברת במצרי הורמוז בעקבות קריסת השיחות",
+      "summary_he": "איראן הצהירה כי עמדתה בנוגע למצרי הורמוז לא תשתנה ללא הסכם, בעוד שראש היחידה הימית של האו\"ם קבע כי דמי מעבר אינם מקובלים. שתי ספינות מלחמה אמריקאיות עברו לאחרונה במצרים, מה שאותת על נקודת התלקחות פוטנציאלית."
     },
     {
-      "headline": "Israel Prepares for Renewed Conflict",
-      "summary": "Netanyahu asserts Israel's campaign is 'not over yet' as the country anticipates ceasefire talks to collapse. This comes amidst recent Hezbollah rocket and drone attacks on northern Israel.",
+      "headline": "Rocket Alarms Triggered in Upper Galilee",
+      "summary": "Rocket sirens activated in northern Israel (Upper Galilee) 11 minutes ago, indicating potential cross-border fire. This signifies ongoing military engagement on Israel's northern front.",
+      "sources": [
+        "Ynet News"
+      ],
+      "severity": "critical",
+      "category": "military",
+      "timeContext": "Just now",
+      "updatedAt": "2026-04-12T04:20:24.221Z",
+      "headline_he": "אזעקות רקטות הופעלו בגליל העליון",
+      "summary_he": "צפירות אזעקה הופעלו בצפון ישראל (הגליל העליון) לפני 11 דקות, מה שמצביע על ירי אפשרי מעבר לגבול. הדבר מסמל לחימה מתמשכת בחזית הצפונית של ישראל."
+    },
+    {
+      "headline": "Israel, Turkey Leaders Exchange Harsh Words",
+      "summary": "Israeli leaders, including PM Netanyahu, harshly criticized Turkish President Erdogan, who reportedly seeks to jail Israelis. This marks a significant deterioration in bilateral relations.",
       "sources": [
         "Ynet News",
-        "Jerusalem Post",
         "Times of Israel"
-      ],
-      "severity": "major",
-      "category": "military",
-      "timeContext": "Developing",
-      "updatedAt": "2026-04-11T19:54:00.054Z"
-    },
-    {
-      "headline": "Iraq Elects Iran-Friendly President",
-      "summary": "Iraq's parliament has elected Kurdish politician Nizar Amidi as president. Amidi's PUK party is considered friendly to Iran, signaling a potential shift in regional alignments.",
-      "sources": [
-        "CNBC",
-        "Jerusalem Post"
       ],
       "severity": "notable",
       "category": "diplomacy",
-      "timeContext": "Earlier today",
-      "updatedAt": "2026-04-11T19:54:00.054Z"
+      "timeContext": "30m ago",
+      "updatedAt": "2026-04-12T04:20:24.221Z",
+      "headline_he": "חילופי דברים קשים בין מנהיגי ישראל וטורקיה",
+      "summary_he": "מנהיגים ישראלים, כולל רה\"מ נתניהו, מתחו ביקורת חריפה על נשיא טורקיה ארדואן, אשר על פי הדיווחים מבקש לכלוא ישראלים. הדבר מסמן הידרדרות משמעותית ביחסים הבילטרליים."
     }
   ],
-  "generatedAt": "2026-04-11T19:54:00.054Z",
-  "articleCount": 148
+  "generatedAt": "2026-04-12T04:20:36.001Z",
+  "articleCount": 204
 }

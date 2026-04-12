@@ -13,6 +13,7 @@ const {
   GEMINI_RETRY_DELAY_MS
 } = require('./config');
 const { atomicWriteSync, sleep } = require('./utils');
+const { initModel: initTranslateModel, translateDevelopments } = require('./translate-hebrew');
 
 const DATA_DIR = path.join(__dirname, '..', 'data');
 
@@ -181,6 +182,20 @@ RULES:
     }));
 
     console.log(`[DEV_SYNTH] ✅ Identified ${developments.length} key developments`);
+
+    // --- Translate developments to Hebrew (inline) ---
+    try {
+      const translateModel = initTranslateModel(googleKey);
+      await translateDevelopments(translateModel, developments);
+    } catch (err) {
+      console.warn(`[DEV_SYNTH] ⚠️ Hebrew translation failed: ${err.message}`);
+      // Fallback: set _he fields to English
+      developments.forEach(d => {
+        if (!d.headline_he) d.headline_he = d.headline;
+        if (!d.summary_he) d.summary_he = d.summary;
+      });
+    }
+
     return developments;
   } catch (err) {
     console.error(`[DEV_SYNTH] ❌ Failed: ${err.message}`);

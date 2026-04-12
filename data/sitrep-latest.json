@@ -1,23 +1,28 @@
 {
-  "summary": "Israel anticipates <strong>negotiation collapse</strong>, preparing for renewed war as Netanyahu claims nuclear success. <strong>US-Iran talks</strong> proceed amid Iranian demands to retain military achievements and US insistence on Gulf navigation rights.",
+  "summary": "US-Iran direct talks have collapsed over nuclear and Strait of Hormuz issues. Iran links Hormuz access to a deal, rejecting UN guidance, increasing <strong>regional tensions</strong> and <strong>Hormuz confrontation</strong> risk with heightened <strong>nuclear proliferation</strong> concerns.",
   "top_updates": [
     {
-      "headline": "US-Iran talks commence in Pakistani capital; warships transit Hormuz.",
+      "headline": "US-Iran talks fail; Vance departs Pakistan without deal.",
+      "source": "Al Jazeera",
+      "time": "9 mins ago",
+      "headline_he": "שיחות ארה\"ב-איראן נכשלו; ואנס עזב את פקיסטן ללא הסכם."
+    },
+    {
+      "headline": "US warships transit Strait of Hormuz after talks collapse.",
       "source": "CNBC",
-      "time": "27m ago"
+      "time": "55 mins ago",
+      "headline_he": "ספינות מלחמה אמריקאיות עברו במצר הורמוז לאחר קריסת השיחות."
     },
     {
-      "headline": "Israel anticipates negotiation collapse, prepares for war renewal.",
+      "headline": "Iran ties Hormuz access to deal; UN watchdog opposes tolls.",
       "source": "Ynet News",
-      "time": "22m ago"
-    },
-    {
-      "headline": "Hezbollah barrages Northern Israel with rockets and drones.",
-      "source": "Jerusalem Post",
-      "time": "1h ago"
+      "time": "27 mins ago",
+      "headline_he": "איראן מקשרת גישה להורמוז להסכם; גוף הפיקוח של האו\"ם מתנגד לאגרות."
     }
   ],
-  "detailed_analysis": "<strong>US-Iran talks</strong> have shifted location to Pakistan, though disagreements persist over navigation rights and Iranian military achievements. Hezbollah maintains ongoing rocket and drone barrages against northern Israel. Israel states its campaign in Iran is \"not over yet\" and prepares for renewed conflict, with Netanyahu claiming an existential nuclear threat was averted. The election of an Iran-friendly Iraqi President strengthens Tehran's regional influence. Watch for escalation triggers in negotiations or proxy actions.",
-  "generatedAt": "2026-04-11T19:45:15.986Z",
-  "articleCount": 144
+  "detailed_analysis": "US-Iran direct negotiations collapsed, a significant shift from the prior briefing's diplomatic efforts. Key sticking points remain Iran's <strong>nuclear program</strong> and <strong>Strait of Hormuz</strong> navigation. US warships transited Hormuz, reinforcing <strong>US force posture</strong>. Iran maintains its stance on Hormuz tolls. IRGC officials advised the Iranian delegation, indicating military influence in diplomacy. Israel's campaign against Iran remains active. Monitor for escalated Strait of Hormuz activity and Iranian nuclear program advancements.",
+  "generatedAt": "2026-04-12T03:47:39.628Z",
+  "articleCount": 157,
+  "summary_he": "שיחות ישירות בין ארה\"ב לאיראן קרסו סביב סוגיות הגרעין ומצר הורמוז. איראן מקשרת גישה להורמוז להסכם, דוחה הנחיות האו\"ם, מגבירה <strong>מתיחות אזורית</strong> וסיכון ל<strong>עימות בהורמוז</strong> עם חששות מוגברים מ<strong>הפצת גרעין</strong>.",
+  "detailed_analysis_he": "משא ומתן ישיר בין ארה\"ב לאיראן קרס, שינוי משמעותי ממאמצי הדיפלומטיה בתדריך הקודם. נקודות המחלוקת המרכזיות נותרו <strong>תוכנית הגרעין</strong> של איראן וניווט ב<strong>מצר הורמוז</strong>. ספינות מלחמה אמריקאיות עברו בהורמוז, מה שמחזק את <strong>היערכות הכוחות האמריקאיים</strong>. איראן ממשיכה לעמוד על עמדתה בנוגע לאגרות בהורמוז. בכירים ממשמרות המהפכה ייעצו למשלחת האיראנית, מה שמצביע על השפעה צבאית בדיפלומטיה. הקמפיין של ישראל נגד איראן נותר פעיל. יש לעקוב אחר הסלמה בפעילות במצר הורמוז והתקדמות בתוכנית הגרעין האיראנית."
 }

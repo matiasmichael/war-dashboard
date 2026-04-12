@@ -86,7 +86,10 @@ function persistDateBucket(dateStr, newArticles, purgeSet) {
         ...a,
         title: incoming.title,
         snippet: incoming.snippet,
-        date: incoming.date
+        date: incoming.date,
+        // Preserve Hebrew translations if present
+        ...(incoming.title_he !== undefined && { title_he: incoming.title_he }),
+        ...(incoming.snippet_he !== undefined && { snippet_he: incoming.snippet_he }),
       };
     }
     // Clamp lingering future timestamps

@@ -1,11 +1,14 @@
 // ===== LAYER 1: DATA COLLECTION =====
 // Fetches RSS feeds, deduplicates, persists to data/YYYY-MM-DD.json.
 // Also synthesizes Key Developments via Gemini after collecting articles.
+// Translates article titles/snippets to Hebrew (_he fields) in-place.
 
 const { fetchAllFeeds } = require('./src/fetcher');
 const { persistDailyArticles } = require('./src/persistence');
 const { main: synthesizeDev } = require('./src/synthesize-developments');
 const { main: fetchVideos } = require('./fetch-videos');
+const { getGeminiKey } = require('./src/synthesizer');
+const { initModel, translateArticles } = require('./src/translate-hebrew');
 
 async function main() {
   console.log('[DATA] 🔶 Iran War Update — Data Collection');
@@ -13,6 +16,21 @@ async function main() {
 
   const { articles, sourceStats, purgeUrls } = await fetchAllFeeds();
   console.log(`[DATA] 📊 Fetched ${articles.length} articles from ${sourceStats.length} feeds`);
+
+  // --- Translate article titles/snippets to Hebrew ---
+  console.log('[DATA] 🔤 Translating articles to Hebrew...');
+  try {
+    const googleKey = getGeminiKey();
+    if (googleKey) {
+      const model = initModel(googleKey);
+      await translateArticles(model, articles);
+      console.log('[DATA] ✅ Hebrew translation complete.');
+    } else {
+      console.warn('[DATA] ⚠️  No GOOGLE_API_KEY — skipping Hebrew translation.');
+    }
+  } catch (err) {
+    console.error(`[DATA] ⚠️  Hebrew translation failed: ${err.message}`);
+  }
 
   // Persist to daily JSON (deduplicates automatically; purges stale pre-scheduled entries)
   const merged = persistDailyArticles(articles, purgeUrls);
