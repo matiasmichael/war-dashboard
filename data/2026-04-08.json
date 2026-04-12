@@ -8,7 +8,9 @@
     "logo": "🦊",
     "color": "#003366",
     "accentLight": "#eff6ff",
-    "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128"
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128",
+    "title_he": "איראן מאיימת לסיים את הפסקת האש עקב הדרת חיזבאללה מהסכם ההפוגה",
+    "snippet_he": "איראן אומרת שארה\"ב חייבת לבחור בין הפסקת אש למלחמה דרך ישראל, שכן הסכם הפסקת האש של יום שלישי אינו כולל את ארגון הטרור חיזבאללה הנתמך על ידי טהראן."
   },
   {
     "title": "At least 182 killed across Lebanon in large wave of Israeli strikes",
@@ -30,7 +32,9 @@
     "logo": "🇬🇧",
     "color": "#b80000",
     "accentLight": "#fef2f2",
-    "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128"
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128",
+    "title_he": "משימה עצומה למגשרים לסגור פערים בהצעות השלום המתחרות של איראן",
+    "snippet_he": "לארה\"ב יש תוכנית בת 15 נקודות לסיום המלחמה, ואיראן מציעה 10 הצעות משלה. האם ניתן ליישב אותן?"
   },
   {
     "title": "UK's NATO show of force ends with docked destroyer in Mediterranean after 'technical' issue",
@@ -41,7 +45,9 @@
     "logo": "🦊",
     "color": "#003366",
     "accentLight": "#eff6ff",
-    "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128"
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128",
+    "title_he": "מופע הכוח של נאט\"ו בראשות בריטניה מסתיים עם משחתת עוגנת בים התיכון לאחר 'תקלה טכנית'",
+    "snippet_he": "בריטניה עגנה את ספינת המלחמה הימית היחידה שלה בים התיכון עקב בעיות טכניות, על רקע ביקורת גוברת על תגובת רה\"מ סטאמר למלחמת איראן."
   },
   {
     "title": "Bowen: Ceasefire means respite for civilians, but it might not last long",
@@ -52,7 +58,9 @@
     "logo": "🇬🇧",
     "color": "#b80000",
     "accentLight": "#fef2f2",
-    "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128"
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128",
+    "title_he": "בואן: הפסקת האש היא הפוגה לאזרחים, אך ייתכן שלא תימשך זמן רב",
+    "snippet_he": "בין אם יושג הסכם שלום מתמשך ובין אם לאו, המלחמה והשלכותיה מעצבות מחדש את המזרח התיכון, כותב העורך הבינלאומי ג'רמי בואן."
   },
   {
     "title": "Evangelical leaders rally for Trump and Israel as Operation Epic Fury reshapes the region",
@@ -63,7 +71,9 @@
     "logo": "🦊",
     "color": "#003366",
     "accentLight": "#eff6ff",
-    "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128"
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128",
+    "title_he": "מנהיגים אוונגליסטים מתגייסים למען טראמפ וישראל כש'מבצע זעם אפי' מעצב מחדש את האזור",
+    "snippet_he": "מנהיגים אוונגליסטים אומרים כי התמיכה בישראל נותרה חזקה במהלך \"מבצע זעם אפי\", המערכה הצבאית המשותפת של ארה\"ב-ישראל נגד איראן, כשאף הפסקת אש חדשה נכנסת לתוקף."
   },
   {
     "title": "North Korea fires missiles toward sea after ridiculing South's hopes for better ties",
@@ -74,6 +84,8 @@
     "logo": "🦊",
     "color": "#003366",
     "accentLight": "#eff6ff",
-    "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128"
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128",
+    "title_he": "קוריאה הצפונית יורה טילים לעבר הים לאחר לעג לתקוות הדרום ליחסים טובים יותר",
+    "snippet_he": "קוריאה הצפונית ירתה מספר טילים בליסטיים לאחר שמתחה ביקורת על דחיפתה של קוריאה הדרומית לשיפור יחסים, מה שהעלה את המתיחות באזור."
   }
 ]

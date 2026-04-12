@@ -1,64 +1,63 @@
 {
   "developments": [
     {
-      "headline": "US-Iran Nuclear Talks Collapse Without Deal",
-      "summary": "US VP Vance departed Pakistan after talks failed, with both sides blaming 'excessive demands'. This removes immediate de-escalation pathways and escalates the broader 'war in Iran' situation.",
+      "headline": "US-Iran Talks Fail, Vance Departs Pakistan",
+      "summary": "US VP Vance departed Pakistan after 21 hours of talks with Iran collapsed without a deal. Both sides blamed unreasonable demands, signaling heightened regional instability and continued mistrust.",
       "sources": [
         "Al Jazeera",
+        "Ynet News",
         "Times of Israel",
-        "CNBC",
-        "Ynet News"
+        "CNBC"
       ],
       "severity": "critical",
       "category": "diplomacy",
       "timeContext": "1h ago",
-      "updatedAt": "2026-04-12T04:20:24.221Z",
-      "headline_he": "שיחות הגרעין בין ארה\"ב לאיראן קרסו ללא הסכם",
-      "summary_he": "סגן נשיא ארה\"ב ואנס עזב את פקיסטן לאחר שהשיחות כשלו, כששני הצדדים מאשימים \"דרישות מופרזות\". הדבר מסיר נתיבי דה-אסקלציה מיידיים ומסלים את מצב 'המלחמה באיראן' הרחב."
+      "updatedAt": "2026-04-12T04:26:59.419Z",
+      "headline_he": "כישלון מגעים בין ארה\"ב לאיראן; ואנס עזב את פקיסטן",
+      "summary_he": "סגן נשיא ארה\"ב, ואנס, עזב את פקיסטן לאחר ש-21 שעות של שיחות עם איראן קרסו ללא הסכם. שני הצדדים האשימו \"דרישות בלתי סבירות\", מה שמאותת על עלייה בחוסר היציבות האזורי ועל המשך חוסר האמון."
     },
     {
-      "headline": "Hormuz Tensions Rise Post-Talks Collapse",
-      "summary": "Iran declared no change in its Strait of Hormuz stance without a deal, while the UN maritime chief stated tolls are unacceptable. Two US warships recently transited the Strait, signaling a potential flashpoint.",
-      "sources": [
-        "Al Jazeera",
-        "Ynet News",
-        "CNBC"
-      ],
-      "severity": "major",
-      "category": "military",
-      "timeContext": "Ongoing",
-      "updatedAt": "2026-04-12T04:20:24.221Z",
-      "headline_he": "מתיחות גוברת במצרי הורמוז בעקבות קריסת השיחות",
-      "summary_he": "איראן הצהירה כי עמדתה בנוגע למצרי הורמוז לא תשתנה ללא הסכם, בעוד שראש היחידה הימית של האו\"ם קבע כי דמי מעבר אינם מקובלים. שתי ספינות מלחמה אמריקאיות עברו לאחרונה במצרים, מה שאותת על נקודת התלקחות פוטנציאלית."
-    },
-    {
-      "headline": "Rocket Alarms Triggered in Upper Galilee",
-      "summary": "Rocket sirens activated in northern Israel (Upper Galilee) 11 minutes ago, indicating potential cross-border fire. This signifies ongoing military engagement on Israel's northern front.",
+      "headline": "Sirens Activated in Upper Galilee, Northern Israel",
+      "summary": "Air raid sirens have sounded in Israel's Upper Galilee region. This indicates potential incoming threats or infiltration attempts, elevating immediate security concerns in the north.",
       "sources": [
         "Ynet News"
       ],
       "severity": "critical",
       "category": "military",
       "timeContext": "Just now",
-      "updatedAt": "2026-04-12T04:20:24.221Z",
-      "headline_he": "אזעקות רקטות הופעלו בגליל העליון",
-      "summary_he": "צפירות אזעקה הופעלו בצפון ישראל (הגליל העליון) לפני 11 דקות, מה שמצביע על ירי אפשרי מעבר לגבול. הדבר מסמל לחימה מתמשכת בחזית הצפונית של ישראל."
+      "updatedAt": "2026-04-12T04:26:59.419Z",
+      "headline_he": "הופעלו אזעקות בגליל העליון, בצפון ישראל",
+      "summary_he": "צפירות אזעקה נשמעו באזור הגליל העליון בישראל. הדבר מצביע על איומים פוטנציאליים מתקרבים או ניסיונות חדירה, מה שמגביר את החששות הביטחוניים המיידיים בצפון."
     },
     {
-      "headline": "Israel, Turkey Leaders Exchange Harsh Words",
-      "summary": "Israeli leaders, including PM Netanyahu, harshly criticized Turkish President Erdogan, who reportedly seeks to jail Israelis. This marks a significant deterioration in bilateral relations.",
+      "headline": "Israel-Turkey Hostility Escalates, Threats Exchanged",
+      "summary": "Turkey labeled Netanyahu the 'Hitler of our time' in response to Israeli leaders' accusations of Kurdish massacres. This marks a significant deterioration in diplomatic relations, with Turkey reportedly seeking to jail Israeli officials.",
       "sources": [
         "Ynet News",
         "Times of Israel"
       ],
-      "severity": "notable",
+      "severity": "major",
       "category": "diplomacy",
-      "timeContext": "30m ago",
-      "updatedAt": "2026-04-12T04:20:24.221Z",
-      "headline_he": "חילופי דברים קשים בין מנהיגי ישראל וטורקיה",
-      "summary_he": "מנהיגים ישראלים, כולל רה\"מ נתניהו, מתחו ביקורת חריפה על נשיא טורקיה ארדואן, אשר על פי הדיווחים מבקש לכלוא ישראלים. הדבר מסמן הידרדרות משמעותית ביחסים הבילטרליים."
+      "timeContext": "45m ago",
+      "updatedAt": "2026-04-12T04:26:59.419Z",
+      "headline_he": "הסלמה בעוינות בין ישראל לטורקיה; חילופי איומים",
+      "summary_he": "טורקיה כינתה את נתניהו \"היטלר של זמננו\", בתגובה להאשמות מנהיגים ישראלים על טבח כורדים. הדבר מסמן הידרדרות משמעותית ביחסים הדיפלומטיים, כאשר טורקיה מבקשת, על פי הדיווחים, לאסור פקידים ישראלים."
+    },
+    {
+      "headline": "Netanyahu Vows Continued Campaign Against Iran",
+      "summary": "PM Netanyahu stated Israel's 'campaign against Iran is not over' and alluded to successful past actions against 'six countries.' This reaffirms Israel's proactive and sustained military-diplomatic posture post-US-Iran talks failure.",
+      "sources": [
+        "Al Jazeera",
+        "Times of Israel"
+      ],
+      "severity": "major",
+      "category": "military",
+      "timeContext": "2h ago",
+      "updatedAt": "2026-04-12T04:26:59.419Z",
+      "headline_he": "נתניהו מתחייב למאבק מתמשך נגד איראן",
+      "summary_he": "ראש הממשלה נתניהו הצהיר כי \"הקמפיין של ישראל נגד איראן לא הסתיים\", ורמז לפעולות עבר מוצלחות נגד \"שש מדינות\". הדבר מאשר מחדש את העמדה הצבאית-דיפלומטית הפרואקטיבית והמתמשכת של ישראל, לאחר כישלון שיחות ארה\"ב-איראן."
     }
   ],
-  "generatedAt": "2026-04-12T04:20:36.001Z",
-  "articleCount": 204
+  "generatedAt": "2026-04-12T04:27:10.805Z",
+  "articleCount": 205
 }

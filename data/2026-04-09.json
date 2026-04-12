@@ -8,7 +8,9 @@
     "logo": "🦊",
     "color": "#003366",
     "accentLight": "#eff6ff",
-    "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128"
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128",
+    "title_he": "הרשויות: ישראלי בנה מעבדת מטענים עבור מזימה איראנית לחיסול רה\"מ לשעבר בנט",
+    "snippet_he": "תושב חיפה גויס לכאורה על ידי מפעיל איראני לבנות פצצות עבור מזימת התנקשות שלפי החשד כיוונה לראש הממשלה לשעבר נפתלי בנט."
   },
   {
     "title": "What just happened? Breaking down the ceasefire",
@@ -30,7 +32,9 @@
     "logo": "🦊",
     "color": "#003366",
     "accentLight": "#eff6ff",
-    "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128"
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128",
+    "title_he": "שר ההגנה הבריטי מזהיר את פוטין מ\"השלכות חמורות\" לאחר מבצע צבאי חשאי תת-ימי",
+    "snippet_he": "שר ההגנה הבריטי ג'ון הילי חשף מבצע צבאי גדול שכלל את הצי המלכותי ונורווגיה, שנועד להרתיע צוללות רוסיות בים הצפוני."
   },
   {
     "title": "Strait of Hormuz toll would set 'dangerous precedent,' UN shipping agency warns",
@@ -41,7 +45,9 @@
     "logo": "🦊",
     "color": "#003366",
     "accentLight": "#eff6ff",
-    "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128"
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128",
+    "title_he": "סוכנות האו\"ם מזהירה: אגרה במצר הורמוז תיצור \"תקדים מסוכן\"",
+    "snippet_he": "סוכנות הספנות של האו\"ם הזהירה ביום חמישי כי כל אגרה שתוטל על ספינות העוברות במצר הורמוז תיצור \"תקדים מסוכן\"."
   },
   {
     "title": "Lebanon thought there was a ceasefire - then Israel unleashed deadly blitz",
@@ -52,7 +58,9 @@
     "logo": "🇬🇧",
     "color": "#b80000",
     "accentLight": "#fef2f2",
-    "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128"
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128",
+    "title_he": "לבנון חשבה שיש הפסקת אש – ואז ישראל פתחה במתקפה קטלנית",
+    "snippet_he": "ישראל אומרת כי לבנון אינה כלולה בהפסקת האש שארה\"ב הסכימה עליה כדי לעצור את המלחמה עם איראן."
   },
   {
     "title": "Israeli strikes in Lebanon 'grave violation' of ceasefire, Iran minister tells BBC",
@@ -63,7 +71,9 @@
     "logo": "🇬🇧",
     "color": "#b80000",
     "accentLight": "#fef2f2",
-    "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128"
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128",
+    "title_he": "״תקיפות ישראל בלבנון הן 'הפרה חמורה' של הפסקת האש״, אומר שר איראני ל-BBC",
+    "snippet_he": "סגן שר החוץ האיראני אומר כי ארה\"ב חייבת לבחור בין ״מלחמה להפסקת אש״."
   },
   {
     "title": "'Endless fears': Even if fighting stops, the damage to Iran's children will endure",
@@ -74,7 +84,9 @@
     "logo": "🇬🇧",
     "color": "#b80000",
     "accentLight": "#fef2f2",
-    "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128"
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128",
+    "title_he": "״חששות אינסופיים״: גם אם הלחימה תיפסק, הנזק לילדי איראן יישאר",
+    "snippet_he": "ה-BBC הצליח להשיג עדויות מהורים ומאלו המנסים לעזור לילדים להתמודד עם המצוקה הנלווית למלחמה."
   },
   {
     "title": "Has US achieved its war objectives in Iran?",
@@ -85,7 +97,47 @@
     "logo": "🇬🇧",
     "color": "#b80000",
     "accentLight": "#fef2f2",
-    "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128"
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128",
+    "title_he": "האם ארה\"ב השיגה את יעדי המלחמה שלה באיראן?",
+    "snippet_he": "יעדים מרכזיים של ארה\"ב בתחילת המלחמה היו לעצור את השגת הנשק הגרעיני על ידי איראן ולדרדר את הארסנל שלה."
+  },
+  {
+    "title": "Caught between wars: Gaza residents wait for someone to change their fate",
+    "link": "https://www.jpost.com/jerusalem-report/article-892086",
+    "snippet": "Amid the war with Iran, Gazans find themselves waiting for a resolution to their own predicament and conflict",
+    "date": "2026-04-09T12:21:48.000Z",
+    "source": "Jerusalem Post",
+    "logo": "📜",
+    "color": "#2c3e50",
+    "accentLight": "#f8fafc",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=jpost.com&sz=128",
+    "noDate": false
+  },
+  {
+    "title": "The 'final blow' doctrine: How Trump is rewriting the rules of American power - analysis",
+    "link": "https://www.jpost.com/jerusalem-report/article-892084",
+    "snippet": "How Hegseth, Rubio, and Waltz used the Iran conflict to rewrite America’s rules of war – and why Israel sits at the center of the new model",
+    "date": "2026-04-09T12:18:19.000Z",
+    "source": "Jerusalem Post",
+    "logo": "📜",
+    "color": "#2c3e50",
+    "accentLight": "#f8fafc",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=jpost.com&sz=128",
+    "noDate": false,
+    "title_he": "״דוקטרינת המכה האחרונה״: כיצד טראמפ כותב מחדש את כללי הכוח האמריקאי – ניתוח",
+    "snippet_he": "כיצד השתמשו הגסת', רוביו ו-וולץ בסכסוך עם איראן כדי לכתוב מחדש את כללי המלחמה של אמריקה – ומדוע ישראל נמצאת במרכז המודל החדש."
+  },
+  {
+    "title": "De-Hamasification: The ideological war Israel isn't fighting - opinion",
+    "link": "https://www.jpost.com/jerusalem-report/article-892078",
+    "snippet": "Deradicalization is not a post-war project. It is a component of winning the war itself",
+    "date": "2026-04-09T12:17:03.000Z",
+    "source": "Jerusalem Post",
+    "logo": "📜",
+    "color": "#2c3e50",
+    "accentLight": "#f8fafc",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=jpost.com&sz=128",
+    "noDate": false
   },
   {
     "title": "Chief prosecutor behind Israel war crimes charges faces disciplinary action amid sexual misconduct allegations",
@@ -96,7 +148,9 @@
     "logo": "🦊",
     "color": "#003366",
     "accentLight": "#eff6ff",
-    "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128"
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128",
+    "title_he": "התובע הראשי מאחורי האישומים בפשעי מלחמה נגד ישראל עומד בפני הליכים משמעתיים על רקע האשמות בהתנהגות מינית פסולה",
+    "snippet_he": "התובע הראשי של בית הדין הפלילי הבינלאומי, קארים חאן, עומד בפני הליכים משמעתיים בגין התנהגות מינית פסולה לכאורה, לאחר שלשכת אסיפת המדינות החברות הצביעה בעד קידום צעדים."
   },
   {
     "title": "Al Jazeera condemns killing of journalist in Israeli strike in Gaza",
@@ -107,7 +161,23 @@
     "logo": "🇬🇧",
     "color": "#b80000",
     "accentLight": "#fef2f2",
-    "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128"
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128",
+    "title_he": "אל-ג'זירה מגנה הריגת עיתונאי בתקיפה ישראלית בעזה",
+    "snippet_he": "צבא ישראל טוען כי מוחמד וישאח היה ״מחבל חמאס״ – טענה שהרשת הקטארית הכחישה בעבר."
+  },
+  {
+    "title": "Iran oil shock stirs memories of 1997 Asian Financial Crisis — but here’s why history may not repeat itself",
+    "link": "https://www.cnbc.com/2026/04/09/asia-iran-oil-shock-1997-crisis-comparison-reserves-stagflation-hormuz-trump.html",
+    "snippet": "The Hormuz disruption is hammering Asian economies with surging energy costs and weakening currencies, but a repeat of the crisis three decades ago is unlikely.",
+    "date": "2026-04-09T09:26:43.000Z",
+    "source": "CNBC",
+    "logo": "📈",
+    "color": "#005594",
+    "accentLight": "#eff6ff",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=cnbc.com&sz=128",
+    "noDate": false,
+    "title_he": "משבר הנפט באיראן מעורר זיכרונות מהמשבר הפיננסי באסיה ב-1997 – אך הנה למה ההיסטוריה עשויה לא לחזור על עצמה",
+    "snippet_he": "השיבוש במצר הורמוז פוגע בכלכלות אסיה עם עלויות אנרגיה גואות והחלשת מטבעות, אך חזרה על המשבר לפני שלושה עשורים אינה סבירה."
   },
   {
     "title": "BBC at the site of Israeli air strikes in Beirut",
@@ -118,6 +188,8 @@
     "logo": "🇬🇧",
     "color": "#b80000",
     "accentLight": "#fef2f2",
-    "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128"
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128",
+    "title_he": "BBC באתר התקיפות האוויריות הישראליות בביירות",
+    "snippet_he": "לפחות 182 בני אדם נהרגו ו-890 נפצעו, כך לפי משרד הבריאות הלבנוני."
   }
 ]

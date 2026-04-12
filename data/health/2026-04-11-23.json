@@ -1,0 +1,117 @@
+{
+  "timestamp": "2026-04-11T23:25:24.154Z",
+  "durationMs": 245,
+  "status": "critical",
+  "checks": [
+    {
+      "name": "site_availability",
+      "status": "fail",
+      "detail": "https://mep.hmviva.us/ → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us | https://mep.hmviva.us/about → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us | https://mep.hmviva.us/archive → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us"
+    },
+    {
+      "name": "data_freshness",
+      "status": "warn",
+      "detail": "Newest article: 4.5 min ago | 8 sources active | Total articles today: 128 | Zero articles from: Haaretz, CNN"
+    },
+    {
+      "name": "timestamp_integrity",
+      "status": "pass",
+      "detail": "No future-dated timestamps | No clamping-bug clusters | JPost timezone offset vs others: -412.56h (OK)"
+    },
+    {
+      "name": "synthesis_health",
+      "status": "warn",
+      "detail": "developments.json: 1.4 min old | developments: 4 entries ✓ | sitrep summary: present ✓ | data/sitrep-latest.json is 99.5 min old (threshold: 75 min — synthesizer runs hourly)"
+    },
+    {
+      "name": "build_health",
+      "status": "pass",
+      "detail": "src/data/latest.json: 1.4 min old | dist/index.html: exists ✓ | PM2 war-dashboard: online (31 restarts)"
+    },
+    {
+      "name": "ui_smoke",
+      "status": "fail",
+      "detail": "Failed to fetch homepage: getaddrinfo ENOTFOUND mep.hmviva.us"
+    }
+  ],
+  "summary": "System is in a CRITICAL state. 2 check(s) failed: site_availability, ui_smoke. Additionally 2 warn(s): data_freshness, synthesis_health. Immediate attention required.",
+  "_raw": [
+    {
+      "name": "site_availability",
+      "status": "fail",
+      "detail": "https://mep.hmviva.us/ → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us | https://mep.hmviva.us/about → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us | https://mep.hmviva.us/archive → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us",
+      "raw": [
+        {
+          "url": "https://mep.hmviva.us/",
+          "error": "getaddrinfo ENOTFOUND mep.hmviva.us",
+          "status": "fail"
+        },
+        {
+          "url": "https://mep.hmviva.us/about",
+          "error": "getaddrinfo ENOTFOUND mep.hmviva.us",
+          "status": "fail"
+        },
+        {
+          "url": "https://mep.hmviva.us/archive",
+          "error": "getaddrinfo ENOTFOUND mep.hmviva.us",
+          "status": "fail"
+        }
+      ]
+    },
+    {
+      "name": "data_freshness",
+      "status": "warn",
+      "detail": "Newest article: 4.5 min ago | 8 sources active | Total articles today: 128 | Zero articles from: Haaretz, CNN",
+      "raw": {
+        "today": "2026-04-12",
+        "articleCount": 128,
+        "activeSources": [
+          "CNBC",
+          "Times of Israel",
+          "Ynet News",
+          "Al Jazeera",
+          "NPR",
+          "Jerusalem Post",
+          "Fox News",
+          "BBC News"
+        ],
+        "zeroSources": [
+          "Haaretz",
+          "CNN"
+        ],
+        "newestAgeMinutes": 4.5
+      }
+    },
+    {
+      "name": "timestamp_integrity",
+      "status": "pass",
+      "detail": "No future-dated timestamps | No clamping-bug clusters | JPost timezone offset vs others: -412.56h (OK)",
+      "raw": {
+        "futureDated": 0,
+        "clustered": []
+      }
+    },
+    {
+      "name": "synthesis_health",
+      "status": "warn",
+      "detail": "developments.json: 1.4 min old | developments: 4 entries ✓ | sitrep summary: present ✓ | data/sitrep-latest.json is 99.5 min old (threshold: 75 min — synthesizer runs hourly)",
+      "raw": {
+        "developmentsAgeMins": 1.4,
+        "sitrepAgeMins": 99.5
+      }
+    },
+    {
+      "name": "build_health",
+      "status": "pass",
+      "detail": "src/data/latest.json: 1.4 min old | dist/index.html: exists ✓ | PM2 war-dashboard: online (31 restarts)",
+      "raw": {
+        "latestJsonAgeMins": 1.4
+      }
+    },
+    {
+      "name": "ui_smoke",
+      "status": "fail",
+      "detail": "Failed to fetch homepage: getaddrinfo ENOTFOUND mep.hmviva.us"
+    }
+  ]
+}

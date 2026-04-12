@@ -1,0 +1,127 @@
+{
+  "timestamp": "2026-04-11T20:25:23.154Z",
+  "durationMs": 954,
+  "status": "degraded",
+  "checks": [
+    {
+      "name": "site_availability",
+      "status": "pass",
+      "detail": "https://mep.hmviva.us/ → 200 (739ms) | https://mep.hmviva.us/about → 200 (redirected) (107ms) | https://mep.hmviva.us/archive → 200 (redirected) (108ms)"
+    },
+    {
+      "name": "data_freshness",
+      "status": "warn",
+      "detail": "Newest article: 12.2 min ago | 8 sources active | Total articles today: 149 | Zero articles from: Haaretz, CNN"
+    },
+    {
+      "name": "timestamp_integrity",
+      "status": "pass",
+      "detail": "No future-dated timestamps | No clamping-bug clusters | JPost timezone offset vs others: -239.83h (OK)"
+    },
+    {
+      "name": "synthesis_health",
+      "status": "pass",
+      "detail": "developments.json: 2.8 min old | developments: 4 entries ✓ | sitrep-latest.json: 40.1 min old | sitrep summary: present ✓"
+    },
+    {
+      "name": "build_health",
+      "status": "pass",
+      "detail": "src/data/latest.json: 2.8 min old | dist/index.html: exists ✓ | PM2 war-dashboard: online (31 restarts)"
+    },
+    {
+      "name": "ui_smoke",
+      "status": "pass",
+      "detail": "Fetched homepage in 514ms | ✓ Site title \"Middle East Pulse\" | ✓ \"SITUATION REPORT\" section | ✓ \"Key Developments\" section | article-card count: 150 ✓ | No bare undefined/null values in HTML ✓ | LIVE pill: present ✓"
+    }
+  ],
+  "summary": "System is degraded. 1 check(s) raised warnings: data_freshness. No critical failures detected.",
+  "_raw": [
+    {
+      "name": "site_availability",
+      "status": "pass",
+      "detail": "https://mep.hmviva.us/ → 200 (739ms) | https://mep.hmviva.us/about → 200 (redirected) (107ms) | https://mep.hmviva.us/archive → 200 (redirected) (108ms)",
+      "raw": [
+        {
+          "url": "https://mep.hmviva.us/",
+          "httpStatus": 200,
+          "ms": 739,
+          "status": "pass",
+          "redirectNote": ""
+        },
+        {
+          "url": "https://mep.hmviva.us/about",
+          "httpStatus": 200,
+          "ms": 107,
+          "status": "pass",
+          "redirectNote": " (redirected)"
+        },
+        {
+          "url": "https://mep.hmviva.us/archive",
+          "httpStatus": 200,
+          "ms": 108,
+          "status": "pass",
+          "redirectNote": " (redirected)"
+        }
+      ]
+    },
+    {
+      "name": "data_freshness",
+      "status": "warn",
+      "detail": "Newest article: 12.2 min ago | 8 sources active | Total articles today: 149 | Zero articles from: Haaretz, CNN",
+      "raw": {
+        "today": "2026-04-11",
+        "articleCount": 149,
+        "activeSources": [
+          "Ynet News",
+          "Al Jazeera",
+          "Times of Israel",
+          "Jerusalem Post",
+          "CNBC",
+          "NPR",
+          "Fox News",
+          "BBC News"
+        ],
+        "zeroSources": [
+          "Haaretz",
+          "CNN"
+        ],
+        "newestAgeMinutes": 12.2
+      }
+    },
+    {
+      "name": "timestamp_integrity",
+      "status": "pass",
+      "detail": "No future-dated timestamps | No clamping-bug clusters | JPost timezone offset vs others: -239.83h (OK)",
+      "raw": {
+        "futureDated": 0,
+        "clustered": []
+      }
+    },
+    {
+      "name": "synthesis_health",
+      "status": "pass",
+      "detail": "developments.json: 2.8 min old | developments: 4 entries ✓ | sitrep-latest.json: 40.1 min old | sitrep summary: present ✓",
+      "raw": {
+        "developmentsAgeMins": 2.8,
+        "sitrepAgeMins": 40.1
+      }
+    },
+    {
+      "name": "build_health",
+      "status": "pass",
+      "detail": "src/data/latest.json: 2.8 min old | dist/index.html: exists ✓ | PM2 war-dashboard: online (31 restarts)",
+      "raw": {
+        "latestJsonAgeMins": 2.8
+      }
+    },
+    {
+      "name": "ui_smoke",
+      "status": "pass",
+      "detail": "Fetched homepage in 514ms | ✓ Site title \"Middle East Pulse\" | ✓ \"SITUATION REPORT\" section | ✓ \"Key Developments\" section | article-card count: 150 ✓ | No bare undefined/null values in HTML ✓ | LIVE pill: present ✓",
+      "raw": {
+        "cardCount": 150,
+        "hasLivePill": true
+      }
+    }
+  ]
+}

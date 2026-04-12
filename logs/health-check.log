@@ -1,0 +1,642 @@
+
+═══════════════════════════════════════════════════════════
+
+  MEP Dashboard Health Check — 2026-04-11T20:25:23.157Z
+═══════════════════════════════════════════════════════════
+═══════════════════════════════════════════════════════════
+  Overall: 🟡 DEGRADED  (completed in 957ms)
+
+  MEP Dashboard Health Check — 2026-04-11T20:25:23.157Z
+  ✅ site availability        PASS
+═══════════════════════════════════════════════════════════
+       https://mep.hmviva.us/ → 200 (742ms)
+       https://mep.hmviva.us/about → 200 (redirected) (107ms)
+  Overall: 🟡 DEGRADED  (completed in 954ms)
+
+       https://mep.hmviva.us/archive → 200 (redirected) (108ms)
+  ⚠️  data freshness           WARN
+  ✅ site availability        PASS
+       Newest article: 12.2 min ago
+       https://mep.hmviva.us/ → 200 (739ms)
+       8 sources active
+       https://mep.hmviva.us/about → 200 (redirected) (107ms)
+       Total articles today: 149
+       Zero articles from: Haaretz, CNN
+       https://mep.hmviva.us/archive → 200 (redirected) (108ms)
+  ✅ timestamp integrity      PASS
+       No future-dated timestamps
+  ⚠️  data freshness           WARN
+       No clamping-bug clusters
+       Newest article: 12.2 min ago
+       JPost timezone offset vs others: -239.83h (OK)
+       8 sources active
+  ✅ synthesis health         PASS
+       Total articles today: 149
+       developments.json: 2.8 min old
+       Zero articles from: Haaretz, CNN
+       developments: 4 entries ✓
+  ✅ timestamp integrity      PASS
+       sitrep-latest.json: 40.1 min old
+       No future-dated timestamps
+       No clamping-bug clusters
+       sitrep summary: present ✓
+       JPost timezone offset vs others: -239.83h (OK)
+  ✅ build health             PASS
+  ✅ synthesis health         PASS
+       src/data/latest.json: 2.8 min old
+       developments.json: 2.8 min old
+       dist/index.html: exists ✓
+       PM2 war-dashboard: online (31 restarts)
+       developments: 4 entries ✓
+  ✅ ui smoke                 PASS
+       sitrep-latest.json: 40.1 min old
+       Fetched homepage in 293ms
+       sitrep summary: present ✓
+       ✓ Site title "Middle East Pulse"
+  ✅ build health             PASS
+       ✓ "SITUATION REPORT" section
+       src/data/latest.json: 2.8 min old
+       ✓ "Key Developments" section
+       dist/index.html: exists ✓
+       article-card count: 150 ✓
+       PM2 war-dashboard: online (31 restarts)
+       No bare undefined/null values in HTML ✓
+       LIVE pill: present ✓
+  ✅ ui smoke                 PASS
+
+       Fetched homepage in 514ms
+  📋 Summary: System is degraded. 1 check(s) raised warnings: data_freshness. No critical failures detected.
+       ✓ Site title "Middle East Pulse"
+  📁 Report saved to: /Users/michaelmatias/Projects/war-dashboard/data/health/2026-04-11-20.json
+       ✓ "SITUATION REPORT" section
+═══════════════════════════════════════════════════════════
+       ✓ "Key Developments" section
+
+       article-card count: 150 ✓
+       No bare undefined/null values in HTML ✓
+       LIVE pill: present ✓
+
+  📋 Summary: System is degraded. 1 check(s) raised warnings: data_freshness. No critical failures detected.
+  📁 Report saved to: /Users/michaelmatias/Projects/war-dashboard/data/health/2026-04-11-20.json
+═══════════════════════════════════════════════════════════
+
+
+═══════════════════════════════════════════════════════════
+  MEP Dashboard Health Check — 2026-04-11T21:25:23.516Z
+═══════════════════════════════════════════════════════════
+  Overall: 🔴 CRITICAL  (completed in 216ms)
+
+  ❌ site availability        FAIL
+       https://mep.hmviva.us/ → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/about → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/archive → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+  ⚠️  data freshness           WARN
+       Newest article: 4.6 min ago
+       8 sources active
+       Total articles today: 118
+       Zero articles from: Haaretz, CNN
+  ✅ timestamp integrity      PASS
+       No future-dated timestamps
+       No clamping-bug clusters
+       JPost timezone offset vs others: -411.01h (OK)
+  ✅ synthesis health         PASS
+       developments.json: 2.5 min old
+       developments: 4 entries ✓
+       sitrep-latest.json: 39.7 min old
+       sitrep summary: present ✓
+  ✅ build health             PASS
+       src/data/latest.json: 2.5 min old
+       dist/index.html: exists ✓
+       PM2 war-dashboard: online (31 restarts)
+  ❌ ui smoke                 FAIL
+       Failed to fetch homepage: getaddrinfo ENOTFOUND mep.hmviva.us
+
+  📋 Summary: System is in a CRITICAL state. 2 check(s) failed: site_availability, ui_smoke. Additionally 1 warn(s): data_freshness. Immediate attention required.
+  📁 Report saved to: /Users/michaelmatias/Projects/war-dashboard/data/health/2026-04-11-21.json
+═══════════════════════════════════════════════════════════
+
+
+═══════════════════════════════════════════════════════════
+  MEP Dashboard Health Check — 2026-04-11T21:25:23.516Z
+═══════════════════════════════════════════════════════════
+  Overall: 🔴 CRITICAL  (completed in 217ms)
+
+  ❌ site availability        FAIL
+       https://mep.hmviva.us/ → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/about → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/archive → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+  ⚠️  data freshness           WARN
+       Newest article: 4.6 min ago
+       8 sources active
+       Total articles today: 118
+       Zero articles from: Haaretz, CNN
+  ✅ timestamp integrity      PASS
+       No future-dated timestamps
+       No clamping-bug clusters
+       JPost timezone offset vs others: -411.01h (OK)
+  ✅ synthesis health         PASS
+       developments.json: 2.5 min old
+       developments: 4 entries ✓
+       sitrep-latest.json: 39.7 min old
+       sitrep summary: present ✓
+  ✅ build health             PASS
+       src/data/latest.json: 2.5 min old
+       dist/index.html: exists ✓
+       PM2 war-dashboard: online (31 restarts)
+  ❌ ui smoke                 FAIL
+       Failed to fetch homepage: getaddrinfo ENOTFOUND mep.hmviva.us
+
+  📋 Summary: System is in a CRITICAL state. 2 check(s) failed: site_availability, ui_smoke. Additionally 1 warn(s): data_freshness. Immediate attention required.
+  📁 Report saved to: /Users/michaelmatias/Projects/war-dashboard/data/health/2026-04-11-21.json
+═══════════════════════════════════════════════════════════
+
+
+═══════════════════════════════════════════════════════════
+  MEP Dashboard Health Check — 2026-04-11T22:25:23.844Z
+═══════════════════════════════════════════════════════════
+  Overall: 🔴 CRITICAL  (completed in 216ms)
+
+  ❌ site availability        FAIL
+       https://mep.hmviva.us/ → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/about → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/archive → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+  ⚠️  data freshness           WARN
+       Newest article: 10.9 min ago
+       8 sources active
+       Total articles today: 122
+       Zero articles from: Haaretz, CNN
+  ✅ timestamp integrity      PASS
+       No future-dated timestamps
+       No clamping-bug clusters
+       JPost timezone offset vs others: -411.64h (OK)
+  ✅ synthesis health         PASS
+       developments.json: 2.1 min old
+       developments: 4 entries ✓
+       sitrep-latest.json: 39.5 min old
+       sitrep summary: present ✓
+  ✅ build health             PASS
+       src/data/latest.json: 2.1 min old
+       dist/index.html: exists ✓
+       PM2 war-dashboard: online (31 restarts)
+  ❌ ui smoke                 FAIL
+       Failed to fetch homepage: getaddrinfo ENOTFOUND mep.hmviva.us
+
+  📋 Summary: System is in a CRITICAL state. 2 check(s) failed: site_availability, ui_smoke. Additionally 1 warn(s): data_freshness. Immediate attention required.
+  📁 Report saved to: /Users/michaelmatias/Projects/war-dashboard/data/health/2026-04-11-22.json
+═══════════════════════════════════════════════════════════
+
+
+═══════════════════════════════════════════════════════════
+  MEP Dashboard Health Check — 2026-04-11T22:25:23.845Z
+═══════════════════════════════════════════════════════════
+  Overall: 🔴 CRITICAL  (completed in 216ms)
+
+  ❌ site availability        FAIL
+       https://mep.hmviva.us/ → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/about → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/archive → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+  ⚠️  data freshness           WARN
+       Newest article: 10.9 min ago
+       8 sources active
+       Total articles today: 122
+       Zero articles from: Haaretz, CNN
+  ✅ timestamp integrity      PASS
+       No future-dated timestamps
+       No clamping-bug clusters
+       JPost timezone offset vs others: -411.64h (OK)
+  ✅ synthesis health         PASS
+       developments.json: 2.1 min old
+       developments: 4 entries ✓
+       sitrep-latest.json: 39.5 min old
+       sitrep summary: present ✓
+  ✅ build health             PASS
+       src/data/latest.json: 2.1 min old
+       dist/index.html: exists ✓
+       PM2 war-dashboard: online (31 restarts)
+  ❌ ui smoke                 FAIL
+       Failed to fetch homepage: getaddrinfo ENOTFOUND mep.hmviva.us
+
+  📋 Summary: System is in a CRITICAL state. 2 check(s) failed: site_availability, ui_smoke. Additionally 1 warn(s): data_freshness. Immediate attention required.
+  📁 Report saved to: /Users/michaelmatias/Projects/war-dashboard/data/health/2026-04-11-22.json
+═══════════════════════════════════════════════════════════
+
+
+═══════════════════════════════════════════════════════════
+  MEP Dashboard Health Check — 2026-04-11T23:25:24.154Z
+═══════════════════════════════════════════════════════════
+  Overall: 🔴 CRITICAL  (completed in 245ms)
+
+  ❌ site availability        FAIL
+       https://mep.hmviva.us/ → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/about → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/archive → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+  ⚠️  data freshness           WARN
+       Newest article: 4.5 min ago
+       8 sources active
+       Total articles today: 128
+       Zero articles from: Haaretz, CNN
+  ✅ timestamp integrity      PASS
+       No future-dated timestamps
+       No clamping-bug clusters
+       JPost timezone offset vs others: -412.56h (OK)
+  ⚠️  synthesis health         WARN
+       developments.json: 1.4 min old
+       developments: 4 entries ✓
+       sitrep summary: present ✓
+       data/sitrep-latest.json is 99.5 min old (threshold: 75 min — synthesizer runs hourly)
+  ✅ build health             PASS
+       src/data/latest.json: 1.4 min old
+       dist/index.html: exists ✓
+       PM2 war-dashboard: online (31 restarts)
+  ❌ ui smoke                 FAIL
+       Failed to fetch homepage: getaddrinfo ENOTFOUND mep.hmviva.us
+
+  📋 Summary: System is in a CRITICAL state. 2 check(s) failed: site_availability, ui_smoke. Additionally 2 warn(s): data_freshness, synthesis_health. Immediate attention required.
+  📁 Report saved to: /Users/michaelmatias/Projects/war-dashboard/data/health/2026-04-11-23.json
+═══════════════════════════════════════════════════════════
+
+
+═══════════════════════════════════════════════════════════
+  MEP Dashboard Health Check — 2026-04-11T23:25:24.155Z
+═══════════════════════════════════════════════════════════
+  Overall: 🔴 CRITICAL  (completed in 245ms)
+
+  ❌ site availability        FAIL
+       https://mep.hmviva.us/ → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/about → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/archive → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+  ⚠️  data freshness           WARN
+       Newest article: 4.5 min ago
+       8 sources active
+       Total articles today: 128
+       Zero articles from: Haaretz, CNN
+  ✅ timestamp integrity      PASS
+       No future-dated timestamps
+       No clamping-bug clusters
+       JPost timezone offset vs others: -412.56h (OK)
+  ⚠️  synthesis health         WARN
+       developments.json: 1.4 min old
+       developments: 4 entries ✓
+       sitrep summary: present ✓
+       data/sitrep-latest.json is 99.5 min old (threshold: 75 min — synthesizer runs hourly)
+  ✅ build health             PASS
+       src/data/latest.json: 1.4 min old
+       dist/index.html: exists ✓
+       PM2 war-dashboard: online (31 restarts)
+  ❌ ui smoke                 FAIL
+       Failed to fetch homepage: getaddrinfo ENOTFOUND mep.hmviva.us
+
+  📋 Summary: System is in a CRITICAL state. 2 check(s) failed: site_availability, ui_smoke. Additionally 2 warn(s): data_freshness, synthesis_health. Immediate attention required.
+  📁 Report saved to: /Users/michaelmatias/Projects/war-dashboard/data/health/2026-04-11-23.json
+═══════════════════════════════════════════════════════════
+
+
+═══════════════════════════════════════════════════════════
+  MEP Dashboard Health Check — 2026-04-12T00:25:24.438Z
+═══════════════════════════════════════════════════════════
+  Overall: 🔴 CRITICAL  (completed in 207ms)
+
+  ❌ site availability        FAIL
+       https://mep.hmviva.us/ → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/about → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/archive → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+  ⚠️  data freshness           WARN
+       Newest article: 9.8 min ago
+       8 sources active
+       Total articles today: 135
+       Zero articles from: Haaretz, CNN
+  ✅ timestamp integrity      PASS
+       No future-dated timestamps
+       No clamping-bug clusters
+       JPost timezone offset vs others: -339.90h (OK)
+  ✅ synthesis health         PASS
+       developments.json: 1.5 min old
+       developments: 4 entries ✓
+       sitrep-latest.json: 39.0 min old
+       sitrep summary: present ✓
+  ✅ build health             PASS
+       src/data/latest.json: 1.5 min old
+       dist/index.html: exists ✓
+       PM2 war-dashboard: online (31 restarts)
+  ❌ ui smoke                 FAIL
+       Failed to fetch homepage: getaddrinfo ENOTFOUND mep.hmviva.us
+
+  📋 Summary: System is in a CRITICAL state. 2 check(s) failed: site_availability, ui_smoke. Additionally 1 warn(s): data_freshness. Immediate attention required.
+  📁 Report saved to: /Users/michaelmatias/Projects/war-dashboard/data/health/2026-04-12-00.json
+═══════════════════════════════════════════════════════════
+
+
+═══════════════════════════════════════════════════════════
+  MEP Dashboard Health Check — 2026-04-12T00:25:24.441Z
+═══════════════════════════════════════════════════════════
+  Overall: 🔴 CRITICAL  (completed in 211ms)
+
+  ❌ site availability        FAIL
+       https://mep.hmviva.us/ → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/about → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/archive → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+  ⚠️  data freshness           WARN
+       Newest article: 9.8 min ago
+       8 sources active
+       Total articles today: 135
+       Zero articles from: Haaretz, CNN
+  ✅ timestamp integrity      PASS
+       No future-dated timestamps
+       No clamping-bug clusters
+       JPost timezone offset vs others: -339.90h (OK)
+  ✅ synthesis health         PASS
+       developments.json: 1.5 min old
+       developments: 4 entries ✓
+       sitrep-latest.json: 39.0 min old
+       sitrep summary: present ✓
+  ✅ build health             PASS
+       src/data/latest.json: 1.5 min old
+       dist/index.html: exists ✓
+       PM2 war-dashboard: online (31 restarts)
+  ❌ ui smoke                 FAIL
+       Failed to fetch homepage: getaddrinfo ENOTFOUND mep.hmviva.us
+
+  📋 Summary: System is in a CRITICAL state. 2 check(s) failed: site_availability, ui_smoke. Additionally 1 warn(s): data_freshness. Immediate attention required.
+  📁 Report saved to: /Users/michaelmatias/Projects/war-dashboard/data/health/2026-04-12-00.json
+═══════════════════════════════════════════════════════════
+
+
+═══════════════════════════════════════════════════════════
+  MEP Dashboard Health Check — 2026-04-12T01:25:24.772Z
+═══════════════════════════════════════════════════════════
+  Overall: 🔴 CRITICAL  (completed in 205ms)
+
+  ❌ site availability        FAIL
+       https://mep.hmviva.us/ → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/about → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/archive → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+  ⚠️  data freshness           WARN
+       Newest article: 6.0 min ago
+       8 sources active
+       Total articles today: 139
+       Zero articles from: Haaretz, CNN
+  ✅ timestamp integrity      PASS
+       No future-dated timestamps
+       No clamping-bug clusters
+       JPost timezone offset vs others: -340.50h (OK)
+  ✅ synthesis health         PASS
+       developments.json: 1.4 min old
+       developments: 4 entries ✓
+       sitrep-latest.json: 38.7 min old
+       sitrep summary: present ✓
+  ✅ build health             PASS
+       src/data/latest.json: 1.3 min old
+       dist/index.html: exists ✓
+       PM2 war-dashboard: online (31 restarts)
+  ❌ ui smoke                 FAIL
+       Failed to fetch homepage: getaddrinfo ENOTFOUND mep.hmviva.us
+
+  📋 Summary: System is in a CRITICAL state. 2 check(s) failed: site_availability, ui_smoke. Additionally 1 warn(s): data_freshness. Immediate attention required.
+  📁 Report saved to: /Users/michaelmatias/Projects/war-dashboard/data/health/2026-04-12-01.json
+═══════════════════════════════════════════════════════════
+
+
+═══════════════════════════════════════════════════════════
+  MEP Dashboard Health Check — 2026-04-12T01:25:24.773Z
+═══════════════════════════════════════════════════════════
+  Overall: 🔴 CRITICAL  (completed in 199ms)
+
+  ❌ site availability        FAIL
+       https://mep.hmviva.us/ → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/about → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/archive → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+  ⚠️  data freshness           WARN
+       Newest article: 6.0 min ago
+       8 sources active
+       Total articles today: 139
+       Zero articles from: Haaretz, CNN
+  ✅ timestamp integrity      PASS
+       No future-dated timestamps
+       No clamping-bug clusters
+       JPost timezone offset vs others: -340.50h (OK)
+  ✅ synthesis health         PASS
+       developments.json: 1.4 min old
+       developments: 4 entries ✓
+       sitrep-latest.json: 38.7 min old
+       sitrep summary: present ✓
+  ✅ build health             PASS
+       src/data/latest.json: 1.3 min old
+       dist/index.html: exists ✓
+       PM2 war-dashboard: online (31 restarts)
+  ❌ ui smoke                 FAIL
+       Failed to fetch homepage: getaddrinfo ENOTFOUND mep.hmviva.us
+
+  📋 Summary: System is in a CRITICAL state. 2 check(s) failed: site_availability, ui_smoke. Additionally 1 warn(s): data_freshness. Immediate attention required.
+  📁 Report saved to: /Users/michaelmatias/Projects/war-dashboard/data/health/2026-04-12-01.json
+═══════════════════════════════════════════════════════════
+
+
+
+═══════════════════════════════════════════════════════════
+═══════════════════════════════════════════════════════════
+  MEP Dashboard Health Check — 2026-04-12T02:25:25.049Z
+═══════════════════════════════════════════════════════════
+  MEP Dashboard Health Check — 2026-04-12T02:25:25.049Z
+  Overall: 🔴 CRITICAL  (completed in 189ms)
+═══════════════════════════════════════════════════════════
+
+  Overall: 🔴 CRITICAL  (completed in 191ms)
+  ❌ site availability        FAIL
+
+       https://mep.hmviva.us/ → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/about → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+  ❌ site availability        FAIL
+       https://mep.hmviva.us/archive → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/ → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+  ⚠️  data freshness           WARN
+       https://mep.hmviva.us/about → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       Newest article: 7.9 min ago
+       8 sources active
+       Total articles today: 142
+       https://mep.hmviva.us/archive → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       Zero articles from: Haaretz, CNN
+  ✅ timestamp integrity      PASS
+  ⚠️  data freshness           WARN
+       No future-dated timestamps
+       No clamping-bug clusters
+       Newest article: 7.9 min ago
+       JPost timezone offset vs others: -340.81h (OK)
+       8 sources active
+  ✅ synthesis health         PASS
+       Total articles today: 142
+       developments.json: 1.1 min old
+       Zero articles from: Haaretz, CNN
+       developments: 4 entries ✓
+  ✅ timestamp integrity      PASS
+       sitrep-latest.json: 38.4 min old
+       No future-dated timestamps
+       sitrep summary: present ✓
+       No clamping-bug clusters
+  ✅ build health             PASS
+       JPost timezone offset vs others: -340.81h (OK)
+       src/data/latest.json: 1.1 min old
+  ✅ synthesis health         PASS
+       dist/index.html: exists ✓
+       developments.json: 1.1 min old
+       PM2 war-dashboard: online (31 restarts)
+       developments: 4 entries ✓
+  ❌ ui smoke                 FAIL
+       sitrep-latest.json: 38.4 min old
+       Failed to fetch homepage: getaddrinfo ENOTFOUND mep.hmviva.us
+       sitrep summary: present ✓
+
+  ✅ build health             PASS
+  📋 Summary: System is in a CRITICAL state. 2 check(s) failed: site_availability, ui_smoke. Additionally 1 warn(s): data_freshness. Immediate attention required.
+       src/data/latest.json: 1.1 min old
+  📁 Report saved to: /Users/michaelmatias/Projects/war-dashboard/data/health/2026-04-12-02.json
+       dist/index.html: exists ✓
+═══════════════════════════════════════════════════════════
+       PM2 war-dashboard: online (31 restarts)
+
+  ❌ ui smoke                 FAIL
+       Failed to fetch homepage: getaddrinfo ENOTFOUND mep.hmviva.us
+
+  📋 Summary: System is in a CRITICAL state. 2 check(s) failed: site_availability, ui_smoke. Additionally 1 warn(s): data_freshness. Immediate attention required.
+  📁 Report saved to: /Users/michaelmatias/Projects/war-dashboard/data/health/2026-04-12-02.json
+═══════════════════════════════════════════════════════════
+
+
+═══════════════════════════════════════════════════════════
+  MEP Dashboard Health Check — 2026-04-12T03:25:25.347Z
+═══════════════════════════════════════════════════════════
+  Overall: 🔴 CRITICAL  (completed in 210ms)
+
+  ❌ site availability        FAIL
+       https://mep.hmviva.us/ → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/about → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/archive → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+  ⚠️  data freshness           WARN
+       Newest article: 11.0 min ago
+       8 sources active
+       Total articles today: 152
+       Zero articles from: Haaretz, CNN
+  ✅ timestamp integrity      PASS
+       No future-dated timestamps
+       No clamping-bug clusters
+       JPost timezone offset vs others: -274.68h (OK)
+  ✅ synthesis health         PASS
+       developments.json: 1.1 min old
+       developments: 4 entries ✓
+       sitrep-latest.json: 38.1 min old
+       sitrep summary: present ✓
+  ✅ build health             PASS
+       src/data/latest.json: 1.1 min old
+       dist/index.html: exists ✓
+       PM2 war-dashboard: online (31 restarts)
+  ❌ ui smoke                 FAIL
+       Failed to fetch homepage: getaddrinfo ENOTFOUND mep.hmviva.us
+
+  📋 Summary: System is in a CRITICAL state. 2 check(s) failed: site_availability, ui_smoke. Additionally 1 warn(s): data_freshness. Immediate attention required.
+  📁 Report saved to: /Users/michaelmatias/Projects/war-dashboard/data/health/2026-04-12-03.json
+═══════════════════════════════════════════════════════════
+
+
+═══════════════════════════════════════════════════════════
+  MEP Dashboard Health Check — 2026-04-12T03:25:25.349Z
+═══════════════════════════════════════════════════════════
+  Overall: 🔴 CRITICAL  (completed in 204ms)
+
+  ❌ site availability        FAIL
+       https://mep.hmviva.us/ → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/about → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/archive → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+  ⚠️  data freshness           WARN
+       Newest article: 11.0 min ago
+       8 sources active
+       Total articles today: 152
+       Zero articles from: Haaretz, CNN
+  ✅ timestamp integrity      PASS
+       No future-dated timestamps
+       No clamping-bug clusters
+       JPost timezone offset vs others: -274.68h (OK)
+  ✅ synthesis health         PASS
+       developments.json: 1.1 min old
+       developments: 4 entries ✓
+       sitrep-latest.json: 38.1 min old
+       sitrep summary: present ✓
+  ✅ build health             PASS
+       src/data/latest.json: 1.1 min old
+       dist/index.html: exists ✓
+       PM2 war-dashboard: online (31 restarts)
+  ❌ ui smoke                 FAIL
+       Failed to fetch homepage: getaddrinfo ENOTFOUND mep.hmviva.us
+
+  📋 Summary: System is in a CRITICAL state. 2 check(s) failed: site_availability, ui_smoke. Additionally 1 warn(s): data_freshness. Immediate attention required.
+  📁 Report saved to: /Users/michaelmatias/Projects/war-dashboard/data/health/2026-04-12-03.json
+═══════════════════════════════════════════════════════════
+
+
+
+═══════════════════════════════════════════════════════════
+  MEP Dashboard Health Check — 2026-04-12T04:25:25.801Z
+═══════════════════════════════════════════════════════════
+  Overall: 🔴 CRITICAL  (completed in 324ms)
+
+═══════════════════════════════════════════════════════════
+  ❌ site availability        FAIL
+       https://mep.hmviva.us/ → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+  MEP Dashboard Health Check — 2026-04-12T04:25:25.801Z
+       https://mep.hmviva.us/about → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+═══════════════════════════════════════════════════════════
+       https://mep.hmviva.us/archive → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+  ❌ data freshness           FAIL
+       8 sources active
+       Total articles today: 161
+  Overall: 🔴 CRITICAL  (completed in 320ms)
+       Newest article is 16.3 min old (threshold: 15 min)
+       Zero articles from: Haaretz, CNN
+  ✅ timestamp integrity      PASS
+       No future-dated timestamps
+       No clamping-bug clusters
+       JPost timezone offset vs others: -275.82h (OK)
+  ✅ synthesis health         PASS
+       developments.json: 4.8 min old
+
+       developments: 4 entries ✓
+       sitrep-latest.json: 18.1 min old
+       sitrep summary: present ✓
+  ✅ build health             PASS
+       src/data/latest.json: 1.9 min old
+       dist/index.html: exists ✓
+       PM2 war-dashboard: online (31 restarts)
+  ❌ ui smoke                 FAIL
+       Failed to fetch homepage: getaddrinfo ENOTFOUND mep.hmviva.us
+
+  📋 Summary: System is in a CRITICAL state. 3 check(s) failed: site_availability, data_freshness, ui_smoke. Immediate attention required.
+  📁 Report saved to: /Users/michaelmatias/Projects/war-dashboard/data/health/2026-04-12-04.json
+═══════════════════════════════════════════════════════════
+
+  ❌ site availability        FAIL
+       https://mep.hmviva.us/ → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/about → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+       https://mep.hmviva.us/archive → ERROR: getaddrinfo ENOTFOUND mep.hmviva.us
+  ❌ data freshness           FAIL
+       8 sources active
+       Total articles today: 161
+       Newest article is 16.3 min old (threshold: 15 min)
+       Zero articles from: Haaretz, CNN
+  ✅ timestamp integrity      PASS
+       No future-dated timestamps
+       No clamping-bug clusters
+       JPost timezone offset vs others: -275.82h (OK)
+  ✅ synthesis health         PASS
+       developments.json: 4.8 min old
+       developments: 4 entries ✓
+       sitrep-latest.json: 18.1 min old
+       sitrep summary: present ✓
+  ✅ build health             PASS
+       src/data/latest.json: 1.9 min old
+       dist/index.html: exists ✓
+       PM2 war-dashboard: online (31 restarts)
+  ❌ ui smoke                 FAIL
+       Failed to fetch homepage: getaddrinfo ENOTFOUND mep.hmviva.us
+
+  📋 Summary: System is in a CRITICAL state. 3 check(s) failed: site_availability, data_freshness, ui_smoke. Immediate attention required.
+  📁 Report saved to: /Users/michaelmatias/Projects/war-dashboard/data/health/2026-04-12-04.json
+═══════════════════════════════════════════════════════════
+

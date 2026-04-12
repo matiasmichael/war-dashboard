@@ -1,5 +1,19 @@
 [
   {
+    "title": "S&P 500 slips Friday, but index posts best week since November after fragile Iran ceasefire deal: Live updates",
+    "link": "https://www.cnbc.com/2026/04/09/stock-market-today-live-updates.html",
+    "snippet": "The S&P 500 fell slightly on Friday, though the index still had its best week since last November.",
+    "date": "2026-04-10T20:52:35.000Z",
+    "source": "CNBC",
+    "logo": "📈",
+    "color": "#005594",
+    "accentLight": "#eff6ff",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=cnbc.com&sz=128",
+    "noDate": false,
+    "title_he": "מדד S&P 500 יורד ביום שישי, אך רושם את השבוע הטוב ביותר מאז נובמבר לאחר הסכם הפסקת אש שברירי עם איראן: עדכונים חיים",
+    "snippet_he": "מדד ה-S&P 500 ירד מעט ביום שישי, אם כי המדד עדיין רשם את השבוע הטוב ביותר שלו מאז נובמבר האחרון."
+  },
+  {
     "title": "Iran regime uses former Soviet republic to dodge sanctions, fund war machine: report",
     "link": "https://www.foxnews.com/world/iran-regime-uses-former-soviet-republic-dodge-sanctions-fund-war-machine-report",
     "snippet": "Once a committed U.S. ally, Georgia has quietly aligned with Iran, raising concerns about IRGC influence and sanctions evasion, a new report claims.",
@@ -8,7 +22,23 @@
     "logo": "🦊",
     "color": "#003366",
     "accentLight": "#eff6ff",
-    "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128"
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128",
+    "title_he": "משטר איראן משתמש ברפובליקה סובייטית לשעבר כדי להתחמק מסנקציות ולממן מכונת מלחמה: דו״ח",
+    "snippet_he": "גאורגיה, שהייתה בעבר בעלת ברית מחויבת של ארה״ב, התיישרה בשקט עם איראן, מה שמעלה חששות מהשפעת משמרות המהפכה ומהתחמקות מסנקציות, כך טוען דו״ח חדש."
+  },
+  {
+    "title": "Michael Burry says he's still betting against Palantir after Trump post boosts stock",
+    "link": "https://www.cnbc.com/2026/04/10/michael-burry-says-hes-still-betting-against-palantir-after-trump-post-boosts-stock.html",
+    "snippet": "The investor of the \"Big Short\" fame said he continues to hold long-dated put options on the artificial intelligence software firm.",
+    "date": "2026-04-10T20:20:12.000Z",
+    "source": "CNBC",
+    "logo": "📈",
+    "color": "#005594",
+    "accentLight": "#eff6ff",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=cnbc.com&sz=128",
+    "noDate": false,
+    "title_he": "מייקל בארי אומר שהוא עדיין מהמר נגד פלנטיר לאחר שפוסט של טראמפ הקפיץ את המניה",
+    "snippet_he": "המשקיע המפורסם מ״השורט הגדול״ אמר שהוא ממשיך להחזיק באופציות פוט ארוכות טווח בחברת התוכנה לבינה מלאכותית."
   },
   {
     "title": "Palestinian shot dead during Israeli settler attack on occupied West Bank village",
@@ -19,7 +49,37 @@
     "logo": "🇬🇧",
     "color": "#b80000",
     "accentLight": "#fef2f2",
-    "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128"
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128",
+    "title_he": "פלסטיני נורה למוות במהלך תקיפת מתנחלים ישראלים על כפר בגדה המערבית הכבושה",
+    "snippet_he": "ההרג הגיע כשראשי ביטחון לשעבר הזהירו כי ״טרור יהודי בחסות הממשלה״ יצא מכלל שליטה."
+  },
+  {
+    "title": "Ireland gridlocked by fuel protests as Iran war drives prices higher",
+    "link": "https://www.cnbc.com/2026/04/10/ireland-fuel-prices-protest-blockade-cork-galway.html",
+    "snippet": "Protestors are taking issue with the government's response to the spike in fuel prices since the onset of the Iran war.",
+    "date": "2026-04-10T16:14:29.000Z",
+    "source": "CNBC",
+    "logo": "📈",
+    "color": "#005594",
+    "accentLight": "#eff6ff",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=cnbc.com&sz=128",
+    "noDate": false,
+    "title_he": "אירלנד נחסמה על ידי מחאות דלק כיוון שמלחמת איראן דוחפת מחירים כלפי מעלה",
+    "snippet_he": "המפגינים יוצאים נגד תגובת הממשלה לעלייה במחירי הדלק מאז פרוץ מלחמת איראן."
+  },
+  {
+    "title": "What's at stake ahead of crucial U.S.-Iran peace talks as leaders meet in Pakistan",
+    "link": "https://www.cnbc.com/2026/04/10/negotiating-points-hardest-us-iran-ceasefire-lebanon.html",
+    "snippet": "Already, Tehran has accused Israel of violating the terms of the ceasefire, as the IDF continues to attack Hezbollah in Lebanon.",
+    "date": "2026-04-10T16:13:25.000Z",
+    "source": "CNBC",
+    "logo": "📈",
+    "color": "#005594",
+    "accentLight": "#eff6ff",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=cnbc.com&sz=128",
+    "noDate": false,
+    "title_he": "שיחות שלום ארה\"ב-איראן: מה על הכף בפגישת המנהיגים בפקיסטן?",
+    "snippet_he": "טהראן כבר האשימה את ישראל בהפרת תנאי הפסקת האש, כשצה\"ל ממשיך לתקוף את חיזבאללה בלבנון."
   },
   {
     "title": "How many ships are crossing the Strait of Hormuz?",
@@ -30,7 +90,51 @@
     "logo": "🇬🇧",
     "color": "#b80000",
     "accentLight": "#fef2f2",
-    "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128"
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128",
+    "title_he": "כמה ספינות חוצות את מצר הורמוז?",
+    "snippet_he": "רק כלי שיט בודדים חצו את המצר מאז הסכם הפסקת האש בין ארה\"ב לאיראן, לפי ניתוח של \"BBC Verify\"."
+  },
+  {
+    "title": "Here's the inflation breakdown for March 2026 — in one chart",
+    "link": "https://www.cnbc.com/2026/04/10/cpi-inflation-march-2026-breakdown.html",
+    "snippet": "The Iran war has pushed up gasoline, airline fares and other prices for consumers.",
+    "date": "2026-04-10T15:49:16.000Z",
+    "source": "CNBC",
+    "logo": "📈",
+    "color": "#005594",
+    "accentLight": "#eff6ff",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=cnbc.com&sz=128",
+    "noDate": false,
+    "title_he": "פירוט האינפלציה למרץ 2026 – בגרף אחד",
+    "snippet_he": "מלחמת איראן העלתה את מחירי הדלק, כרטיסי הטיסה ומחירים נוספים לצרכנים."
+  },
+  {
+    "title": "Consumer sentiment hits record low, inflation fears rise amid Iran war",
+    "link": "https://www.cnbc.com/2026/04/10/consumer-sentiment-inflation-fears-iran-war.html",
+    "snippet": "The university's headline index of consumer sentiment tumbled to 47.6, down 10.7% from March to its lowest on record.",
+    "date": "2026-04-10T15:48:09.000Z",
+    "source": "CNBC",
+    "logo": "📈",
+    "color": "#005594",
+    "accentLight": "#eff6ff",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=cnbc.com&sz=128",
+    "noDate": false,
+    "title_he": "סנטימנט הצרכנים בשפל שיא; חששות מאינפלציה גוברים על רקע מלחמת איראן",
+    "snippet_he": "מדד סנטימנט הצרכנים הראשי של האוניברסיטה צנח ל-47.6 נקודות, ירידה של 10.7% ממרץ, לשפל חסר תקדים."
+  },
+  {
+    "title": "Buy this Israeli defense stock because of its 'battlefield tested tech,' Bank of America says",
+    "link": "https://www.cnbc.com/2026/04/10/buy-this-defense-stock-with-battlefield-tested-tech-bofa-says-.html",
+    "snippet": "Elbit Systems has rallied 60% in less than four months. One analyst says it will continue to gain as global demand for defense technology stays high.",
+    "date": "2026-04-10T15:15:41.000Z",
+    "source": "CNBC",
+    "logo": "📈",
+    "color": "#005594",
+    "accentLight": "#eff6ff",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=cnbc.com&sz=128",
+    "noDate": false,
+    "title_he": "\"בנק אוף אמריקה\": מניית הגנה ישראלית מומלצת בזכות \"טכנולוגיה שנבחנה בשדה הקרב\"",
+    "snippet_he": "אלביט מערכות זינקה ב-60% בפחות מארבעה חודשים. אנליסט טוען כי המניה תמשיך לעלות כל עוד הביקוש העולמי לטכנולוגיית הגנה יישאר גבוה."
   },
   {
     "title": "Iran’s ‘Godfather of propaganda’ tactics resurface in war with US and Israel",
@@ -41,7 +145,51 @@
     "logo": "🦊",
     "color": "#003366",
     "accentLight": "#eff6ff",
-    "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128"
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128",
+    "title_he": "טקטיקות \"סנדק התעמולה\" של איראן צצות מחדש במלחמה מול ארה\"ב וישראל",
+    "snippet_he": "מומחים טוענים שאיראן משתמשת באזרחים וילדים כמגנים אנושיים למטרות תעמולה, מבלי להתחשב בבטיחות וגורל אנשיה."
+  },
+  {
+    "title": "Airports could face a jet fuel crunch within 3 weeks as airlines weigh flight cancellations",
+    "link": "https://www.cnbc.com/2026/04/10/jet-fuel-shortage-european-airports-strait-of-hormuz.html",
+    "snippet": "Europe's Airport Industry said if the Strait of Hormuz doesn't reopen \"systemic jet fuel shortage is set to become a reality for the EU.\"",
+    "date": "2026-04-10T15:02:16.000Z",
+    "source": "CNBC",
+    "logo": "📈",
+    "color": "#005594",
+    "accentLight": "#eff6ff",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=cnbc.com&sz=128",
+    "noDate": false,
+    "title_he": "מצוקת דלק סילוני בתוך 3 שבועות: חברות תעופה שוקלות ביטולים",
+    "snippet_he": "תעשיית שדות התעופה באירופה הודיעה כי אם מצר הורמוז לא ייפתח מחדש, \"מחסור מערכתי בדלק סילוני יהפוך למציאות עבור האיחוד האירופי\"."
+  },
+  {
+    "title": "Defense's Silicon Valley pivot: Ukraine, Iran wars challenge the legacy playbook",
+    "link": "https://www.cnbc.com/2026/04/10/defense-tech-ai-startup-silicon-valley-ukraine-iran-war-stocks.html",
+    "snippet": "Companies are betting on a new type of warfare, based on shorter lead times that allow for rapid deployments and more cost-effective solutions.",
+    "date": "2026-04-10T13:51:57.000Z",
+    "source": "CNBC",
+    "logo": "📈",
+    "color": "#005594",
+    "accentLight": "#eff6ff",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=cnbc.com&sz=128",
+    "noDate": false,
+    "title_he": "המפנה של עולם הביטחון לעמק הסיליקון: מלחמות אוקראינה ואיראן מאתגרות את תוכנית הפעולה המסורתית",
+    "snippet_he": "חברות מהמרות על סוג חדש של לוחמה, המבוססת על זמני אספקה קצרים יותר המאפשרים פריסות מהירות ופתרונות חסכוניים יותר."
+  },
+  {
+    "title": "Why ships bound for the Middle East are piling up across Asia",
+    "link": "https://www.cnbc.com/video/2026/04/10/why-ships-bound-for-the-middle-east-are-piling-up-across-asia.html",
+    "snippet": "Congestion in Singapore's waters is rising as the Iran war disrupts shipping routes, forcing vessels bound for the Middle East to drop anchor near its ports.",
+    "date": "2026-04-10T12:17:17.000Z",
+    "source": "CNBC",
+    "logo": "📈",
+    "color": "#005594",
+    "accentLight": "#eff6ff",
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=cnbc.com&sz=128",
+    "noDate": false,
+    "title_he": "מדוע ספינות המיועדות למזרח התיכון נערמות ברחבי אסיה?",
+    "snippet_he": "העומס במים הטריטוריאליים של סינגפור גובר, כיוון שמלחמת איראן משבשת נתיבי ספנות ומאלצת כלי שיט המיועדים למזרח התיכון לעגון ליד נמליה."
   },
   {
     "title": "VP Vance to lead U.S. team in Iran peace talks. And, Artemis II to return to Earth",
@@ -85,7 +233,9 @@
     "logo": "🇬🇧",
     "color": "#b80000",
     "accentLight": "#fef2f2",
-    "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128"
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128",
+    "title_he": "טראמפ: \"הטיפול של איראן במצר הורמוז אינו ההסכם שיש לנו\"",
+    "snippet_he": "נשיא ארה\"ב האשים את איראן ב\"טיפול גרוע מאוד\" במעבר הימי, בזמן שישראל ולבנון מתחילות בשיחות שלום."
   },
   {
     "title": "Inside Tehran after strikes: Iranian woman describes fear, checkpoints and people used as ‘human shields’",
@@ -96,7 +246,9 @@
     "logo": "🦊",
     "color": "#003366",
     "accentLight": "#eff6ff",
-    "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128"
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128",
+    "title_he": "מטהראן שאחרי התקיפות: אשה איראנית מתארת פחד, מחסומים ו\"מגנים אנושיים\"",
+    "snippet_he": "אשה איראנית אלמונית פירטה לעיתון \"האוסטרלי\" את הפיצוצים הליליים, החגיגות והפחד בטהראן, כשבמקביל הפסקת האש בת השבועיים של טראמפ עם איראן התייצבה זמנית."
   },
   {
     "title": "Ceasefire or no ceasefire, the Middle East's reshuffling is not yet done",
@@ -107,6 +259,8 @@
     "logo": "🇬🇧",
     "color": "#b80000",
     "accentLight": "#fef2f2",
-    "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128"
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128",
+    "title_he": "הפסקת אש או לא: \"הערבוב מחדש\" במזרח התיכון טרם הסתיים",
+    "snippet_he": "לשני הצדדים יש סיבות לסיים את המלחמה, אך אין להם בסיס משותף."
   }
 ]
