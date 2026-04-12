@@ -8,6 +8,13 @@ export default defineConfig({
   build: {
     assets: '_assets'
   },
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'he'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
   vite: {
     ssr: {
       noExternal: []

@@ -1,4 +1,7 @@
 ---
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/utils';
+
 interface Development {
   headline: string;
   summary: string;
@@ -11,18 +14,17 @@ interface Development {
 
 interface Props {
   developments: Development[] | null;
+  lang?: Lang;
 }
 
-const { developments } = Astro.props;
-
-
+const { developments, lang = 'en' } = Astro.props;
 ---
 
 {developments && developments.length > 0 && (
   <div class="mb-3">
     <div class="flex items-center justify-between py-1.5">
-      <span class="text-[0.7rem] font-semibold uppercase tracking-wider text-text-muted">Key Developments</span>
-      <span class="text-[0.6rem] font-normal text-text-muted">AI-synthesized</span>
+      <span class="text-[0.7rem] font-semibold uppercase tracking-wider text-text-muted">{t(lang, 'dev.keyDevelopments')}</span>
+      <span class="text-[0.6rem] font-normal text-text-muted">{t(lang, 'dev.aiSynthesized')}</span>
     </div>
     <div class="flex flex-col gap-0 rounded-lg border border-base-300 bg-white overflow-hidden shadow-sm">
       {developments.map((dev, i) => {

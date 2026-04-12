@@ -1,16 +1,16 @@
 ---
-import Base from '../layouts/Base.astro';
-import Header from '../components/Header.astro';
-import SitrepCard from '../components/SitrepCard.astro';
-import DevelopmentsGrid from '../components/DevelopmentsGrid.astro';
-import ArticleCard from '../components/ArticleCard.astro';
-import FilterBar from '../components/FilterBar.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/global.css';
-import { getLangFromUrl } from '../i18n/utils';
-import { t } from '../i18n/utils';
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import SitrepCard from '../../components/SitrepCard.astro';
+import DevelopmentsGrid from '../../components/DevelopmentsGrid.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import FilterBar from '../../components/FilterBar.astro';
+import Footer from '../../components/Footer.astro';
+import '../../styles/global.css';
+import { t } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
 
-const lang = getLangFromUrl(Astro.url);
+const lang: Lang = 'he';
 
 // Read data at build time
 import fs from 'node:fs';
@@ -51,7 +51,7 @@ function isTopStory(title: string): boolean {
 const sources = [...new Set(articles.map((a: any) => a.source))];
 
 // Read FEEDS config for filter bar metadata
-import feedsData from '../feeds.json';
+import feedsData from '../../feeds.json';
 const feeds = feedsData;
 
 // Toast delay constant
@@ -82,7 +82,7 @@ const newUpdatesLabel = t(lang, 'index.newUpdates');
   </div>
 
   <!-- Back to top button -->
-  <button class="btn btn-circle btn-primary fixed bottom-8 z-40 shadow-lg text-lg hidden" id="backToTop" style={`bottom: calc(2rem + env(safe-area-inset-bottom, 0px)); ${lang === 'he' ? 'left: 1rem' : 'right: 1rem'}`}>↑</button>
+  <button class="btn btn-circle btn-primary fixed bottom-8 z-40 shadow-lg text-lg hidden" id="backToTop" style="bottom: calc(2rem + env(safe-area-inset-bottom, 0px)); left: 1rem">↑</button>
 
   <!-- Update toast -->
   <div class="toast toast-top toast-center z-50 pointer-events-none" id="updateToastWrapper" style="display:none; top: calc(70px + env(safe-area-inset-top, 0px))" data-delay-ms={String(UPDATE_TOAST_DELAY_MS)}>

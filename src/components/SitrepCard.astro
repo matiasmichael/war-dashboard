@@ -1,5 +1,7 @@
 ---
 import { sanitizeHTML } from '../shared-utils.js';
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/utils';
 
 interface TopUpdate {
   headline: string;
@@ -13,15 +15,16 @@ interface Props {
     top_updates?: TopUpdate[];
     detailed_analysis?: string;
   } | null;
+  lang?: Lang;
 }
 
-const { sitrep } = Astro.props;
+const { sitrep, lang = 'en' } = Astro.props;
 ---
 
 {sitrep ? (
   <div class="card card-bordered bg-white shadow-md border-t-4 border-t-primary overflow-hidden mb-4">
     <div class="px-0 pt-0">
-      <span class="badge badge-primary badge-sm rounded-none rounded-br-lg text-[0.68rem] font-bold uppercase tracking-wider">SITUATION REPORT</span>
+      <span class="badge badge-primary badge-sm rounded-none rounded-br-lg text-[0.68rem] font-bold uppercase tracking-wider">{t(lang, 'sitrep.badge')}</span>
     </div>
     <div class="card-body px-4 py-3 gap-2">
       <div class="text-[0.88rem] leading-relaxed text-text-secondary" set:html={sanitizeHTML(sitrep.summary)} />
@@ -29,17 +32,17 @@ const { sitrep } = Astro.props;
     <div class="collapse collapse-arrow border-t border-base-200">
       <input type="checkbox" id="sitrepCollapse" />
       <div class="collapse-title text-[0.78rem] font-medium text-text-muted min-h-0 py-2 px-4">
-        See full briefing
+        {t(lang, 'sitrep.seeFullBriefing')}
       </div>
       <div class="collapse-content bg-base-100 px-4">
         <p class="text-[0.84rem] leading-relaxed text-text-secondary" set:html={sanitizeHTML(sitrep.detailed_analysis || '')} />
       </div>
     </div>
-    <p class="text-[0.68rem] text-text-muted px-4 py-2 m-0 border-t border-base-200 bg-base-100">AI-synthesized briefing · All sources</p>
+    <p class="text-[0.68rem] text-text-muted px-4 py-2 m-0 border-t border-base-200 bg-base-100">{t(lang, 'sitrep.disclaimer')}</p>
   </div>
 ) : (
   <div class="alert alert-warning mb-4">
     <span class="text-lg">⚠️</span>
-    <span class="text-[0.82rem]">AI synthesis unavailable — showing articles only. The briefing will return on the next successful update.</span>
+    <span class="text-[0.82rem]">{t(lang, 'sitrep.unavailable')}</span>
   </div>
 )}

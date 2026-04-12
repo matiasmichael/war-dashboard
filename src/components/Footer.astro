@@ -1,8 +1,16 @@
 ---
-// Footer with nav links — DaisyUI + Tailwind
+// Footer with nav links — DaisyUI + Tailwind — i18n aware
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/utils';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'en' } = Astro.props;
 ---
 
 <footer class="text-center py-8 text-text-muted text-[0.72rem] border-t border-base-300 bg-white">
-  <p>Middle East Pulse · Aggregated from public RSS feeds · Updated every hour</p>
-  <p class="mt-1 opacity-70">hmviva.us</p>
+  <p>{t(lang, 'footer.line1')}</p>
+  <p class="mt-1 opacity-70">{t(lang, 'footer.line2')}</p>
 </footer>

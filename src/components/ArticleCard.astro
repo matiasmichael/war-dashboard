@@ -1,4 +1,7 @@
 ---
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/utils';
+
 interface Props {
   article: {
     title: string;
@@ -13,11 +16,12 @@ interface Props {
   };
   idx: number;
   isTopStory: boolean;
+  lang?: Lang;
 }
 
 import { timeAgo } from '../shared-utils.js';
 
-const { article: a, idx, isTopStory } = Astro.props;
+const { article: a, idx, isTopStory, lang = 'en' } = Astro.props;
 
 const ago = timeAgo(a.date);
 const noDateFlag = a.noDate ? 'true' : undefined;
@@ -49,7 +53,7 @@ const hasSnippet = !!(a.snippet && a.snippet.trim());
           <span class="font-semibold" style={`color: ${a.color}`}>{a.source}</span>
           <span class="text-text-muted text-[0.65rem]">·</span>
           <span class="text-text-muted font-normal time-ago" data-date={a.date}>{ago}</span>
-          {isTopStory && <span class="badge badge-warning badge-xs text-[0.6rem] font-bold uppercase ml-1">⚡ Breaking</span>}
+          {isTopStory && <span class="badge badge-warning badge-xs text-[0.6rem] font-bold uppercase ms-1">{t(lang, 'article.breaking')}</span>}
         </div>
         <h3 class="text-[0.9rem] font-semibold leading-snug text-base-content tracking-tight line-clamp-2">{a.title}</h3>
       </div>
@@ -59,7 +63,7 @@ const hasSnippet = !!(a.snippet && a.snippet.trim());
         <span class="expand-chevron transition-transform duration-200 text-text-muted text-[0.7rem]">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </span>
-        <button class="btn btn-ghost btn-xs btn-square share-btn" data-title={a.title} data-url={a.link} title="Share">
+        <button class="btn btn-ghost btn-xs btn-square share-btn" data-title={a.title} data-url={a.link} title={t(lang, 'article.share')}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
         </button>
       </div>
@@ -67,12 +71,12 @@ const hasSnippet = !!(a.snippet && a.snippet.trim());
 
     <!-- Expandable area (hidden by default) — ALL cards expand, never navigate on tap -->
     <div class="article-expand overflow-hidden transition-all duration-250 ease-out" style="max-height:0; opacity:0;">
-      <div class="pt-2.5 pb-1 pl-[2.625rem]">
+      <div class="pt-2.5 pb-1 ps-[2.625rem]">
         {hasSnippet && (
           <p class="text-[0.82rem] leading-relaxed text-text-secondary/80 mb-3">{a.snippet}</p>
         )}
         <button class="btn btn-primary btn-sm text-[0.78rem] gap-1.5 read-full-btn" data-href={a.link}>
-          Read Full Article
+          {t(lang, 'article.readFull')}
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </button>
       </div>

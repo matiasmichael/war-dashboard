@@ -1,4 +1,7 @@
 ---
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/utils';
+
 interface FeedConfig {
   name: string;
   shortName: string;
@@ -9,9 +12,10 @@ interface Props {
   sources: string[];
   feeds: FeedConfig[];
   articleCount: string;
+  lang?: Lang;
 }
 
-const { sources, feeds, articleCount } = Astro.props;
+const { sources, feeds, articleCount, lang = 'en' } = Astro.props;
 
 function getFaviconUrl(domain: string): string {
   return `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
@@ -25,11 +29,11 @@ for (const f of feeds) {
 ---
 
 <div class="flex items-center justify-between py-3 pb-1">
-  <span class="text-[0.72rem] font-semibold uppercase tracking-wider text-text-muted">Latest Articles</span>
+  <span class="text-[0.72rem] font-semibold uppercase tracking-wider text-text-muted">{t(lang, 'filter.latestArticles')}</span>
   <span class="text-[0.72rem] font-normal text-text-muted" id="articleCount">{articleCount}</span>
 </div>
 <div class="flex flex-nowrap gap-1.5 py-1.5 overflow-x-auto scrollbar-none" id="articleFilterBar">
-  <button class="btn btn-sm btn-primary rounded-full text-[0.78rem] font-medium whitespace-nowrap flex-shrink-0 filter-btn" data-source="all">All</button>
+  <button class="btn btn-sm btn-primary rounded-full text-[0.78rem] font-medium whitespace-nowrap flex-shrink-0 filter-btn" data-source="all">{t(lang, 'filter.all')}</button>
   {sources.map(s => {
     const feed = feedMap[s];
     const shortName = feed ? feed.shortName : s;

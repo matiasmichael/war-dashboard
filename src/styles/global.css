@@ -53,6 +53,7 @@
   --color-text-muted: #7A746D;
   --color-text-secondary: #2C2824;
   --font-manrope: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heebo: 'Heebo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 /* ===== Base Styles ===== */
@@ -60,6 +61,45 @@ body {
   font-family: var(--font-manrope);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hebrew / RTL font override */
+body.font-heebo {
+  font-family: var(--font-heebo);
+}
+
+/* ===== RTL Support ===== */
+/* Tailwind v4 supports logical properties via dir attribute on html.
+   These additional overrides handle custom components that use physical
+   left/right positioning. */
+
+[dir="rtl"] .live-pill {
+  /* Ensure the LIVE pill doesn't break layout in RTL */
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+/* Flip absolute positioned elements in RTL */
+[dir="rtl"] .absolute.right-4 {
+  right: auto;
+  left: 1rem;
+}
+
+[dir="rtl"] .absolute.left-2 {
+  left: auto;
+  right: 0.5rem;
+}
+
+/* RTL-aware card expand area indentation */
+[dir="rtl"] .article-expand .pl-\[2\.625rem\] {
+  padding-left: 0;
+  padding-right: 2.625rem;
+}
+
+/* RTL nav arrows should visually flip */
+[dir="rtl"] .expand-chevron,
+[dir="rtl"] .dev-chevron {
+  /* Chevrons are vertical, no flip needed */
 }
 
 /* ===== Animations ===== */

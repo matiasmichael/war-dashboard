@@ -1,13 +1,13 @@
 ---
-import Base from '../layouts/Base.astro';
-import '../styles/global.css';
-import { getLangFromUrl, t, localizedPath } from '../i18n/utils';
-import type { Lang } from '../i18n/ui';
+import Base from '../../layouts/Base.astro';
+import '../../styles/global.css';
+import { t, localizedPath } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
 
-const lang: Lang = getLangFromUrl(Astro.url);
+const lang: Lang = 'he';
 
 // Feed metadata for the sources grid
-import feedsData from '../feeds.json';
+import feedsData from '../../feeds.json';
 
 // Build favicon URLs
 function getFaviconUrl(domain: string) {

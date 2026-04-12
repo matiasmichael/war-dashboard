@@ -1,22 +1,41 @@
 ---
 // Dark header with live dot, title, and nav — DaisyUI navbar
+// Now with i18n support and language switcher
+
+import { languages, type Lang } from '../i18n/ui';
+import { t, localizedPath, getAlternateLang, getSwitchLangUrl } from '../i18n/utils';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'en' } = Astro.props;
+const altLang = getAlternateLang(lang);
+const altLabel = languages[altLang];
+const switchUrl = getSwitchLangUrl(Astro.url, altLang);
 ---
 
 <div class="navbar bg-header-brown sticky top-0 z-50 px-0">
   <div class="max-w-[680px] mx-auto w-full flex flex-col">
     <div class="relative flex items-center justify-center px-4 py-2">
+      <!-- Language switcher (top left / start) -->
+      <div class="flex gap-1.5 absolute" style={lang === 'he' ? 'right: 1rem' : 'left: 1rem'}>
+        <a href={switchUrl} class="btn btn-sm btn-ghost text-white/70 hover:text-white bg-white/8 hover:bg-white/15 rounded-lg min-h-[36px] px-2.5 text-[0.72rem] font-semibold" title={`Switch to ${altLabel}`}>
+          {altLang === 'he' ? '🇮🇱 עב' : '🇺🇸 EN'}
+        </a>
+      </div>
       <!-- Centered title -->
       <div class="flex flex-col items-center">
         <h1 class="text-[1.15rem] font-bold tracking-tight flex items-center gap-1.5 text-white m-0 whitespace-nowrap">
-          Middle East Pulse
-          <span class="live-pill live-pill-fresh" id="livePill">LIVE</span>
+          {t(lang, 'site.title')}
+          <span class="live-pill live-pill-fresh" id="livePill">{t(lang, 'header.live')}</span>
         </h1>
-        <span class="text-[0.7rem] font-normal text-white/50" id="headerFreshness">🇮🇱 IDT</span>
+        <span class="text-[0.7rem] font-normal text-white/50" id="headerFreshness">{t(lang, 'site.subtitle')}</span>
       </div>
-      <!-- Nav buttons (top right) -->
-      <div class="flex gap-1.5 absolute right-4">
-        <a href="/videos" class="btn btn-sm btn-ghost btn-square text-white/70 hover:text-white bg-white/8 hover:bg-white/15 rounded-lg min-h-[36px] min-w-[36px]" title="Videos">🎬</a>
-        <a href="/archive" class="btn btn-sm btn-ghost btn-square text-white/70 hover:text-white bg-white/8 hover:bg-white/15 rounded-lg min-h-[36px] min-w-[36px]" title="Archive">🗓️</a>
+      <!-- Nav buttons (top right / end) -->
+      <div class="flex gap-1.5 absolute" style={lang === 'he' ? 'left: 1rem' : 'right: 1rem'}>
+        <a href={localizedPath(lang, '/videos')} class="btn btn-sm btn-ghost btn-square text-white/70 hover:text-white bg-white/8 hover:bg-white/15 rounded-lg min-h-[36px] min-w-[36px]" title={t(lang, 'header.videos')}>🎬</a>
+        <a href={localizedPath(lang, '/archive')} class="btn btn-sm btn-ghost btn-square text-white/70 hover:text-white bg-white/8 hover:bg-white/15 rounded-lg min-h-[36px] min-w-[36px]" title={t(lang, 'header.archive')}>🗓️</a>
       </div>
     </div>
     <div class="h-[3px] bg-gradient-to-r from-bc-orange to-bc-gold"></div>
