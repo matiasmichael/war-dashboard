@@ -1,64 +1,64 @@
 {
   "developments": [
     {
-      "headline": "US-Iran Peace Talks Collapse in Pakistan",
-      "summary": "US Vice President Vance departed Pakistan after talks failed, with Iran blaming 'unreasonable demands' over nuclear and Hormuz issues. This signals continued hostilities, with Pakistan urging respect for an existing ceasefire.",
+      "headline": "US-Iran talks collapse; delegation departs",
+      "summary": "US-Iran negotiations in Pakistan failed after 21 hours, with VP Vance's delegation departing without a deal. Both sides blame each other, escalating regional diplomatic tensions.",
       "sources": [
-        "Ynet News",
         "Al Jazeera",
+        "CNBC",
         "Times of Israel",
-        "CNBC"
+        "Ynet News"
       ],
       "severity": "critical",
       "category": "diplomacy",
-      "timeContext": "Just now",
-      "updatedAt": "2026-04-12T04:33:46.877Z",
-      "headline_he": "שיחות השלום ארה\"ב-איראן קרסו בפקיסטן",
-      "summary_he": "סגן נשיא ארה\"ב, ואנס, עזב את פקיסטן לאחר כישלון השיחות, כשמקורות איראניים מאשימים 'דרישות בלתי סבירות' בסוגיות הגרעין והורמוז. אירוע זה מסמן המשך פעולות איבה, כשפקיסטן דוחקת לכבד הפסקת אש קיימת."
+      "timeContext": "1h ago",
+      "updatedAt": "2026-04-12T04:41:02.026Z",
+      "headline_he": "שיחות ארה\"ב-איראן קרסו; המשלחת עזבה",
+      "summary_he": "המשא ומתן בין ארה\"ב לאיראן בפקיסטן כשל לאחר 21 שעות, כאשר משלחתו של סגן הנשיא ואנס עזבה ללא הסכם. שני הצדדים מאשימים זה את זה, מה שמגביר את המתיחות הדיפלומטית האזורית."
     },
     {
-      "headline": "Turkey Escalates Rhetoric Against Israeli Premier",
-      "summary": "Turkey's foreign ministry labeled Israeli PM Netanyahu 'Hitler of our time,' accusing him of undermining peace talks to avoid jail. This comes after Israeli leaders blasted Erdogan, indicating severe diplomatic breakdown.",
+      "headline": "Alarms sound in Northern Israel",
+      "summary": "Air raid sirens activated across the Upper Galilee region in northern Israel, indicating potential incoming threats. This suggests ongoing low-intensity conflict or immediate security concerns.",
       "sources": [
-        "Ynet News",
-        "Times of Israel"
+        "Ynet News"
       ],
       "severity": "major",
-      "category": "diplomacy",
-      "timeContext": "51m ago",
-      "updatedAt": "2026-04-12T04:33:46.877Z",
-      "headline_he": "טורקיה מחריפה את הרטוריקה נגד ראש הממשלה הישראלי",
-      "summary_he": "משרד החוץ הטורקי כינה את ראש ממשלת ישראל נתניהו 'היטלר של זמננו', והאשים אותו בחתירה תחת שיחות השלום כדי להימנע ממאסר. הדברים מגיעים לאחר שמנהיגים ישראלים תקפו בחריפות את ארדואן, מה שמצביע על התמוטטות דיפלומטית חמורה."
+      "category": "military",
+      "timeContext": "31m ago",
+      "updatedAt": "2026-04-12T04:41:02.026Z",
+      "headline_he": "אזעקות נשמעו בצפון ישראל",
+      "summary_he": "צופרי התרעה הופעלו ברחבי אזור הגליל העליון שבצפון ישראל, מה שמצביע על איומים פוטנציאליים מתקרבים. הדבר מעיד על סכסוך מתמשך בעצימות נמוכה או על חששות ביטחוניים מיידיים."
     },
     {
-      "headline": "Galilee Sirens Active, US Warships Transit Hormuz",
-      "summary": "Sirens activated in Upper Galilee, indicating an immediate threat on Israel's northern border. Concurrently, two American warships transited the Strait of Hormuz, signaling heightened maritime tensions post-failed US-Iran talks.",
+      "headline": "Iran threatens Hormuz; UN warns against tolls",
+      "summary": "Iran declared no change in its Hormuz stance if US demands aren't met, while the UN maritime chief warned against tolls. This follows US warships transiting the strategic waterway, heightening regional economic and military risk.",
       "sources": [
-        "Ynet News",
-        "CNBC"
+        "Al Jazeera",
+        "CNBC",
+        "Ynet News"
       ],
       "severity": "critical",
       "category": "military",
-      "timeContext": "Just now",
-      "updatedAt": "2026-04-12T04:33:46.877Z",
-      "headline_he": "צפירות בגליל פעילות, ספינות מלחמה אמריקאיות חוצות את הורמוז",
-      "summary_he": "צפירות הופעלו בגליל העליון, מה שמצביע על איום מיידי בגבול הצפון של ישראל. במקביל, שתי ספינות מלחמה אמריקאיות עברו במצר הורמוז, מה שמסמן מתיחות ימית מוגברת לאחר כישלון שיחות ארה\"ב-איראן."
+      "timeContext": "Ongoing",
+      "updatedAt": "2026-04-12T04:41:02.026Z",
+      "headline_he": "איראן מאיימת על הורמוז; האו\"ם מזהיר מפני אגרות",
+      "summary_he": "איראן הצהירה כי לא תשנה את עמדתה בנוגע למצר הורמוז אם דרישות ארה\"ב לא ייענו, בעוד ראש האגף הימי של האו\"ם הזהיר מפני הטלת אגרות. זאת בעקבות מעבר ספינות מלחמה אמריקאיות במעבר הימי האסטרטגי, מה שמגביר את הסיכון הכלכלי והצבאי באזור."
     },
     {
-      "headline": "Netanyahu Vows Continued Anti-Iran Campaign",
-      "summary": "Prime Minister Netanyahu asserted Israel's campaign against Iran is 'not over,' displaying a map and stating 'we strangled them and have more to do.' This reinforces Israel's hardline military posture post-US-Iran talks failure.",
+      "headline": "Israel, Turkey exchange escalating accusations",
+      "summary": "Israel's Prime Minister Netanyahu and other leaders strongly condemned Turkish President Erdogan, who in turn labeled Netanyahu \"the Hitler of our time.\" This marks a significant deterioration in bilateral relations.",
       "sources": [
-        "Al Jazeera",
-        "Times of Israel"
+        "Times of Israel",
+        "Ynet News"
       ],
       "severity": "notable",
-      "category": "military",
-      "timeContext": "2h ago",
-      "updatedAt": "2026-04-12T04:33:46.877Z",
-      "headline_he": "נתניהו נשבע להמשיך במערכה נגד איראן",
-      "summary_he": "ראש הממשלה נתניהו הצהיר כי המערכה של ישראל נגד איראן 'טרם הסתיימה', הציג מפה וקבע 'חנקנו אותם ויש לנו עוד מה לעשות'. הדבר מחזק את העמדה הצבאית הבלתי מתפשרת של ישראל לאחר כישלון שיחות ארה\"ב-איראן."
+      "category": "diplomacy",
+      "timeContext": "59m ago",
+      "updatedAt": "2026-04-12T04:41:02.026Z",
+      "headline_he": "ישראל וטורקיה מחליפות האשמות מחריפות",
+      "summary_he": "ראש ממשלת ישראל נתניהו ומנהיגים נוספים גינו בחריפות את נשיא טורקיה ארדואן, אשר מצידו כינה את נתניהו \"היטלר של זמננו\". הדבר מסמן הידרדרות משמעותית ביחסים הבילטרליים."
     }
   ],
-  "generatedAt": "2026-04-12T04:34:00.877Z",
+  "generatedAt": "2026-04-12T04:41:13.182Z",
   "articleCount": 206
 }
