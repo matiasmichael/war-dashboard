@@ -33,7 +33,7 @@ const switchUrl = getSwitchLangUrl(Astro.url, altLang);
       </div>
       <!-- Language switcher (top right) -->
       <div class="flex gap-1.5 absolute" style="right: 1rem">
-        <a href={switchUrl} class="btn btn-sm btn-ghost text-white/70 hover:text-white bg-white/8 hover:bg-white/15 rounded-lg min-h-[36px] px-2.5 text-[0.72rem] font-semibold" title={`Switch to ${altLabel}`}>
+        <a href={switchUrl} onclick={`try { localStorage.setItem('mep-lang', '${altLang}'); } catch(e) {}`} class="btn btn-sm btn-ghost text-white/70 hover:text-white bg-white/8 hover:bg-white/15 rounded-lg min-h-[36px] px-2.5 text-[0.72rem] font-semibold" title={`Switch to ${altLabel}`}>
           {altLang === 'he' ? '🇮🇱 עב' : '🇺🇸 EN'}
         </a>
       </div>

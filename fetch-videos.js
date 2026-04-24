@@ -6,76 +6,20 @@
 const fs = require('fs');
 const path = require('path');
 const { atomicWriteSync } = require('./src/utils');
+const { VIDEO_CHANNELS, VIDEO_KEYWORDS, FILTERED_VIDEO_CHANNELS } = require('./src/config');
 
 const MAX_VIDEOS = 30;
 const FETCH_TIMEOUT_MS = 10000;
-
-// --- Relevance filter keywords for general channels ---
-const MIDDLE_EAST_KEYWORDS = [
-  // Geo & factions
-  'israel', 'israeli', 'iran', 'iranian', 'gaza', 'hezbollah', 'lebanon', 'lebanese',
-  'hamas', 'middle east', 'tehran', 'jerusalem', 'houthi', 'yemen', 'yemeni',
-  'west bank', 'idf', 'netanyahu', 'sinwar', 'rafah', 'beirut', 'tel aviv',
-  'occupied', 'ceasefire', 'hostage', 'hostages', 'october 7', 'irgc',
-  // US officials & diplomacy — broad conflict terms that surface WH/C-SPAN coverage
-  'vance', 'hegseth',
-  'peace', 'war', 'strike', 'strikes', 'missile', 'missiles',
-  'defense', 'attack', 'bombing',
-  'negotiation', 'negotiations', 'summit', 'diplomacy', 'diplomat'
-];
-
-// Channels that require relevance filtering (by name)
-const FILTERED_CHANNELS = new Set(['The White House', 'C-SPAN', 'Fox News', 'CNN']);
 
 /**
  * Returns true if the video is relevant to the Middle East conflict.
  * Israeli PM and IDF are always relevant; others require keyword match.
  */
 function isRelevant(video) {
-  if (!FILTERED_CHANNELS.has(video.channel)) return true; // IDF / Israeli PM always pass
+  if (!FILTERED_VIDEO_CHANNELS.has(video.channel)) return true; // IDF / Israeli PM always pass
   const haystack = (video.title + ' ' + video.description).toLowerCase();
-  return MIDDLE_EAST_KEYWORDS.some(kw => haystack.includes(kw));
+  return VIDEO_KEYWORDS.some(kw => haystack.includes(kw));
 }
-
-// --- YouTube Channels ---
-const CHANNELS = [
-  {
-    id: 'UC4XJnRPZjXhgvVMhXKNSJvQ',
-    name: 'Israeli PM',
-    faviconDomain: 'gov.il',
-    color: '#0038b8'
-  },
-  {
-    id: 'UCawNWlihdgaycQpO3zi-jYg',
-    name: 'IDF',
-    faviconDomain: 'idf.il',
-    color: '#4a7c59'
-  },
-  {
-    id: 'UCYxRlFDqcWM4y7FfpiAN3KQ',
-    name: 'The White House',
-    faviconDomain: 'whitehouse.gov',
-    color: '#002868'
-  },
-  {
-    id: 'UCb--64Gl51jIEVE-GLDAVTg',
-    name: 'C-SPAN',
-    faviconDomain: 'c-span.org',
-    color: '#003366'
-  },
-  {
-    id: 'UCXIJgqnII2ZOINSWNOGFThA',
-    name: 'Fox News',
-    faviconDomain: 'foxnews.com',
-    color: '#003366'
-  },
-  {
-    id: 'UCupvZG-5ko_eiXAupbDfxWw',
-    name: 'CNN',
-    faviconDomain: 'cnn.com',
-    color: '#cc0000'
-  }
-];
 
 /**
  * Parse a YouTube Atom feed XML string and extract video entries.
@@ -174,7 +118,7 @@ async function main() {
   console.log('[VIDEOS] 🎬 Fetching YouTube feeds...');
 
   const results = await Promise.allSettled(
-    CHANNELS.map(ch => {
+    VIDEO_CHANNELS.map(ch => {
       console.log(`  → ${ch.name}...`);
       return fetchChannelFeed(ch);
     })
@@ -183,7 +127,7 @@ async function main() {
   let allVideos = [];
   for (let i = 0; i < results.length; i++) {
     const result = results[i];
-    const channel = CHANNELS[i];
+    const channel = VIDEO_CHANNELS[i];
     if (result.status === 'fulfilled') {
       const videos = result.value;
       allVideos.push(...videos);
@@ -219,4 +163,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { main, CHANNELS };
+module.exports = { main, VIDEO_CHANNELS };

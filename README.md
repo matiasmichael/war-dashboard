@@ -80,7 +80,12 @@ build.js  ──→  src/data/latest.json  ──→  Astro build  ──→  di
 - Atomic file writes prevent corruption during concurrent operations
 - Gemini failures are non-fatal — articles still display without the sitrep
 
-For a detailed technical reference, see [CLAUDE.md](./CLAUDE.md) and [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md).
+For a detailed technical reference, see:
+- [CLAUDE.md](./CLAUDE.md) — Main agent reference
+- [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) — Pipeline and build logic
+- [docs/FEEDS.md](./docs/FEEDS.md) — RSS sources and configuration
+- [docs/VIDEOS.md](./docs/VIDEOS.md) — YouTube video pipeline
+- [docs/I18N.md](./docs/I18N.md) — Hebrew translation and RTL support
 
 ---
 

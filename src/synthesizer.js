@@ -8,7 +8,8 @@ const {
   GEMINI_MODEL,
   MAX_ARTICLES_FOR_SYNTHESIS,
   GEMINI_RETRY_ATTEMPTS,
-  GEMINI_RETRY_DELAY_MS
+  GEMINI_RETRY_DELAY_MS,
+  getGeminiKey
 } = require('./config');
 const { atomicWriteSync, sleep } = require('./utils');
 const { initModel: initTranslateModel, translateSitrep } = require('./translate-hebrew');
@@ -83,14 +84,7 @@ async function callGeminiWithRetry(model, prompt) {
   throw lastError;
 }
 
-/**
- * Read the Gemini API key from OpenClaw config.
- */
-function getGeminiKey() {
-  const configPath = path.join(process.env.HOME, '.openclaw/openclaw.json');
-  const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
-  return config.env.GOOGLE_API_KEY;
-}
+// getGeminiKey() is now imported from ./config.js
 
 /**
  * Synthesize a situation report from articles.
@@ -204,6 +198,5 @@ GLOBAL RULES:
 module.exports = {
   synthesizeReport,
   loadPreviousSitrep,
-  saveSitrep,
-  getGeminiKey
+  saveSitrep
 };

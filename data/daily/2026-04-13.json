@@ -1,0 +1,99 @@
+{
+  "date": "2026-04-13",
+  "headline": "US announces Iran port blockade after failed talks; Tehran threatens regional retaliation.",
+  "summary": "<p>Today marked a significant escalation in the Iran-US standoff following the definitive collapse of peace negotiations. The United States announced its intention to initiate a naval blockade of all Iranian ports starting Monday, a move anticipated to severely disrupt Iran's economy. This declaration immediately sent global oil prices surging past $100 a barrel, with Asian markets opening lower amidst fears of an impending oil shock and heightened geopolitical instability.</p><p>In response to the US decision, Iran's Foreign Minister condemned the blockade, asserting that Tehran had engaged in good faith during the talks only to be met with economic strangulation. Moreover, intelligence sources indicated that Iran is considering activating Houthi proxies to blockade the Bab al-Mandeb strait, potentially creating a new global chokepoint in retaliation for the US action in Hormuz. Concurrently, US President Trump signaled indifference to any future negotiations, and reports emerged that his administration is considering limited military strikes against Iran, in addition to the blockade, further raising the specter of direct confrontation.</p><p>For Israel, the developments underscore a rapidly deteriorating security environment. The IDF is reportedly preparing for a return to full-scale conflict, aligning with US considerations for military action. Domestically, an Israeli court lifted a gag order, revealing the names of two brothers charged with providing AI-generated fake military intelligence to Iranian agents, highlighting ongoing Iranian espionage efforts against Israel. Meanwhile, the northern border remained volatile, with two Israeli soldiers moderately injured by Hezbollah rocket fire and alarms sounding in Kiryat Shmona and Dov'v, indicating continued proxy conflict activity.</p>",
+  "key_events": [
+    {
+      "time": "00:28 IDT",
+      "headline": "Two Israeli soldiers injured by Hezbollah rocket fire in Southern Lebanon.",
+      "source": "Ynet News",
+      "category": "proxy",
+      "description": "Two Israeli soldiers sustained moderate injuries in a clash in Southern Lebanon following rocket fire attributed to Hezbollah. This incident highlights the ongoing cross-border hostilities between Israel and Iranian-backed proxies.",
+      "headline_he": "שני חיילי צה\"ל נפצעו מירי רקטות של חיזבאללה בדרום לבנון.",
+      "description_he": "שני חיילי צה\"ל נפצעו באורח בינוני בעימות בדרום לבנון בעקבות ירי רקטות שיוחס לחיזבאללה. אירוע זה מדגיש את פעולות האיבה המתמשכות חוצות הגבול בין ישראל לבין שלוחים הנתמכים על ידי איראן."
+    },
+    {
+      "time": "00:32 IDT",
+      "headline": "US Central Command announces Strait of Hormuz blockade to begin Monday.",
+      "source": "Jerusalem Post",
+      "category": "military",
+      "description": "CENTCOM declared that the US would begin enforcing a naval blockade of the Strait of Hormuz from Monday morning, stating it would apply impartially to all vessels entering or departing Iranian ports. This move follows the collapse of peace talks between the US and Iran.",
+      "headline_he": "פיקוד המרכז האמריקאי מודיע: סגר על מצר הורמוז יחל ביום שני.",
+      "description_he": "פיקוד המרכז (CENTCOM) הכריז כי ארה\"ב תתחיל לאכוף סגר ימי על מצר הורמוז החל מיום שני בבוקר, וקבע כי הוא יחול ללא משוא פנים על כל כלי השיט הנכנסים או יוצאים מנמלי איראן. מהלך זה בא בעקבות קריסת שיחות השלום בין ארה\"ב לאיראן."
+    },
+    {
+      "time": "00:42 IDT",
+      "headline": "Iranian Foreign Minister condemns US blockade, claims good faith in talks.",
+      "source": "Ynet News",
+      "category": "diplomacy",
+      "description": "Iran's Foreign Minister criticized the US decision to blockade Iranian ports, stating that Tehran had engaged in the recent peace talks in good faith. He accused the United States of responding with a 'blockade' despite Iran's diplomatic efforts.",
+      "headline_he": "שר החוץ האיראני מגנה את הסגר האמריקאי, טוען לתום לב בשיחות.",
+      "description_he": "שר החוץ האיראני מתח ביקורת על ההחלטה האמריקאית להטיל סגר על נמלי איראן, וקבע כי טהראן השתתפה בשיחות השלום האחרונות בתום לב. הוא האשים את ארצות הברית בתגובה ב'מצור' למרות המאמצים הדיפלומטיים של איראן."
+    },
+    {
+      "time": "01:22 IDT",
+      "headline": "Oil prices surge past $100 after US announces Iran port blockade.",
+      "source": "CNBC",
+      "category": "military",
+      "description": "Global oil prices surged beyond $100 a barrel immediately following President Trump's announcement of a US naval blockade on Iranian ports. The financial markets reacted cautiously, anticipating an oil shock and increased economic instability.",
+      "headline_he": "מחירי הנפט מזנקים מעל 100 דולר לאחר הכרזת ארה\"ב על סגר על נמלי איראן.",
+      "description_he": "מחירי הנפט הגלובליים זינקו מעל 100 דולר לחבית מיד לאחר הכרזתו של הנשיא טראמפ על סגר ימי אמריקאי על נמלי איראן. השווקים הפיננסיים הגיבו בזהירות, תוך ציפייה להלם נפט ואי-יציבות כלכלית גוברת."
+    },
+    {
+      "time": "01:54 IDT",
+      "headline": "Trump administration considering limited military operation against Iran.",
+      "source": "Jerusalem Post",
+      "category": "military",
+      "description": "US officials cited by The Wall Street Journal reported that President Trump is considering a limited military operation against Iran. This comes as an additional measure following the failure of negotiations in Islamabad and the announced naval blockade.",
+      "headline_he": "ממשל טראמפ שוקל מבצע צבאי מוגבל נגד איראן.",
+      "description_he": "גורמים אמריקאים שצוטטו על ידי הוול סטריט ג'ורנל דיווחו כי הנשיא טראמפ שוקל מבצע צבאי מוגבל נגד איראן. צעד זה מגיע כאמצעי נוסף לאחר כישלון המשא ומתן באיסלמבאד והסגר הימי שהוכרז."
+    },
+    {
+      "time": "02:22 IDT",
+      "headline": "Israeli High Court releases names of brothers indicted for Iran espionage.",
+      "source": "Jerusalem Post",
+      "category": "intelligence",
+      "description": "The Israeli High Court lifted a gag order, naming Meir and Yosef Nahum as two brothers charged last month with knowingly providing AI-generated fake army information to Iranian agents for over $32,000. This event underscores ongoing Iranian intelligence threats against Israel.",
+      "headline_he": "בג\"ץ מתיר לפרסם שמות אחים שהואשמו בריגול לטובת איראן.",
+      "description_he": "בג\"ץ הסיר צו איסור פרסום, וחשף את שמותיהם של מאיר ויוסף נחום כשני אחים שהואשמו בחודש שעבר במתן מידע צבאי מזויף שנוצר באמצעות בינה מלאכותית ביודעין לסוכנים איראניים תמורת למעלה מ-32,000 דולר. אירוע זה מדגיש את האיומים המודיעיניים האיראניים המתמשכים נגד ישראל."
+    },
+    {
+      "time": "03:24 IDT",
+      "headline": "Iran threatens Houthi proxy blockade of Bab al-Mandeb strait.",
+      "source": "Fox News",
+      "category": "proxy",
+      "description": "A senior Middle East advisor warned that Iran could use Houthi proxies to blockade the Bab al-Mandeb strait if the US proceeds with blocking the Strait of Hormuz. This threat signals Iran's intent to retaliate by disrupting another critical global chokepoint.",
+      "headline_he": "איראן מאיימת בסגר של שלוחים חות'ים על מיצר באב אל-מנדב.",
+      "description_he": "יועץ בכיר לענייני המזרח התיכון הזהיר כי איראן עלולה להשתמש בשלוחים חות'ים כדי לחסום את מיצר באב אל-מנדב אם ארה\"ב תמשיך בחסימת מצר הורמוז. איום זה מאותת על כוונתה של איראן לנקום באמצעות שיבוש נקודת חנק גלובלית קריטית נוספת."
+    },
+    {
+      "time": "05:35 IDT",
+      "headline": "Trump expresses indifference to renewed Iran negotiations.",
+      "source": "Jerusalem Post",
+      "category": "diplomacy",
+      "description": "President Trump signaled his indifference to whether Iran returns to negotiations, blaming their nuclear ambitions for the collapse of peace talks. His statement reinforced the US's hardened diplomatic stance following the announcement of the naval blockade.",
+      "headline_he": "טראמפ מביע אדישות לגבי חידוש המשא ומתן עם איראן.",
+      "description_he": "הנשיא טראמפ איתת על אדישותו לשאלה אם איראן תחזור למשא ומתן, והאשים את שאיפותיה הגרעיניות בקריסת שיחות השלום. הצהרתו חיזקה את העמדה הדיפלומטית הנוקשה של ארה\"ב בעקבות ההכרזה על הסגר הימי."
+    }
+  ],
+  "statistics": {
+    "total_articles": 38,
+    "sources_reporting": 7,
+    "most_active_source": "Ynet News",
+    "escalation_level": 3
+  },
+  "what_changed": [
+    "US-Iran peace talks formally collapsed, leading to a significant diplomatic breakdown.",
+    "The United States announced an impending naval blockade of Iranian ports, dramatically escalating economic pressure and military posture.",
+    "Iran threatened to activate Houthi proxies to blockade the Bab al-Mandeb strait in retaliation, signalling potential widespread regional disruption."
+  ],
+  "outlook": "Monitor the implementation of the US blockade, Iran's direct and proxy reactions, and any further statements regarding potential US military strikes in the coming days.",
+  "headline_he": "ארה\"ב מכריזה על סגר ימי על נמלי איראן לאחר קריסת השיחות; טהראן מאיימת בתגמול אזורי.",
+  "summary_he": "<p>היום נרשמה הסלמה משמעותית בעימות בין איראן לארה\"ב בעקבות קריסתן המוחלטת של שיחות השלום. ארצות הברית הודיעה על כוונתה להטיל סגר ימי על כל נמלי איראן החל מיום שני, מהלך הצפוי לשבש באופן חמור את כלכלת איראן. הכרזה זו הקפיצה מיד את מחירי הנפט הגלובליים מעל 100 דולר לחבית, כשהשווקים באסיה נפתחו בירידות בצל חשש מהלם נפט מתקרב ואי-יציבות גאופוליטית מוגברת.</p><p>בתגובה להחלטת ארה\"ב, שר החוץ האיראני גינה את הסגר, בטענה שטהראן פעלה בתום לב במהלך השיחות ונתקלה בתגובה של חניקה כלכלית. יתרה מכך, מקורות מודיעיניים ציינו כי איראן שוקלת להפעיל שלוחים חות'ים כדי לחסום את מיצר באב אל-מנדב, תוך יצירת נקודת חנק גלובלית חדשה פוטנציאלית כנקמה על פעולת ארה\"ב בהורמוז. במקביל, נשיא ארה\"ב טראמפ איתת על אדישותו לכל משא ומתן עתידי, ודיווחים צצו כי ממשלו שוקל תקיפות צבאיות מוגבלות נגד איראן, בנוסף לסגר, מה שמגביר עוד יותר את סכנת העימות הישיר.</p><p>עבור ישראל, ההתפתחויות מדגישות סביבה ביטחונית מתדרדרת במהירות. צה\"ל, לפי הדיווחים, נערך לחזרה לעימות בקנה מידה מלא, בתיאום עם שיקולי ארה\"ב לפעולה צבאית. בזירה הפנימית, בית משפט ישראלי הסיר צו איסור פרסום, וחשף את שמותיהם של שני אחים שהואשמו במתן מודיעין צבאי מזויף שנוצר באמצעות בינה מלאכותית לסוכנים איראניים, מה שמדגיש את מאמצי הריגול האיראניים המתמשכים נגד ישראל. בינתיים, הגבול הצפוני נותר נפיץ, כששני חיילי צה\"ל נפצעו באורח בינוני מירי רקטות של חיזבאללה ואזעקות נשמעו בקריית שמונה ובדוב\"ב, מה שמעיד על המשך פעילות עימות באמצעות שלוחים.</p>",
+  "outlook_he": "יש לעקוב אחר יישום הסגר האמריקאי, אחר תגובותיה הישירות והעקיפות (באמצעות שלוחים) של איראן, וכן אחר כל הצהרות נוספות לגבי תקיפות צבאיות אמריקאיות אפשריות בימים הקרובים.",
+  "what_changed_he": [
+    "שיחות השלום בין ארה\"ב לאיראן קרסו רשמית, מה שהוביל למשבר דיפלומטי משמעותי.",
+    "ארצות הברית הכריזה על הטלת סגר ימי קרב על נמלי איראן, מה שמסלים באופן דרמטי את הלחץ הכלכלי ואת העמידה הצבאית.",
+    "איראן איימה להפעיל שלוחים חות'ים כדי לחסום את מיצר באב אל-מנדב כנקמה, ובכך לאותת על שיבוש אזורי נרחב פוטנציאלי."
+  ]
+}

@@ -156,13 +156,23 @@ const newUpdatesLabel = t(lang, 'index.newUpdates');
 
       if (!pill || !freshLabel) return;
 
-      const timeStr = generatedAt.toLocaleTimeString('en-US', {
+      // Israel time (local for Hebrew users)
+      const israelTimeStr = generatedAt.toLocaleTimeString('en-US', {
         timeZone: 'Asia/Jerusalem',
         hour: '2-digit',
         minute: '2-digit',
         hour12: false
       });
-      freshLabel.textContent = lastUpdatedLabel + ' ' + timeStr + ' 🇮🇱 IDT';
+      // User's browser local time in parentheses (useful if viewing from abroad)
+      const localTimeStr = generatedAt.toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+      });
+      // Only show local time in parens if the user is NOT in Israel timezone
+      const userTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      const isIsrael = userTZ === 'Asia/Jerusalem' || userTZ === 'Asia/Tel_Aviv';
+      freshLabel.textContent = lastUpdatedLabel + ' ' + israelTimeStr + ' 🇮🇱' + (isIsrael ? '' : ' (' + localTimeStr + ')');
 
       pill.className = pill.className.replace(/live-pill-\w+/g, '').trim();
       if (diffMins < 15) {

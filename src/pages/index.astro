@@ -131,13 +131,20 @@ const newUpdatesLabel = t(lang, 'index.newUpdates');
 
       if (!pill || !freshLabel) return;
 
-      const timeStr = generatedAt.toLocaleTimeString('en-US', {
+      // User's local time
+      const localTimeStr = generatedAt.toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+      });
+      // Israel time in parentheses
+      const israelTimeStr = generatedAt.toLocaleTimeString('en-US', {
         timeZone: 'Asia/Jerusalem',
         hour: '2-digit',
         minute: '2-digit',
         hour12: false
       });
-      freshLabel.textContent = lastUpdatedLabel + ' ' + timeStr + ' 🇮🇱 IDT';
+      freshLabel.textContent = lastUpdatedLabel + ' ' + localTimeStr + ' (' + israelTimeStr + ' 🇮🇱)';
 
       pill.className = pill.className.replace(/live-pill-\w+/g, '').trim();
       if (diffMins < 15) {

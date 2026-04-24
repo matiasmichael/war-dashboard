@@ -7,7 +7,7 @@ const { fetchAllFeeds } = require('./src/fetcher');
 const { persistDailyArticles } = require('./src/persistence');
 const { main: synthesizeDev } = require('./src/synthesize-developments');
 const { main: fetchVideos } = require('./fetch-videos');
-const { getGeminiKey } = require('./src/synthesizer');
+const { getGeminiKey } = require('./src/config');
 const { initModel, translateArticles } = require('./src/translate-hebrew');
 
 async function main() {
@@ -18,18 +18,28 @@ async function main() {
   console.log(`[DATA] 📊 Fetched ${articles.length} articles from ${sourceStats.length} feeds`);
 
   // --- Translate article titles/snippets to Hebrew ---
+  // Translation is non-critical: cap at 90s so it never blocks the build cycle.
   console.log('[DATA] 🔤 Translating articles to Hebrew...');
   try {
     const googleKey = getGeminiKey();
     if (googleKey) {
       const model = initModel(googleKey);
-      await translateArticles(model, articles);
+      const TRANSLATE_TIMEOUT_MS = 90000; // 90 seconds max
+      await Promise.race([
+        translateArticles(model, articles),
+        new Promise((_, reject) => setTimeout(() => reject(new Error('Translation timed out after 90s')), TRANSLATE_TIMEOUT_MS))
+      ]);
       console.log('[DATA] ✅ Hebrew translation complete.');
     } else {
       console.warn('[DATA] ⚠️  No GOOGLE_API_KEY — skipping Hebrew translation.');
     }
   } catch (err) {
-    console.error(`[DATA] ⚠️  Hebrew translation failed: ${err.message}`);
+    console.error(`[DATA] ⚠️  Hebrew translation failed: ${err.message}. Continuing with English fallback.`);
+    // Ensure all articles have _he fields even if translation failed/timed out
+    articles.forEach(a => {
+      if (!a.title_he) a.title_he = a.title;
+      if (a.snippet_he === undefined) a.snippet_he = a.snippet || '';
+    });
   }
 
   // Persist to daily JSON (deduplicates automatically; purges stale pre-scheduled entries)

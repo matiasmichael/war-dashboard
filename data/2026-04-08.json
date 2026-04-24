@@ -9,8 +9,8 @@
     "color": "#003366",
     "accentLight": "#eff6ff",
     "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128",
-    "title_he": "איראן מאיימת לסיים את הפסקת האש בשל הוצאת חיזבאללה מההסכם",
-    "snippet_he": "איראן אומרת שארה\"ב חייבת לבחור בין הפסקת אש למלחמה דרך ישראל, שכן הסכם הפסקת האש של יום שלישי אינו כולל את ארגון הטרור חיזבאללה הנתמך על ידי טהראן."
+    "title_he": "Iran threatens to end ceasefire over Hezbollah's exclusion from truce deal",
+    "snippet_he": "Iran says the U.S. must choose between ceasefire or war via Israel as Tuesday's ceasefire deal excludes Tehran-backed terrorist group Hezbollah."
   },
   {
     "title": "At least 182 killed across Lebanon in large wave of Israeli strikes",
@@ -21,7 +21,9 @@
     "logo": "🇬🇧",
     "color": "#b80000",
     "accentLight": "#fef2f2",
-    "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128"
+    "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128",
+    "title_he": "At least 182 killed across Lebanon in large wave of Israeli strikes",
+    "snippet_he": "Attacks hit the southern suburbs of Beirut, southern Lebanon and the eastern Bekaa Valley, hours after a US-Iran ceasefire was announced."
   },
   {
     "title": "Negotiators face huge task to close gaps in rival Iran peace proposals",
@@ -46,8 +48,8 @@
     "color": "#003366",
     "accentLight": "#eff6ff",
     "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128",
-    "title_he": "הפגנת הכוח של נאט\"ו בראשות בריטניה מסתיימת עם משחתת עוגנת בים התיכון בעקבות ״תקלה טכנית״",
-    "snippet_he": "בריטניה עגנה את ספינת המלחמה הימית היחידה שלה בים התיכון עקב בעיות טכניות, על רקע ביקורת גוברת על תגובת ראש הממשלה סטארמר למלחמה באיראן."
+    "title_he": "UK's NATO show of force ends with docked destroyer in Mediterranean after 'technical' issue",
+    "snippet_he": "The U.K. docked its sole naval warship in the Mediterranean due to technical issues amid growing criticism of PM Starmer's response to the Iran war."
   },
   {
     "title": "Bowen: Ceasefire means respite for civilians, but it might not last long",
@@ -59,8 +61,8 @@
     "color": "#b80000",
     "accentLight": "#fef2f2",
     "publisherLogo": "https://www.google.com/s2/favicons?domain=bbc.com&sz=128",
-    "title_he": "בואן: הפסקת האש מביאה הפוגה לאזרחים, אך ייתכן שלא תימשך זמן רב",
-    "snippet_he": "בין אם ניתן להגיע להסכם שלום מתמשך ובין אם לאו, המלחמה והשלכותיה מעצבות מחדש את המזרח התיכון, כותב העורך הבינלאומי ג'רמי בואן."
+    "title_he": "Bowen: Ceasefire means respite for civilians, but it might not last long",
+    "snippet_he": "Whether or not a lasting peace deal can be reached, the war and its consequences are reshaping the Middle East, writes international editor Jeremy Bowen."
   },
   {
     "title": "Evangelical leaders rally for Trump and Israel as Operation Epic Fury reshapes the region",
@@ -72,8 +74,8 @@
     "color": "#003366",
     "accentLight": "#eff6ff",
     "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128",
-    "title_he": "מנהיגים אוונגליסטים מתגייסים למען טראמפ וישראל כשמבצע ״זעם אפי״ מעצב מחדש את האזור",
-    "snippet_he": "מנהיגים אוונגליסטים אומרים שהתמיכה בישראל נותרה חזקה במהלך מבצע ״זעם אפי״, המערכה הצבאית המשותפת של ארה\"ב וישראל נגד איראן, כאשר הפסקת אש חדשה נכנסת לתוקף."
+    "title_he": "Evangelical leaders rally for Trump and Israel as Operation Epic Fury reshapes the region",
+    "snippet_he": "Evangelical leaders say support for Israel has remained strong during Operation Epic Fury, the joint U.S.-Israel military campaign against Iran, as a new ceasefire takes hold."
   },
   {
     "title": "North Korea fires missiles toward sea after ridiculing South's hopes for better ties",
@@ -85,7 +87,7 @@
     "color": "#003366",
     "accentLight": "#eff6ff",
     "publisherLogo": "https://www.google.com/s2/favicons?domain=foxnews.com&sz=128",
-    "title_he": "צפון קוריאה יורה טילים לעבר הים לאחר שלעגה לתקוות הדרום לקשרים טובים יותר",
-    "snippet_he": "צפון קוריאה ירתה מספר טילים בליסטיים לאחר שמתחה ביקורת על הדחיפה של דרום קוריאה לשיפור היחסים, ובכך העלתה את המתיחות באזור."
+    "title_he": "צפון קוריאה יורה טילים לעבר הים לאחר לעג לתקוות הדרום ליחסים טובים יותר",
+    "snippet_he": "צפון קוריאה ירתה מספר טילים בליסטיים לאחר שמתחה ביקורת על הדרישה של דרום קוריאה לשיפור היחסים, מה שהעלה את המתיחות באזור."
   }
 ]

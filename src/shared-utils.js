@@ -1,6 +1,9 @@
 // ===== SHARED UTILITIES (ESM) =====
 // ESM versions of utility functions for use in Astro components.
-// The CJS versions in src/utils.js remain for Node scripts (fetch.js, synthesizer.js, etc.).
+// ⚠️  KEEP IN SYNC with src/utils.js (CJS) — these are intentional duplicates.
+// Astro cannot import CJS `module.exports` as named ESM imports, so both files
+// must exist. If you change a function here, update src/utils.js too (and vice versa).
+// See docs/I18N.md § "Page Structure" for why the CJS/ESM split exists.
 
 /**
  * Escape HTML special characters.
@@ -34,10 +37,8 @@ export function sanitizeHTML(html) {
  * Compute relative time string from a date.
  *
  * Guards against future timestamps (e.g. JPost pre-schedules articles with future
- * pubDates in their RSS). A future timestamp produces a negative diffMs, causing
- * diffMins < 1 to be true and returning 'just now' even for articles published hours
- * ago. We clamp negative diffs to 0 so future-dated articles show 'just now' rather
- * than displaying a nonsensical negative age.
+ * pubDates in their RSS). Clamps negative diffs to 0 so future-dated articles
+ * show 'just now' rather than displaying a nonsensical negative age.
  */
 export function timeAgo(dateStr) {
   const now = new Date();

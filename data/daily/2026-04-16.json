@@ -1,0 +1,99 @@
+{
+  "date": "2026-04-16",
+  "headline": "Diplomatic efforts intensify for US-Iran deal amid ongoing Hormuz blockade and Israel-Lebanon conflict.",
+  "summary": "<p>Today saw intensified diplomatic maneuvering concerning the Iran-Israel conflict, with Pakistan actively pushing for a new round of US-Iran peace negotiations, potentially in Islamabad. These efforts are reportedly aimed at achieving a major breakthrough related to Iran’s nuclear program, offering a potential diplomatic off-ramp from the ongoing regional hostilities. Concurrently, Iran has proposed safe passage for ships through the Strait of Hormuz on the Omani side, contingent on Washington releasing tankers and ships seized since the war began. This suggests Iran is seeking to leverage the blockade of the critical waterway for concessions.</p><p>Despite the diplomatic overtures, military tensions remain high. The Strait of Hormuz blockade continued for a third day, prompting the US to deploy additional forces to the Middle East, including a carrier strike group and Marines, to ensure regional stability and freedom of navigation. On the Israel-Lebanon front, Israeli forces bombed homes in southern Lebanon, and northern Israeli communities experienced multiple drone infiltration alerts. While sources in Lebanon hinted at an imminent ceasefire, Israel's security cabinet concluded a meeting without a decision on a truce, indicating continued military operations.</p><p>Intelligence and proxy activities also featured prominently. Iran's Revolutionary Guard Corps claimed to have arrested four individuals accused of being Mossad agents, underscoring the ongoing clandestine struggle between the two nations. Hamas, meanwhile, is reportedly planning to exploit ongoing Iran-Lebanon negotiations to avoid disarmament and strengthen its control over Gaza’s balance of power. The Israeli Prime Minister affirmed readiness for a resumption of war with Iran, even as US diplomatic efforts proceed.</p><p>Further complicating the regional dynamics, the US Senate rejected a bill to halt arms sales to Israel, though a significant number of Democrats voted in favor of such measures, reflecting growing internal debate. Separately, the US sanctioned an Iranian oil shipping network, maintaining economic pressure on Tehran. These developments highlight a complex interplay of high-stakes diplomacy, military posturing, and covert operations defining the current phase of the Iran-Israel conflict.</p>",
+  "key_events": [
+    {
+      "time": "00:04 IDT",
+      "headline": "Iran proposes safe passage through Hormuz under specific conditions.",
+      "source": "Times of Israel",
+      "category": "diplomacy",
+      "description": "Iran offered safe passage for ships on the Omani side of the Strait of Hormuz, contingent on Washington meeting demands to free hundreds of tankers. This proposal signals Iran's attempt to manage the shipping crisis while maintaining leverage in broader negotiations.",
+      "headline_he": "איראן מציעה מעבר בטוח דרך הורמוז בתנאים ספציפיים.",
+      "description_he": "איראן הציעה מעבר בטוח לספינות בצד העומאני של מצרי הורמוז, בתנאי שוושינגטון תיענה לדרישות לשחרור מאות מכליות. הצעה זו מאותתת על ניסיונה של איראן לנהל את משבר השיט תוך שמירה על עמדת מיקוח במשא ומתן רחב יותר."
+    },
+    {
+      "time": "00:40 IDT",
+      "headline": "US sanctions Iranian oil shipping network linked to former security official.",
+      "source": "Jerusalem Post",
+      "category": "diplomacy",
+      "description": "The US sanctioned an Iranian oil shipping network reportedly run by the son of Ali Shamkhani, building on previous sanctions from July 2025. This move intensifies economic pressure on Iran amidst ongoing tensions and efforts for a diplomatic resolution.",
+      "headline_he": "ארה\"ב מטילה סנקציות על רשת הובלת נפט איראנית המקושרת לבכיר ביטחוני לשעבר.",
+      "description_he": "ארה\"ב הטילה סנקציות על רשת הובלת נפט איראנית המנוהלת, על פי הדיווחים, על ידי בנו של עלי שמח'אני, בהתבסס על סנקציות קודמות מיולי 2025. מהלך זה מגביר את הלחץ הכלכלי על איראן בצל המתיחות המתמשכת והמאמצים להשגת פתרון דיפלומטי."
+    },
+    {
+      "time": "01:02 IDT",
+      "headline": "Israeli cabinet concludes without decision on Lebanon ceasefire.",
+      "source": "Ynet News",
+      "category": "military",
+      "description": "Israel's security cabinet concluded a meeting without reaching a decision on a ceasefire in Lebanon, with sources indicating no progress towards an agreement. This suggests continued military operations on the northern front despite reports from Lebanon of an impending truce.",
+      "headline_he": "הקבינט הישראלי מסיים ללא החלטה על הפסקת אש בלבנון.",
+      "description_he": "הקבינט המדיני-ביטחוני של ישראל סיים ישיבה מבלי להגיע להחלטה על הפסקת אש בלבנון, כשגורמים מצביעים על העדר התקדמות לקראת הסכם. הדבר מרמז על המשך הפעולות הצבאיות בחזית הצפונית למרות דיווחים מלבנון על הפסקת אש קרובה."
+    },
+    {
+      "time": "01:53 IDT",
+      "headline": "Israeli forces bomb homes in southern Lebanon's Bint Jbeil district.",
+      "source": "Al Jazeera",
+      "category": "proxy",
+      "description": "The Israeli army carried out bombings targeting residential buildings in the Bint Jbeil district of southern Lebanon. This action signifies ongoing military engagement against Hezbollah targets, contributing to the humanitarian impact in the region.",
+      "headline_he": "כוחות ישראליים מפציצים בתים במחוז בנת ג'בייל שבדרום לבנון.",
+      "description_he": "צבא ישראל ביצע הפצצות שכונו למבני מגורים במחוז בנת ג'בייל שבדרום לבנון. פעולה זו מסמלת מעורבות צבאית מתמשכת נגד מטרות חיזבאללה, ותורמת להשפעה ההומניטרית באזור."
+    },
+    {
+      "time": "03:00 IDT",
+      "headline": "Pakistan pushes for new round of US-Iran peace negotiations.",
+      "source": "Al Jazeera",
+      "category": "diplomacy",
+      "description": "Pakistan is actively working to facilitate a new round of peace negotiations between the US and Iran, with expectations of a major breakthrough related to Iran’s nuclear program. This diplomatic initiative aims to de-escalate regional tensions and potentially resolve key points of contention.",
+      "headline_he": "פקיסטן דוחפת לסבב חדש של שיחות שלום בין ארה\"ב לאיראן.",
+      "description_he": "פקיסטן פועלת באופן אקטיבי לקידום סבב חדש של שיחות שלום בין ארה\"ב לאיראן, עם ציפיות לפריצת דרך משמעותית בנוגע לתוכנית הגרעין האיראנית. יוזמה דיפלומטית זו נועדה להפחית את המתיחות האזורית ולפתור נקודות מחלוקת מרכזיות."
+    },
+    {
+      "time": "04:47 IDT",
+      "headline": "US deploys additional troops to Middle East amid Hormuz blockade.",
+      "source": "Jerusalem Post",
+      "category": "military",
+      "description": "The US deployed a carrier strike group, including the USS George H.W. Bush with approximately 6,000 personnel, and 4,200 Marines to the Middle East. This significant military reinforcement comes as the Strait of Hormuz blockade enters its third day, underlining US commitment to regional stability and freedom of navigation.",
+      "headline_he": "ארה\"ב פורסת כוחות נוספים למזרח התיכון בצל המצור בהורמוז.",
+      "description_he": "ארה\"ב פרסה קבוצת תקיפה של נושאת מטוסים, הכוללת את נושאת המטוסים USS ג'ורג' ה. וו. בוש עם כ-6,000 אנשי צוות, ו-4,200 נחתים למזרח התיכון. תגבור צבאי משמעותי זה מגיע כשמצור מצרי הורמוז נכנס ליומו השלישי, ומדגיש את מחויבות ארה\"ב ליציבות אזורית ולחופש שיט."
+    },
+    {
+      "time": "05:59 IDT",
+      "headline": "PM says Israel ready for Iran war resumption as US prepares for talks.",
+      "source": "Times of Israel",
+      "category": "diplomacy",
+      "description": "The Israeli Prime Minister affirmed the country's readiness for a resumption of war with Iran, while the US prepared for another round of talks, possibly in Islamabad. This highlights the dual track of military preparedness and diplomatic engagement defining the current conflict phase.",
+      "headline_he": "רה\"מ: ישראל ערוכה לחידוש מלחמה עם איראן בזמן שארה\"ב מתכוננת לשיחות.",
+      "description_he": "ראש ממשלת ישראל אישר את מוכנות המדינה לחידוש המלחמה עם איראן, בעוד ארה\"ב התכוננה לסבב שיחות נוסף, ייתכן שבאסלאמאבאד. הדבר מדגיש את המסלול הכפול של מוכנות צבאית ומעורבות דיפלומטית המגדיר את שלב הסכסוך הנוכחי."
+    },
+    {
+      "time": "06:11 IDT",
+      "headline": "IRGC announces arrest of four alleged Mossad agents in Iran.",
+      "source": "Ynet News",
+      "category": "intelligence",
+      "description": "Iran's Revolutionary Guard Corps announced the arrest of four individuals accused of being Mossad agents. This claim points to ongoing clandestine intelligence operations between the two adversaries, reflecting a persistent shadow war amidst open conflict.",
+      "headline_he": "משמרות המהפכה מודיעים על מעצר ארבעה סוכני מוסד לכאורה באיראן.",
+      "description_he": "משמרות המהפכה של איראן הודיעו על מעצרם של ארבעה אנשים המואשמים בהיותם סוכני מוסד. טענה זו מצביעה על פעולות מודיעין חשאיות מתמשכות בין שני היריבים, ומשקפת מלחמת צללים עקשנית בתוך סכסוך גלוי."
+    }
+  ],
+  "statistics": {
+    "total_articles": 46,
+    "sources_reporting": 7,
+    "most_active_source": "Ynet News",
+    "escalation_level": 3
+  },
+  "what_changed": [
+    "Pakistan's active mediation signals a new phase in US-Iran diplomatic efforts aimed at a potential nuclear breakthrough.",
+    "The sustained three-day blockade of the Strait of Hormuz, coupled with US troop deployment, significantly elevates military and economic tensions in the Gulf.",
+    "Israel's cabinet concluded without a Lebanon ceasefire decision, indicating continued military operations on the northern border despite reported Lebanese expectations of a truce."
+  ],
+  "outlook": "Monitoring will focus on the outcome of the proposed US-Iran talks in Islamabad, any developments regarding the Strait of Hormuz blockade, and the intensity of cross-border engagements on the Israel-Lebanon front.",
+  "headline_he": "מאמצים דיפלומטיים מתעצמים להסכם ארה\"ב-איראן, על רקע המצור המתמשך במצרי הורמוז והעימות ישראל-לבנון.",
+  "summary_he": "<p>היום נרשמה התעצמות בתמרונים הדיפלומטיים סביב העימות איראן-ישראל, כשפקיסטן פועלת באופן אקטיבי לקידום סבב חדש של שיחות שלום בין ארה\"ב לאיראן, ייתכן שבאסלאמאבאד. מאמצים אלו, כך דווח, מכוונים להשגת פריצת דרך משמעותית בנוגע לתוכנית הגרעין האיראנית, ומציעים נתיב יציאה דיפלומטי פוטנציאלי מהפעולות האיבה האזוריות המתמשכות. במקביל, איראן הציעה מעבר בטוח לספינות דרך מצרי הורמוז, בצד העומאני, בתנאי שוושינגטון תשחרר מכליות וספינות שנתפסו מאז תחילת המלחמה. הצעה זו מרמזת שאיראן מנסה למנף את המצור על נתיב המים הקריטי להשגת ויתורים.</p><p>למרות המחוות הדיפלומטיות, המתיחות הצבאית נותרה גבוהה. המצור על מצרי הורמוז נמשך זה היום השלישי, מה שהניע את ארה\"ב לפרוס כוחות נוספים למזרח התיכון, כולל קבוצת תקיפה של נושאת מטוסים ונחתים, כדי להבטיח יציבות אזורית וחופש שיט. בחזית ישראל-לבנון, כוחות ישראליים הפציצו בתים בדרום לבנון, ויישובים בצפון ישראל חוו מספר התרעות על חדירת כטב\"מים. בעוד גורמים בלבנון רמזו על הפסקת אש קרובה, הקבינט המדיני-ביטחוני של ישראל סיים ישיבה ללא החלטה על הפוגה, דבר המצביע על המשך הפעולות הצבאיות.</p><p>פעילויות מודיעין ופרוקסי בלטו אף הן. משמרות המהפכה של איראן טענו כי עצרו ארבעה חשודים כסוכני מוסד, מה שמדגיש את המאבק החשאי המתמשך בין שתי המדינות. חמאס, בינתיים, מתכנן לכאורה לנצל את המשא ומתן המתמשך בין איראן ללבנון כדי להימנע מפירוק מנשק ולחזק את שליטתו במאזן הכוחות בעזה. ראש ממשלת ישראל אישר את מוכנותו לחידוש המלחמה עם איראן, גם כשמאמצים דיפלומטיים אמריקאיים נמשכים.</p><p>ובנוסף מסבך את הדינמיקה האזורית, הסנאט האמריקאי דחה הצעת חוק לעצירת מכירת נשק לישראל, אף שמספר משמעותי של דמוקרטים הצביעו בעד צעדים כאלה, מה שמשקף ויכוח פנימי גובר. בנפרד, ארה\"ב הטילה סנקציות על רשת הובלת נפט איראנית, תוך שמירה על לחץ כלכלי על טהראן. התפתחויות אלה מדגישות שילוב מורכב של דיפלומטיה בעלת סיכונים גבוהים, התנהלות צבאית ופעולות חשאיות המגדירים את השלב הנוכחי של העימות איראן-ישראל.</p>",
+  "outlook_he": "המעקב יתמקד בתוצאות השיחות המוצעות בין ארה\"ב לאיראן באסלאמאבאד, כל התפתחות בנוגע למצור במצרי הורמוז, ועוצמת המעורבות חוצת הגבולות בחזית ישראל-לבנון.",
+  "what_changed_he": [
+    "הגישור הפעיל של פקיסטן מסמן שלב חדש במאמצים הדיפלומטיים בין ארה\"ב לאיראן, המכוונים לפריצת דרך גרעינית פוטנציאלית.",
+    "המצור המתמשך זה שלושה ימים על מצרי הורמוז, יחד עם פריסת כוחות אמריקאים, מעלה באופן ניכר את המתיחות הצבאית והכלכלית במפרץ.",
+    "הקבינט הישראלי סיים ללא החלטה על הפסקת אש בלבנון, מה שמצביע על המשך הפעולות הצבאיות בגבול הצפון למרות ציפיות לבנוניות מדווחות להפוגה."
+  ]
+}

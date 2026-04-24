@@ -1,61 +1,63 @@
 {
   "developments": [
     {
-      "headline": "US Declares Hormuz Blockade; Iran Threatens Response",
-      "summary": "US President Trump declared an immediate naval blockade of the Strait of Hormuz. Iran's IRGC responded by threatening severe action against approaching military vessels, significantly escalating regional tensions.",
+      "headline": "Israel-Lebanon Ceasefire Extended Three Weeks",
+      "summary": "The Israel-Lebanon ceasefire has been extended for three weeks following White House talks, indicating continued diplomatic efforts to de-escalate the northern front despite ongoing tensions.",
+      "sources": [
+        "CNBC",
+        "Al Jazeera",
+        "Times of Israel",
+        "Jerusalem Post",
+        "Ynet News"
+      ],
+      "severity": "major",
+      "category": "diplomacy",
+      "timeContext": "Ongoing",
+      "updatedAt": "2026-04-24T00:29:20.936Z",
+      "headline_he": "הפסקת האש בין ישראל ללבנון הוארכה בשלושה שבועות",
+      "summary_he": "הפסקת האש בין ישראל ללבנון הוארכה בשלושה שבועות בעקבות שיחות בבית הלבן. מהלך זה מצביע על המשך המאמצים הדיפלומטיים להרגעת המצב בגזרה הצפונית, למרות המתיחות המתמשכת."
+    },
+    {
+      "headline": "Hezbollah Rockets Precede Ceasefire Extension",
+      "summary": "Hezbollah fired rockets into northern Israel shortly before the ceasefire extension was announced, prompting IDF retaliation against launch sites. This underscores the fragile nature of the truce.",
       "sources": [
         "Times of Israel",
         "Ynet News"
       ],
-      "severity": "critical",
-      "category": "military",
-      "timeContext": "22m ago",
-      "updatedAt": "2026-04-12T17:44:07.400Z",
-      "headline_he": "ארה\"ב מכריזה על מצור בהורמוז; איראן מאיימת בתגובה",
-      "summary_he": "נשיא ארה\"ב טראמפ הכריז על מצור ימי מיידי על מצר הורמוז. משמרות המהפכה של איראן הגיבו באיום בפעולה חמורה נגד כלי שיט צבאיים מתקרבים, תוך הסלמה משמעותית של המתיחות האזורית."
-    },
-    {
-      "headline": "Drone Infiltrations, Alarms Plague Northern Israel",
-      "summary": "Northern Israel is experiencing multiple suspected drone infiltrations and active alarms in the Galilee region, indicating heightened cross-border hostilities following an IDF raid on a Hezbollah stronghold.",
-      "sources": [
-        "Ynet News",
-        "Times of Israel"
-      ],
-      "severity": "major",
-      "category": "military",
-      "timeContext": "Ongoing",
-      "updatedAt": "2026-04-12T17:44:07.400Z",
-      "headline_he": "גל חדירות כטב\"מים ואזעקות פוקד את צפון ישראל",
-      "summary_he": "צפון ישראל חווה מספר חדירות חשודות של כטב\"מים ואזעקות פעילות באזור הגליל. הדבר מעיד על הסלמה בעוינות חוצת הגבולות, לאחר פשיטה של צה\"ל על מעוז חיזבאללה."
-    },
-    {
-      "headline": "Iran Rejects Ceasefire Terms, Urges Street Support",
-      "summary": "Ceasefire talks have failed due to Iran's rejection of US demands, including ending uranium enrichment and proxy funding. Iranian authorities remain defiant, urging supporters to stay in the streets.",
-      "sources": [
-        "Al Jazeera",
-        "Jerusalem Post"
-      ],
-      "severity": "major",
-      "category": "diplomacy",
-      "timeContext": "52m ago",
-      "updatedAt": "2026-04-12T17:44:07.400Z",
-      "headline_he": "איראן דוחה תנאי הפסקת אש, קוראת לתמיכה ברחובות",
-      "summary_he": "שיחות הפסקת האש נכשלו עקב דחייתה של איראן לדרישות ארה\"ב, כולל הפסקת העשרת אורניום ומימון ארגוני חסות. הרשויות האיראניות נותרו מתריסות וקוראות לתומכים להישאר ברחובות."
-    },
-    {
-      "headline": "Israeli Leaders Affirm Sustained Lebanon Operations",
-      "summary": "Prime Minister Netanyahu and Minister Katz reiterated in South Lebanon that the war is ongoing, with significant work remaining. This signals continued military pressure on Hezbollah targets in the region.",
-      "sources": [
-        "Ynet News"
-      ],
       "severity": "notable",
       "category": "military",
-      "timeContext": "19m ago",
-      "updatedAt": "2026-04-12T17:44:07.400Z",
-      "headline_he": "מנהיגים ישראלים מאשרים המשך מבצעים בלבנון",
-      "summary_he": "ראש הממשלה נתניהו והשר כץ חזרו והדגישו בדרום לבנון כי המלחמה נמשכת, וכי עוד נותרה עבודה רבה. הדבר מאותת על המשך הלחץ הצבאי על יעדי חיזבאללה באזור."
+      "timeContext": "1h ago",
+      "updatedAt": "2026-04-24T00:29:20.936Z",
+      "headline_he": "ירי רקטות של חזבאללה קדם להארכת הפסקת האש",
+      "summary_he": "חזבאללה ירה רקטות לעבר צפון ישראל זמן קצר לפני הודעת הארכת הפסקת האש, מה שגרר תגובת צה\"ל נגד אתרי שיגור. אירוע זה מדגיש את אופייה השביר של ההפוגה."
+    },
+    {
+      "headline": "Iran Seizes Vessels in Strait of Hormuz",
+      "summary": "Iran's IRGC seized vessels in the Strait of Hormuz, reportedly in a tit-for-tat move following a U.S. naval blockade. This represents a significant escalation of naval tensions in a critical waterway.",
+      "sources": [
+        "Fox News"
+      ],
+      "severity": "critical",
+      "category": "military",
+      "timeContext": "2h ago",
+      "updatedAt": "2026-04-24T00:29:20.937Z",
+      "headline_he": "איראן השתלטה על כלי שיט במיצר הורמוז",
+      "summary_he": "משמרות המהפכה האיראניים השתלטו על כלי שיט במיצר הורמוז, על פי הדיווחים, בתגובה לפעולת \"עין תחת עין\" בעקבות מצור ימי אמריקאי. מהלך זה מהווה הסלמה משמעותית של המתיחות הימית במעבר ימי אסטרטגי זה."
+    },
+    {
+      "headline": "Iran War Stoking Regional Inflation, Market Caution",
+      "summary": "Japan's core inflation accelerated, driven by 'Iran war' energy worries, while Asia-Pacific markets remain mixed despite the Israel-Lebanon ceasefire extension, signaling persistent economic uncertainty.",
+      "sources": [
+        "CNBC"
+      ],
+      "severity": "notable",
+      "category": "economic",
+      "timeContext": "Ongoing",
+      "updatedAt": "2026-04-24T00:29:20.937Z",
+      "headline_he": "מלחמת איראן מזינה אינפלציה אזורית וזהירות בשווקים",
+      "summary_he": "קצב האינפלציה הבסיסית ביפן הואץ, מונע על ידי חששות אנרגיה הקשורים ל\"מלחמת איראן\", בעוד ששווקי אסיה-פסיפיק נותרו מעורבים למרות הארכת הפסקת האש בין ישראל ללבנון, מה שמאותת על אי-ודאות כלכלית מתמשכת."
     }
   ],
-  "generatedAt": "2026-04-12T17:44:22.464Z",
-  "articleCount": 386
+  "generatedAt": "2026-04-24T00:29:33.369Z",
+  "articleCount": 327
 }

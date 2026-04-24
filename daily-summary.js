@@ -5,8 +5,7 @@
 const fs = require('fs');
 const path = require('path');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
-const { GEMINI_MODEL, TIMEZONE } = require('./src/config');
-const { getGeminiKey } = require('./src/synthesizer');
+const { GEMINI_MODEL, TIMEZONE, getGeminiKey } = require('./src/config');
 const { initModel: initTranslateModel, translateDailyBriefing } = require('./src/translate-hebrew');
 const { atomicWriteSync } = require('./src/utils');
 

@@ -3,5 +3,8 @@ dist/
 src/data/latest.json
 .DS_Store
 data/last-error.json
+data/health/
 *.tmp
 .astro/
+logs/*.log
+logs/launchd-*.log

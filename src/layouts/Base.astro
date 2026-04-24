@@ -34,11 +34,79 @@ const fontLink = lang === 'he'
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href={fontLink} rel="stylesheet">
+  <script is:inline>
+    (function() {
+      try {
+        const savedLang = localStorage.getItem('mep-lang');
+        if (savedLang) {
+          const path = window.location.pathname;
+          const isHeRoute = path.startsWith('/he');
+          if (savedLang === 'he' && !isHeRoute) {
+            window.location.replace('/he' + path);
+          } else if (savedLang === 'en' && isHeRoute) {
+            window.location.replace(path.replace('/he', '') || '/');
+          }
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body class:list={[
   "font-manrope bg-base-100 text-base-content leading-relaxed min-h-screen",
   lang === 'he' && "font-heebo"
 ]}>
+  <!-- SPLASH OVERLAY -->
+  <div id="mep-splash" class="fixed inset-0 z-[100] bg-header-brown text-white transition-opacity duration-300" style="display: none;">
+    <div class="h-full flex flex-col items-center justify-center">
+      <div class="mb-10 flex items-center gap-3">
+        <span class="text-5xl drop-shadow-md">🔶</span>
+        <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-center drop-shadow-sm">Middle East Pulse</h1>
+      </div>
+      <p class="text-white/80 mb-10 text-lg font-medium tracking-wide uppercase text-center px-4">
+        Choose your language<br/>
+        <span class="font-heebo mt-2 block tracking-normal">בחר/י שפה</span>
+      </p>
+      <div class="flex gap-4 w-full max-w-[280px] flex-col sm:flex-row sm:max-w-md px-2">
+        <button onclick="setLangAndContinue('en')" class="btn btn-lg bg-white/10 hover:bg-white/20 text-white border-white/20 w-full font-semibold shadow-sm">🇺🇸 English</button>
+        <button onclick="setLangAndContinue('he')" class="btn btn-lg bg-white/10 hover:bg-white/20 text-white border-white/20 w-full font-heebo font-semibold shadow-sm" dir="rtl">🇮🇱 עברית</button>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function() {
+      try {
+        if (!localStorage.getItem('mep-lang')) {
+          document.getElementById('mep-splash').style.display = 'block';
+          document.body.style.overflow = 'hidden';
+        }
+      } catch (e) {}
+    })();
+
+    function setLangAndContinue(lang) {
+      try {
+        localStorage.setItem('mep-lang', lang);
+      } catch (e) {}
+      
+      const splash = document.getElementById('mep-splash');
+      if (splash) {
+        splash.style.opacity = '0';
+        setTimeout(() => {
+          splash.style.display = 'none';
+          document.body.style.overflow = '';
+        }, 300);
+      }
+      
+      const path = window.location.pathname;
+      const isHeRoute = path.startsWith('/he');
+      if (lang === 'he' && !isHeRoute) {
+        window.location.href = '/he' + path;
+      } else if (lang === 'en' && isHeRoute) {
+        window.location.href = path.replace('/he', '') || '/';
+      }
+    }
+  </script>
+
   <slot />
 </body>
 </html>

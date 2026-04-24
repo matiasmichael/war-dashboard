@@ -1,0 +1,15 @@
+❌ Failed to parse Gemini response as JSON: Expected ',' or '}' after property value in JSON at position 526 (line 4 column 396)
+Raw response: {
+  "date": "2026-04-15",
+  "headline": "US-Iran deal hopes surge; Israel-Lebanon talks commence amid regional military actions.",
+  "summary": "<p>Today witnessed a flurry of diplomatic activity juxtaposed with ongoing regional military engagements, signaling a complex and potentially transitional phase in the Iran-Israel conflict landscape. Hopes for a potential US-Iran deal gained significant traction throughout the day, prompting positive reactions in global financial markets. US officials d
+❌ Failed to parse Gemini response as JSON: Expected ',' or '}' after property value in JSON at position 1439 (line 4 column 1308)
+Raw response: {
+  "date": "2026-04-19",
+  "headline": "Hezbollah Attack Kills IDF Soldier and French Peacekeeper; Iran Closes Strait of Hormuz.",
+  "summary": "<p>The conflict environment significantly intensified today with major escalations in both the northern front and maritime domain. In southern Lebanon, a highly destabilizing incident resulted in the death of an IDF reservist, Sgt. First Class (res.) Lidor Porat, and nine other soldiers wounded by an explosive device. Simultaneously, a French peacekeep
+❌ Failed to parse Gemini response as JSON: Expected ',' or '}' after property value in JSON at position 567 (line 4 column 434)
+Raw response: {
+  "date": "2026-04-22",
+  "headline": "Trump extends Iran ceasefire amid Strait of Hormuz tensions, international reactions vary.",
+  "summary": "<p>Today's intelligence landscape was dominated by President Trump's extension of a temporary ceasefire in the conflict with Iran. The announcement, confirmed by multiple sources, was met with mixed international reactions. While Pakistan's Prime Minister Shehbaz Sharif thanked Trump and expressed hopes for a comprehensive peace deal, a senior adviso

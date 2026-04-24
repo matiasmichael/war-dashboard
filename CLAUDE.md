@@ -8,6 +8,12 @@
 
 **Middle East Pulse** is a live news intelligence dashboard tracking the Iran-Israel conflict theater. It aggregates RSS feeds from 8+ sources, synthesizes AI-powered intelligence briefings via Google Gemini, and serves a static Astro site via PM2 and Cloudflare Tunnel.
 
+See the `docs/` directory for deep-dive technical documentation:
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — Pipeline internals, atomic writes, timestamp fixes
+- [docs/FEEDS.md](docs/FEEDS.md) — RSS configurations, keyword filters, and quirks
+- [docs/VIDEOS.md](docs/VIDEOS.md) — YouTube video pipeline
+- [docs/I18N.md](docs/I18N.md) — Hebrew translation layer and RTL support
+
 - **URL**: Public via Cloudflare Tunnel (configured at `~/.cloudflared/war-dashboard.yml`)
 - **Port**: `8440` (Express serves `dist/`)
 - **Stack**: Node.js + Astro + DaisyUI/Tailwind + Gemini API
@@ -113,7 +119,7 @@ war-dashboard/
 │   ├── synthesize-developments.js  Gemini key-developments synthesis (4 items).
 │   ├── persistence.js      Daily JSON deduplication + atomic writes.
 │   ├── utils.js            CJS utilities: escapeHtml, timeAgo, atomicWriteSync, etc.
-│   ├── shared-utils.js     ESM versions of utilities (for Astro components).
+│   ├── shared-utils.js     ESM re-exports of utils.js (for Astro components). ⚠️ Keep in sync with utils.js.
 │   ├── feeds.json          Feed metadata for Astro FilterBar (name, shortName, faviconDomain).
 │   │
 │   ├── data/
@@ -189,7 +195,7 @@ This applies to: article feed filter buttons (`FilterBar.astro`), video channel 
 ### 3. JPost Timezone Correction
 **Root cause**: Jerusalem Post RSS stamps all `pubDate` values in Israel local time (IDT = UTC+3 in summer, IST = UTC+2 in winter) but incorrectly labels them as `GMT`. This makes articles appear 2–3 hours in the future.
 
-**Fix**: `correctJPostTimezone()` in `src/fetcher.js` uses `Intl.DateTimeFormat` to determine the Israel UTC offset for any given timestamp (DST-aware), then subtracts it from the mislabeled timestamp.
+**Fix**: `correctJPostTimezone()` in `src/fetcher.js` uses `Intl.DateTimeFormat` to determine the Israel UTC offset for any given timestamp (DST-aware), then subtracts it from the mislabeled timestamp. See `docs/ARCHITECTURE.md` for full details.
 
 ```
 RSS says: "Sat, 11 Apr 2026 21:18:16 GMT"  (mislabeled — actually 21:18 IDT)
@@ -213,10 +219,10 @@ CNN's feed was removed from active feeds. The old `cnnTitleFix` logic and `dropN
 Articles are deduplicated by URL (link field). But on each fetch, mutable fields — `title`, `snippet`, `date` — are refreshed from the latest RSS data. This handles publishers who fix typos, update headlines, or correct timestamps post-publication.
 
 ### 9. Gemini API Key Source
-The `GOOGLE_API_KEY` is read from `~/.openclaw/openclaw.json` (OpenClaw gateway config), not from a `.env` file. See `getGeminiKey()` in `src/synthesizer.js` and `src/synthesize-developments.js`.
+The `GOOGLE_API_KEY` is read from `~/.openclaw/openclaw.json` (OpenClaw gateway config), not from a `.env` file. The centralized `getGeminiKey()` in `src/config.js` validates that both the config file and the key exist, throwing a clear error if either is missing.
 
 ### 10. Dual Utils (CJS + ESM)
-`src/utils.js` is CJS (for Node scripts). `src/shared-utils.js` is ESM (for Astro components). They have overlapping functions intentionally — Astro cannot `require()` CJS modules in component frontmatter.
+`src/utils.js` is CJS (for Node scripts). `src/shared-utils.js` is ESM (for Astro components). They have overlapping functions — Astro's bundler cannot resolve CJS `module.exports` as ESM named imports. **If you change a function in one, update the other.** Both files have sync-warning headers. See `docs/I18N.md` for why this split exists.
 
 ---
 

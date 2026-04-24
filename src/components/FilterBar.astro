@@ -17,7 +17,8 @@ interface Props {
 
 const { sources, feeds, articleCount, lang = 'en' } = Astro.props;
 
-function getFaviconUrl(domain: string): string {
+function getFaviconUrl(domain: string, customLogo?: string): string {
+  if (customLogo) return customLogo;
   return `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
 }
 
@@ -37,7 +38,7 @@ for (const f of feeds) {
   {sources.map(s => {
     const feed = feedMap[s];
     const shortName = feed ? feed.shortName : s;
-    const logoUrl = feed ? getFaviconUrl(feed.faviconDomain) : '';
+    const logoUrl = feed ? getFaviconUrl(feed.faviconDomain, (feed as any).customLogo) : '';
     return (
       <button class="btn btn-sm btn-ghost border border-base-300 rounded-full text-[0.78rem] font-medium whitespace-nowrap flex-shrink-0 text-text-muted hover:border-secondary hover:text-text-secondary filter-btn" data-source={s}>
         {logoUrl && <img src={logoUrl} class="w-4 h-4 rounded-full object-cover" alt="" />}
