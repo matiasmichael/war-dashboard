@@ -10,6 +10,17 @@ const { main: fetchVideos } = require('./fetch-videos');
 const { getGeminiKey } = require('./src/config');
 const { initModel, translateArticles } = require('./src/translate-hebrew');
 
+// ===== PROCESS-LEVEL WATCHDOG =====
+// If the entire fetch+build cycle hasn't completed in 4 minutes, self-terminate.
+// This prevents hung TCP connections to stalled feeds from blocking the LaunchAgent.
+// The LA will restart the process on its next 3-minute interval automatically.
+const PROCESS_TIMEOUT_MS = 4 * 60 * 1000; // 4 minutes
+const watchdog = setTimeout(() => {
+  console.error(`[DATA] ⏱️  WATCHDOG: Process exceeded ${PROCESS_TIMEOUT_MS / 1000}s — self-terminating to allow LaunchAgent restart.`);
+  process.exit(2);
+}, PROCESS_TIMEOUT_MS);
+watchdog.unref(); // Don't let the timer itself prevent a clean exit if we finish normally
+
 async function main() {
   console.log('[DATA] 🔶 Iran War Update — Data Collection');
   console.log(`[DATA]    Time: ${new Date().toISOString()}`);
@@ -87,7 +98,9 @@ async function main() {
   console.log('[DATA] ✅ Site rebuilt and live.');
 }
 
-main().catch(err => {
-  console.error('[DATA] ❌ Fatal error:', err);
-  process.exit(1);
-});
+main()
+  .then(() => clearTimeout(watchdog))
+  .catch(err => {
+    console.error('[DATA] ❌ Fatal error:', err);
+    process.exit(1);
+  });
